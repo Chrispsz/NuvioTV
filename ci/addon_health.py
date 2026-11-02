@@ -24,17 +24,19 @@ import urllib.error
 REF_IMDB = "tt0111161"  # Um Sonho de Liberdade — alvo estável de referência
 
 # (nome, base_url, crítico?)
+# Mesma ordem do pack de fábrica (AddonPreferences.getDefaultAddons):
+# canais ao vivo primeiro, como na Home do app.
 ADDONS = [
-    ("Cinemeta (catálogo)", "https://v3-cinemeta.strem.io", True),
-    ("OpenSubtitles v3", "https://opensubtitles-v3.strem.io", False),
-    ("FrostStream", "https://froststream.cloutteam.com", False),
     ("Tvvio (ao vivo)", "https://tvvio.megaembed-frost.workers.dev", True),
+    ("Cinemeta (catálogo)", "https://v3-cinemeta.strem.io", True),
+    ("FrostStream", "https://froststream.cloutteam.com", False),
     (
         "Torrentio BR (torrent)",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,"
         "torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
         True,
     ),
+    ("OpenSubtitles v3", "https://opensubtitles-v3.strem.io", False),
 ]
 
 UA = "TV-Minimal-AddonHealth/1.0 (NuvioTV fork CI)"

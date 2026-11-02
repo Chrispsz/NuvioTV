@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.nuvio.tv.BuildConfig
 import com.nuvio.tv.core.network.NetworkResult
 import com.nuvio.tv.core.network.safeApiCall
 import com.nuvio.tv.data.local.AddonPreferences
@@ -360,14 +361,26 @@ class AddonRepositoryImpl(
 
         val initialLocalUrls = preferences.installedAddonUrls.first()
         val initialLocalSet = initialLocalUrls.map { normalizeUrl(it) }.toSet()
-        val shouldRemoveMissingLocal = if (removeMissingLocal && normalizedRemote.isEmpty() && initialLocalUrls.isNotEmpty()) {
-            Log.w(
-                TAG,
-                "reconcileWithRemoteAddonUrls: remote list empty while local has ${initialLocalUrls.size} entries; preserving local addons"
-            )
-            false
-        } else {
-            removeMissingLocal
+
+        // TV Minimal: sincronização NUNCA destrutiva. Logar numa conta com addons
+        // antigos/diferentes não pode apagar o pack de fábrica nem addons locais:
+        // o pull é aditivo (union — ordena pela nuvem, extras locais vão para o fim)
+        // e conta remota vazia semeia a nuvem com o pack local (depois do reconcile).
+        val minimalNeverRemove = BuildConfig.FLAVOR == "minimal"
+        if (minimalNeverRemove && normalizedRemote.isEmpty() && initialLocalUrls.isNotEmpty()) {
+            Log.i(TAG, "reconcileWithRemoteAddonUrls: conta remota sem addons; semeando com o pack local (${initialLocalUrls.size})")
+            triggerRemoteSync()
+        }
+        val shouldRemoveMissingLocal = when {
+            minimalNeverRemove -> false
+            removeMissingLocal && normalizedRemote.isEmpty() && initialLocalUrls.isNotEmpty() -> {
+                Log.w(
+                    TAG,
+                    "reconcileWithRemoteAddonUrls: remote list empty while local has ${initialLocalUrls.size} entries; preserving local addons"
+                )
+                false
+            }
+            else -> removeMissingLocal
         }
 
      

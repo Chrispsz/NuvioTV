@@ -67,7 +67,8 @@ class AddonPreferences @Inject constructor(
         factory.get(pid, FEATURE).data.map { preferences ->
             val json = preferences[orderedUrlsKey]
             if (json != null) {
-                parseUrlList(json)
+                val parsed = parseUrlList(json)
+                if (isUnmodifiedFactoryPack(parsed)) getDefaultAddons().toList() else parsed
             } else {
                 val legacySet = preferences[legacyUrlsKey] ?: getDefaultAddons()
                 legacySet.toList()
@@ -239,20 +240,38 @@ class AddonPreferences @Inject constructor(
     }
 
     // TV Minimal Edition: pack BR pré-configurado (zero-config para leigos).
-    // Base (Cinemeta + OpenSubtitles) + VOD BR rápido (FrostStream) + canais e eventos
-    // ao vivo (Tvvio — 100+ canais de esportes/gerais + eventos, ativamente mantido)
-    // + fallback torrent (Torrentio já configurado com providers BR —
-    // comando/bludv/micoleaodublado — e ordenação por qualidade+seeders).
+    // A ORDEM IMPORTA: sem ordem salva, as rows da Home seguem a ordem dos addons
+    // (HomeViewModelCatalogUtils.rebuildCatalogOrder) — por isso CANAIS AO VIVO
+    // (Tvvio, 100+ canais de esportes/gerais + eventos, ativamente mantido) vem
+    // PRIMEIRO: abrir o app já mostra canais, como TV de verdade.
+    // Depois: Cinemeta (catálogo/metadata global de filmes e séries), FrostStream
+    // (VOD BR rápido via HTTP), Torrentio BR (fallback torrent: providers
+    // comando/bludv/micoleaodublado, ordenação qualidade+seeders) e OpenSubtitles.
     // Só conteúdo HTTP nos live: Torrentio é o único torrent do pack.
-    // Testado em 02/11/2026: Tvvio manifest/catálogo/streams 200 OK;
+    // Testado em 02/11/2026 (health-check 8/8 no CI): Tvvio 200 OK v2.1.0.
+    // FrostStream pode devolver 403 para IP de datacenter (Cloudflare), mas
+    // responde na rede residencial — e o Torrentio cobre o VOD se ele falhar.
     // Meu Futebol REMOVIDO (manifest inacessível, timeout 12s no teste).
-    // BestCine entra por instalação de 1 clique no site dele (Cloudflare bloqueia
-    // validação automatizada de datacenter, mas passa na rede residencial do usuário).
+    // BestCine permanece FORA do pack: passou a exigir login (deixou de ser
+    // zero-config); segue disponível por instalação manual de 1 clique no site.
     private fun getDefaultAddons(): Set<String> = setOf(
-        "https://v3-cinemeta.strem.io",
-        "https://opensubtitles-v3.strem.io",
-        "https://froststream.cloutteam.com",
         "https://tvvio.megaembed-frost.workers.dev",
-        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100"
+        "https://v3-cinemeta.strem.io",
+        "https://froststream.cloutteam.com",
+        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
+        "https://opensubtitles-v3.strem.io"
     )
+
+    /**
+     * Migração 1.1.0 -> 1.2.0: quem tinha o pack de fábrica na ordem antiga
+     * (Cinemeta primeiro) recebe a nova ordem (canais primeiro) ao atualizar.
+     * Só troca quando a lista é EXATAMENTE o pack de fábrica sem personalização
+     * (mesma quantidade e mesmo conjunto de URLs) — qualquer lista editada pelo
+     * usuário é respeitada.
+     */
+    private fun isUnmodifiedFactoryPack(urls: List<String>): Boolean {
+        if (urls.size != getDefaultAddons().size) return false
+        return urls.map { it.trim().lowercase() }.toSet() ==
+            getDefaultAddons().map { it.lowercase() }.toSet()
+    }
 }
