@@ -208,6 +208,11 @@ android {
         create("minimal") {
             dimension = "distribution"
             applicationId = "tv.minimal.nuvio"
+            // Versionamento próprio do fork: a release usa tag "minimal-vX.Y.Z" e o
+            // updater compara VERSION_NAME local com a tag (VersionUtils normaliza
+            // o prefixo "minimal-"). Começa em 1.0.0 — independente do upstream.
+            versionCode = 100
+            versionName = "1.0.0"
             buildConfigField("boolean", "FEATURE_PLUGINS_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_UPDATES_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_TRAILERS_ENABLED", "false")

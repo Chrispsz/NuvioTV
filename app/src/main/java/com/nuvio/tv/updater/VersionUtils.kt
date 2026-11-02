@@ -52,7 +52,9 @@ internal object VersionUtils {
 
     fun normalize(raw: String?): String {
         if (raw.isNullOrBlank()) return ""
-        return raw.trim().removePrefix("v").removePrefix("V")
+        // Fork TV Minimal: tags de release são "minimal-vX.Y.Z" — remove o prefixo
+        // do fork antes de comparar com a versão local (sem efeito em tags upstream).
+        return raw.trim().removePrefix("minimal-").removePrefix("v").removePrefix("V")
     }
 
     fun parse(raw: String?): SemanticVersion? {

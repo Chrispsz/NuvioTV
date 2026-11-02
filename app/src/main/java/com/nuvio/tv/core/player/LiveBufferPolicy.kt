@@ -38,6 +38,25 @@ object LiveBufferPolicy {
         return LIVE_URL_KEYWORDS.any { lower.contains(it) }
     }
 
+    /**
+     * User-Agent do VLC para conteúdo AO VIVO. Painéis IPTV (Xtream/m3u) e CDNs na
+     * frente de Cloudflare comumente devolvem 403 para User-Agents desconhecidos,
+     * mas aceitam o VLC — o player mais universal de IPTV. Política conservadora:
+     * nunca sobrescreve UA que o addon/usuário definiu explicitamente.
+     */
+    const val LIVE_USER_AGENT = "VLC/3.0.20 LibVLC/3.0.20"
+
+    /**
+     * Aplica a política de rede do perfil live: se a URL for live e os headers do
+     * stream não trouxerem User-Agent, injeta o UA do VLC. Para VOD e headers com
+     * UA explícito, devolve o mapa inalterado.
+     */
+    fun applyLiveNetworkPolicy(url: String?, headers: Map<String, String>): Map<String, String> {
+        if (!isLiveUrl(url)) return headers
+        val hasUserAgent = headers.keys.any { it.equals("User-Agent", ignoreCase = true) }
+        return if (hasUserAgent) headers else headers + ("User-Agent" to LIVE_USER_AGENT)
+    }
+
     // Retorna DefaultLoadControl (não LoadControl) para que a inferência do Kotlin no
     // PlayerRuntimeControllerInitialization produza o mesmo LUB de antes do perfil LIVE
     // (todas as branches atribuem a _loadControl: DefaultLoadControl?).

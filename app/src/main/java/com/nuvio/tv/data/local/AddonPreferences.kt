@@ -239,16 +239,20 @@ class AddonPreferences @Inject constructor(
     }
 
     // TV Minimal Edition: pack BR pré-configurado (zero-config para leigos).
-    // Base (Cinemeta + OpenSubtitles) + VOD BR rápido (FrostStream) + esportes ao vivo
-    // (Meu Futebol) + fallback torrent (Torrentio já configurado com providers BR —
+    // Base (Cinemeta + OpenSubtitles) + VOD BR rápido (FrostStream) + canais e eventos
+    // ao vivo (Tvvio — 100+ canais de esportes/gerais + eventos, ativamente mantido)
+    // + fallback torrent (Torrentio já configurado com providers BR —
     // comando/bludv/micoleaodublado — e ordenação por qualidade+seeders).
+    // Só conteúdo HTTP nos live: Torrentio é o único torrent do pack.
+    // Testado em 02/11/2026: Tvvio manifest/catálogo/streams 200 OK;
+    // Meu Futebol REMOVIDO (manifest inacessível, timeout 12s no teste).
     // BestCine entra por instalação de 1 clique no site dele (Cloudflare bloqueia
     // validação automatizada de datacenter, mas passa na rede residencial do usuário).
     private fun getDefaultAddons(): Set<String> = setOf(
         "https://v3-cinemeta.strem.io",
         "https://opensubtitles-v3.strem.io",
         "https://froststream.cloutteam.com",
-        "https://meufutebol.oneplayhd.com",
+        "https://tvvio.megaembed-frost.workers.dev",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100"
     )
 }
