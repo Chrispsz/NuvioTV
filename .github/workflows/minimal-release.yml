@@ -67,11 +67,34 @@ jobs:
           } > local.properties
           touch local.dev.properties
 
-      # Sem keystore de release por enquanto: assina com a chave debug
-      # (instalável; trocar por keystore próprio quando definido).
-      - name: Build MinimalRelease (assinado com chave debug)
+      # Assinatura ESTÁVEL: o OTA só funciona se TODAS as builds forem assinadas
+      # com a MESMA chave (chave debug efêmera do runner conflita na atualização:
+      # "pacote em conflito com um pacote já existente"). O keystore de release
+      # vem dos secrets (NUVIO_RELEASE_*) e é decodificado pro $RUNNER_TEMP.
+      # Sem secrets (fork sem keystore próprio), cai na chave debug para seguir
+      # gerando builds instaláveis.
+      - name: Preparar assinatura de release (keystore dos secrets)
         env:
-          CI_USE_DEBUG_SIGNING: "true"
+          NUVIO_RELEASE_STORE_B64: ${{ secrets.NUVIO_RELEASE_STORE_B64 }}
+          NUVIO_RELEASE_STORE_PASSWORD: ${{ secrets.NUVIO_RELEASE_STORE_PASSWORD }}
+          NUVIO_RELEASE_KEY_ALIAS: ${{ secrets.NUVIO_RELEASE_KEY_ALIAS }}
+          NUVIO_RELEASE_KEY_PASSWORD: ${{ secrets.NUVIO_RELEASE_KEY_PASSWORD }}
+        run: |
+          if [ -n "$NUVIO_RELEASE_STORE_B64" ]; then
+            echo "$NUVIO_RELEASE_STORE_B64" | base64 -d > "$RUNNER_TEMP/nuviominimal.jks"
+            {
+              echo "NUVIO_RELEASE_STORE_FILE=$RUNNER_TEMP/nuviominimal.jks"
+              echo "NUVIO_RELEASE_STORE_PASSWORD=$NUVIO_RELEASE_STORE_PASSWORD"
+              echo "NUVIO_RELEASE_KEY_ALIAS=$NUVIO_RELEASE_KEY_ALIAS"
+              echo "NUVIO_RELEASE_KEY_PASSWORD=$NUVIO_RELEASE_KEY_PASSWORD"
+            } >> "$GITHUB_ENV"
+            echo "Assinatura estável de release configurada."
+          else
+            echo "CI_USE_DEBUG_SIGNING=true" >> "$GITHUB_ENV"
+            echo "Sem keystore nos secrets: usando chave debug (instalável, mas OTA entre builds conflita)."
+          fi
+
+      - name: Build MinimalRelease
         run: ./gradlew :app:assembleMinimalRelease -PnuvioAbi=armeabi-v7a --stacktrace
 
       - name: Upload APKs (artefato)
