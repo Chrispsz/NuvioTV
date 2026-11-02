@@ -68,7 +68,11 @@ class AddonPreferences @Inject constructor(
             val json = preferences[orderedUrlsKey]
             if (json != null) {
                 val parsed = parseUrlList(json)
-                if (isUnmodifiedFactoryPack(parsed)) getDefaultAddons().toList() else parsed
+                when {
+                    isUnmodifiedFactoryPack(parsed) -> getDefaultAddons().toList()
+                    isFactoryPackV12(parsed) -> getDefaultAddons().toList()
+                    else -> parsed
+                }
             } else {
                 val legacySet = preferences[legacyUrlsKey] ?: getDefaultAddons()
                 legacySet.toList()
@@ -246,11 +250,16 @@ class AddonPreferences @Inject constructor(
     // PRIMEIRO: abrir o app já mostra canais, como TV de verdade.
     // Depois: Cinemeta (catálogo/metadata global de filmes e séries), FrostStream
     // (VOD BR rápido via HTTP), Torrentio BR (fallback torrent: providers
-    // comando/bludv/micoleaodublado, ordenação qualidade+seeders) e OpenSubtitles.
+    // comando/bludv/micoleaodublado, ordenação qualidade+seeders), Anime Kitsu
+    // (catálogos de animes: trending/airing/popular/rating) e OpenSubtitles.
     // Só conteúdo HTTP nos live: Torrentio é o único torrent do pack.
-    // Testado em 02/11/2026 (health-check 8/8 no CI): Tvvio 200 OK v2.1.0.
-    // FrostStream pode devolver 403 para IP de datacenter (Cloudflare), mas
-    // responde na rede residencial — e o Torrentio cobre o VOD se ele falhar.
+    // Testado em 02-03/11/2026: Tvvio 200 OK v2.1.0 (100 canais + eventos);
+    // anime-kitsu.strem.fun 200 OK em 40ms (community.anime.kitsu v0.0.10);
+    // Bludv VIVO — para tt0317248 devolve REMUX em PORTUGUÊS exclusivo dos
+    // providers BR (torrentio testado: +1 stream só-no-BR vs padrão).
+    // Torrentio cobre anime com IDs kitsu (100 streams p/ kitsu:7442, providers
+    // gerais + 1337x/TPB). FrostStream pode 403 para datacenter (Cloudflare),
+    // mas responde na rede residencial; Torrentio cobre o VOD se falhar.
     // Meu Futebol REMOVIDO (manifest inacessível, timeout 12s no teste).
     // BestCine permanece FORA do pack: passou a exigir login (deixou de ser
     // zero-config); segue disponível por instalação manual de 1 clique no site.
@@ -259,8 +268,25 @@ class AddonPreferences @Inject constructor(
         "https://v3-cinemeta.strem.io",
         "https://froststream.cloutteam.com",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
+        "https://anime-kitsu.strem.fun",
         "https://opensubtitles-v3.strem.io"
     )
+
+    // Pack da 1.2.0 (antes dos animes) — usado para migrar automaticamente quem
+    // atualizou da 1.2.x sem personalizar a lista.
+    private val factoryPackV12: Set<String> = setOf(
+        "https://tvvio.megaembed-frost.workers.dev",
+        "https://v3-cinemeta.strem.io",
+        "https://froststream.cloutteam.com",
+        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
+        "https://opensubtitles-v3.strem.io"
+    )
+
+    private fun isFactoryPackV12(urls: List<String>): Boolean {
+        if (urls.size != factoryPackV12.size) return false
+        return urls.map { it.trim().lowercase() }.toSet() ==
+            factoryPackV12.map { it.lowercase() }.toSet()
+    }
 
     /**
      * Migração 1.1.0 -> 1.2.0: quem tinha o pack de fábrica na ordem antiga

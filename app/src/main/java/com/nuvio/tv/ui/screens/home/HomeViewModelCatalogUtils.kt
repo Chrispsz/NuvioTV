@@ -1,5 +1,6 @@
 package com.nuvio.tv.ui.screens.home
 
+import com.nuvio.tv.BuildConfig
 import com.nuvio.tv.domain.model.catalogTypeKey
 import com.nuvio.tv.domain.model.catalogRowLegacyKey
 import com.nuvio.tv.domain.model.Addon
@@ -224,6 +225,14 @@ internal fun HomeViewModel.removeTruncatedRowCacheEntry(key: String) {
 
 internal fun HomeViewModel.rebuildCatalogOrder(addons: List<Addon>) {
     val defaultOrder = buildDefaultCatalogOrder(addons)
+    // TV Minimal: enquanto o usuário nunca salvou uma ordem própria, aplica a
+    // prioridade de fábrica — Eventos ao vivo no topo, depois Filmes, Animes,
+    // Séries e por último os canais gerais do Tvvio.
+    val factoryOrder = if (BuildConfig.FLAVOR == "minimal" && homeCatalogOrderKeys.isEmpty()) {
+        applyFactoryRowPriority(defaultOrder, addons)
+    } else {
+        defaultOrder
+    }
     val collectionKeys = collectionsCache.map { "collection_${it.id}" }
     val allAvailable = (defaultOrder + collectionKeys).toSet()
 
@@ -283,10 +292,10 @@ internal fun HomeViewModel.rebuildCatalogOrder(addons: List<Addon>) {
                 catalogOrder.addAll(normalized)
             }
         } else {
-            // No saved order - manifest order + collections at end
+            // No saved order - factory priority (minimal) or manifest order + collections at end
             synchronized(catalogStateLock) {
                 catalogOrder.clear()
-                catalogOrder.addAll(defaultOrder + collectionKeys)
+                catalogOrder.addAll(factoryOrder + collectionKeys)
             }
         }
     } else {
@@ -297,7 +306,7 @@ internal fun HomeViewModel.rebuildCatalogOrder(addons: List<Addon>) {
             .toList()
 
         val savedSet = savedValid.toSet()
-        val unsavedCatalogs = defaultOrder.filterNot { it in savedSet }
+        val unsavedCatalogs = factoryOrder.filterNot { it in savedSet }
         val unsavedCollections = collectionKeys.filterNot { it in savedSet }
         val mergedOrder = savedValid + unsavedCatalogs + unsavedCollections
 
@@ -433,4 +442,27 @@ private fun findOwnerAfter(order: List<String>, index: Int, owners: Map<String, 
         if (!order[j].startsWith("collection_")) return owners[order[j]]
     }
     return null
+}
+
+// TV Minimal — prioridade de fábrica das rows da Home (pedido do dono do fork):
+// 1º Eventos ao vivo (Tvvio), depois Filmes, Animes, Séries e, por último, os
+// canais gerais do Tvvio. Sort estável: dentro de cada bloco vale a ordem dos
+// manifestos dos addons. Só se aplica quando o usuário nunca reordenou.
+private fun applyFactoryRowPriority(order: List<String>, addons: List<Addon>): List<String> {
+    val priorityByKey = HashMap<String, Int>(order.size * 2)
+    addons.forEach { addon ->
+        addon.catalogs.forEach { catalog ->
+            val key = catalogRowLegacyKey(addon.id, catalog.apiType, catalog.id)
+            priorityByKey[key] = when {
+                addon.id == "org.leandrodev.tvvio" && catalog.id == "eventos" -> 0
+                catalog.apiType.equals("movie", ignoreCase = true) -> 10
+                catalog.apiType.equals("anime", ignoreCase = true) -> 20
+                catalog.apiType.equals("series", ignoreCase = true) -> 30
+                addon.id == "org.leandrodev.tvvio" -> 40
+                else -> 50
+            }
+        }
+    }
+    if (priorityByKey.isEmpty()) return order
+    return order.sortedBy { priorityByKey[it] ?: 50 }
 }

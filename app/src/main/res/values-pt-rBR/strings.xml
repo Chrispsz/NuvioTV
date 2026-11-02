@@ -2414,6 +2414,11 @@
     <string name="update_up_to_date">O sistema está atualizado. Últimas alterações:</string>
     <string name="update_close">Fechar</string>
     <string name="update_open_settings">Abrir Ajustes</string>
+    <string name="update_reinstall_title">Reinstalação necessária</string>
+    <string name="update_reinstall_body">A versão nova tem uma chave diferente da instalada, e o Android bloqueia atualizar por cima. 1) Selecione "Desinstalar agora" e confirme. 2) Depois abra Arquivos > Downloads e instale o %s. Só precisa fazer isso uma vez - depois disso as atualizações entram direto.</string>
+    <string name="update_reinstall_generic_apk">APK salvo em Downloads</string>
+    <string name="update_reinstall_action">Desinstalar agora</string>
+    <string name="update_reinstall_dismiss">Agora não</string>
     <string name="update_install">Instalar</string>
     <string name="update_ignore">Ignorar</string>
 

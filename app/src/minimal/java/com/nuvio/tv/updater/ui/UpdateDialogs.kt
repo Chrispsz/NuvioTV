@@ -191,3 +191,59 @@ internal fun UpdateUnknownSourcesDialog(
         }
     }
 }
+
+@Composable
+internal fun UpdateReinstallDialog(
+    apkFileName: String?,
+    onStart: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    val focusRequester = remember { FocusRequester() }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocusAfterFrames()
+    }
+
+    NuvioDialog(
+        onDismiss = onDismiss,
+        title = stringResource(R.string.update_reinstall_title),
+        subtitle = stringResource(
+            R.string.update_reinstall_body,
+            apkFileName ?: stringResource(R.string.update_reinstall_generic_apk)
+        ),
+        width = 640.dp,
+        suppressFirstKeyUp = false
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(NuvioTheme.spacing.md)
+        ) {
+            Button(
+                onClick = onStart,
+                modifier = Modifier.focusRequester(focusRequester),
+                colors = ButtonDefaults.colors(
+                    containerColor = NuvioTheme.colors.Secondary,
+                    focusedContainerColor = NuvioTheme.colors.SecondaryVariant,
+                    contentColor = NuvioTheme.colors.OnSecondary,
+                    focusedContentColor = NuvioTheme.colors.OnSecondaryVariant
+                ),
+                shape = ButtonDefaults.shape(RoundedCornerShape(50))
+            ) {
+                Text(stringResource(R.string.update_reinstall_action))
+            }
+
+            Button(
+                onClick = onDismiss,
+                colors = ButtonDefaults.colors(
+                    containerColor = NuvioTheme.colors.BackgroundCard,
+                    focusedContainerColor = NuvioTheme.colors.FocusBackground,
+                    contentColor = NuvioTheme.colors.TextPrimary,
+                    focusedContentColor = NuvioTheme.colors.Primary
+                ),
+                shape = ButtonDefaults.shape(RoundedCornerShape(50))
+            ) {
+                Text(stringResource(R.string.update_reinstall_dismiss))
+            }
+        }
+    }
+}

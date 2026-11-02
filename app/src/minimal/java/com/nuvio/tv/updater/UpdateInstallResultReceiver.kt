@@ -38,7 +38,15 @@ class UpdateInstallResultReceiver : BroadcastReceiver() {
                     }
                 }
             }
-            else -> retryAfterFailure(context, apkFile, background, withDexMetadata)
+            else -> {
+                // Conflito de assinatura: tentar de novo só reproduz a caixa de erro
+                // do instalador. O fluxo guiado (UpdateViewModel) cuida do caso.
+                if (message?.contains("INSTALL_FAILED_UPDATE_INCOMPATIBLE") == true) {
+                    Log.w(TAG, "Signature conflict on session install; skipping retry (guided reinstall handles it)")
+                    return
+                }
+                retryAfterFailure(context, apkFile, background, withDexMetadata)
+            }
         }
     }
 

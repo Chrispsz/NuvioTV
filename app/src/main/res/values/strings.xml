@@ -2471,6 +2471,11 @@
     <string name="update_up_to_date">System is up to date. Latest changes:</string>
     <string name="update_close">Close</string>
     <string name="update_open_settings">Open Settings</string>
+    <string name="update_reinstall_title">Reinstallation required</string>
+    <string name="update_reinstall_body">The new version is signed with a different key, so Android blocks updating over the old one. 1) Select "Uninstall now" and confirm. 2) Then open Files > Downloads and install %s. This is needed only once - after that, updates install right over the app.</string>
+    <string name="update_reinstall_generic_apk">the APK saved in Downloads</string>
+    <string name="update_reinstall_action">Uninstall now</string>
+    <string name="update_reinstall_dismiss">Not now</string>
     <string name="update_install">Install</string>
     <string name="update_ignore">Ignore</string>
 

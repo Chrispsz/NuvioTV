@@ -36,6 +36,7 @@ ADDONS = [
         "torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
         True,
     ),
+    ("Anime Kitsu (catálogo)", "https://anime-kitsu.strem.fun", False),
     ("OpenSubtitles v3", "https://opensubtitles-v3.strem.io", False),
 ]
 

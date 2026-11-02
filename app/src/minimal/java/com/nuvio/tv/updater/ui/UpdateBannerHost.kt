@@ -1,6 +1,7 @@
 package com.nuvio.tv.updater.ui
 
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -24,7 +25,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.nuvio.tv.updater.UpdateUiState
+import com.nuvio.tv.updater.UpdateViewModel
 
 @Composable
 fun UpdateBannerHost(
@@ -111,6 +114,17 @@ fun UpdateBannerHost(
         UpdateUnknownSourcesDialog(
             onOpenSettings = onOpenUnknownSources,
             onDismiss = onDismissUnknownSources
+        )
+    }
+
+    // TV Minimal: conflito de assinatura detectado — reinstalação guiada
+    // (desinstalar → instalar o APK que o app deixou em Downloads).
+    if (state.showReinstallDialog) {
+        val reinstallVm: UpdateViewModel = hiltViewModel(context as ComponentActivity)
+        UpdateReinstallDialog(
+            apkFileName = state.reinstallApkFileName,
+            onStart = reinstallVm::startGuidedReinstall,
+            onDismiss = reinstallVm::dismissReinstallDialog
         )
     }
 }

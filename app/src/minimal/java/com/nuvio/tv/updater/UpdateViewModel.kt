@@ -33,6 +33,10 @@ data class UpdateUiState(
     val downloadedApkPath: String? = null,
     val showBanner: Boolean = false,
     val showUnknownSourcesDialog: Boolean = false,
+    /** Conflito de assinatura detectado: oferece a reinstalação guiada. */
+    val showReinstallDialog: Boolean = false,
+    /** Nome do APK já copiado para Downloads (reinstalação guiada), se copiado. */
+    val reinstallApkFileName: String? = null,
     val errorMessage: String? = null,
     val feedbackMessage: String? = null,
     val updateBannerEnabled: Boolean = true,
@@ -195,6 +199,16 @@ class UpdateViewModel @Inject constructor(
         _uiState.update { it.copy(showUnknownSourcesDialog = false) }
     }
 
+    /** 1º passo da reinstalação guiada: abre a desinstalação do sistema. */
+    fun startGuidedReinstall() {
+        _uiState.update { it.copy(showReinstallDialog = false) }
+        ApkInstaller.launchSelfUninstall(context)
+    }
+
+    fun dismissReinstallDialog() {
+        _uiState.update { it.copy(showReinstallDialog = false) }
+    }
+
     fun consumeFeedbackMessage() {
         _uiState.update { it.copy(feedbackMessage = null) }
     }
@@ -304,6 +318,28 @@ class UpdateViewModel @Inject constructor(
                 it.copy(
                     errorMessage = context.getString(R.string.update_error_apk_missing),
                     showBanner = true
+                )
+            }
+            return
+        }
+
+        // Conflito de assinatura: o sistema rejeitaria com "pacote em conflito com
+        // um pacote já existente". Detectamos ANTES e oferecemos a reinstalação
+        // guiada (desinstalar → instalar o APK de Downloads) em vez da caixa
+        // enigmática do instalador.
+        val installedFp = ApkInstaller.installedSignatureFingerprint(context)
+        val apkFp = ApkInstaller.apkSignatureFingerprint(context, apkPath)
+        if (installedFp != null && apkFp != null && installedFp != apkFp) {
+            val tag = _uiState.value.update?.tag?.removePrefix("minimal-") ?: "nova"
+            val fileName = "NuvioTV-Minimal-$tag.apk"
+            val copied = ApkInstaller.copyApkToDownloads(context, apkFile, fileName)
+            _uiState.update {
+                it.copy(
+                    isDownloading = false,
+                    showReinstallDialog = true,
+                    showBanner = true,
+                    reinstallApkFileName = if (copied) fileName else null,
+                    errorMessage = null
                 )
             }
             return
