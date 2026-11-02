@@ -469,7 +469,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">Deneyim</string>
-    <string name="settings_account">Hesap</string>
     <string name="settings_profiles">Profiller</string>
     <string name="settings_layout">Düzen</string>
     <string name="settings_content_discovery">İçerik ve Keşif</string>
@@ -542,34 +541,6 @@
     <string name="essential_subtitle_language_subtitle">Tercih edilen altyazı dili.</string>
     <string name="essential_audio_language_subtitle">Tercih edilen ses dili.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">PIN hatalı.</string>
-    <string name="account_error_sync_code_expired">Senkronizasyon kodunun süresi doldu.</string>
-    <string name="account_error_invalid_sync_code">Geçersiz senkronizasyon kodu.</string>
-    <string name="account_error_sync_code_not_found">Senkronizasyon kodu bulunamadı.</string>
-    <string name="account_error_device_already_linked">Cihaz zaten bağlı.</string>
-    <string name="account_error_generic_retry">Bir şeyler ters gitti. Lütfen tekrar deneyin.</string>
-    <string name="account_error_invalid_credentials">E-posta veya şifre hatalı.</string>
-    <string name="account_error_email_not_confirmed">Lütfen önce e-postanızı onaylayın.</string>
-    <string name="account_error_email_already_registered">Bu e-posta ile bir hesap zaten var.</string>
-    <string name="account_error_invalid_email">Geçerli bir e-posta adresi girin.</string>
-    <string name="account_error_password_too_short">Şifre çok kısa.</string>
-    <string name="account_error_password_too_weak">Şifre çok zayıf.</string>
-    <string name="account_error_signup_disabled">Kayıt şu an kapalı.</string>
-    <string name="account_error_rate_limited">Çok fazla deneme. Lütfen biraz sonra tekrar deneyin.</string>
-    <string name="account_error_qr_login_expired">QR giriş süresi doldu. Lütfen tekrar deneyin.</string>
-    <string name="account_error_invalid_qr_login">Geçersiz QR giriş kodu.</string>
-    <string name="account_error_qr_login_other_device">Bu QR girişi başka bir cihazdan istendi.</string>
-    <string name="account_error_qr_login_outdated">QR giriş hizmeti güncel değil. TV giriş SQL kurulumunu yeniden uygulayın.</string>
-    <string name="account_error_qr_login_missing_setup">QR giriş arka ucu eksik. TV giriş SQL kurulumunu güncelleyin.</string>
-    <string name="account_error_qr_login_misconfigured">QR giriş URL\'si hatalı yapılandırılmış.</string>
-    <string name="account_error_qr_login_invalid_request">QR giriş isteği geçersizdi. Lütfen tekrar deneyin.</string>
-    <string name="account_error_no_internet">İnternet bağlantısı yok.</string>
-    <string name="account_error_connection_timeout">Bağlantı zaman aşımına uğradı. Lütfen tekrar deneyin.</string>
-    <string name="account_error_connection_refused">Sunucuya bağlanılamadı.</string>
-    <string name="account_error_not_authenticated">Lütfen önce giriş yapın.</string>
-    <string name="account_error_service_unavailable">Hizmet kullanılamıyor. Lütfen biraz sonra tekrar deneyin.</string>
-    <string name="account_error_invalid_request">Geçersiz istek. Lütfen girdinizi kontrol edin.</string>
-    <string name="account_error_unexpected">Beklenmeyen bir hata oluştu.</string>
     <string name="experience_mode_switch_to_essential">Basit\'e geç</string>
     <string name="experience_mode_switch_to_essential_subtitle">Kaydedilen değerleri değiştirmeden gelişmiş kurulum ekranlarını gizle.</string>
     <string name="experience_mode_switch_to_advanced">Gelişmiş\'e geç</string>
@@ -644,12 +615,6 @@
     <string name="confirm_exit_toast">Çıkmak için tekrar geri tuşuna basın</string>
     <string name="settings_debug">Hata Ayıklama</string>
     <string name="settings_plugins_section_subtitle">Depoları, sağlayıcıları ve eklenti durumlarını yönetin</string>
-    <string name="settings_account_section_subtitle">Hesap ve senkronizasyon durumu</string>
-    <string name="account_stat_addons">eklentiler</string>
-    <string name="account_stat_plugins">uzantılar</string>
-    <string name="account_stat_library">kütüphane</string>
-    <string name="account_stat_progress">ilerleme</string>
-    <string name="account_stat_watched">izlenen</string>
     <string name="settings_integrations_section">Entegrasyonlar</string>
     <string name="settings_integrations_section_subtitle">Mevcut entegrasyonları yönetin</string>
     <string name="settings_tmdb_subtitle">Meta veri zenginleştirme kontrolleri</string>
@@ -1500,16 +1465,6 @@
     <string name="trakt_account_login">Hesap Girişi</string>
     <string name="trakt_awaiting_instruction">trakt.tv/activate adresine gidin ve bu kodu girin:</string>
     <string name="trakt_waiting_approval">Onay bekleniyor…</string>
-    <string name="qr_login_approved">Giriş onaylandı. Oturum açılıyor…</string>
-    <string name="qr_login_pending">Telefonunuzdan onay vermeniz bekleniyor…</string>
-    <string name="qr_login_expired">QR kodun süresi doldu. Yeni bir kod oluşturun.</string>
-    <string name="qr_login_preparing">QR giriş hazırlanıyor...</string>
-    <string name="qr_login_device_auth_failed">Cihaz doğrulaması başarısız</string>
-    <string name="qr_login_scan_prompt">QR kodu tarayın ve telefonunuzdan giriş yapın</string>
-    <string name="qr_login_start_failed">QR ile giriş başlatılamadı</string>
-    <string name="qr_login_signing_in">Giriş yapılıyor…</string>
-    <string name="qr_login_success">Giriş başarılı</string>
-    <string name="qr_login_exchange_failed">QR ile giriş tamamlanamadı</string>
     <string name="trakt_code_expires">Kodun süresi %1$s sonra dolacak</string>
     <string name="trakt_token_refreshes">Trakt erişim jetonu %1$s içinde yenilenir</string>
     <string name="trakt_login_instruction">Trakt cihazı kimlik doğrulamasını başlatmak için Giriş\'e basın. Burada bir QR kodu görünecektir.</string>
@@ -1579,10 +1534,6 @@
     <string name="debug_progress_indicator_default">Varsayılan</string>
     <string name="debug_progress_indicator_large">Büyük</string>
     <string name="debug_section_features">Özellik Anahtarları</string>
-    <string name="debug_account_tab_title">Hesap Sekmesi</string>
-    <string name="debug_account_tab_subtitle">Ayarlar gezintisinde Hesap sekmesini göster</string>
-    <string name="debug_sync_code_title">Senkronizasyon Kodu Özellikleri</string>
-    <string name="debug_sync_code_subtitle">Hesap ayarlarında Senkronizasyon Kodu Oluştur/Gir düğmelerini göster</string>
     <string name="debug_member_tier_title">Destekçi Seviyesini Simüle Et</string>
     <string name="debug_member_tier_subtitle">Bu hata ayıklama sürümünde döndürülen doğrulanmış destekçi seviyesini seçin</string>
     <string name="debug_member_tier_none">Yok</string>
@@ -1591,12 +1542,6 @@
     <string name="debug_buffer_logs_title">BUFFER Günlüklerini Etkinleştir</string>
     <string name="debug_buffer_logs_subtitle">Oynatıcı arabellek tanılamalarını düzenli olarak logcat\'e yazar (varsayılan olarak kapalıdır)</string>
     <string name="debug_section_account">Hesap</string>
-    <string name="debug_manual_signin_title">Manuel Giriş Yap</string>
-    <string name="debug_manual_signin_subtitle">E-posta ve parola ile giriş yapın (Supabase yetkilendirmesi)</string>
-    <string name="debug_email_placeholder">E-Posta</string>
-    <string name="debug_password_placeholder">Şifre</string>
-    <string name="debug_signing_in">Giriş yapılıyor\u2026</string>
-    <string name="debug_sign_in">Giriş Yap</string>
     <string name="debug_error_dialog_title">Oynatma Hatası</string>
     <string name="debug_error_dialog_subtitle">Oynatma sırasında bir hata oluştu.\n\nHata: Test simülasyon hatası - bu gerçek bir hata değil. Kaynak HTTP 503 döndürdü (Hizmet Kullanılamıyor).</string>
     <string name="debug_dismiss">Kapat</string>
@@ -2197,19 +2142,6 @@
     <string name="cloud_library_error_disabled">Bulut kütüphanesi kapalı.</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Yükleniyor\u2026</string>
-    <string name="account_sync_description">Kütüphanenizi, görüntüleme ilerlemenizi, eklentilerinizi ve uzantılarınızı cihazlar arasında eşitleyin.</string>
-    <string name="account_sync_restart_note">Eşitleme tüm cihazlarda anında gerçekleşmez. Hesabınıza girdikten veya başka bir yerde yaptığınız değişiklikleri görebilmek için cihazı yeniden başlatın.</string>
-    <string name="account_signin_qr_title">QR ile Oturum Aç</string>
-    <string name="account_signin_qr_subtitle">QR kodunu taratıp e-posta ile girişinizi telefondan tamamlayın</string>
-    <string name="account_signin_email_title">Giriş Yap</string>
-    <string name="account_signin_email_subtitle">Kendi sunucundaki hesabın e-posta ve şifresini gir</string>
-    <string name="account_signed_in_label">Oturum açıldı</string>
-    <string name="account_total_label">Toplam</string>
-    <string name="account_loading_sync">Senkronizasyon verileri yükleniyor\u2026</string>
-    <string name="account_sign_out">Oturumu Kapat</string>
-    <string name="account_sign_out_confirm_title">Oturum kapatılsın mı?</string>
-    <string name="account_sign_out_confirm_subtitle">Bu cihazda kütüphane, izleme ilerlemesi, eklenti ve uzantıları eşitlemek için tekrar giriş yapman gerekir.</string>
 
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">Oturum Aç</string>
@@ -2225,42 +2157,9 @@
     <string name="server_options_connect_custom">Özel sunucuya bağlan</string>
     <string name="server_options_change_custom">Başka bir sunucuya bağlan</string>
     <string name="server_options_use_official">Resmi sunucuyu kullan</string>
-    <string name="custom_server_title">Özel sunucuya bağlan</string>
-    <string name="custom_server_description">Sunucu yöneticiniz tarafından sağlanan Backend URL\'sini girin.</string>
-    <string name="custom_server_url_placeholder">https://backend.example.com</string>
-    <string name="custom_server_check">Sunucuyu kontrol et</string>
-    <string name="custom_server_checking">Kontrol ediliyor\u2026</string>
-    <string name="custom_server_review_title">Özel sunucuyu incele</string>
-    <string name="custom_server_review_description">Keşif belgesi geçerli. Bağlanmak geçerli sunucudaki oturumunuzu kapatır ve uygulamayı yeniden başlatır. Bunun size ait veya güvendiğiniz bir sunucu olduğunu doğrulayın.</string>
-    <string name="custom_server_verified_label">Keşfedilen sunucu</string>
-    <string name="custom_server_key_label">İstemci yapılandırması</string>
-    <string name="custom_server_key_discovered">Yayınlanabilir anahtar otomatik olarak algılandı</string>
-    <string name="custom_server_warning_title">Yalnızca güvendiğiniz bir sunucuya bağlanın</string>
-    <string name="custom_server_warning_public">Bu sunucu genel bir ana bilgisayar adı kullanıyor. Uygulama, sunucunun kime ait olduğunu veya kimin işlettiğini doğrulayamaz.</string>
-    <string name="custom_server_warning_http">Bu sunucu özel bir ağda bulunuyor ancak HTTP trafiği şifrelenmemiş. Ağdaki diğer cihazlar verileri okuyabilir.</string>
-    <string name="custom_server_warning_public_http">Bu sunucu genel bir ana bilgisayar adı ve şifrelenmemiş HTTP kullanıyor. Kimlik bilgileri ve senkronize edilen veriler aktarım sırasında açığa çıkabilir.</string>
-    <string name="custom_server_warning_private">Bu özel bir ağ sunucusu gibi görünüyor ancak uygulama sunucuyu kimin kontrol ettiğini doğrulayamaz.</string>
-    <string name="custom_server_warning_credentials">Sunucu yöneticisi hesap kimlik bilgilerinizi alabilir ve bu sunucu üzerinden eşitlediğiniz verilere erişebilir.</string>
-    <string name="custom_server_trust_action">Bu sunucuya güveniyorum</string>
-    <string name="custom_server_switching">Geçiş yapılıyor\u2026</string>
     <string name="official_server_title">Resmi sunucu kullanılsın mı?</string>
     <string name="official_server_description">Özel sunucudaki oturumunuz kapatılacak ve uygulama resmi hizmetle yeniden başlatılacaktır.</string>
     <string name="official_server_action">Resmi sunucuyu kullan</string>
-    <string name="custom_server_error_invalid_url">Geçerli bir HTTP veya HTTPS Backend URL\'si girin.</string>
-    <string name="custom_server_error_official_active">api.nuvio.tv resmi sunucudur ve zaten seçilidir.</string>
-    <string name="custom_server_error_official_available">api.nuvio.tv resmi sunucudur. Bu iletişim kutusunu kapatıp geri dönmek için Resmi sunucuyu kullan seçeneğini belirleyin.</string>
-    <string name="custom_server_error_connection">Keşif uç noktasına ulaşılamadı. URL\'yi ve sunucu erişilebilirliğini kontrol edin.</string>
-    <string name="custom_server_error_http">Keşif uç noktası HTTP %1$d döndürdü.</string>
-    <string name="custom_server_error_response_too_large">Keşif belgesi izin verilenden daha büyük.</string>
-    <string name="custom_server_error_invalid_document">Sunucu geçersiz bir keşif belgesi döndürdü.</string>
-    <string name="custom_server_error_version">Bu keşif belgesi sürümü desteklenmiyor.</string>
-    <string name="custom_server_error_service">Keşif belgesi bu uygulama için değil.</string>
-    <string name="custom_server_error_not_self_hosted">Keşif belgesi kendi kendine barındırılan (self-hosted) bir sunucu tanımlamıyor.</string>
-    <string name="custom_server_error_missing_configuration">Keşif belgesinde geçerli bir Backend URL\'si veya yayınlanabilir anahtar eksik.</string>
-    <string name="custom_server_error_no_auth">Sunucu desteklenen bir oturum açma yöntemi sunmuyor.</string>
-    <string name="custom_server_save_failed">Sunucu yapılandırması kaydedilemedi.</string>
-    <string name="custom_server_session_clear_failed">Mevcut oturum güvenli bir şekilde temizlenemedi. Sunucu değiştirilmedi.</string>
-    <string name="custom_server_restart_failed">Sunucu kaydedildi ancak uygulama otomatik olarak yeniden başlatılamadı. Lütfen manuel olarak yeniden başlatın.</string>
 
     <!-- AuthQrSignInScreen -->
     <string name="auth_qr_title">QR Kod ile Oturum Aç</string>
@@ -2284,23 +2183,8 @@
     <string name="auth_qr_terms_link">Şartlar</string>
 
     <!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">Senkronizasyon Kodu Oluştur</string>
-    <string name="sync_generate_subtitle">Senkronizasyon kodunuzu korumak için bir PIN oluşturun. Parolanızı diğer cihazlarda kullanabilirsiniz.</string>
-    <string name="sync_generate_code_label">Cihaz Eşleştirme Kodunuz</string>
-    <string name="sync_generate_instruction">Eşleştirme adresinden diğer cihazınızı bağlamak için bu kodu ve kendinize ait PIN\'i kullanın.</string>
-    <string name="sync_generate_done">Bitti</string>
-    <string name="sync_generate_pin_label">Bir PIN Belirleyin (4 ile 8 karakter arasında)</string>
-    <string name="sync_generate_pin_placeholder">PIN girin</string>
 
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">Cihazı Bağla</string>
-    <string name="sync_claim_subtitle">Cihazınızı eşleştirmek için diğer cihazdan aldığınız senkronizasyon kodunu ve PIN\'i girin.</string>
-    <string name="sync_claim_success">Cihaz eşleştirildi. Eklenti ve uzantılarınız arka planda kopyalanacak.</string>
-    <string name="sync_claim_done">Bitti</string>
-    <string name="sync_claim_code_label">Senkronizasyon Kodu</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">PIN numarasını gir</string>
 
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">Birincil profilin uzantıları eşleştirildi. Başka değişiklik yapmanız kısıtlanmıştır</string>
@@ -2380,13 +2264,6 @@
     <string name="update_latest_version">En güncel sürümü kullanıyorsun.</string>
     <string name="update_unknown_sources">Nuvio\'nun indirdiği eklentileri yüklayabilmek adına `Bilinmeyen kaynaklar` veya `Dışarıdan yükleme` iznine ihtiyaç var.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Hesap</string>
-    <string name="account_sign_in_description">Kütüphanenizi, izleme ilerlemenizi, eklenti ve uzantılarınızı cihazlar arasında eşleyin. Trakt bağlı değilken Nuvio Sync kullanılır.</string>
-    <string name="account_sync_code_title">Eşleştirme Kodu</string>
-    <string name="account_sync_code_description">Hesap oluşturmadan cihazlarınızı eşleyin.</string>
-    <string name="account_linked_devices">Bağlı Cihazlar (%1$d)</string>
-    <string name="account_no_linked_devices">Bağlı cihaz yok</string>
-    <string name="account_unlink">Bağlantıyı Kes</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Bölüm puanları yükleniyor...</string>
@@ -2680,18 +2557,8 @@
     <string name="profile_pin_lock_removed_for_profile">%1$s için PIN kilidi kaldırıldı.</string>
 
     <!-- Account Screen -->
-    <string name="account_signin_create_title">Giriş Yap / Hesap Oluştur</string>
-    <string name="account_signin_create_desc">E-posta ve şifre ile hesabınıza giriş yapın ya da yeni hesap oluşturun.</string>
-    <string name="account_generate_sync_desc">Bu cihazda bir kod oluşturun, diğer cihazlar buna bağlansın.</string>
-    <string name="account_enter_sync_desc">Bir senkronizasyon koduyla bu cihazı başka bir cihaza bağlayın.</string>
-    <string name="account_signed_in_as">Giriş yapılan hesap</string>
-    <string name="account_generate_sync_signed_in_desc">Diğer cihazların bu hesapla senkronize olması için bir kod oluşturun.</string>
-    <string name="account_unknown_device">Bilinmeyen Cihaz</string>
 
     <!-- Sync screens -->
-    <string name="sync_claim_linking">Bağlanıyor...</string>
-    <string name="sync_generate_generating">Oluşturuluyor...</string>
-    <string name="sync_generate_code_btn">Kod Oluştur</string>
 
     <!-- Search -->
     <string name="search_no_results_title">Sonuç yok</string>
@@ -2753,7 +2620,6 @@
     <string name="addon_error_not_found">Eklenti bulunamadı</string>
 
     <!-- Account errors -->
-    <string name="account_error_signin_required">Önce hesabınızla giriş yapın.</string>
 
     <!-- Search errors -->
     <string name="search_error_no_catalogs">Kurulu eklentilerde aranabilir katalog bulunamadı</string>
@@ -2842,7 +2708,6 @@
     <string name="cd_nuvio">Nuvio</string>
 
     <!-- Debug -->
-    <string name="debug_signin_success">Giriş başarılı</string>
     <string name="debug_generate_description">Hata ayıklama için %1$s öğesi oluşturuldu #%2$d</string>
     <string name="debug_generate_result_failed">Başarısız: %1$s</string>
     <string name="debug_generate_library_result_added">Kütüphaneye %1$d öğe eklendi</string>
@@ -3430,4 +3295,5 @@
     <string name="autosync_label_synced">Otomatik eşitlendi</string>
     <string name="stream_resume_from_time">%1$s konumundan devam et</string>
     <string name="stream_resume_from_percent">%1$d%% konumundan devam et</string>
+    <string name="account_error_generic_retry">Bir şeyler ters gitti. Lütfen tekrar deneyin.</string>
 </resources>

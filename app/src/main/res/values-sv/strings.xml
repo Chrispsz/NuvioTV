@@ -191,7 +191,6 @@
     <string name="about_supporters_contributors_subtitle">Öppen erkänsla och projektcredits</string>
 
     <!-- SettingsScreen categories -->
-    <string name="settings_account">Konto</string>
     <string name="settings_profiles">Profiler</string>
     <string name="settings_layout">Layout</string>
     <string name="settings_plugins">Plugins</string>
@@ -201,12 +200,6 @@
     <string name="settings_trakt_subtitle">Öppna Trakt anslutningsskärm</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_plugins_section_subtitle">Hantera arkiv, leverantörer, och plugin-status</string>
-    <string name="settings_account_section_subtitle">Konto och synkroniseringsstatus</string>
-    <string name="account_stat_addons">tillägg</string>
-    <string name="account_stat_plugins">plugins</string>
-    <string name="account_stat_library">bibliotek</string>
-    <string name="account_stat_progress">pågående</string>
-    <string name="account_stat_watched">sedd</string>
     <string name="settings_integrations_section">Integrationer</string>
     <string name="settings_integrations_section_subtitle">Hantera tillgängliga integrationer</string>
     <string name="settings_tmdb_subtitle">Metadataberikning</string>
@@ -532,9 +525,6 @@
     <string name="trakt_account_login">Kontoinloggning</string>
     <string name="trakt_awaiting_instruction">Gå till trakt.tv/activate och ange denna kod:</string>
     <string name="trakt_waiting_approval">Väntar på godkännande…</string>
-    <string name="qr_login_approved">Inloggning godkänd. Slutför inloggning…</string>
-    <string name="qr_login_pending">Väntar på godkännande på din telefon…</string>
-    <string name="qr_login_expired">QR-inloggningen har gått ut. Generera en ny kod.</string>
     <string name="trakt_code_expires">Koden går ut om %1$s</string>
     <string name="trakt_token_refreshes">Trakt-åtkomsttoken uppdateras om %1$s</string>
     <string name="trakt_login_instruction">Tryck på Logga in för att starta Trakt-enhetsautentisering. En QR-kod visas här.</string>
@@ -582,17 +572,7 @@
     <string name="debug_playback_error_title">Uppspelningsfelskärm</string>
     <string name="debug_playback_error_subtitle">Visa ett simulerat uppspelningsfel</string>
     <string name="debug_section_features">Funktionsväxlare</string>
-    <string name="debug_account_tab_title">Kontoflik</string>
-    <string name="debug_account_tab_subtitle">Visa kontofliken i inställningsnavigeringen</string>
-    <string name="debug_sync_code_title">Synkkodsfunktioner</string>
-    <string name="debug_sync_code_subtitle">Visa Generera/Ange synkkod-knappar i kontoinställningar</string>
     <string name="debug_section_account">Konto</string>
-    <string name="debug_manual_signin_title">Manuell inloggning</string>
-    <string name="debug_manual_signin_subtitle">Logga in med e-post och lösenord (Supabase-autentisering)</string>
-    <string name="debug_email_placeholder">E-post</string>
-    <string name="debug_password_placeholder">Lösenord</string>
-    <string name="debug_signing_in">Loggar in\u2026</string>
-    <string name="debug_sign_in">Logga in</string>
     <string name="debug_error_dialog_title">Uppspelningsfel</string>
     <string name="debug_error_dialog_subtitle">Ett fel uppstod under uppspelning.\n\nFel: Testsimulerat fel – detta är inte ett riktigt fel. Källan returnerade HTTP 503 (Tjänst ej tillgänglig).</string>
     <string name="debug_dismiss">Avfärda</string>
@@ -877,15 +857,6 @@
     <string name="library_empty_trakt_subtitle">Använd + i detaljer för att lägga till objekt i bevakningslistan eller listor</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Laddar\u2026</string>
-    <string name="account_sync_description">Synkronisera ditt bibliotek, tittarframsteg, tillägg och plugins mellan enheter.</string>
-    <string name="account_sync_restart_note">Synkronisering sker inte i realtid mellan aktiva enheter. Starta om denna enhet efter inloggning eller för att hämta ändringar gjorda på annat håll.</string>
-    <string name="account_signin_qr_title">Logga in med QR</string>
-    <string name="account_signin_qr_subtitle">Skanna en QR-kod och slutför e-postinloggning på din telefon</string>
-    <string name="account_signed_in_label">Inloggad</string>
-    <string name="account_total_label">Totalt</string>
-    <string name="account_loading_sync">Laddar synkdata\u2026</string>
-    <string name="account_sign_out">Logga ut</string>
 
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">Logga in</string>
@@ -910,23 +881,8 @@
     <string name="auth_qr_back">Tillbaka</string>
 
     <!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">Generera synkkod</string>
-    <string name="sync_generate_subtitle">Skapa en PIN-kod för att skydda din synkkod. Dela koden med dina andra enheter.</string>
-    <string name="sync_generate_code_label">Din synkkod</string>
-    <string name="sync_generate_instruction">Ange denna kod och din PIN-kod på din andra enhet för att länka dem.</string>
-    <string name="sync_generate_done">Klar</string>
-    <string name="sync_generate_pin_label">Välj en PIN-kod (4–8 tecken)</string>
-    <string name="sync_generate_pin_placeholder">Ange PIN-kod</string>
 
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">Länka enhet</string>
-    <string name="sync_claim_subtitle">Ange synkkoden och PIN-koden från din andra enhet för att länka denna enhet.</string>
-    <string name="sync_claim_success">Enheten länkad! Dina tillägg och plugins synkroniseras nu.</string>
-    <string name="sync_claim_done">Klar</string>
-    <string name="sync_claim_code_label">Synkkod</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN-kod</string>
-    <string name="sync_claim_pin_placeholder">Ange PIN-kod</string>
 
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">Använder primärprofilens plugins och kan inte ändras</string>
@@ -986,13 +942,6 @@
     <string name="update_downloading_ellipsis">Laddar ner…</string>
     <string name="update_unknown_sources">Tillåt installation från okända källor för att fortsätta.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Konto</string>
-    <string name="account_sign_in_description">Logga in för att synkronisera ditt bibliotek, tittarframsteg, tillägg och plugins mellan enheter. Bibliotekssynk använder Nuvio Sync när Trakt inte är anslutet, och tittarframsteg kan använda antingen Trakt eller Nuvio Sync.</string>
-    <string name="account_sync_code_title">Synkkod</string>
-    <string name="account_sync_code_description">Synkronisera mellan enheter utan att skapa ett konto.</string>
-    <string name="account_linked_devices">Länkade enheter (%1$d)</string>
-    <string name="account_no_linked_devices">Inga länkade enheter</string>
-    <string name="account_unlink">Avlänka</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Laddar avsnittsbetyg...</string>
@@ -1322,11 +1271,6 @@
     <string name="tmdb_trailers_subtitle">Trailerkandidater från TMDB-videor för trailer-sektionen på detaljsidan</string>
 
     <!-- TraktScreen -->
-    <string name="qr_login_scan_prompt">Skanna QR och logga in på din telefon</string>
-    <string name="qr_login_start_failed">Kunde inte starta QR-inloggning</string>
-    <string name="qr_login_signing_in">Loggar in dig…</string>
-    <string name="qr_login_success">Inloggning lyckades</string>
-    <string name="qr_login_exchange_failed">Kunde inte slutföra QR-inloggning</string>
     <string name="trakt_library_source_title">Bibliotekskälla</string>
     <string name="trakt_library_source_subtitle">Välj vilket bibliotek som används för att spara och visa din samling</string>
     <string name="trakt_library_source_dialog_title">Bibliotekskälla</string>
@@ -1396,18 +1340,8 @@
     <string name="library_empty_trakt_not_auth_subtitle">Anslut ditt Trakt-konto i Inställningar för att se ditt Trakt-bibliotek</string>
 
     <!-- AccountScreen -->
-    <string name="account_signin_create_title">Logga in / Skapa konto</string>
-    <string name="account_signin_create_desc">Använd e-post och lösenord för att skapa eller logga in på ditt konto.</string>
-    <string name="account_generate_sync_desc">Skapa en kod på denna enhet så att andra enheter kan länka till den.</string>
-    <string name="account_enter_sync_desc">Länka denna enhet till en annan enhet med en synkkod.</string>
-    <string name="account_signed_in_as">Inloggad som</string>
-    <string name="account_generate_sync_signed_in_desc">Skapa en kod så att andra enheter kan synkronisera med detta konto.</string>
-    <string name="account_unknown_device">Okänd enhet</string>
 
     <!-- Sync screens -->
-    <string name="sync_claim_linking">Länkar…</string>
-    <string name="sync_generate_generating">Genererar…</string>
-    <string name="sync_generate_code_btn">Generera kod</string>
 
     <!-- Search -->
     <string name="search_no_results_title">Inga resultat</string>
@@ -1444,7 +1378,6 @@
     <string name="trakt_error_denied">Auktorisering nekad på Trakt.</string>
 
     <!-- Account errors -->
-    <string name="account_error_signin_required">Logga in med ett konto först.</string>
 
     <!-- Search errors -->
     <string name="search_error_no_catalogs">Inga sökbara kataloger hittades i installerade tillägg</string>
@@ -1520,7 +1453,6 @@
     <string name="cd_nuvio">Nuvio</string>
 
     <!-- Debug -->
-    <string name="debug_signin_success">Inloggad</string>
     <string name="debug_generate_description">Debug-genererat %1$s objekt #%2$d</string>
     <string name="debug_generate_result_failed">Misslyckades: %1$s</string>
 

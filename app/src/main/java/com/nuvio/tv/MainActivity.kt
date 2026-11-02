@@ -150,11 +150,8 @@ import com.nuvio.tv.core.sync.ProfileSyncService
 import com.nuvio.tv.core.sync.StartupSyncService
 import com.nuvio.tv.core.tracking.TrackingProgressRefreshCoordinator
 import com.nuvio.tv.core.tracking.TrackingRefreshIntent
-import com.nuvio.tv.data.local.AppOnboardingDataStore
-import com.nuvio.tv.data.local.AuthSessionNoticeDataStore
 import com.nuvio.tv.data.local.ExperienceModeDataStore
 import com.nuvio.tv.data.local.LayoutPreferenceDataStore
-import com.nuvio.tv.data.local.StartupAuthNotice
 import com.nuvio.tv.data.local.ThemeDataStore
 import com.nuvio.tv.data.repository.MemberAccessRepository
 import com.nuvio.tv.data.remote.supabase.AvatarRepository
@@ -186,7 +183,6 @@ import com.nuvio.tv.ui.navigation.Screen
 import com.nuvio.tv.ui.navigation.rememberNavSessionViewModelStoreOwner
 import com.nuvio.tv.ui.screens.party.PartyEffects
 import com.nuvio.tv.ui.membership.LocalMemberAccess
-import com.nuvio.tv.ui.screens.account.AuthQrSignInScreen
 import com.nuvio.tv.ui.screens.addon.EssentialAddonSetupScreen
 import com.nuvio.tv.ui.screens.profile.ProfileSelectionScreen
 import com.nuvio.tv.ui.theme.NuvioComponents
@@ -305,12 +301,6 @@ open class MainActivity : ComponentActivity() {
     lateinit var deviceSessionRegistration: DeviceSessionRegistration
 
     @Inject
-    lateinit var authSessionNoticeDataStore: AuthSessionNoticeDataStore
-
-    @Inject
-    lateinit var appOnboardingDataStore: AppOnboardingDataStore
-
-    @Inject
     lateinit var avatarRepository: AvatarRepository
 
     @Inject
@@ -404,36 +394,10 @@ open class MainActivity : ComponentActivity() {
             var focusedSplashBgUrl by remember { mutableStateOf<String?>(null) }
             var focusedSplashCacheKey by remember { mutableStateOf<String?>(null) }
             var focusedSplashTheme by remember { mutableStateOf<AppTheme?>(null) }
-            var onboardingCompletedThisSession by remember { mutableStateOf(false) }
-            var onboardingProfileSyncInProgress by remember { mutableStateOf(false) }
-            val hasSeenAuthQrFlow = remember(appOnboardingDataStore) {
-                appOnboardingDataStore.hasSeenAuthQrOnFirstLaunch.map<Boolean, Boolean?> { it }
-            }
-            val hasSeenAuthQrOnFirstLaunch by hasSeenAuthQrFlow.collectAsState(initial = null)
             val authState by authManager.authState.collectAsState()
             val context = LocalContext.current
 
-            LaunchedEffect(authSessionNoticeDataStore, context) {
-                authSessionNoticeDataStore.pendingNotice.collect { notice ->
-                    if (notice == StartupAuthNotice.NUVIO) {
-                        Toast.makeText(
-                            context,
-                            context.getString(R.string.auth_notice_nuvio_logged_out),
-                            Toast.LENGTH_LONG
-                        ).show()
-                        authSessionNoticeDataStore.consumeNotice(notice)
-                    }
-                }
-            }
-
             PartyEffects(partyRepository)
-
-            LaunchedEffect(hasSeenAuthQrOnFirstLaunch, authState) {
-                if (hasSeenAuthQrOnFirstLaunch == false && authState is AuthState.FullAccount) {
-                    appOnboardingDataStore.setHasSeenAuthQrOnFirstLaunch(true)
-                    onboardingCompletedThisSession = true
-                }
-            }
 
             val activeProfileId by profileManager.activeProfileId.collectAsState()
             val startupSplashEnabled by profileManager.startupSplashEnabled.collectAsState()
@@ -735,56 +699,11 @@ open class MainActivity : ComponentActivity() {
                     Box(modifier = Modifier.fillMaxSize()) {
 
                     var startupDestination = StartupDestination.Loading
-                    val surfaceContentReady = hasSeenAuthQrOnFirstLaunch != null &&
-                        authState !is AuthState.Loading
 
-                    if (!surfaceContentReady) {
-                        // Still loading auth state; nothing to show yet.
-                    } else if (
-                        hasSeenAuthQrOnFirstLaunch == false &&
-                        authState !is AuthState.FullAccount &&
-                        !onboardingCompletedThisSession
-                    ) {
-                        startupDestination = StartupDestination.Setup
-                        AuthQrSignInScreen(
-                            onBackPress = { finish() },
-                            onContinue = {
-                                lifecycleScope.launch {
-                                    val shouldRunRemoteOnboardingSync =
-                                        authManager.authState.value is AuthState.FullAccount
-
-                                    if (shouldRunRemoteOnboardingSync) {
-                                        if (onboardingProfileSyncInProgress) return@launch
-                                        onboardingProfileSyncInProgress = true
-                                        val maxAttempts = 3
-                                        var synced = false
-                                        for (attempt in 0 until maxAttempts) {
-                                            val result = profileSyncService.pullFromRemote()
-                                            if (result.isSuccess) {
-                                                synced = true
-                                                break
-                                            }
-                                            if (attempt < maxAttempts - 1) {
-                                                delay(1_000)
-                                            }
-                                        }
-                                        if (!synced) {
-                                            android.util.Log.w(
-                                                "MainActivity",
-                                                "Onboarding profile sync failed after retries; continuing"
-                                            )
-                                        }
-                                    }
-                                    appOnboardingDataStore.setHasSeenAuthQrOnFirstLaunch(true)
-                                    onboardingCompletedThisSession = true
-                                    onboardingProfileSyncInProgress = false
-                                }
-                                if (authManager.authState.value is AuthState.FullAccount) {
-                                    startupSyncService.requestSyncNow()
-                                }
-                            }
-                        )
-                    } else {
+                    // TV Minimal Edition: sem login/conta — nada de onboarding por QR;
+                    // o app abre direto no conteúdo com o pack de fábrica.
+                    val surfaceContentReady = true
+                    if (surfaceContentReady) {
 
                     val shouldShowProfileSelection =
                         !hasSelectedProfileThisSession && (profiles.size > 1 || activeProfileHasPin)
@@ -819,13 +738,20 @@ open class MainActivity : ComponentActivity() {
                         )
                     } else {
 
-                    val layoutChosen = mainUiPrefs.hasChosenLayout
-                    val prefsLoading = layoutChosen == null || !mainUiPrefs.experienceModeLoaded || installedAddons == null
+                    // TV Minimal Edition: layout MODERNO vem escolhido de fábrica (sem a tela
+                    // "Welcome"); o modo padrão é ESSENTIAL — direto ao conteúdo.
+                    val layoutChosen = mainUiPrefs.hasChosenLayout ?: true
+                    val prefsLoading = mainUiPrefs.hasChosenLayout == null ||
+                        !mainUiPrefs.experienceModeLoaded || installedAddons == null
                     if (!prefsLoading) {
                     val effectiveExperienceMode = mainUiPrefs.experienceMode
                         // TV Minimal Edition: leigo entra direto no ESSENTIAL (sem tela de escolha);
-                        // quem já escolheu layout continua no que tinha (ADVANCED).
-                        ?: if (layoutChosen) ExperienceMode.ADVANCED else ExperienceMode.ESSENTIAL
+                        // no full, quem já escolheu layout continua no que tinha (ADVANCED).
+                        ?: when {
+                            BuildConfig.FLAVOR == "minimal" -> ExperienceMode.ESSENTIAL
+                            mainUiPrefs.hasChosenLayout == true -> ExperienceMode.ADVANCED
+                            else -> ExperienceMode.ESSENTIAL
+                        }
                     val needsExperienceSelection = effectiveExperienceMode == null
                     val needsEssentialAddonSetup =
                         effectiveExperienceMode == ExperienceMode.ESSENTIAL &&

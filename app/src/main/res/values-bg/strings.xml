@@ -465,7 +465,6 @@
 
 <!-- SettingsScreen categories -->
     <string name="settings_experience">Изживяване</string>
-    <string name="settings_account">Акаънт</string>
     <string name="settings_profiles">Профили</string>
     <string name="settings_layout">Оформление</string>
     <string name="settings_content_discovery">Съдържание и откриване</string>
@@ -536,34 +535,6 @@
     <string name="essential_subtitle_language_subtitle">Предпочитан език на субтитрите.</string>
     <string name="essential_audio_language_subtitle">Предпочитан език за аудиото.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">Неправилен ПИН код.</string>
-    <string name="account_error_sync_code_expired">Кодът за синхронизация е изтекъл.</string>
-    <string name="account_error_invalid_sync_code">Невалиден код за синхронизация.</string>
-    <string name="account_error_sync_code_not_found">Кодът за синхронизация не е намерен.</string>
-    <string name="account_error_device_already_linked">Устройството вече е свързано.</string>
-    <string name="account_error_generic_retry">Нещо се обърка. Моля, опитайте отново.</string>
-    <string name="account_error_invalid_credentials">Неправилен имейл или парола.</string>
-    <string name="account_error_email_not_confirmed">Моля, първо потвърдете имейла си.</string>
-    <string name="account_error_email_already_registered">Вече съществува акаунт с този имейл адрес.</string>
-    <string name="account_error_invalid_email">Моля, въведете валиден имейл адрес.</string>
-    <string name="account_error_password_too_short">Паролата е твърде кратка.</string>
-    <string name="account_error_password_too_weak">Паролата е твърде слаба.</string>
-    <string name="account_error_signup_disabled">Регистрацията е деактивирана в момента.</string>
-    <string name="account_error_rate_limited">Твърде много опити. Моля, опитайте отново по-късно.</string>
-    <string name="account_error_qr_login_expired">Валидността на QR кода за вход е изтекла. Моля, опитайте отново.</string>
-    <string name="account_error_invalid_qr_login">Невалиден QR код за вход.</string>
-    <string name="account_error_qr_login_other_device">Този QR код за вход е заявен от друго устройство.</string>
-    <string name="account_error_qr_login_outdated">Услугата за QR вход е остаряла. Приложете отново настройката за SQL вход за телевизор.</string>
-    <string name="account_error_qr_login_missing_setup">Липсва настройка за вход с QR кодове. Актуализирайте настройката за SQL вход в TV.</string>
-    <string name="account_error_qr_login_misconfigured">URL адресът за вход в QR кода е неправилно конфигуриран.</string>
-    <string name="account_error_qr_login_invalid_request">Заявката за QR вход е невалидна. Моля, опитайте отново.</string>
-    <string name="account_error_no_internet">Няма интернет връзка.</string>
-    <string name="account_error_connection_timeout">Времето за връзка изтече. Моля, опитайте отново.</string>
-    <string name="account_error_connection_refused">Не можах да се свържа със сървъра.</string>
-    <string name="account_error_not_authenticated">Моля, първо влезте.</string>
-    <string name="account_error_service_unavailable">Услугата не е налична. Моля, опитайте отново по-късно.</string>
-    <string name="account_error_invalid_request">Невалидна заявка. Моля, проверете въведените данни.</string>
-    <string name="account_error_unexpected">Възникна неочаквана грешка.</string>
     <string name="experience_mode_switch_to_essential">Превключване към Essential</string>
     <string name="experience_mode_switch_to_essential_subtitle">Скриване на разширените настройки, без да се променят запазените стойности.</string>
     <string name="experience_mode_switch_to_advanced">Превключване към Разширен режим</string>
@@ -638,12 +609,6 @@
     <string name="confirm_exit_toast">Натиснете отново бутона за изход</string>
     <string name="settings_debug">Отстраняване на грешки</string>
     <string name="settings_plugins_section_subtitle">Управление на хранилища, доставчици и състояния на плъгини</string>
-    <string name="settings_account_section_subtitle">Състояние на акаунта и синхронизацията</string>
-    <string name="account_stat_addons">добавки</string>
-    <string name="account_stat_plugins">плъгини</string>
-    <string name="account_stat_library">библиотека</string>
-    <string name="account_stat_progress">напредък</string>
-    <string name="account_stat_watched">гледано</string>
     <string name="settings_integrations_section">Интеграции</string>
     <string name="settings_integrations_section_subtitle">Управление на наличните интеграции</string>
     <string name="settings_tmdb_subtitle">Контроли за обогатяване на метаданни</string>
@@ -1485,16 +1450,6 @@
     <string name="trakt_account_login">Вход в акаунта</string>
     <string name="trakt_awaiting_instruction">Отидете на trakt.tv/activate и въведете този код:</string>
     <string name="trakt_waiting_approval">Изчаква се одобрение…</string>
-    <string name="qr_login_approved">Входът е одобрен. Влизането се завършва…</string>
-    <string name="qr_login_pending">Изчаква се одобрение на телефона ви…</string>
-    <string name="qr_login_expired">Валидността на QR кода за вход е изтекла. Генерирайте нов код.</string>
-    <string name="qr_login_preparing">Подготовка на QR вход...</string>
-    <string name="qr_login_device_auth_failed">Удостоверяването на устройството не бе успешно</string>
-    <string name="qr_login_scan_prompt">Сканирайте QR кода и влезте на телефона си</string>
-    <string name="qr_login_start_failed">Неуспешно стартиране на вход с QR код</string>
-    <string name="qr_login_signing_in">Влизането ви в профила...</string>
-    <string name="qr_login_success">Влизането е осъществено успешно</string>
-    <string name="qr_login_exchange_failed">Влизането с QR код не можа да бъде завършено</string>
     <string name="trakt_code_expires">Кодът изтича след %1$s</string>
     <string name="trakt_token_refreshes">Токенът за достъп до Trakt се обновява в %1$s</string>
     <string name="trakt_login_instruction">Натиснете „Вход“, за да стартирате удостоверяването на устройството Trakt. Тук ще се появи QR код.</string>
@@ -1570,10 +1525,6 @@
     <string name="debug_progress_indicator_default">По подразбиране</string>
     <string name="debug_progress_indicator_large">Голям</string>
     <string name="debug_section_features">Превключватели на функции</string>
-    <string name="debug_account_tab_title">Раздел „Акаунт“</string>
-    <string name="debug_account_tab_subtitle">Показване на раздела „Акаунт“ в навигацията „Настройки“</string>
-    <string name="debug_sync_code_title">Характеристики на синхронизиращия код</string>
-    <string name="debug_sync_code_subtitle">Показване на бутоните „Генериране/Въвеждане на код за синхронизация“ в настройките на акаунта</string>
     <string name="debug_member_tier_title">Симулиране на ниво на поддръжник</string>
     <string name="debug_member_tier_subtitle">Изберете нивото на потвърден поддръжник, върнато в тази дебъг компилация</string>
     <string name="debug_member_tier_none">Няма</string>
@@ -1582,12 +1533,6 @@
     <string name="debug_buffer_logs_title">Активиране на BUFFER Logs</string>
     <string name="debug_buffer_logs_subtitle">Изпращане на периодична диагностика на буфера на плейъра към logcat (по подразбиране е деактивирано)</string>
     <string name="debug_section_account">Акаунт</string>
-    <string name="debug_manual_signin_title">Ръчно влизане</string>
-    <string name="debug_manual_signin_subtitle">Влезте с имейл и парола (Supabase auth)</string>
-    <string name="debug_email_placeholder">Имейл</string>
-    <string name="debug_password_placeholder">Парола</string>
-    <string name="debug_signing_in">Влизане\u2026</string>
-    <string name="debug_sign_in">Вход</string>
     <string name="debug_error_dialog_title">Грешка при възпроизвеждане</string>
     <string name="debug_error_dialog_subtitle">Възникна грешка по време на възпроизвеждане.\n\nГрешка: Тест, симулиран при грешка - това не е реална повреда. Източникът върна HTTP 503 (Услугата е недостъпна).</string>
     <string name="debug_dismiss">Отхвърляне</string>
@@ -2188,27 +2133,6 @@
     <string name="cloud_library_error_disabled">Облачната библиотека е деактивирана.</string>
 
 <!-- AccountSettingsContent --> 
-    <string name="account_loading">Зареждане\u2026</string>
-    <string name="account_sync_description">Синхронизирайте библиотеката си, гледайте напредъка, добавките и плъгините на различни устройства.</string>
-    <string name="account_sync_restart_note">Синхронизирането не е в реално време между активните устройства. Рестартирайте това устройство след влизане или за да се включат промените, направени другаде.</string>
-    <string name="account_signin_qr_title">Вход с QR код</string>
-    <string name="account_signin_qr_subtitle">Сканирайте QR код и завършете вход в имейл акаунта си на телефона си</string>
-    <string name="account_signin_email_title">Вход</string>
-    <string name="account_signin_email_subtitle">Въведете имейл адреса и паролата за вашия самостоятелно хостван акаунт</string>
-    <string name="account_signed_in_label">Влезли сте</string>
-    <string name="account_total_label">Общо</string>
-    <string name="account_loading_sync">Зареждане на данни за синхронизиране\u2026</string>
-    <string name="account_sign_out">Изход</string>
-    <string name="account_sign_out_confirm_title">Излизане?</string>
-    <string name="account_sign_out_confirm_subtitle">Ще трябва да влезете отново, за да синхронизирате библиотеката, да гледате напредъка, добавките и плъгините на това устройство.</string>
-    <string name="account_error_signin_required">Първо влезте с акаунт.</string>
-    <string name="account_signin_create_title">Вход / Създаване на акаунт</string>
-    <string name="account_signin_create_desc">Използвайте имейл и парола, за да създадете или влезете в профила си.</string>
-    <string name="account_generate_sync_desc">Създайте код на това устройство, за да могат други устройства да се свържат с него.</string>
-    <string name="account_enter_sync_desc">Свържете това устройство с друго устройство, използвайки код за синхронизация.</string>
-    <string name="account_signed_in_as">Влезли сте като</string>
-    <string name="account_generate_sync_signed_in_desc">Създайте код, за да могат други устройства да се синхронизират с този акаунт.</string>
-    <string name="account_unknown_device">Неизвестно устройство</string>
     
     <string name="auth_signin_title">Вход</string>
     <string name="auth_signin_tv_disabled">Въвеждането на имейл/парола на телевизора е деактивирано. Продължете с влизане с QR код.</string>
@@ -2223,42 +2147,9 @@
     <string name="server_options_connect_custom">Свързване с персонализиран сървър</string>
     <string name="server_options_change_custom">Свързване с друг сървър</string>
     <string name="server_options_use_official">Използване на официален сървър</string>
-    <string name="custom_server_title">Свързване с персонализиран сървър</string>
-    <string name="custom_server_description">Въведете URL адреса на бекенда, предоставен от вашия администратор на сървъра.</string>
-    <string name="custom_server_url_placeholder">https://backend.example.com</string>
-    <string name="custom_server_check">Проверка на сървъра</string>
-    <string name="custom_server_checking">Проверка\u2026</string>
-    <string name="custom_server_review_title">Преглед на персонализиран сървър</string>
-    <string name="custom_server_review_description">Документът за откриване е валиден. Свързването ще ви отпише от текущия сървър и ще рестартира приложението. Потвърдете, че това е сървър, който притежавате или на който имате доверие.</string>
-    <string name="custom_server_verified_label">Открит бекенд</string>
-    <string name="custom_server_key_label">Конфигурация на клиента</string>
-    <string name="custom_server_key_discovered">Публикуемият ключ е открит автоматично</string>
-    <string name="custom_server_warning_title">Свързвайте се само със сървър, на който имате доверие</string>
-    <string name="custom_server_warning_public">Този сървър използва публично име на хост. Приложението не може да провери кой го притежава или управлява.</string>
-    <string name="custom_server_warning_http">Този сървър е в частна мрежа, но HTTP трафикът не е криптиран. Възможно е други устройства в мрежата да могат да го четат.</string>
-    <string name="custom_server_warning_public_http">Този сървър използва публично име на хост и некриптиран HTTP. Идентификационните данни и синхронизираните данни може да бъдат разкрити при предаване.</string>
-    <string name="custom_server_warning_private">Изглежда, че това е сървър от частна мрежа, но приложението все още не може да провери кой го контролира.</string>
-    <string name="custom_server_warning_credentials">Операторът на сървъра може да получи идентификационните данни за вашия акаунт и да има достъп до данните, които синхронизирате чрез този сървър.</string>
-    <string name="custom_server_trust_action">Доверявам се на този сървър</string>
-    <string name="custom_server_switching">Превключване\u2026</string>
     <string name="official_server_title">Да се използва официален сървър?</string>
     <string name="official_server_description">Ще излезете от персонализирания сървър и приложението ще се рестартира с официалната услуга.</string>
     <string name="official_server_action">Използване на официален сървър</string>
-    <string name="custom_server_error_invalid_url">Въведете валиден HTTP или HTTPS URL адрес за бекенд.</string>
-    <string name="custom_server_error_official_active">api.nuvio.tv е официалният сървър и вече е избран.</string>
-    <string name="custom_server_error_official_available">api.nuvio.tv е официалният сървър. Затворете този диалогов прозорец и изберете „Използване на официален сървър“, за да се върнете обратно.</string>
-    <string name="custom_server_error_connection">Не можа да се достигне крайната точка за откриване. Проверете URL адреса и наличността на сървъра.</string>
-    <string name="custom_server_error_http">Крайната точка за откриване върна HTTP %1$d.</string>
-    <string name="custom_server_error_response_too_large">Документът за откриване е по-голям от разрешения.</string>
-    <string name="custom_server_error_invalid_document">Сървърът върна невалиден документ за откриване.</string>
-    <string name="custom_server_error_version">Тази версия на документа за откриване не се поддържа.</string>
-    <string name="custom_server_error_service">Документът за откриване не е за това приложение.</string>
-    <string name="custom_server_error_not_self_hosted">Документът за откриване не идентифицира самостоятелно хостван сървър.</string>
-    <string name="custom_server_error_missing_configuration">В документа за откриване липсва валиден URL адрес на бекенд или публикуваем ключ.</string>
-    <string name="custom_server_error_no_auth">Сървърът не рекламира поддържан метод за влизане.</string>
-    <string name="custom_server_save_failed">Не можа да се запази конфигурацията на сървъра.</string>
-    <string name="custom_server_session_clear_failed">Не можах безопасно да изчистя текущата сесия. Сървърът не беше променен.</string>
-    <string name="custom_server_restart_failed">Сървърът беше запазен, но приложението не можа да се рестартира автоматично. Рестартирайте го ръчно.</string>
     
     <string name="auth_qr_title">Вход с QR код</string>
     <string name="auth_qr_tagline">Гледайте библиотеката си, където и да е</string>
@@ -2280,25 +2171,7 @@
     <string name="auth_qr_terms_prefix">С регистрацията / влизането си, приемам</string>
     <string name="auth_qr_terms_link">Условия</string>
     
-    <string name="sync_generate_title">Генериране на код за синхронизация</string>
-    <string name="sync_generate_subtitle">Създайте ПИН код, за да защитите кода си за синхронизация. Споделете кода с другите си устройства.</string>
-    <string name="sync_generate_code_label">Вашият код за синхронизация</string>
-    <string name="sync_generate_instruction">Въведете този код и вашия ПИН код на другото си устройство, за да ги свържете.</string>
-    <string name="sync_generate_done">Готово</string>
-    <string name="sync_generate_pin_label">Изберете ПИН код (4-8 знака)</string>
-    <string name="sync_generate_pin_placeholder">Въведете ПИН код</string>
-    <string name="sync_generate_generating">Генериране\u2026</string>
-    <string name="sync_generate_code_btn">Генериране на код</string>
     
-    <string name="sync_claim_title">Свързване на устройство</string>
-    <string name="sync_claim_subtitle">Въведете кода за синхронизация и ПИН кода от другото си устройство, за да свържете това устройство.</string>
-    <string name="sync_claim_success">Устройството е свързано успешно! Вашите добавки и плъгини вече ще се синхронизират.</string>
-    <string name="sync_claim_done">Готово</string>
-    <string name="sync_claim_code_label">Код за синхронизация</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">ПИН</string>
-    <string name="sync_claim_pin_placeholder">Въведете ПИН код</string>
-    <string name="sync_claim_linking">Свързване\u2026</string>
     
     <string name="plugin_readonly_notice">Използват се плъгините на основния профил и не могат да бъдат променяни</string>
     <string name="plugin_repositories_section">Хранилища (%1$d)</string>
@@ -2384,13 +2257,6 @@
     <string name="update_latest_version">Използвате най-новата версия.</string>
     <string name="update_unknown_sources">Разрешаване на инсталиранията от неизвестни източници.</string>
 <!-- AccountScreen --> 
-    <string name="account_title">Акаунт</string>
-    <string name="account_sign_in_description">Влезте, за да синхронизирате библиотеката си, напредъка си в гледането, добавките и плъгините на различни устройства. Синхронизирането на библиотеката използва Nuvio Sync, когато Trakt не е свързан, а напредъкът в гледането може да използва Trakt или Nuvio Sync.</string>
-    <string name="account_sync_code_title">Код за синхронизация</string>
-    <string name="account_sync_code_description">Синхронизирайте между устройства без създаване на акаунт.</string>
-    <string name="account_linked_devices">Свързани устройства (%1$d)</string>
-    <string name="account_no_linked_devices">Няма свързани устройства</string>
-    <string name="account_unlink">Прекратяване на връзката</string>
 
 <!-- EpisodeRatingsSection --> 
     <string name="ratings_loading">Зареждане на оценките на епизодите...</string>
@@ -2577,7 +2443,6 @@
     <string name="cd_qr_login">QR код за вход</string>
     <string name="cd_nuvio">Nuvio</string>
     
-    <string name="debug_signin_success">Влизането е осъществено успешно</string>
     <string name="debug_generate_description">Генериран от грешки %1$s елемент #%2$d</string>
     <string name="debug_generate_result_failed">Неуспешно: %1$s</string>
     <string name="debug_generate_library_result_added">Добавени са %1$d елемента към библиотеката</string>
@@ -3406,4 +3271,5 @@
     <string name="autosync_label_synced">Автоматично синхронизирано</string>
     <string name="stream_resume_from_time">Възобновяване от %1$s</string>
     <string name="stream_resume_from_percent">Възобновяване от %1$d%%</string>
+    <string name="account_error_generic_retry">Нещо се обърка. Моля, опитайте отново.</string>
 </resources>

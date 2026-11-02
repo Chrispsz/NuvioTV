@@ -244,7 +244,7 @@ class PluginManager @Inject constructor(
 
     var isSyncingFromRemote = false
 
-    /** Prevents concurrent reconciliation from StartupSyncService and AccountViewModel */
+    /** Prevents concurrent reconciliation from StartupSyncService */
     private val reconcileMutex = Mutex()
 
     @Volatile

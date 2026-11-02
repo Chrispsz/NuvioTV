@@ -367,7 +367,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">பயன்பாட்டு முறை</string>
-    <string name="settings_account">அக்கவுண்ட்</string>
     <string name="settings_profiles">புரொஃபைல்கள்</string>
     <string name="settings_layout">அமைப்பு வடிவம்</string>
     <string name="settings_plugins">பிளகின்கள்</string>
@@ -406,34 +405,6 @@
     <string name="essential_subtitle_language_subtitle">விருப்பமான வசனவரி மொழி.</string>
     <string name="essential_audio_language_subtitle">விருப்பமான ஒலி மொழி.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">தவறான பின்.</string>
-    <string name="account_error_sync_code_expired">ஒத்திசைவு குறியீடு காலாவதியானது.</string>
-    <string name="account_error_invalid_sync_code">தவறான ஒத்திசைவு குறியீடு.</string>
-    <string name="account_error_sync_code_not_found">ஒத்திசைவு குறியீடு கிடைக்கவில்லை.</string>
-    <string name="account_error_device_already_linked">சாதனம் ஏற்கனவே இணைக்கப்பட்டுள்ளது.</string>
-    <string name="account_error_generic_retry">ஏதோ தவறு ஏற்பட்டது. மீண்டும் முயற்சிக்கவும்.</string>
-    <string name="account_error_invalid_credentials">தவறான மின்னஞ்சல் அல்லது கடவுச்சொல்.</string>
-    <string name="account_error_email_not_confirmed">முதலில் மின்னஞ்சலை உறுதிப்படுத்தவும்.</string>
-    <string name="account_error_email_already_registered">இந்த மின்னஞ்சலுக்கு ஏற்கனவே அக்கவுண்ட் உள்ளது.</string>
-    <string name="account_error_invalid_email">சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்.</string>
-    <string name="account_error_password_too_short">கடவுச்சொல் மிகவும் குறுகியது.</string>
-    <string name="account_error_password_too_weak">கடவுச்சொல் பலவீனமாக உள்ளது.</string>
-    <string name="account_error_signup_disabled">பதிவு தற்போது முடக்கப்பட்டுள்ளது.</string>
-    <string name="account_error_rate_limited">அதிக முயற்சிகள். பின்னர் முயற்சிக்கவும்.</string>
-    <string name="account_error_qr_login_expired">க்யூஆர் உள்நுழைவு காலாவதியானது. மீண்டும் முயற்சிக்கவும்.</string>
-    <string name="account_error_invalid_qr_login">தவறான க்யூஆர் உள்நுழைவு குறியீடு.</string>
-    <string name="account_error_qr_login_other_device">இந்த க்யூஆர் உள்நுழைவு மற்றொரு சாதனத்திலிருந்து கோரப்பட்டது.</string>
-    <string name="account_error_qr_login_outdated">க்யூஆர் உள்நுழைவு சேவை காலாவதியானது. டிவி உள்நுழைவு எஸ்க்யூஎல் அமைப்பை மீண்டும் செயல்படுத்து.</string>
-    <string name="account_error_qr_login_missing_setup">க்யூஆர் உள்நுழைவு பின்புற அமைப்பு இல்லை. டிவி உள்நுழைவு எஸ்க்யூஎல் அமைப்பை புதுப்பிக்கவும்.</string>
-    <string name="account_error_qr_login_misconfigured">க்யூஆர் உள்நுழைவு முகவரி தவறாக அமைக்கப்பட்டுள்ளது.</string>
-    <string name="account_error_qr_login_invalid_request">தவறான க்யூஆர் உள்நுழைவு கோரிக்கை. மீண்டும் முயற்சிக்கவும்.</string>
-    <string name="account_error_no_internet">இணைய இணைப்பு இல்லை.</string>
-    <string name="account_error_connection_timeout">இணைப்பு நேரம் முடிந்தது. மீண்டும் முயற்சிக்கவும்.</string>
-    <string name="account_error_connection_refused">சேவையகத்துடன் இணைக்க முடியவில்லை.</string>
-    <string name="account_error_not_authenticated">முதலில் உள்நுழையவும்.</string>
-    <string name="account_error_service_unavailable">சேவை கிடைக்கவில்லை. பின்னர் முயற்சிக்கவும்.</string>
-    <string name="account_error_invalid_request">தவறான கோரிக்கை. உங்கள் உள்ளீட்டை சரிபார்க்கவும்.</string>
-    <string name="account_error_unexpected">எதிர்பாராத பிழை ஏற்பட்டது.</string>
     <string name="experience_mode_switch_to_essential">எளிமை நிலைக்கு மாறு</string>
     <string name="experience_mode_switch_to_essential_subtitle">சேமித்த மதிப்புகளை மாற்றாமல் மேம்பட்ட அமைப்புகளை மறை.</string>
     <string name="experience_mode_switch_to_advanced">மேம்பட்ட நிலைக்கு மாறு</string>
@@ -474,12 +445,6 @@
     <string name="advanced_remember_last_profile_subtitle">தொடக்கத்தில் கடைசியாக தேர்ந்தெடுத்த புரொஃபைலை நினைவில் வைத்திரு</string>
     <string name="settings_debug">பிழைத்திருத்தம்</string>
     <string name="settings_plugins_section_subtitle">களஞ்சியங்கள், வழங்குநர்கள் மற்றும் பிளகின் நிலைகளை நிர்வகி</string>
-    <string name="settings_account_section_subtitle">அக்கவுண்ட் மற்றும் ஒத்திசைவு நிலை</string>
-    <string name="account_stat_addons">ஆட்-ஆன்கள்</string>
-    <string name="account_stat_plugins">பிளகின்கள்</string>
-    <string name="account_stat_library">நூலகம்</string>
-    <string name="account_stat_progress">முன்னேற்றம்</string>
-    <string name="account_stat_watched">பார்த்தவை</string>
     <string name="settings_integrations_section">ஒருங்கிணைப்புகள்</string>
     <string name="settings_integrations_section_subtitle">கிடைக்கும் ஒருங்கிணைப்புகளை நிர்வகி</string>
     <string name="settings_tmdb_subtitle">மெட்டாடேட்டா மேம்பாட்டு கட்டுப்பாடுகள்</string>
@@ -898,16 +863,6 @@
     <string name="trakt_account_login">கணக்கு உள்நுழைவு</string>
     <string name="trakt_awaiting_instruction">trakt.tv/activate க்கு சென்று இந்த குறியீட்டை உள்ளிடவும்:</string>
     <string name="trakt_waiting_approval">அனுமதிக்காக காத்திருக்கிறது…</string>
-    <string name="qr_login_approved">உள்நுழைவு அனுமதிக்கப்பட்டது. உள்நுழைவு முடிக்கப்படுகிறது…</string>
-    <string name="qr_login_pending">உங்கள் தொலைபேசியில் அனுமதிக்க காத்திருக்கிறது…</string>
-    <string name="qr_login_expired">க்யூஆர் உள்நுழைவு காலாவதியானது. புதிய குறியீட்டை உருவாக்கவும்.</string>
-    <string name="qr_login_preparing">க்யூஆர் உள்நுழைவு தயாராகிறது...</string>
-    <string name="qr_login_device_auth_failed">சாதனத்தை அங்கீகரிக்க முடியவில்லை</string>
-    <string name="qr_login_scan_prompt">க்யூஆர் ஐ ஸ்கேன் செய்து உங்கள் தொலைபேசியில் உள்நுழையவும்</string>
-    <string name="qr_login_start_failed">க்யூஆர் உள்நுழைவை தொடங்க முடியவில்லை</string>
-    <string name="qr_login_signing_in">உங்களை உள்நுழைக்கிறது…</string>
-    <string name="qr_login_success">வெற்றிகரமாக உள்நுழைந்தது</string>
-    <string name="qr_login_exchange_failed">க்யூஆர் உள்நுழைவை முடிக்க முடியவில்லை</string>
     <string name="trakt_code_expires">குறியீடு %1$s இல் காலாவதியாகும்</string>
     <string name="trakt_token_refreshes">ட்ராக்ட் அணுகல் டோக்கன் %1$s இல் புதுப்பிக்கப்படும்</string>
     <string name="trakt_login_instruction">உள்நுழைவை தொடங்க உள்நுழைவு பொத்தானை அழுத்தவும். க்யூஆர் குறியீடு இங்கு தோன்றும்.</string>
@@ -977,17 +932,7 @@
     <string name="debug_playback_error_title">இயக்கப் பிழை திரை</string>
     <string name="debug_playback_error_subtitle">போலி இயக்கப் பிழை பாப்அப்பை காட்டு</string>
     <string name="debug_section_features">அம்ச மாற்றிகள்</string>
-    <string name="debug_account_tab_title">கணக்கு தாவல்</string>
-    <string name="debug_account_tab_subtitle">அமைப்புகள் வழிசெலுத்தலில் கணக்கு தாவலை காட்டு</string>
-    <string name="debug_sync_code_title">ஒத்திசைவு குறியீட்டு அம்சங்கள்</string>
-    <string name="debug_sync_code_subtitle">கணக்கு அமைப்புகளில் குறியீடு உருவாக்கு/உள்ளிடு பொத்தான்களை காட்டு</string>
     <string name="debug_section_account">கணக்கு</string>
-    <string name="debug_manual_signin_title">கைமுறை உள்நுழைவு</string>
-    <string name="debug_manual_signin_subtitle">மின்னஞ்சல் மற்றும் கடவுச்சொல்லுடன் உள்நுழைக (சூப்பாபேஸ் அங்கீகாரம்)</string>
-    <string name="debug_email_placeholder">மின்னஞ்சல்</string>
-    <string name="debug_password_placeholder">கடவுச்சொல்</string>
-    <string name="debug_signing_in">உள்நுழைகிறது…</string>
-    <string name="debug_sign_in">உள்நுழை</string>
     <string name="debug_error_dialog_title">இயக்கப் பிழை</string>
     <string name="debug_error_dialog_subtitle">இயக்கத்தின் போது ஒரு பிழை ஏற்பட்டது.\n\nபிழை: சோதனைக்காக உருவாக்கப்பட்ட பிழை - இது உண்மையான தோல்வி அல்ல. மூலம் HTTP 503 (சேவை கிடைக்கவில்லை) என்பதை திருப்பியது.</string>
     <string name="debug_dismiss">மூடு</string>
@@ -1421,15 +1366,6 @@
     <string name="library_empty_trakt_not_auth_subtitle">உங்கள் ட்ராக்ட் நூலகத்தை காண அமைப்புகளில் ட்ராக்ட் கணக்கை இணைக்கவும்</string>
 
         <!-- AccountSettingsContent -->
-    <string name="account_loading">ஏற்றப்படுகிறது\u2026</string>
-    <string name="account_sync_description">உங்கள் நூலகம், பார்த்த முன்னேற்றம், அடான்கள் மற்றும் பிளகின்களை சாதனங்கள் முழுவதும் ஒத்திசைக்கவும்.</string>
-    <string name="account_sync_restart_note">செயலில் உள்ள சாதனங்களுக்கு இடையில் ஒத்திசைவு உடனடி அல்ல. உள்நுழைந்த பிறகு அல்லது வேறு இடத்தில் செய்யப்பட்ட மாற்றங்களை பெற இந்த சாதனத்தை மீண்டும் தொடங்கவும்.</string>
-    <string name="account_signin_qr_title">க்யூஆர் மூலம் உள்நுழை</string>
-    <string name="account_signin_qr_subtitle">க்யூஆர் குறியீட்டை ஸ்கேன் செய்து உங்கள் கைபேசியில் மின்னஞ்சல் உள்நுழைவை முடிக்கவும்</string>
-    <string name="account_signed_in_label">உள்நுழைந்தது</string>
-    <string name="account_total_label">மொத்தம்</string>
-    <string name="account_loading_sync">ஒத்திசைவு தரவு ஏற்றப்படுகிறது\u2026</string>
-    <string name="account_sign_out">வெளியேறு</string>
 
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">உள்நுழை</string>
@@ -1454,23 +1390,8 @@
     <string name="auth_qr_back">பின்செல்</string>
 
     <!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">ஒத்திசைவு குறியீடு உருவாக்கு</string>
-    <string name="sync_generate_subtitle">உங்கள் ஒத்திசைவு குறியீட்டை பாதுகாக்க ஒரு பின் உருவாக்கவும். இந்த குறியீட்டை உங்கள் பிற சாதனங்களுடன் பகிரவும்.</string>
-    <string name="sync_generate_code_label">உங்கள் ஒத்திசைவு குறியீடு</string>
-    <string name="sync_generate_instruction">சாதனங்களை இணைக்க, இந்த குறியீடும் உங்கள் பின்னும் மற்ற சாதனத்தில் உள்ளிடவும்.</string>
-    <string name="sync_generate_done">முடிந்தது</string>
-    <string name="sync_generate_pin_label">ஒரு பின் தேர்ந்தெடுக்கவும் (4-8 எழுத்துகள்)</string>
-    <string name="sync_generate_pin_placeholder">பின் உள்ளிடவும்</string>
 
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">சாதனம் இணை</string>
-    <string name="sync_claim_subtitle">இந்த சாதனத்தை இணைக்க, உங்கள் மற்ற சாதனத்திலிருந்து ஒத்திசைவு குறியீடும் பின்னும் உள்ளிடவும்.</string>
-    <string name="sync_claim_success">சாதனம் வெற்றிகரமாக இணைக்கப்பட்டது! உங்கள் அடான்கள் மற்றும் பிளகின்கள் இப்போது ஒத்திசையும்.</string>
-    <string name="sync_claim_done">முடிந்தது</string>
-    <string name="sync_claim_code_label">ஒத்திசைவு குறியீடு</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">பின்</string>
-    <string name="sync_claim_pin_placeholder">பின் உள்ளிடவும்</string>
 
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">முதன்மை சுயவிவரத்தின் பிளகின்கள் பயன்படுத்தப்படுகின்றன, மாற்ற முடியாது</string>
@@ -1544,13 +1465,6 @@
     <string name="update_downloading_ellipsis">பதிவிறக்கப்படுகிறது…</string>
     <string name="update_unknown_sources">தொடர தெரியாத மூலங்களிலிருந்து நிறுவலை அனுமதிக்கவும்.</string>
     <!-- AccountScreen -->
-    <string name="account_title">கணக்கு</string>
-    <string name="account_sign_in_description">சாதனங்கள் முழுவதும் உங்கள் நூலகம், பார்வை முன்னேற்றம், அடான்கள் மற்றும் பிளகின்களை ஒத்திசைக்க உள்நுழைக. டிராக்ட் இணைக்கப்படாதபோது நூலக ஒத்திசைவு நூவியோ ஒத்திசைவை பயன்படுத்தும், மேலும் பார்வை முன்னேற்றம் டிராக்ட் அல்லது நூவியோ ஒத்திசைவு இரண்டிலும் இயங்கலாம்.</string>
-    <string name="account_sync_code_title">ஒத்திசைவு குறியீடு</string>
-    <string name="account_sync_code_description">கணக்கு உருவாக்காமல் சாதனங்களுக்கு இடையில் ஒத்திசைக்கவும்.</string>
-    <string name="account_linked_devices">இணைக்கப்பட்ட சாதனங்கள் (%1$d)</string>
-    <string name="account_no_linked_devices">இணைக்கப்பட்ட சாதனங்கள் இல்லை</string>
-    <string name="account_unlink">இணைப்பு நீக்கு</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">எபிசோட் மதிப்பீடுகள் ஏற்றப்படுகின்றன...</string>
@@ -1623,18 +1537,8 @@
     <string name="profile_pin_current_required">இந்த சுயவிவரத்தில் ஏற்கனவே பின் உள்ளது. மாற்ற தற்போதைய பின்னை உள்ளிடவும்.</string>
 
     <!-- Account Screen -->
-    <string name="account_signin_create_title">உள்நுழை / கணக்கு உருவாக்கு</string>
-    <string name="account_signin_create_desc">உங்கள் கணக்கை உருவாக்க அல்லது உள்நுழைய மின்னஞ்சல் மற்றும் கடவுச்சொல்லைப் பயன்படுத்தவும்.</string>
-    <string name="account_generate_sync_desc">மற்ற சாதனங்கள் இதனுடன் இணைக்க இந்த சாதனத்தில் ஒரு குறியீடு உருவாக்கவும்.</string>
-    <string name="account_enter_sync_desc">ஒத்திசைவு குறியீட்டை பயன்படுத்தி இந்த சாதனத்தை மற்றொரு சாதனத்துடன் இணைக்கவும்.</string>
-    <string name="account_signed_in_as">உள்நுழைந்தவர்</string>
-    <string name="account_generate_sync_signed_in_desc">மற்ற சாதனங்கள் இந்த கணக்குடன் ஒத்திசைக்க ஒரு குறியீடு உருவாக்கவும்.</string>
-    <string name="account_unknown_device">அறியாத சாதனம்</string>
 
     <!-- Sync screens -->
-    <string name="sync_claim_linking">இணைக்கப்படுகிறது\u2026</string>
-    <string name="sync_generate_generating">உருவாக்கப்படுகிறது\u2026</string>
-    <string name="sync_generate_code_btn">குறியீடு உருவாக்கு</string>
 
     <!-- Search -->
     <string name="search_no_results_title">முடிவுகள் இல்லை</string>
@@ -1692,7 +1596,6 @@
     <string name="addon_error_not_found">ஆட்ஒன் கிடைக்கவில்லை</string>
 
     <!-- Account errors -->
-    <string name="account_error_signin_required">முதலில் கணக்கில் உள்நுழையவும்.</string>
 
     <!-- Search errors -->
     <string name="search_error_no_catalogs">நிறுவப்பட்ட ஆட்ஒன்களில் தேடக்கூடிய கேட்டலாக்குகள் எதுவும் இல்லை</string>
@@ -1762,7 +1665,6 @@
     <string name="cd_nuvio">நுவியோ</string>
 
     <!-- Debug -->
-    <string name="debug_signin_success">வெற்றிகரமாக உள்நுழைந்தது</string>
     <string name="debug_generate_description">டீபக் உருவாக்கிய %1$s உருப்பு #%2$d</string>
     <string name="debug_generate_result_failed">தோல்வி: %1$s</string>
     <string name="debug_generate_library_result_added">நூலகத்தில் %1$d உருப்படிகள் சேர்க்கப்பட்டன</string>
@@ -2255,4 +2157,5 @@
     <string name="trakt_comments_error_request_failed">ட்ராக்ட் கருத்துகள் கோரிக்கை தோல்வியடைந்தது</string>
     <string name="trakt_library_error_fetch_list_items">பட்டியல் உருப்படிகளைப் பெற முடியவில்லை</string>
 
+    <string name="account_error_generic_retry">ஏதோ தவறு ஏற்பட்டது. மீண்டும் முயற்சிக்கவும்.</string>
 </resources>

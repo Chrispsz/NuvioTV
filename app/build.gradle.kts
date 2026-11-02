@@ -210,12 +210,12 @@ android {
             applicationId = "tv.minimal.nuvio"
             // Versionamento próprio do fork: a release usa tag "minimal-vX.Y.Z" e o
             // updater compara VERSION_NAME local com a tag (VersionUtils normaliza
-            // o prefixo "minimal-"). 1.3.0 = Home com prioridade de fábrica
-            // (Eventos → Filmes → Animes → Séries → Canais), Anime Kitsu no pack,
-            // migração v1.2→v1.3 e reinstalação guiada no OTA quando a assinatura
-            // do APK difere da instalada — onda de 03/11/2026.
-            versionCode = 130
-            versionName = "1.3.0"
+            // o prefixo "minimal-"). 1.4.0 = SEM LOGIN/CONTA (app 100% pronto de
+            // fábrica), visual moderno por padrão (sidebar de vidro + layout MODERNO
+            // sem tela "Welcome"), FrostStream fora (domínio morto, 404) e
+            // MediaFusion | Midnight como 2ª fonte de streams — onda de 03/11/2026.
+            versionCode = 140
+            versionName = "1.4.0"
             buildConfigField("boolean", "FEATURE_PLUGINS_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_UPDATES_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_TRAILERS_ENABLED", "false")

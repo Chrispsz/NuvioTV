@@ -379,7 +379,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">Режим роботи</string>
-    <string name="settings_account">Акаунт</string>
     <string name="settings_profiles">Профілі</string>
     <string name="settings_layout">Інтерфейс</string>
     <string name="settings_plugins">Плагіни</string>
@@ -419,34 +418,6 @@
     <string name="essential_subtitle_language_subtitle">Бажана мова субтитрів.</string>
     <string name="essential_audio_language_subtitle">Бажана мова аудіо.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">Невірний PIN.</string>
-    <string name="account_error_sync_code_expired">Код синхронізації закінчився.</string>
-    <string name="account_error_invalid_sync_code">Невірний код синхронізації.</string>
-    <string name="account_error_sync_code_not_found">Код синхронізації не знайдено.</string>
-    <string name="account_error_device_already_linked">Пристрій вже прив\'язано.</string>
-    <string name="account_error_generic_retry">Щось пішло не так. Будь ласка, спробуйте ще раз.</string>
-    <string name="account_error_invalid_credentials">Невірний email або пароль.</string>
-    <string name="account_error_email_not_confirmed">Будь ласка, спочатку підтвердіть email.</string>
-    <string name="account_error_email_already_registered">Акаунт з таким email вже існує.</string>
-    <string name="account_error_invalid_email">Будь ласка, введіть коректний email.</string>
-    <string name="account_error_password_too_short">Пароль занадто короткий.</string>
-    <string name="account_error_password_too_weak">Пароль занадто слабкий.</string>
-    <string name="account_error_signup_disabled">Реєстрація зараз недоступна.</string>
-    <string name="account_error_rate_limited">Забагато спроб. Повторіть пізніше.</string>
-    <string name="account_error_qr_login_expired">QR-вхід закінчився. Спробуйте ще раз.</string>
-    <string name="account_error_invalid_qr_login">Невірний код QR-входу.</string>
-    <string name="account_error_qr_login_other_device">Цей QR-вхід було запрошено з іншого пристрою.</string>
-    <string name="account_error_qr_login_outdated">Сервіс QR-входу застарів. Оновіть налаштування SQL TV-входу.</string>
-    <string name="account_error_qr_login_missing_setup">Бекенд QR-входу не налаштовано. Оновіть налаштування SQL TV-входу.</string>
-    <string name="account_error_qr_login_misconfigured">URL QR-входу налаштовано невірно.</string>
-    <string name="account_error_qr_login_invalid_request">Запит QR-входу був невірним. Спробуйте ще раз.</string>
-    <string name="account_error_no_internet">Немає підключення до інтернету.</string>
-    <string name="account_error_connection_timeout">Час очікування підключення вичерпано. Спробуйте ще раз.</string>
-    <string name="account_error_connection_refused">Не вдалося підключитися до сервера.</string>
-    <string name="account_error_not_authenticated">Будь ласка, спочатку увійдіть.</string>
-    <string name="account_error_service_unavailable">Сервіс недоступний. Спробуйте пізніше.</string>
-    <string name="account_error_invalid_request">Невірний запит. Перевірте введені дані.</string>
-    <string name="account_error_unexpected">Сталася непередбачена помилка.</string>
     <string name="experience_mode_switch_to_essential">Перейти на Базовий</string>
     <string name="experience_mode_switch_to_essential_subtitle">Приховати розширені налаштування без зміни збережених значень.</string>
     <string name="experience_mode_switch_to_advanced">Перейти на Розширений</string>
@@ -488,12 +459,6 @@
     <string name="advanced_remember_last_profile_subtitle">Запам\'ятовувати останній обраний профіль при запуску</string>
     <string name="settings_debug">Налагодження</string>
     <string name="settings_plugins_section_subtitle">Керування репозиторіями, провайдерами та станом плагінів</string>
-    <string name="settings_account_section_subtitle">Акаунт та статус синхронізації</string>
-    <string name="account_stat_addons">адони</string>
-    <string name="account_stat_plugins">плагіни</string>
-    <string name="account_stat_library">бібліотека</string>
-    <string name="account_stat_progress">прогрес</string>
-    <string name="account_stat_watched">переглянуто</string>
     <string name="settings_integrations_section">Інтеграції</string>
     <string name="settings_integrations_section_subtitle">Керування доступними інтеграціями</string>
     <string name="settings_tmdb_subtitle">Налаштування збагачення метаданими</string>
@@ -1103,16 +1068,6 @@
     <string name="trakt_account_login">Вхід до акаунту</string>
     <string name="trakt_awaiting_instruction">Перейдіть на trakt.tv/activate та введіть цей код:</string>
     <string name="trakt_waiting_approval">Очікування підтвердження…</string>
-    <string name="qr_login_approved">Вхід підтверджено. Завершення…</string>
-    <string name="qr_login_pending">Очікування підтвердження на вашому телефоні…</string>
-    <string name="qr_login_expired">QR-код застарів. Згенеруйте новий код.</string>
-    <string name="qr_login_preparing">Підготовка QR-входу...</string>
-    <string name="qr_login_device_auth_failed">Не вдалося аутентифікувати пристрій</string>
-    <string name="qr_login_scan_prompt">Відскануйте QR та увійдіть на телефоні</string>
-    <string name="qr_login_start_failed">Не вдалося запустити QR-вхід</string>
-    <string name="qr_login_signing_in">Виконується вхід…</string>
-    <string name="qr_login_success">Вхід виконано успішно</string>
-    <string name="qr_login_exchange_failed">Не вдалося завершити QR-вхід</string>
     <string name="trakt_code_expires">Код закінчується через %1$s</string>
     <string name="trakt_token_refreshes">Токен доступу Trakt оновиться через %1$s</string>
     <string name="trakt_login_instruction">Натисніть «Увійти», щоб почати аутентифікацію пристрою в Trakt. Тут з\'явиться QR-код.</string>
@@ -1181,19 +1136,9 @@
     <string name="debug_playback_error_title">Екран помилки відтворення</string>
     <string name="debug_playback_error_subtitle">Показати імітацію помилки відтворення</string>
     <string name="debug_section_features">Перемикачі функцій</string>
-    <string name="debug_account_tab_title">Вкладка Акаунт</string>
-    <string name="debug_account_tab_subtitle">Показувати вкладку Акаунт у налаштуваннях навігації</string>
-    <string name="debug_sync_code_title">Функції коду синхронізації</string>
-    <string name="debug_sync_code_subtitle">Показувати кнопки генерації/введення коду синхронізації в налаштуваннях акаунту</string>
     <string name="debug_buffer_logs_title">Увімкнути журнали BUFFER</string>
     <string name="debug_buffer_logs_subtitle">Періодично виводити діагностику буфера плеєра в logcat (за замовчуванням вимкнено)</string>
     <string name="debug_section_account">Акаунт</string>
-    <string name="debug_manual_signin_title">Ручний вхід</string>
-    <string name="debug_manual_signin_subtitle">Вхід з Email та паролем (Supabase auth)</string>
-    <string name="debug_email_placeholder">Email</string>
-    <string name="debug_password_placeholder">Пароль</string>
-    <string name="debug_signing_in">Вхід до системи\u2026</string>
-    <string name="debug_sign_in">Увійти</string>
     <string name="debug_error_dialog_title">Помилка відтворення</string>
     <string name="debug_error_dialog_subtitle">Сталася помилка під час відтворення.\n\nПомилка: Тестова симуляція помилки — це не справжній збій. Джерело повернуло HTTP 503 (Сервіс недоступний).</string>
     <string name="debug_dismiss">Закрити</string>
@@ -1673,23 +1618,6 @@
     <string name="cloud_library_error_disabled">Хмарну бібліотеку вимкнено.</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Завантаження\u2026</string>
-    <string name="account_sync_description">Синхронізуйте вашу бібліотеку, прогрес перегляду, адони та плагіни між пристроями.</string>
-    <string name="account_sync_restart_note">Синхронізація не відбувається в реальному часі на активних пристроях. Перезавантажте цей пристрій після входу або щоб отримати зміни, зроблені в іншому місці.</string>
-    <string name="account_signin_qr_title">Вхід за QR</string>
-    <string name="account_signin_qr_subtitle">Відскануйте QR-код та завершіть вхід через email на вашому телефоні</string>
-    <string name="account_signed_in_label">Виконано вхід</string>
-    <string name="account_total_label">Всього</string>
-    <string name="account_loading_sync">Завантаження даних синхронізації\u2026</string>
-    <string name="account_sign_out">Вийти</string>
-    <string name="account_error_signin_required">Спочатку увійдіть до акаунту.</string>
-    <string name="account_signin_create_title">Вхід / Створити акаунт</string>
-    <string name="account_signin_create_desc">Використайте email та пароль для створення акаунту або входу.</string>
-    <string name="account_generate_sync_desc">Створіть код на цьому пристрої, щоб інші пристрої могли прив\'язатися до нього.</string>
-    <string name="account_enter_sync_desc">Прив\'яжіть цей пристрій до іншого пристрою за допомогою коду синхронізації.</string>
-    <string name="account_signed_in_as">Ви увійшли як</string>
-    <string name="account_generate_sync_signed_in_desc">Створіть код, щоб інші пристрої могли синхронізуватися з цим акаунтом.</string>
-    <string name="account_unknown_device">Невідомий пристрій</string>
 
     <string name="auth_signin_title">Увійти</string>
     <string name="auth_signin_tv_disabled">Введення Email/пароля на ТВ вимкнено. Продовжіть за допомогою QR-коду.</string>
@@ -1711,25 +1639,7 @@
     <string name="auth_qr_continue">Продовжити</string>
     <string name="auth_qr_back">Назад</string>
 
-    <string name="sync_generate_title">Генерація коду синхронізації</string>
-    <string name="sync_generate_subtitle">Створіть PIN-код для захисту вашого коду синхронізації. Поділіться кодом з іншими вашими пристроями.</string>
-    <string name="sync_generate_code_label">Ваш код синхронізації</string>
-    <string name="sync_generate_instruction">Введіть цей код та ваш PIN-код на іншому пристрої для їх зв\'язування.</string>
-    <string name="sync_generate_done">Готово</string>
-    <string name="sync_generate_pin_label">Оберіть PIN (4-8 символів)</string>
-    <string name="sync_generate_pin_placeholder">Введіть PIN</string>
-    <string name="sync_generate_generating">Генерація\u2026</string>
-    <string name="sync_generate_code_btn">Згенерувати код</string>
 
-    <string name="sync_claim_title">Зв\'язати пристрій</string>
-    <string name="sync_claim_subtitle">Введіть код синхронізації та PIN-код з іншого пристрою, щоб прив\'язати цей пристрій.</string>
-    <string name="sync_claim_success">Пристрій успішно зв\'язано! Ваші адони та плагіни тепер синхронізуватимуться.</string>
-    <string name="sync_claim_done">Готово</string>
-    <string name="sync_claim_code_label">Код синхронізації</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">Введіть PIN</string>
-    <string name="sync_claim_linking">Зв\'язування\u2026</string>
 
     <string name="plugin_readonly_notice">Використовуються плагіни основного профілю, їх не можна змінити</string>
     <string name="plugin_repositories_section">Репозиторії (%1$d)</string>
@@ -1809,13 +1719,6 @@
     <string name="update_downloading_ellipsis">Завантаження…</string>
     <string name="update_unknown_sources">Дозвольте встановлення з невідомих джерел для продовження.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Акаунт</string>
-    <string name="account_sign_in_description">Увійдіть, щоб синхронізувати вашу бібліотеку, прогрес, адони та плагіни між пристроями. Синхронізація бібліотеки використовує Nuvio Sync, коли Trakt не підключено, а для прогресу перегляду можна використовувати Trakt або Nuvio Sync.</string>
-    <string name="account_sync_code_title">Код синхронізації</string>
-    <string name="account_sync_code_description">Синхронізуйтеся між пристроями без створення акаунту.</string>
-    <string name="account_linked_devices">Зв\'язані пристрої (%1$d)</string>
-    <string name="account_no_linked_devices">Немає зв\'язаних пристроїв</string>
-    <string name="account_unlink">Від\'єднати</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Завантаження рейтингів епізоду...</string>
@@ -1989,7 +1892,6 @@
     <string name="cd_qr_login">QR-код входу</string>
     <string name="cd_nuvio">Nuvio</string>
 
-    <string name="debug_signin_success">Вхід успішно виконано</string>
     <string name="debug_generate_description">Згенерований налагодженням елемент %1$s #%2$d</string>
     <string name="debug_generate_result_failed">Помилка: %1$s</string>
     <string name="debug_generate_library_result_added">Додано %1$d елементів до бібліотеки</string>
@@ -2728,4 +2630,5 @@
     <string name="profile_default_name">Профіль %1$d</string>
     <string name="detail_tmdb_fallback_title">TMDB %1$d</string>
     <string name="collections_editor_tmdb_collection_fallback">Колекція TMDB %1$d</string>
+    <string name="account_error_generic_retry">Щось пішло не так. Будь ласка, спробуйте ще раз.</string>
 </resources>

@@ -290,7 +290,6 @@
     <string name="about_supporters_contributors_subtitle">Признание и титры проекта</string>
 
     <!-- SettingsScreen categories -->
-    <string name="settings_account">Аккаунт</string>
     <string name="settings_profiles">Профили</string>
     <string name="settings_layout">Интерфейс</string>
     <string name="settings_content_discovery">Контент и поиск</string>
@@ -347,12 +346,6 @@
     <string name="network_connection_offline">Не в сети</string>
     <string name="settings_debug">Отладка</string>
     <string name="settings_plugins_section_subtitle">Управление репозиториями, провайдерами и состоянием плагинов</string>
-    <string name="settings_account_section_subtitle">Аккаунт и статус синхронизации</string>
-    <string name="account_stat_addons">аддоны</string>
-    <string name="account_stat_plugins">плагины</string>
-    <string name="account_stat_library">библиотека</string>
-    <string name="account_stat_progress">прогресс</string>
-    <string name="account_stat_watched">просмотрено</string>
     <string name="settings_integrations_section">Интеграции</string>
     <string name="settings_integrations_section_subtitle">Управление доступными интеграциями</string>
     <string name="settings_tmdb_subtitle">Настройки обогащения метаданными</string>
@@ -797,9 +790,6 @@
     <string name="trakt_account_login">Вход в аккаунт</string>
     <string name="trakt_awaiting_instruction">Перейдите на trakt.tv/activate и введите этот код:</string>
     <string name="trakt_waiting_approval">Ожидание подтверждения…</string>
-    <string name="qr_login_approved">Вход подтвержден. Завершение…</string>
-    <string name="qr_login_pending">Ожидание подтверждения на вашем телефоне…</string>
-    <string name="qr_login_expired">QR-код устарел. Сгенерируйте новый код.</string>
     <string name="trakt_code_expires">Код истекает через %1$s</string>
     <string name="trakt_token_refreshes">Токен доступа Trakt обновится через %1$s</string>
     <string name="trakt_login_instruction">Нажмите \"Войти\", чтобы начать аутентификацию устройства в Trakt. Здесь появится QR-код.</string>
@@ -861,22 +851,12 @@
     <string name="debug_progress_indicator_default">Стандартный</string>
     <string name="debug_progress_indicator_large">Большой</string>
     <string name="debug_section_features">Переключатели функций</string>
-    <string name="debug_account_tab_title">Вкладка Аккаунт</string>
-    <string name="debug_account_tab_subtitle">Показывать вкладку Аккаунт в настройках навигации</string>
-    <string name="debug_sync_code_title">Функции кода синхронизации</string>
-    <string name="debug_sync_code_subtitle">Показывать кнопки генерации/ввода кода синхронизации в настройках аккаунта</string>
     <string name="debug_member_tier_title">Имитация уровня спонсора</string>
     <string name="debug_member_tier_subtitle">Выберите подтверждённый уровень спонсора, возвращаемый в этой отладочной сборке</string>
     <string name="debug_member_tier_none">Нет</string>
     <string name="debug_member_tier_one">Спонсор</string>
     <string name="debug_member_tier_two">Спонсор+</string>
     <string name="debug_section_account">Аккаунт</string>
-    <string name="debug_manual_signin_title">Ручной вход</string>
-    <string name="debug_manual_signin_subtitle">Вход с Email и паролем (Supabase auth)</string>
-    <string name="debug_email_placeholder">Email</string>
-    <string name="debug_password_placeholder">Пароль</string>
-    <string name="debug_signing_in">Вход в систему\u2026</string>
-    <string name="debug_sign_in">Войти</string>
     <string name="debug_error_dialog_title">Ошибка воспроизведения</string>
     <string name="debug_error_dialog_subtitle">Произошла ошибка во время воспроизведения.\n\nОшибка: Тестовая симуляция ошибки - это не настоящий сбой. Источник вернул HTTP 503 (Сервис недоступен).</string>
     <string name="debug_dismiss">Закрыть</string>
@@ -1308,19 +1288,6 @@
     <string name="library_empty_trakt_subtitle">Используйте + на странице деталей, чтобы добавить в список просмотра или списки</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Загрузка\u2026</string>
-    <string name="account_sync_description">Синхронизируйте вашу библиотеку, прогресс просмотра, аддоны и плагины между устройствами.</string>
-    <string name="account_sync_restart_note">Синхронизация не происходит в реальном времени на активных устройствах. Перезагрузите это устройство после входа в систему или чтобы получить изменения, сделанные в другом месте.</string>
-    <string name="account_signin_qr_title">Вход по QR</string>
-    <string name="account_signin_qr_subtitle">Отсканируйте QR-код и завершите вход через email на вашем телефоне</string>
-    <string name="account_signin_email_title">Вход</string>
-    <string name="account_signin_email_subtitle">Введите email и пароль от аккаунта вашего сервера</string>
-    <string name="account_signed_in_label">Выполнен вход</string>
-    <string name="account_total_label">Всего</string>
-    <string name="account_loading_sync">Загрузка данных синхронизации\u2026</string>
-    <string name="account_sign_out">Выйти</string>
-    <string name="account_sign_out_confirm_title">Выйти из аккаунта?</string>
-    <string name="account_sign_out_confirm_subtitle">Вам потребуется снова войти в аккаунт, чтобы синхронизировать библиотеку, прогресс просмотра, аддоны и плагины на этом устройстве.</string>
 
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">Войти</string>
@@ -1336,42 +1303,9 @@
     <string name="server_options_connect_custom">Подключиться к своему серверу</string>
     <string name="server_options_change_custom">Подключиться к другому серверу</string>
     <string name="server_options_use_official">Использовать официальный сервер</string>
-    <string name="custom_server_title">Подключение к своему серверу</string>
-    <string name="custom_server_description">Введите URL-адрес backend, предоставленный администратором сервера.</string>
-    <string name="custom_server_url_placeholder">https://backend.example.com</string>
-    <string name="custom_server_check">Проверить сервер</string>
-    <string name="custom_server_checking">Проверка…</string>
-    <string name="custom_server_review_title">Проверка своего сервера</string>
-    <string name="custom_server_review_description">Документ обнаружения корректен. Подключение выполнит выход с текущего сервера и перезапустит приложение. Убедитесь, что это сервер, которым вы владеете или которому доверяете.</string>
-    <string name="custom_server_verified_label">Обнаруженный backend</string>
-    <string name="custom_server_key_label">Конфигурация клиента</string>
-    <string name="custom_server_key_discovered">Публичный ключ обнаружен автоматически</string>
-    <string name="custom_server_warning_title">Подключайтесь только к серверу, которому доверяете</string>
-    <string name="custom_server_warning_public">Этот сервер использует публичное имя хоста. Приложение не может проверить, кто им владеет или управляет.</string>
-    <string name="custom_server_warning_http">Этот сервер находится в частной сети, но трафик HTTP не зашифрован. Другие устройства в сети могут иметь возможность его прочитать.</string>
-    <string name="custom_server_warning_public_http">Этот сервер использует публичное имя хоста и незашифрованный HTTP. Учётные данные и синхронизируемые данные могут быть раскрыты при передаче.</string>
-    <string name="custom_server_warning_private">Похоже, это сервер в частной сети, но приложение всё равно не может проверить, кто им управляет.</string>
-    <string name="custom_server_warning_credentials">Оператор сервера может получить учётные данные вашего аккаунта и доступ к данным, которые вы синхронизируете через этот сервер.</string>
-    <string name="custom_server_trust_action">Я доверяю этому серверу</string>
-    <string name="custom_server_switching">Переключение…</string>
     <string name="official_server_title">Использовать официальный сервер?</string>
     <string name="official_server_description">Вы выйдете со своего сервера, и приложение перезапустится с официальным сервисом.</string>
     <string name="official_server_action">Использовать официальный сервер</string>
-    <string name="custom_server_error_invalid_url">Введите корректный URL-адрес backend по HTTP или HTTPS.</string>
-    <string name="custom_server_error_official_active">api.nuvio.tv — официальный сервер, он уже выбран.</string>
-    <string name="custom_server_error_official_available">api.nuvio.tv — официальный сервер. Закройте это окно и выберите «Использовать официальный сервер», чтобы вернуться к нему.</string>
-    <string name="custom_server_error_connection">Не удалось связаться с эндпоинтом обнаружения. Проверьте URL и доступность сервера.</string>
-    <string name="custom_server_error_http">Эндпоинт обнаружения вернул HTTP %1$d.</string>
-    <string name="custom_server_error_response_too_large">Документ обнаружения превышает допустимый размер.</string>
-    <string name="custom_server_error_invalid_document">Сервер вернул некорректный документ обнаружения.</string>
-    <string name="custom_server_error_version">Эта версия документа обнаружения не поддерживается.</string>
-    <string name="custom_server_error_service">Документ обнаружения предназначен не для этого приложения.</string>
-    <string name="custom_server_error_not_self_hosted">Документ обнаружения не определяет самостоятельно размещённый сервер.</string>
-    <string name="custom_server_error_missing_configuration">В документе обнаружения отсутствует корректный URL backend или публичный ключ.</string>
-    <string name="custom_server_error_no_auth">Сервер не предоставляет поддерживаемый способ входа.</string>
-    <string name="custom_server_save_failed">Не удалось сохранить конфигурацию сервера.</string>
-    <string name="custom_server_session_clear_failed">Не удалось безопасно очистить текущую сессию. Сервер не был изменён.</string>
-    <string name="custom_server_restart_failed">Сервер сохранён, но приложение не удалось перезапустить автоматически. Перезапустите его вручную.</string>
 
     <!-- AuthQrSignInScreen -->
     <string name="auth_qr_title">Вход по QR</string>
@@ -1395,23 +1329,8 @@
     <string name="auth_qr_terms_link">Условиями использования</string>
 
     <!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">Генерация кода синхронизации</string>
-    <string name="sync_generate_subtitle">Создайте PIN-код для защиты вашего кода синхронизации. Поделитесь кодом с вашими другими устройствами.</string>
-    <string name="sync_generate_code_label">Ваш код синхронизации</string>
-    <string name="sync_generate_instruction">Введите этот код и ваш PIN-код на другом устройстве для их связи.</string>
-    <string name="sync_generate_done">Готово</string>
-    <string name="sync_generate_pin_label">Выберите PIN (4-8 символов)</string>
-    <string name="sync_generate_pin_placeholder">Введите PIN</string>
 
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">Связать устройство</string>
-    <string name="sync_claim_subtitle">Введите код синхронизации и PIN-код с другого устройства, чтобы привязать это устройство.</string>
-    <string name="sync_claim_success">Устройство успешно связано! Ваши аддоны и плагины теперь будут синхронизироваться.</string>
-    <string name="sync_claim_done">Готово</string>
-    <string name="sync_claim_code_label">Код синхронизации</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">Введите PIN</string>
 
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">Используются плагины основного профиля, их нельзя изменить</string>
@@ -1484,13 +1403,6 @@
     <string name="update_latest_version">У вас установлена последняя версия.</string>
     <string name="update_unknown_sources">Разрешите установку из неизвестных источников для продолжения.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Аккаунт</string>
-    <string name="account_sign_in_description">Войдите, чтобы синхронизировать вашу библиотеку, прогресс, аддоны и плагины между устройствами. Синхронизация библиотеки использует Nuvio Sync, когда Trakt не подключен, а для прогресса просмотра можно использовать Trakt или Nuvio Sync.</string>
-    <string name="account_sync_code_title">Код синхронизации</string>
-    <string name="account_sync_code_description">Синхронизируйтесь между устройствами без создания аккаунта.</string>
-    <string name="account_linked_devices">Связанные устройства (%1$d)</string>
-    <string name="account_no_linked_devices">Нет связанных устройств</string>
-    <string name="account_unlink">Отвязать</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Загрузка рейтингов эпизода...</string>
@@ -1560,18 +1472,8 @@
     <string name="profile_pin_incorrect">Текущий PIN неверен.</string>
 
     <!-- Account Screen -->
-    <string name="account_signin_create_title">Вход / Создать аккаунт</string>
-    <string name="account_signin_create_desc">Используйте email и пароль для создания аккаунта или входа.</string>
-    <string name="account_generate_sync_desc">Создайте код на этом устройстве, чтобы другие устройства могли привязаться к нему.</string>
-    <string name="account_enter_sync_desc">Привяжите это устройство к другому устройству с помощью кода синхронизации.</string>
-    <string name="account_signed_in_as">Вы вошли как</string>
-    <string name="account_generate_sync_signed_in_desc">Создайте код, чтобы другие устройства могли синхронизироваться с этим аккаунтом.</string>
-    <string name="account_unknown_device">Неизвестное устройство</string>
 
     <!-- Sync screens -->
-    <string name="sync_claim_linking">Связывание\u2026</string>
-    <string name="sync_generate_generating">Генерация\u2026</string>
-    <string name="sync_generate_code_btn">Сгенерировать код</string>
 
     <!-- Search -->
     <string name="search_no_results_title">Нет результатов</string>
@@ -1603,7 +1505,6 @@
     <string name="trakt_error_denied">Авторизация отклонена в Trakt.</string>
 
     <!-- Account errors -->
-    <string name="account_error_signin_required">Сначала войдите в аккаунт.</string>
 
     <!-- Search errors -->
     <string name="search_error_no_catalogs">В установленных аддонах нет каталогов для поиска</string>
@@ -1673,7 +1574,6 @@
     <string name="cd_nuvio">Nuvio</string>
 
     <!-- Debug -->
-    <string name="debug_signin_success">Вход успешно выполнен</string>
     <string name="debug_generate_description">Сгенерированный отладкой элемент %1$s #%2$d</string>
     <string name="debug_generate_result_failed">Ошибка: %1$s</string>
 
@@ -1930,34 +1830,6 @@
     <string name="essential_subtitle_language_subtitle">Предпочитаемый язык субтитров.</string>
     <string name="essential_audio_language_subtitle">Предпочитаемый язык аудио.</string>
     <!-- Batch 3: account errors, experience mode switches, advanced settings -->
-    <string name="account_error_incorrect_pin">Неверный PIN.</string>
-    <string name="account_error_sync_code_expired">Код синхронизации истёк.</string>
-    <string name="account_error_invalid_sync_code">Неверный код синхронизации.</string>
-    <string name="account_error_sync_code_not_found">Код синхронизации не найден.</string>
-    <string name="account_error_device_already_linked">Устройство уже привязано.</string>
-    <string name="account_error_generic_retry">Что-то пошло не так. Пожалуйста, попробуйте ещё раз.</string>
-    <string name="account_error_invalid_credentials">Неверный email или пароль.</string>
-    <string name="account_error_email_not_confirmed">Пожалуйста, сначала подтвердите email.</string>
-    <string name="account_error_email_already_registered">Аккаунт с таким email уже существует.</string>
-    <string name="account_error_invalid_email">Пожалуйста, введите корректный email.</string>
-    <string name="account_error_password_too_short">Пароль слишком короткий.</string>
-    <string name="account_error_password_too_weak">Пароль слишком слабый.</string>
-    <string name="account_error_signup_disabled">Регистрация сейчас недоступна.</string>
-    <string name="account_error_rate_limited">Слишком много попыток. Повторите позже.</string>
-    <string name="account_error_qr_login_expired">QR-вход истёк. Попробуйте ещё раз.</string>
-    <string name="account_error_invalid_qr_login">Неверный код QR-входа.</string>
-    <string name="account_error_qr_login_other_device">Этот QR-вход был запрошен с другого устройства.</string>
-    <string name="account_error_qr_login_outdated">Сервис QR-входа устарел. Обновите настройку SQL TV-входа.</string>
-    <string name="account_error_qr_login_missing_setup">Бэкенд QR-входа не настроен. Обновите настройку SQL TV-входа.</string>
-    <string name="account_error_qr_login_misconfigured">URL QR-входа настроен неверно.</string>
-    <string name="account_error_qr_login_invalid_request">Запрос QR-входа был неверным. Попробуйте ещё раз.</string>
-    <string name="account_error_no_internet">Нет подключения к интернету.</string>
-    <string name="account_error_connection_timeout">Время ожидания подключения истекло. Попробуйте ещё раз.</string>
-    <string name="account_error_connection_refused">Не удалось подключиться к серверу.</string>
-    <string name="account_error_not_authenticated">Пожалуйста, сначала войдите.</string>
-    <string name="account_error_service_unavailable">Сервис недоступен. Попробуйте позже.</string>
-    <string name="account_error_invalid_request">Неверный запрос. Проверьте введённые данные.</string>
-    <string name="account_error_unexpected">Произошла непредвиденная ошибка.</string>
     <string name="experience_mode_switch_to_essential">Переключиться на Базовый</string>
     <string name="experience_mode_switch_to_essential_subtitle">Скрыть расширенные настройки без изменения сохранённых значений.</string>
     <string name="experience_mode_switch_to_advanced">Переключиться на Расширенный</string>
@@ -2273,13 +2145,6 @@
     <string name="action_delete">Удалить</string>
     <string name="tmdb_trailers_title">Трейлеры</string>
     <string name="tmdb_trailers_subtitle">Кандидаты на трейлеры из видео TMDB для раздела трейлеров на странице деталей</string>
-    <string name="qr_login_preparing">Подготовка QR-входа...</string>
-    <string name="qr_login_device_auth_failed">Не удалось аутентифицировать устройство</string>
-    <string name="qr_login_scan_prompt">Отсканируйте QR и войдите на телефоне</string>
-    <string name="qr_login_start_failed">Не удалось запустить QR-вход</string>
-    <string name="qr_login_signing_in">Выполняется вход…</string>
-    <string name="qr_login_success">Вход выполнен успешно</string>
-    <string name="qr_login_exchange_failed">Не удалось завершить QR-вход</string>
     <string name="trakt_library_source_title">Источник библиотеки</string>
     <string name="trakt_library_source_subtitle">Выберите библиотеку для сохранения и просмотра коллекции</string>
     <string name="trakt_library_source_dialog_title">Источник библиотеки</string>
@@ -3113,4 +2978,5 @@
     <string name="stream_test_video_bitrate">Средний битрейт видео: %1$s</string>
     <string name="stream_test_error_connection">Ошибка соединения. Возможно, ссылка на последний воспроизведённый поток устарела или недоступна. Воспроизведите видео заново и повторите попытку.</string>
 
+    <string name="account_error_generic_retry">Что-то пошло не так. Пожалуйста, попробуйте ещё раз.</string>
 </resources>

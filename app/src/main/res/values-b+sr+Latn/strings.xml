@@ -446,7 +446,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">Korisničko iskustvo</string>
-    <string name="settings_account">Nalog</string>
     <string name="settings_profiles">Profili</string>
     <string name="settings_layout">Raspored</string>
     <string name="settings_content_discovery">Sadržaj i otkrivanje</string>
@@ -516,34 +515,6 @@
     <string name="essential_subtitle_language_subtitle">Željeni jezik titlova.</string>
     <string name="essential_audio_language_subtitle">Željeni jezik zvuka.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">Netačan PIN.</string>
-    <string name="account_error_sync_code_expired">Kod za sinhronizaciju je istekao.</string>
-    <string name="account_error_invalid_sync_code">Nevažeći kod za sinhronizaciju.</string>
-    <string name="account_error_sync_code_not_found">Kod za sinhronizaciju nije pronađen.</string>
-    <string name="account_error_device_already_linked">Uređaj je već povezan.</string>
-    <string name="account_error_generic_retry">Nešto je pošlo po zlu. Pokušajte ponovo.</string>
-    <string name="account_error_invalid_credentials">Netačan email ili lozinka.</string>
-    <string name="account_error_email_not_confirmed">Prvo potvrdite vaš email.</string>
-    <string name="account_error_email_already_registered">Nalog sa ovim email-om već postoji.</string>
-    <string name="account_error_invalid_email">Unesite važeću email adresu.</string>
-    <string name="account_error_password_too_short">Lozinka je prekratka.</string>
-    <string name="account_error_password_too_weak">Lozinka je preslaba.</string>
-    <string name="account_error_signup_disabled">Registracija je trenutno onemogućena.</string>
-    <string name="account_error_rate_limited">Previše pokušaja. Pokušajte ponovo kasnije.</string>
-    <string name="account_error_qr_login_expired">QR prijava je istekla. Pokušajte ponovo.</string>
-    <string name="account_error_invalid_qr_login">Nevažeći kod za QR prijavu.</string>
-    <string name="account_error_qr_login_other_device">Ova QR prijava je zatražena sa drugog uređaja.</string>
-    <string name="account_error_qr_login_outdated">Usluga QR prijave je zastarela. Ponovo primenite TV login SQL podešavanje.</string>
-    <string name="account_error_qr_login_missing_setup">Backend za QR prijavu nema podešavanje. Ažurirajte TV login SQL podešavanje.</string>
-    <string name="account_error_qr_login_misconfigured">URL za QR prijavu je pogrešno konfigurisan.</string>
-    <string name="account_error_qr_login_invalid_request">Zahtev za QR prijavu je bio nevažeći. Pokušajte ponovo.</string>
-    <string name="account_error_no_internet">Nema internet veze.</string>
-    <string name="account_error_connection_timeout">Vreme za povezivanje je isteklo. Pokušajte ponovo.</string>
-    <string name="account_error_connection_refused">Povezivanje sa serverom nije uspelo.</string>
-    <string name="account_error_not_authenticated">Prvo se prijavite.</string>
-    <string name="account_error_service_unavailable">Usluga je nedostupna. Pokušajte ponovo kasnije.</string>
-    <string name="account_error_invalid_request">Nevažeći zahtev. Proverite vaš unos.</string>
-    <string name="account_error_unexpected">Došlo je do neočekivane greške.</string>
     <string name="experience_mode_switch_to_essential">Pređi na Osnovno</string>
     <string name="experience_mode_switch_to_essential_subtitle">Sakrij napredne površine podešavanja bez promene sačuvanih vrednosti.</string>
     <string name="experience_mode_switch_to_advanced">Pređi na Napredno</string>
@@ -616,12 +587,6 @@
     <string name="confirm_exit_toast">Pritisnite nazad ponovo za izlaz</string>
     <string name="settings_debug">Otklanjanje grešaka (Debug)</string>
     <string name="settings_plugins_section_subtitle">Upravljanje spremištima, provajderima i stanjima priključaka</string>
-    <string name="settings_account_section_subtitle">Status naloga i sinhronizacije</string>
-    <string name="account_stat_addons">dodaci</string>
-    <string name="account_stat_plugins">priključci</string>
-    <string name="account_stat_library">biblioteka</string>
-    <string name="account_stat_progress">napredak</string>
-    <string name="account_stat_watched">odgledano</string>
     <string name="settings_integrations_section">Integracije</string>
     <string name="settings_integrations_section_subtitle">Upravljanje dostupnim integracijama</string>
     <string name="settings_tmdb_subtitle">Kontrole obogaćivanja metapodataka</string>
@@ -1336,16 +1301,6 @@
     <string name="trakt_account_login">Prijava na nalog</string>
     <string name="trakt_awaiting_instruction">Idite na trakt.tv/activate i unesite ovaj kod:</string>
     <string name="trakt_waiting_approval">Čeka se odobrenje…</string>
-    <string name="qr_login_approved">Prijava odobrena. Završavanje prijave…</string>
-    <string name="qr_login_pending">Čeka se odobrenje na vašem telefonu…</string>
-    <string name="qr_login_expired">QR prijava je istekla. Generišite novi kod.</string>
-    <string name="qr_login_preparing">Pripremanje QR prijave...</string>
-    <string name="qr_login_device_auth_failed">Autentifikacija uređaja nije uspela</string>
-    <string name="qr_login_scan_prompt">Skenirajte QR kod i prijavite se na telefonu</string>
-    <string name="qr_login_start_failed">Pokretanje QR prijave nije uspelo</string>
-    <string name="qr_login_signing_in">Prijavljivanje u toku…</string>
-    <string name="qr_login_success">Uspešno ste se prijavili</string>
-    <string name="qr_login_exchange_failed">Dovršavanje QR prijave nije uspelo</string>
     <string name="trakt_code_expires">Kod ističe za %1$s</string>
     <string name="trakt_token_refreshes">Trakt pristupni token se osvežava za %1$s</string>
     <string name="trakt_login_instruction">Pritisnite Prijava da započnete Trakt autentifikaciju uređaja. QR kod će se pojaviti ovde.</string>
@@ -1420,10 +1375,6 @@
     <string name="debug_progress_indicator_default">Podrazumevano</string>
     <string name="debug_progress_indicator_large">Veliko</string>
     <string name="debug_section_features">Uključivanje/isključivanje funkcija</string>
-    <string name="debug_account_tab_title">Kartica Naloga</string>
-    <string name="debug_account_tab_subtitle">Prikaži karticu Nalog u navigaciji podešavanja</string>
-    <string name="debug_sync_code_title">Funkcije koda za sinhronizaciju</string>
-    <string name="debug_sync_code_subtitle">Prikaži dugmad Generiši/Unesi kod za sinhronizaciju u podešavanjima Naloga</string>
     <string name="debug_member_tier_title">Simuliraj nivo podržavaoca</string>
     <string name="debug_member_tier_subtitle">Izaberite verifikovani nivo podržavaoca vraćen u ovoj verziji za otklanjanje grešaka</string>
     <string name="debug_member_tier_none">Nijedan</string>
@@ -1432,12 +1383,6 @@
     <string name="debug_buffer_logs_title">Omogući BUFFER dnevnike</string>
     <string name="debug_buffer_logs_subtitle">Emituj povremenu dijagnostiku bafera plejera u logcat (onemogućeno po podrazumevanoj vrednosti)</string>
     <string name="debug_section_account">Nalog</string>
-    <string name="debug_manual_signin_title">Ručna prijava</string>
-    <string name="debug_manual_signin_subtitle">Prijavite se putem email-a i lozinke (Supabase auth)</string>
-    <string name="debug_email_placeholder">Email</string>
-    <string name="debug_password_placeholder">Lozinka</string>
-    <string name="debug_signing_in">Prijavljivanje\u2026</string>
-    <string name="debug_sign_in">Prijavi se</string>
     <string name="debug_error_dialog_title">Greška u reprodukciji</string>
     <string name="debug_error_dialog_subtitle">Došlo je do greške tokom reprodukcije.\n\nGreška: Test simulirane greške - ovo nije stvarni otkaz. Izvor je vratio HTTP 503 (Usluga nedostupna).</string>
     <string name="debug_dismiss">Odbaci</string>
@@ -2009,27 +1954,6 @@
     <string name="cloud_library_error_disabled">Cloud biblioteka je onemogućena.</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Učitavanje\u2026</string>
-    <string name="account_sync_description">Sinhronizujte svoju biblioteku, napredak gledanja, dodatke i priključke na svim uređajima.</string>
-    <string name="account_sync_restart_note">Sinhronizacija se ne odvija u realnom vremenu na aktivnim uređajima. Ponovo pokrenite ovaj uređaj nakon prijavljivanja ili da biste preuzeli izmene napravljene na drugom mestu.</string>
-    <string name="account_signin_qr_title">Prijavite se pomoću QR koda</string>
-    <string name="account_signin_qr_subtitle">Skenirajte QR kod i završite prijavu putem e-pošte na telefonu</string>
-    <string name="account_signin_email_title">Prijavite se</string>
-    <string name="account_signin_email_subtitle">Unesite e-poštu i lozinku vašeg samostalno hostovanog (self-hosted) naloga</string>
-    <string name="account_signed_in_label">Prijavljeni ste</string>
-    <string name="account_total_label">Ukupno</string>
-    <string name="account_loading_sync">Učitavanje podataka za sinhronizaciju\u2026</string>
-    <string name="account_sign_out">Odjavite se</string>
-    <string name="account_sign_out_confirm_title">Odjaviti se?</string>
-    <string name="account_sign_out_confirm_subtitle">Moraćete ponovo da se prijavite da biste sinhronizovali biblioteku, napredak gledanja, dodatke i priključke na ovom uređaju.</string>
-    <string name="account_error_signin_required">Prvo se prijavite pomoću naloga.</string>
-    <string name="account_signin_create_title">Prijava / Kreiranje naloga</string>
-    <string name="account_signin_create_desc">Koristite e-poštu i lozinku da kreirate nalog ili se prijavite na njega.</string>
-    <string name="account_generate_sync_desc">Kreirajte kod na ovom uređaju kako bi drugi uređaji mogli da se povežu sa njim.</string>
-    <string name="account_enter_sync_desc">Povežite ovaj uređaj sa drugim uređajem pomoću koda za sinhronizaciju.</string>
-    <string name="account_signed_in_as">Prijavljeni ste kao</string>
-    <string name="account_generate_sync_signed_in_desc">Kreirajte kod kako bi drugi uređaji mogli da se sinhronizuju sa ovim nalogom.</string>
-    <string name="account_unknown_device">Nepoznat uređaj</string>
 
     <string name="auth_signin_title">Prijavite se</string>
     <string name="auth_signin_tv_disabled">Unos e-pošte/lozinke na TV-u je onemogućen. Nastavite sa QR prijavom.</string>
@@ -2044,42 +1968,9 @@
     <string name="server_options_connect_custom">Poveži se na sopstveni server</string>
     <string name="server_options_change_custom">Poveži se na drugi server</string>
     <string name="server_options_use_official">Koristi zvanični server</string>
-    <string name="custom_server_title">Poveži se na sopstveni server</string>
-    <string name="custom_server_description">Unesite Backend URL koji vam je dostavio administrator servera.</string>
-    <string name="custom_server_url_placeholder">https://backend.example.com</string>
-    <string name="custom_server_check">Proveri server</string>
-    <string name="custom_server_checking">Provera\u2026</string>
-    <string name="custom_server_review_title">Pregledaj sopstveni server</string>
-    <string name="custom_server_review_description">Dokument o otkrivanju (discovery document) je validan. Povezivanje će vas odjaviti sa trenutnog servera i ponovo pokrenuti aplikaciju. Potvrdite da je ovo server koji posedujete ili kome verujete.</string>
-    <string name="custom_server_verified_label">Otkriveni backend</string>
-    <string name="custom_server_key_label">Konfiguracija klijenta</string>
-    <string name="custom_server_key_discovered">Javni ključ je automatski otkriven</string>
-    <string name="custom_server_warning_title">Povezujte se samo na server kome verujete</string>
-    <string name="custom_server_warning_public">Ovaj server koristi javno ime hosta. Aplikacija ne može da potvrdi ko je njegov vlasnik ili operator.</string>
-    <string name="custom_server_warning_http">Ovaj server se nalazi na privatnoj mreži, ali HTTP saobraćaj nije šifrovan. Drugi uređaji na mreži mogu ga pročitati.</string>
-    <string name="custom_server_warning_public_http">Ovaj server koristi javno ime hosta i nešifrovani HTTP. Pristupni podaci i sinhronizovani podaci mogu biti izloženi tokom prenosa.</string>
-    <string name="custom_server_warning_private">Izgleda da je ovo server na privatnoj mreži, ali aplikacija i dalje ne može da potvrdi ko njime upravlja.</string>
-    <string name="custom_server_warning_credentials">Operator servera može primiti vaše pristupne podatke i pristupiti podacima koje sinhronizujete preko ovog servera.</string>
-    <string name="custom_server_trust_action">Verujem ovom serveru</string>
-    <string name="custom_server_switching">Prebacivanje\u2026</string>
     <string name="official_server_title">Koristiti zvanični server?</string>
     <string name="official_server_description">Bićete odjavljeni sa sopstvenog servera i aplikacija će se ponovo pokrenuti sa zvaničnim servisom.</string>
     <string name="official_server_action">Koristi zvanični server</string>
-    <string name="custom_server_error_invalid_url">Unesite validan HTTP ili HTTPS Backend URL.</string>
-    <string name="custom_server_error_official_active">api.nuvio.tv je zvanični server i već je izabran.</string>
-    <string name="custom_server_error_official_available">api.nuvio.tv je zvanični server. Zatvorite ovaj prozor i izaberite Koristi zvanični server da biste se vratili.</string>
-    <string name="custom_server_error_connection">Nije moguće pristupiti krajnjoj tački za otkrivanje (discovery endpoint). Proverite URL i dostupnost servera.</string>
-    <string name="custom_server_error_http">Krajnja tačka za otkrivanje je vratila HTTP %1$d.</string>
-    <string name="custom_server_error_response_too_large">Dokument o otkrivanju je veći od dozvoljenog.</string>
-    <string name="custom_server_error_invalid_document">Server je vratio nevažeći dokument o otkrivanju.</string>
-    <string name="custom_server_error_version">Ova verzija dokumenta o otkrivanju nije podržana.</string>
-    <string name="custom_server_error_service">Dokument o otkrivanju nije namenjen ovoj aplikaciji.</string>
-    <string name="custom_server_error_not_self_hosted">Dokument o otkrivanju ne identifikuje samostalno hostovani (self-hosted) server.</string>
-    <string name="custom_server_error_missing_configuration">U dokumentu o otkrivanju nedostaje važeći Backend URL ili javni ključ.</string>
-    <string name="custom_server_error_no_auth">Server ne podržava nijedan od podržanih načina prijave.</string>
-    <string name="custom_server_save_failed">Nije moguće sačuvati konfiguraciju servera.</string>
-    <string name="custom_server_session_clear_failed">Nije moguće bezbedno očistiti trenutnu sesiju. Server nije promenjen.</string>
-    <string name="custom_server_restart_failed">Server je sačuvan, ali aplikacija nije mogla automatski da se ponovo pokrene. Pokrenite je ručno.</string>
 
     <string name="auth_qr_title">Prijava pomoću QR koda</string>
     <string name="auth_qr_tagline">Gledajte svoju biblioteku, bilo gde</string>
@@ -2101,25 +1992,7 @@
     <string name="auth_qr_terms_prefix">Registracijom / prijavom, prihvatam</string>
     <string name="auth_qr_terms_link">Uslove korišćenja</string>
 
-    <string name="sync_generate_title">Generiši kod za sinhronizaciju</string>
-    <string name="sync_generate_subtitle">Kreirajte PIN da biste zaštitili kod za sinhronizaciju. Podelite kod sa drugim uređajima.</string>
-    <string name="sync_generate_code_label">Vaš kod za sinhronizaciju</string>
-    <string name="sync_generate_instruction">Unesite ovaj kod i vaš PIN na drugom uređaju da biste ih povezali.</string>
-    <string name="sync_generate_done">Gotovo</string>
-    <string name="sync_generate_pin_label">Izaberite PIN (4-8 karaktera)</string>
-    <string name="sync_generate_pin_placeholder">Unesite PIN</string>
-    <string name="sync_generate_generating">Generisanje\u2026</string>
-    <string name="sync_generate_code_btn">Generiši kod</string>
 
-    <string name="sync_claim_title">Poveži uređaj</string>
-    <string name="sync_claim_subtitle">Unesite kod za sinhronizaciju i PIN sa drugog uređaja da biste povezali ovaj uređaj.</string>
-    <string name="sync_claim_success">Uređaj je uspešno povezan! Vaši dodaci i priključci će se sada sinhronizovati.</string>
-    <string name="sync_claim_done">Gotovo</string>
-    <string name="sync_claim_code_label">Kod za sinhronizaciju</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">Unesite PIN</string>
-    <string name="sync_claim_linking">Povezivanje\u2026</string>
 
     <string name="plugin_readonly_notice">Koriste se priključci primarnog profila i ne mogu se menjati</string>
     <string name="plugin_repositories_section">Repozitorijumi (%1$d)</string>
@@ -2205,13 +2078,6 @@
     <string name="update_latest_version">Koristite najnoviju verziju.</string>
     <string name="update_unknown_sources">Dozvolite instalaciju iz nepoznatih izvora da biste nastavili.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Nalog</string>
-    <string name="account_sign_in_description">Prijavite se da biste sinhronizovali svoju biblioteku, napredak gledanja, dodatke i priključke na svim uređajima. Sinhronizacija biblioteke koristi Nuvio Sync kada Trakt nije povezan, a napredak gledanja može koristiti Trakt ili Nuvio Sync.</string>
-    <string name="account_sync_code_title">Kod za sinhronizaciju</string>
-    <string name="account_sync_code_description">Sinhronizujte na svim uređajima bez kreiranja naloga.</string>
-    <string name="account_linked_devices">Povezani uređaji (%1$d)</string>
-    <string name="account_no_linked_devices">Nema povezanih uređaja</string>
-    <string name="account_unlink">Prekini vezu</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Učitavanje ocena epizoda...</string>
@@ -2387,7 +2253,6 @@
     <string name="cd_qr_login">QR kod za prijavu</string>
     <string name="cd_nuvio">Nuvio</string>
 
-    <string name="debug_signin_success">Uspešna prijava</string>
     <string name="debug_generate_description">Debug generisana %1$s stavka #%2$d</string>
     <string name="debug_generate_result_failed">Nije uspelo: %1$s</string>
     <string name="debug_generate_library_result_added">Dodato %1$d stavki u biblioteku</string>
@@ -3166,4 +3031,5 @@
     <string name="stream_test_video_bitrate">Prosečni video bitrejt: %1$s</string>
     <string name="stream_test_error_connection">Povezivanje nije uspelo. Veza poslednje puštenog strima je možda istekla ili je nedostupna. Pustite video ponovo i pokušajte opet.</string>
 
+    <string name="account_error_generic_retry">Nešto je pošlo po zlu. Pokušajte ponovo.</string>
 </resources>

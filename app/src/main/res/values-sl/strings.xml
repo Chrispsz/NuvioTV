@@ -355,7 +355,6 @@
     <string name="licenses_attributions_libmpv_body">Uporablja se kot mehanizem za predvajanje v sistemu Android. Ovoj libmpv-android je licenciran pod licenco MIT; mpv/libmpv in priložene izvorne komponente ohranjajo svoje izvirne licenčne pogoje.</string>																			  
 	<!-- SettingsScreen categories -->
     <string name="settings_experience">Uporabniška izkušnja</string>
-	<string name="settings_account">Račun</string>
     <string name="settings_profiles">Profili</string>
     <string name="settings_layout">Postavitev</string>
     <string name="settings_plugins">Vtičniki</string>
@@ -394,34 +393,33 @@
     <string name="essential_subtitle_language_subtitle">Želeni jezik podnapisov.</string>
     <string name="essential_audio_language_subtitle">Želeni jezik zvoka.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">Nepravilen PIN.</string>
-    <string name="account_error_sync_code_expired">Koda za sinhronizacijo je potekla.</string>
-    <string name="account_error_invalid_sync_code">Neveljavna koda za sinhronizacijo.</string>
-    <string name="account_error_sync_code_not_found">Kode za sinhronizacijo ni bilo mogoče najti.</string>
-    <string name="account_error_device_already_linked">Naprava je že povezana.</string>
-    <string name="account_error_generic_retry">Nekaj je šlo narobe. Poskusite znova.</string>
-    <string name="account_error_invalid_credentials">Nepravilen e-poštni naslov ali geslo.</string>
-    <string name="account_error_email_not_confirmed">Najprej potrdite svoj e-poštni naslov.</string>
-    <string name="account_error_email_already_registered">Račun s tem e-poštnim naslovom že obstaja.</string>
-    <string name="account_error_invalid_email">Vnesite veljaven e-poštni naslov.</string>
-    <string name="account_error_password_too_short">Geslo je prekratko.</string>
-    <string name="account_error_password_too_weak">Geslo je prešibko.</string>
-    <string name="account_error_signup_disabled">Registracija je trenutno onemogočena.</string>
-    <string name="account_error_rate_limited">Preveč poskusov. Poskusite znova pozneje.</string>
-    <string name="account_error_qr_login_expired">Prijava s kodo QR je potekla. Poskusite znova.</string>
-    <string name="account_error_invalid_qr_login">Neveljavna prijavna koda QR.</string>
-    <string name="account_error_qr_login_other_device">Ta prijava s kodo QR je bila zahtevana z druge naprave.</string>
-    <string name="account_error_qr_login_outdated">Storitev prijave s kodo QR je zastarela. Znova uporabite nastavitev SQL za prijavo na TV.</string>
-    <string name="account_error_qr_login_missing_setup">Zalednemu sistemu za prijavo s kodo QR manjka nastavitev. Posodobite nastavitev SQL za prijavo na TV.</string>
-    <string name="account_error_qr_login_misconfigured">URL za prijavo s kodo QR je napačno konfiguriran.</string>
-    <string name="account_error_qr_login_invalid_request">Zahteva za prijavo s kodo QR je bila neveljavna. Poskusite znova.</string>
-    <string name="account_error_no_internet">Ni internetne povezave.</string>
-    <string name="account_error_connection_timeout">Povezava je potekla. Poskusite znova.</string>
-    <string name="account_error_connection_refused">Povezave s strežnikom ni bilo mogoče vzpostaviti.</string>
-    <string name="account_error_not_authenticated">Najprej se prijavite.</string>
-    <string name="account_error_service_unavailable">Storitev ni na voljo. Poskusite znova pozneje.</string>
-    <string name="account_error_invalid_request">Neveljavna zahteva. Preverite svoj vnos.</string>
-    <string name="account_error_unexpected">Prišlo je do nepričakovane napake.</string>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
     <string name="experience_mode_switch_to_essential">Preklopi na Osnovno</string>
     <string name="experience_mode_switch_to_essential_subtitle">Skrijte napredne nastavitve brez spreminjanja shranjenih vrednosti.</string>
     <string name="experience_mode_switch_to_advanced">Preklopi na Napredno</string>
@@ -462,12 +460,10 @@
     <string name="advanced_remember_last_profile_subtitle">Zapomni si nazadnje izbrani profil ob zagonu</string>
     <string name="settings_debug">Odpravljanje napak</string>	
     <string name="settings_plugins_section_subtitle">Upravljanje repozitorijev, ponudnikov in stanj vtičnikov.</string>
-    <string name="settings_account_section_subtitle">Stanje računa in sinhronizacije.</string>
-	<string name="account_stat_addons">dodatki</string>
-    <string name="account_stat_plugins">vtičniki</string>
-    <string name="account_stat_library">knjižnica</string>
-    <string name="account_stat_progress">napredek</string>
-    <string name="account_stat_watched">ogledano</string>													
+   
+   
+   
+   
 	<string name="settings_integrations_section">Integracije</string>
     <string name="settings_integrations_section_subtitle">Izberite nastavitve za TMDB ali MDBList</string>
     <string name="settings_tmdb_subtitle">Kontrole za obogatitev metapodatkov</string>
@@ -872,16 +868,16 @@
     <string name="trakt_account_login">Prijava v račun</string>
     <string name="trakt_awaiting_instruction">Pojdite na trakt.tv/activate in vnesite to kodo:</string>
 	<string name="trakt_waiting_approval">Čakanje na odobritev…</string>
-    <string name="qr_login_approved">Prijava odobrena. Dokončanje prijave…</string>
-    <string name="qr_login_pending">Čakanje na odobritev na vašem telefonu…</string>
-    <string name="qr_login_expired">Prijava s kodo QR je potekla. Ustvarite novo kodo.</string>
-    <string name="qr_login_preparing">Priprava prijave s kodo QR...</string>
-    <string name="qr_login_device_auth_failed">Preverjanje pristnosti naprave ni uspelo</string>
-    <string name="qr_login_scan_prompt">Skenirajte kodo QR in se prijavite na telefonu</string>
-    <string name="qr_login_start_failed">Zagon prijave s kodo QR ni uspel</string>
-    <string name="qr_login_signing_in">Prijavljanje…</string>
-    <string name="qr_login_success">Prijava je bila uspešna</string>
-    <string name="qr_login_exchange_failed">Prijave s kodo QR ni bilo mogoče dokončati</string>			  
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
     <string name="trakt_code_expires">Koda poteče čez %1$s</string>
     <string name="trakt_token_refreshes">Žeton za dostop do Trakt se osveži čez %1$s</string>
     <string name="trakt_login_instruction">Pritisnite Prijava, da začnete preverjanje pristnosti naprave Trakt. Tukaj se bo prikazala QR koda.</string>
@@ -950,17 +946,7 @@
     <string name="debug_playback_error_title">Zaslon z napako pri predvajanju</string>
     <string name="debug_playback_error_subtitle">Prikaži simulirano pojavno okno o napaki pri predvajanju</string>
     <string name="debug_section_features">Stikala za funkcije</string>
-    <string name="debug_account_tab_title">Zavihek Račun</string>
-    <string name="debug_account_tab_subtitle">Prikaži zavihek Račun v nastavitvah navigacije</string>
-    <string name="debug_sync_code_title">Funkcije kode za sinhronizacijo</string>
-    <string name="debug_sync_code_subtitle">Prikaži gumbe za generiranje/vnos kode za sinhronizacijo v nastavitvah računa</string>
     <string name="debug_section_account">Račun</string>
-    <string name="debug_manual_signin_title">Ročna prijava</string>
-    <string name="debug_manual_signin_subtitle">Prijava z e-pošto in geslom (Supabase auth)</string>
-    <string name="debug_email_placeholder">E-pošta</string>
-    <string name="debug_password_placeholder">Geslo</string>
-    <string name="debug_signing_in">Prijava\u2026</string>
-    <string name="debug_sign_in">Prijava</string>
     <string name="debug_error_dialog_title">Napaka pri predvajanju</string>
     <string name="debug_error_dialog_subtitle">Prišlo je do napake med predvajanjem.\n\nNapaka: Testna simulirana napaka - to ni resnična napaka. Vir je vrnil HTTP 503 (Storitev ni na voljo).</string>
     <string name="debug_dismiss">Opusti</string>
@@ -1368,15 +1354,6 @@
 	<string name="library_empty_trakt_not_auth_title">Račun Trakt ni povezan</string>
     <string name="library_empty_trakt_not_auth_subtitle">V nastavitvah povežite svoj račun Trakt za ogled svoje knjižnice Trakt</string>																			  
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Nalaganje\u2026</string>
-    <string name="account_sync_description">Sinhronizirajte svojo knjižnico, napredek ogledov, dodatke in vtičnike na več napravah.</string>
-	<string name="account_sync_restart_note">Sinhronizacija med aktivnimi napravami ne poteka v realnem času. Po prijavi ali za uveljavitev sprememb, narejenih drugje, znova zaženite to napravo.</string>																																										 
-    <string name="account_signin_qr_title">Prijava s QR</string>
-    <string name="account_signin_qr_subtitle">Skenirajte QR kodo in dokončajte prijavo z e-pošto na telefonu</string>
-    <string name="account_signed_in_label">Prijavljeni</string>
-    <string name="account_total_label">Skupaj</string>
-    <string name="account_loading_sync">Nalaganje podatkov o sinhronizaciji\u2026</string>
-    <string name="account_sign_out">Odjava</string>
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">Prijava</string>
     <string name="auth_signin_tv_disabled">Vnos e-pošte/gesla na TV je onemogočen. Nadaljujte s prijavo QR.</string>
@@ -1398,22 +1375,7 @@
     <string name="auth_qr_continue">Nadaljuj</string>
     <string name="auth_qr_back">Nazaj</string>																															
 	<!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">Generiraj kodo za sinhronizacijo</string>
-    <string name="sync_generate_subtitle">Ustvarite PIN za zaščito vaše kode za sinhronizacijo. Delite kodo s svojimi drugimi napravami.</string>
-    <string name="sync_generate_code_label">Vaša koda za sinhronizacijo</string>
-    <string name="sync_generate_instruction">Vnesite to kodo in svoj PIN na drugi napravi, da ju povežete.</string>
-    <string name="sync_generate_done">Končano</string>
-    <string name="sync_generate_pin_label">Izberite PIN (4-8 znakov)</string>
-    <string name="sync_generate_pin_placeholder">Vnesite PIN</string>
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">Poveži napravo</string>
-    <string name="sync_claim_subtitle">Vnesite kodo za sinhronizacijo in PIN iz vaše druge naprave, da povežete to napravo.</string>
-    <string name="sync_claim_success">Naprava uspešno povezana! Vaši dodatki in vtičniki se bodo zdaj sinhronizirali.</string>
-    <string name="sync_claim_done">Končano</string>
-    <string name="sync_claim_code_label">Koda za sinhronizacijo</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">Vnesite PIN</string>
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">Uporaba vtičnikov glavnega profila in se jih ne da spremeniti</string>
     <string name="plugin_repositories_section">Repozitoriji (%1$d)</string>
@@ -1481,13 +1443,6 @@
     <string name="update_downloading_ellipsis">Prenašanje…</string>																																																													  
 	<string name="update_unknown_sources">Dovolite namestitve iz neznanih virov za nadaljevanje.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Račun</string>
-    <string name="account_sign_in_description">Prijavite se za sinhronizacijo knjižnice, napredka gledanja, dodatkov in vtičnikov v vseh napravah. Knjižnica in napredek se sinhronizirata le, če Trakt ni povezan.</string>
-    <string name="account_sync_code_title">Koda za sinhronizacijo</string>
-    <string name="account_sync_code_description">Sinhronizirajte na več napravah brez ustvarjanja računa.</string>
-    <string name="account_linked_devices">Povezane naprave (%1$d)</string>
-    <string name="account_no_linked_devices">Ni povezanih naprav</string>
-    <string name="account_unlink">Odveži</string>
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Nalaganje ocen epizod...</string>
     <string name="ratings_unavailable">Ocene epizod niso na voljo.</string>
@@ -1552,17 +1507,15 @@
     <string name="profile_pin_current_required">Ta profil že ima kodo PIN. Za spremembo vnesite trenutno kodo PIN.</string>
 	
 	<!-- Account Screen -->					   
-	<string name="account_signin_create_title">Prijava / Ustvari račun</string>
-    <string name="account_signin_create_desc">Uporabite e-poštni naslov in geslo za ustvarjanje računa ali prijavo vanj.</string>
-    <string name="account_generate_sync_desc">Ustvarite kodo v tej napravi, da se lahko druge naprave povežejo z njo.</string>
-    <string name="account_enter_sync_desc">Povežite to napravo z drugo napravo z uporabo kode za sinhronizacijo.</string>
-    <string name="account_signed_in_as">Prijavljeni kot</string>
-    <string name="account_generate_sync_signed_in_desc">Ustvarite kodo, da se lahko druge naprave sinhronizirajo s tem računom.</string>
-    <string name="account_unknown_device">Neznana naprava</string>																			
+   
+   
+   
+   
+   
+   
 	<!-- Sync screens -->																												
-	<string name="sync_claim_linking">Povezovanje\u2026</string>
-    <string name="sync_generate_generating">Ustvarjanje\u2026</string>
-    <string name="sync_generate_code_btn">Ustvari kodo</string>																									 
+   
+   
 	<!-- Search -->																													   
 	<string name="search_no_results_title">Ni rezultatov</string>
     <string name="search_no_results_subtitle">Poskusite iskati z drugimi ključnimi besedami</string>
@@ -1614,7 +1567,6 @@
     <string name="error_unknown">Neznana napaka</string>
     <string name="addon_error_not_found">Dodatek ni najden</string>
     <!-- Account errors -->					   
-	<string name="account_error_signin_required">Najprej se prijavite z računom.</string>																					
 	<!-- Search errors -->					  
 	<string name="search_error_no_catalogs">V nameščenih dodatkih ni iskalnih katalogov</string>																								 
 	<!-- Home errors -->					
@@ -1674,7 +1626,6 @@
     <string name="cd_qr_login">QR koda za prijavo</string>
     <string name="cd_nuvio">Nuvio</string>									
 	<!-- Debug -->			  
-	<string name="debug_signin_success">Prijava uspešna</string>
     <string name="debug_generate_description">Sistem debug je ustvaril %1$s element #%2$d</string>
     <string name="debug_generate_result_failed">Ni uspelo: %1$s</string>																   
 	<string name="debug_generate_library_result_added">V knjižnico je bilo dodanih toliko elementov: %1$d</string>
@@ -2170,4 +2121,5 @@
     <string name="trakt_comments_error_request_failed">Zahteva za komentarje Trakt ni uspela</string>
     <string name="trakt_library_error_fetch_list_items">Pridobivanje elementov seznama ni uspelo</string>
 
+ <string name="account_error_generic_retry">Nekaj je šlo narobe. Poskusite znova.</string>
 </resources>

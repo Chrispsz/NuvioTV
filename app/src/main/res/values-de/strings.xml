@@ -383,7 +383,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">App-Erlebnis</string>
-    <string name="settings_account">Konto</string>
     <string name="settings_profiles">Profile</string>
     <string name="settings_layout">Layout</string>
     <string name="settings_plugins">Plugins</string>
@@ -422,34 +421,6 @@
     <string name="essential_subtitle_language_subtitle">Preferred subtitle language.</string>
     <string name="essential_audio_language_subtitle">Preferred audio language.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">Incorrect PIN.</string>
-    <string name="account_error_sync_code_expired">Sync code has expired.</string>
-    <string name="account_error_invalid_sync_code">Invalid sync code.</string>
-    <string name="account_error_sync_code_not_found">Sync code not found.</string>
-    <string name="account_error_device_already_linked">Device is already linked.</string>
-    <string name="account_error_generic_retry">Something went wrong. Please try again.</string>
-    <string name="account_error_invalid_credentials">Incorrect email or password.</string>
-    <string name="account_error_email_not_confirmed">Please confirm your email first.</string>
-    <string name="account_error_email_already_registered">An account with this email already exists.</string>
-    <string name="account_error_invalid_email">Please enter a valid email address.</string>
-    <string name="account_error_password_too_short">Password is too short.</string>
-    <string name="account_error_password_too_weak">Password is too weak.</string>
-    <string name="account_error_signup_disabled">Sign up is currently disabled.</string>
-    <string name="account_error_rate_limited">Too many attempts. Please try again later.</string>
-    <string name="account_error_qr_login_expired">QR login expired. Please try again.</string>
-    <string name="account_error_invalid_qr_login">Invalid QR login code.</string>
-    <string name="account_error_qr_login_other_device">This QR login was requested from another device.</string>
-    <string name="account_error_qr_login_outdated">QR login service is outdated. Reapply TV login SQL setup.</string>
-    <string name="account_error_qr_login_missing_setup">QR login backend is missing setup. Update TV login SQL setup.</string>
-    <string name="account_error_qr_login_misconfigured">QR login URL is misconfigured.</string>
-    <string name="account_error_qr_login_invalid_request">QR login request was invalid. Please retry.</string>
-    <string name="account_error_no_internet">No internet connection.</string>
-    <string name="account_error_connection_timeout">Connection timed out. Please try again.</string>
-    <string name="account_error_connection_refused">Could not connect to server.</string>
-    <string name="account_error_not_authenticated">Please sign in first.</string>
-    <string name="account_error_service_unavailable">Service unavailable. Please try again later.</string>
-    <string name="account_error_invalid_request">Invalid request. Please check your input.</string>
-    <string name="account_error_unexpected">An unexpected error occurred.</string>
     <string name="experience_mode_switch_to_essential">Switch to Essential</string>
     <string name="experience_mode_switch_to_essential_subtitle">Hide advanced setup surfaces without changing your saved values.</string>
     <string name="experience_mode_switch_to_advanced">Switch to Advanced</string>
@@ -490,12 +461,6 @@
     <string name="advanced_remember_last_profile_subtitle">Remember last selected profile at startup</string>
     <string name="settings_debug">Debugging</string>
     <string name="settings_plugins_section_subtitle">Repositorys, Anbieter und Plugin-Status verwalten</string>
-    <string name="settings_account_section_subtitle">Konto und Synchronisierungsstatus</string>
-    <string name="account_stat_addons">Add-ons</string>
-    <string name="account_stat_plugins">Plugins</string>
-    <string name="account_stat_library">Bibliothek</string>
-    <string name="account_stat_progress">Fortschritt</string>
-    <string name="account_stat_watched">angesehen</string>
     <string name="settings_integrations_section">Integrationen</string>
     <string name="settings_integrations_section_subtitle">Verwalten Sie verfügbare Integrationen</string>
     <string name="settings_tmdb_subtitle">Steuerelemente zur Anreicherung von Metadaten</string>
@@ -914,16 +879,6 @@
     <string name="trakt_account_login">Kontoanmeldung</string>
     <string name="trakt_awaiting_instruction">Gehen Sie zu trakt.tv/activate und geben Sie diesen Code ein:</string>
     <string name="trakt_waiting_approval">Warten auf Genehmigung…</string>
-    <string name="qr_login_approved">Anmeldung genehmigt. Anmeldung wird abgeschlossen…</string>
-    <string name="qr_login_pending">Warten auf Genehmigung auf Ihrem Smartphone…</string>
-    <string name="qr_login_expired">QR-Anmeldung abgelaufen. Generieren Sie einen neuen Code.</string>
-    <string name="qr_login_preparing">QR-Login wird vorbereitet...</string>
-    <string name="qr_login_device_auth_failed">Geräteauthentifizierung fehlgeschlagen</string>
-    <string name="qr_login_scan_prompt">QR-Code scannen und am Smartphone einloggen</string>
-    <string name="qr_login_start_failed">QR-Login Vorbereitung fehlgeschlagen</string>
-    <string name="qr_login_signing_in">Wir melden dich an…</string>
-    <string name="qr_login_success">Erfolgreich eingeloggt</string>
-    <string name="qr_login_exchange_failed">QR-Login konnte nicht abgeschlossen werden</string>
     <string name="trakt_code_expires">Der Code läuft in %1$s ab</string>
     <string name="trakt_token_refreshes">Trakt-Zugriffstoken wird in %1$s aktualisiert</string>
     <string name="trakt_login_instruction">Drücken Sie auf „Anmelden“, um die Trakt-Geräteauthentifizierung zu starten. Hier wird ein QR-Code angezeigt.</string>
@@ -993,17 +948,7 @@
     <string name="debug_playback_error_title">Bildschirm „Wiedergabefehler”</string>
     <string name="debug_playback_error_subtitle">Simulierten Popup-Fehler bei der Wiedergabe anzeigen</string>
     <string name="debug_section_features">Feature-Umschalter</string>
-    <string name="debug_account_tab_title">Registerkarte „Konto“</string>
-    <string name="debug_account_tab_subtitle">Registerkarte „Konto” in der Navigation „Einstellungen” anzeigen</string>
-    <string name="debug_sync_code_title">Synchronisierungscode-Funktionen</string>
-    <string name="debug_sync_code_subtitle">Schaltflächen „Synchronisierungscode generieren/eingeben“ in den Kontoeinstellungen anzeigen</string>
     <string name="debug_section_account">Konto</string>
-    <string name="debug_manual_signin_title">Manuelle Anmeldung</string>
-    <string name="debug_manual_signin_subtitle">Mit E-Mail-Adresse und Passwort anmelden (Supabase-Authentifizierung)</string>
-    <string name="debug_email_placeholder">E-Mail</string>
-    <string name="debug_password_placeholder">Passwort</string>
-    <string name="debug_signing_in">Anmelden\u2026</string>
-    <string name="debug_sign_in">Anmelden</string>
     <string name="debug_error_dialog_title">Wiedergabefehler</string>
     <string name="debug_error_dialog_subtitle">Während der Wiedergabe ist ein Fehler aufgetreten.\n\nFehler: Simulierter Testfehler – dies ist kein echter Fehler. Quelle hat HTTP 503 (Dienst nicht verfügbar) zurückgegeben.</string>
     <string name="debug_dismiss">Schließen</string>
@@ -1437,15 +1382,6 @@
     <string name="library_empty_trakt_not_auth_subtitle">Trakt-Konto in den Einstellungen verbinden, um Trakt-Bibliothek zu sehen</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Wird geladen\u2026</string>
-    <string name="account_sync_description">Synchronisieren Sie Ihre Bibliothek, den Fortschritt, Add-ons und Plugins auf allen Geräten.</string>
-    <string name="account_sync_restart_note">Die Synchronisierung erfolgt nicht in Echtzeit auf allen aktiven Geräten. Starten Sie dieses Gerät nach der Anmeldung neu, um Änderungen zu übernehmen, die an anderer Stelle vorgenommen wurden.</string>
-    <string name="account_signin_qr_title">Mit QR anmelden</string>
-    <string name="account_signin_qr_subtitle">Scannen Sie einen QR-Code und schließen Sie die E-Mail-Anmeldung auf Ihrem Smartphone ab</string>
-    <string name="account_signed_in_label">Angemeldet</string>
-    <string name="account_total_label">Gesamt</string>
-    <string name="account_loading_sync">Synchronisierungsdaten werden geladen\u2026</string>
-    <string name="account_sign_out">Abmelden</string>
 
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">Anmelden</string>
@@ -1470,23 +1406,8 @@
     <string name="auth_qr_back">Zurück</string>
 
     <!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">Synchronisierungscode generieren</string>
-    <string name="sync_generate_subtitle">Erstellen Sie eine PIN, um Ihren Sync-Code zu schützen. Geben Sie den Code an Ihre anderen Geräte weiter.</string>
-    <string name="sync_generate_code_label">Ihr Synchronisierungscode</string>
-    <string name="sync_generate_instruction">Geben Sie diesen Code und Ihre PIN auf Ihrem anderen Gerät ein, um die Geräte zu verbinden.</string>
-    <string name="sync_generate_done">Fertig</string>
-    <string name="sync_generate_pin_label">Wählen Sie eine PIN (4–8 Zeichen)</string>
-    <string name="sync_generate_pin_placeholder">PIN eingeben</string>
 
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">Gerät verbinden</string>
-    <string name="sync_claim_subtitle">Geben Sie den Synchronisierungscode und die PIN Ihres anderen Geräts ein, um dieses Gerät zu verbinden.</string>
-    <string name="sync_claim_success">Gerät erfolgreich verbunden! Ihre Add-ons und Plugins werden nun synchronisiert.</string>
-    <string name="sync_claim_done">Fertig</string>
-    <string name="sync_claim_code_label">Synchronisierungscode</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">PIN eingeben</string>
 
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">Verwendet Plugins des primären Profils und kann nicht geändert werden</string>
@@ -1560,13 +1481,6 @@
     <string name="update_downloading_ellipsis">Herunterladen…</string>
     <string name="update_unknown_sources">Installationen aus unbekannten Quellen zulassen, um fortzufahren.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Konto</string>
-    <string name="account_sign_in_description">Melden Sie sich an, um Ihre Bibliothek, Ihren Fortschritt, Add-ons und Plugins auf allen Geräten zu synchronisieren. Die Bibliothekssynchronisierung verwendet Nuvio Sync, wenn Trakt nicht verbunden ist, und der Fortschritt kann entweder mit Trakt oder Nuvio Sync angezeigt werden.</string>
-    <string name="account_sync_code_title">Synchronisierungscode</string>
-    <string name="account_sync_code_description">Synchronisieren Sie Geräte, ohne ein Konto zu erstellen.</string>
-    <string name="account_linked_devices">Verbundene Geräte (%1$d)</string>
-    <string name="account_no_linked_devices">Keine verknüpften Geräte</string>
-    <string name="account_unlink">Verknüpfung aufheben</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Episodenbewertungen werden geladen...</string>
@@ -1638,18 +1552,8 @@
     <string name="profile_pin_current_required">Dieses Profil hat bereits eine PIN. Bitte die aktuelle PIN eingeben um sie anzupassen.</string>
 
     <!-- Account Screen -->
-    <string name="account_signin_create_title">Einlogggen / Konto erstellen</string>
-    <string name="account_signin_create_desc">E-Mail und Passwort eingeben um ein neues Konto zu erstellen oder dich anzumelden.</string>
-    <string name="account_generate_sync_desc">Code auf diesem Gerät erstellen damit sich andere Geräte verbinden können.</string>
-    <string name="account_enter_sync_desc">Verbinde dieses Gerät mit einem anderen via Sync-Code.</string>
-    <string name="account_signed_in_as">Einloggen als</string>
-    <string name="account_generate_sync_signed_in_desc">Code erstellen damit andere Geräte sich mit diesem Konto synchronisieren können.</string>
-    <string name="account_unknown_device">Unbekanntes Gerät</string>
 
     <!-- Sync screens -->
-    <string name="sync_claim_linking">Verbinde\u2026</string>
-    <string name="sync_generate_generating">Generiere\u2026</string>
-    <string name="sync_generate_code_btn">Code generieren</string>
 
     <!-- Search -->
     <string name="search_no_results_title">keine Ergebnisse</string>
@@ -1707,7 +1611,6 @@
     <string name="addon_error_not_found">Add-On nicht gefunden</string>
 
     <!-- Account errors -->
-    <string name="account_error_signin_required">Bitte zuerst einloggen.</string>
 
     <!-- Search errors -->
     <string name="search_error_no_catalogs">Keine durchsuchbaren Kataloge in installieren Add-Ons gefunden</string>
@@ -1777,7 +1680,6 @@
     <string name="cd_nuvio">Nuvio</string>
 
     <!-- Debug -->
-    <string name="debug_signin_success">Signed in successfully</string>
     <string name="debug_generate_description">Debug-generated %1$s item #%2$d</string>
     <string name="debug_generate_result_failed">Failed: %1$s</string>
     <string name="debug_generate_library_result_added">Added %1$d items to library</string>
@@ -2268,4 +2170,5 @@
     <string name="trakt_comments_error_request_failed">Trakt comments request failed</string>
     <string name="trakt_library_error_fetch_list_items">Failed to fetch list items</string>
 
+    <string name="account_error_generic_retry">Something went wrong. Please try again.</string>
 </resources>

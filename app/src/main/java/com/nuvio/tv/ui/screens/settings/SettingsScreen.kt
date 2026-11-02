@@ -154,7 +154,6 @@ private sealed interface ExperienceModeLoadState {
 
 @Composable
 private fun settingsSectionSpec(category: SettingsCategory): SettingsSectionSpec = when (category) {
-    SettingsCategory.ACCOUNT -> SettingsSectionSpec(category, stringResource(R.string.settings_account), Icons.Default.Person, destination = SettingsSectionDestination.Inline)
     SettingsCategory.PROFILES -> SettingsSectionSpec(category, stringResource(R.string.settings_profiles), Icons.Default.People, destination = SettingsSectionDestination.Inline)
     SettingsCategory.WATCH_PARTY -> SettingsSectionSpec(category, stringResource(R.string.party_title), Icons.Rounded.Groups, destination = SettingsSectionDestination.Inline)
     SettingsCategory.APPEARANCE -> SettingsSectionSpec(category, stringResource(R.string.appearance_title), Icons.Default.Palette, destination = SettingsSectionDestination.Inline)
@@ -174,7 +173,6 @@ fun SettingsScreen(
     showBuiltInHeader: Boolean = true,
     onNavigateToAddons: () -> Unit = {},
     onNavigateToPlugins: () -> Unit = {},
-    onNavigateToAuthQrSignIn: () -> Unit = {},
     onNavigateToManageProfiles: () -> Unit = {},
     onNavigateToSupportersContributors: () -> Unit = {},
     onNavigateToLicensesAttributions: () -> Unit = {},
@@ -236,8 +234,7 @@ fun SettingsScreen(
             SettingsCategory.TRACKING to FocusRequester(),
             SettingsCategory.PLAYBACK to FocusRequester(),
             SettingsCategory.ADVANCED to FocusRequester(),
-            SettingsCategory.ABOUT to FocusRequester(),
-            SettingsCategory.ACCOUNT to FocusRequester()
+            SettingsCategory.ABOUT to FocusRequester()
         )
     }
     val railContainerFocusRequester = remember { FocusRequester() }
@@ -429,10 +426,6 @@ fun SettingsScreen(
                     // the flag keeps whatever an earlier visit to the pane left in it, and the
                     // return aims at the options of a category that was never opened.
                     allowDetailAutofocus = false
-                    when (section.category) {
-                        SettingsCategory.ACCOUNT -> onNavigateToAuthQrSignIn()
-                        else -> Unit
-                    }
                 } else {
                     if (section.category == SettingsCategory.INTEGRATION) {
                         integrationSection = IntegrationSettingsSection.Hub
@@ -658,7 +651,6 @@ fun SettingsScreen(
                                 onNavigateToManageProfiles = onNavigateToManageProfiles,
                                 onNavigateToAddons = onNavigateToAddons,
                                 onNavigateToPlugins = onNavigateToPlugins,
-                                onNavigateToAuthQrSignIn = onNavigateToAuthQrSignIn,
                                 onNavigateToSupportersContributors = onNavigateToSupportersContributors,
                                 onNavigateToLicensesAttributions = onNavigateToLicensesAttributions,
                                 onNavigateToWatchParty = onNavigateToWatchParty
@@ -818,7 +810,6 @@ fun SettingsScreen(
                         onNavigateToManageProfiles = onNavigateToManageProfiles,
                         onNavigateToAddons = onNavigateToAddons,
                         onNavigateToPlugins = onNavigateToPlugins,
-                        onNavigateToAuthQrSignIn = onNavigateToAuthQrSignIn,
                         onNavigateToSupportersContributors = onNavigateToSupportersContributors,
                         onNavigateToLicensesAttributions = onNavigateToLicensesAttributions,
                         onNavigateToWatchParty = onNavigateToWatchParty
@@ -848,7 +839,6 @@ private fun SettingsDetailPane(
     onNavigateToManageProfiles: () -> Unit,
     onNavigateToAddons: () -> Unit,
     onNavigateToPlugins: () -> Unit,
-    onNavigateToAuthQrSignIn: () -> Unit,
     onNavigateToSupportersContributors: () -> Unit,
     onNavigateToLicensesAttributions: () -> Unit,
     onNavigateToWatchParty: () -> Unit
@@ -964,14 +954,6 @@ private fun SettingsDetailPane(
                 null
             }
         )
-        SettingsCategory.ACCOUNT -> AccountSettingsInline(
-            onNavigateToAuthQrSignIn = onNavigateToAuthQrSignIn,
-            initialFocusRequester = if (allowDetailAutofocus) {
-                contentFocusRequesters[SettingsCategory.ACCOUNT]
-            } else {
-                null
-            }
-        )
         SettingsCategory.TRACKING -> TrackingSettingsContent(
             initialFocusRequester = if (allowDetailAutofocus) {
                 contentFocusRequesters[SettingsCategory.TRACKING]
@@ -1019,37 +1001,6 @@ private fun EssentialAdvancedSettingsContent(
             onConfirm = { experienceModeViewModel.setMode(ExperienceMode.ADVANCED) },
             onDismiss = { showConfirmation = false }
         )
-    }
-}
-
-@Composable
-private fun AccountSettingsInline(
-    onNavigateToAuthQrSignIn: () -> Unit,
-    initialFocusRequester: FocusRequester?
-) {
-    val accountViewModel: com.nuvio.tv.ui.screens.account.AccountViewModel = hiltViewModel()
-    val accountUiState by accountViewModel.uiState.collectAsStateWithLifecycle()
-
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(NuvioTheme.spacing.md)
-    ) {
-        SettingsDetailHeader(
-            title = stringResource(R.string.settings_account),
-            subtitle = stringResource(R.string.settings_account_section_subtitle)
-        )
-        SettingsGroupCard(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-        ) {
-            com.nuvio.tv.ui.screens.account.AccountSettingsContent(
-                uiState = accountUiState,
-                viewModel = accountViewModel,
-                onNavigateToAuthQrSignIn = onNavigateToAuthQrSignIn,
-                initialFocusRequester = initialFocusRequester
-            )
-        }
     }
 }
 

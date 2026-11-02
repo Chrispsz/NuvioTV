@@ -189,7 +189,6 @@
     <string name="about_supporters_contributors_subtitle">ओपन मान्यता और प्रोजेक्ट क्रेडिट</string>
 
     <!-- SettingsScreen categories -->
-    <string name="settings_account">अकाउंट</string>
     <string name="settings_profiles">प्रोफाइल</string>
     <string name="settings_layout">लेआउट</string>
     <string name="settings_plugins">प्लगइन्स</string>
@@ -199,12 +198,6 @@
     <string name="settings_trakt_subtitle">Trakt कनेक्शन स्क्रीन खोलें।</string>
     <string name="settings_debug">डीबग</string>
     <string name="settings_plugins_section_subtitle">रिपॉजिटरी, प्रोवाइडर्स और प्लगइन स्टेट मैनेज करें।</string>
-    <string name="settings_account_section_subtitle">अकाउंट और सिंक स्थिति।</string>
-    <string name="account_stat_addons">ऐडऑन</string>
-    <string name="account_stat_plugins">प्लगइन्स</string>
-    <string name="account_stat_library">लाइब्रेरी</string>
-    <string name="account_stat_progress">प्रोग्रेस</string>
-    <string name="account_stat_watched">देखा गया</string>
     <string name="settings_integrations_section">इंटीग्रेशन</string>
     <string name="settings_integrations_section_subtitle">उपलब्ध एकीकरण प्रबंधित करें</string>
     <string name="settings_tmdb_subtitle">मेटाडेटा एनरिचमेंट कंट्रोल</string>
@@ -530,9 +523,6 @@
     <string name="trakt_account_login">अकाउंट लॉगिन</string>
     <string name="trakt_awaiting_instruction">trakt.tv/activate पर जाएँ और यह कोड दर्ज करें:</string>
     <string name="trakt_waiting_approval">स्वीकृति की प्रतीक्षा हो रही है…</string>
-    <string name="qr_login_approved">लॉगिन स्वीकृत। साइन इन पूरा किया जा रहा है…</string>
-    <string name="qr_login_pending">आपके फोन पर स्वीकृति की प्रतीक्षा हो रही है…</string>
-    <string name="qr_login_expired">QR लॉगिन समाप्त हो गया। नया कोड जनरेट करें।</string>
     <string name="trakt_code_expires">कोड %1$s में समाप्त होगा</string>
     <string name="trakt_token_refreshes">Trakt एक्सेस टोकन %1$s में रिफ्रेश होगा</string>
     <string name="trakt_login_instruction">Trakt डिवाइस ऑथेंटिकेशन शुरू करने के लिए Login दबाएँ। यहाँ एक QR कोड दिखाई देगा।</string>
@@ -572,17 +562,7 @@
     <string name="debug_playback_error_title">प्लेबैक एरर स्क्रीन</string>
     <string name="debug_playback_error_subtitle">सिम्युलेटेड प्लेबैक एरर पॉपअप दिखाएँ</string>
     <string name="debug_section_features">फीचर टॉगल्स</string>
-    <string name="debug_account_tab_title">अकाउंट टैब</string>
-    <string name="debug_account_tab_subtitle">सेटिंग्स नेविगेशन में अकाउंट टैब दिखाएँ</string>
-    <string name="debug_sync_code_title">सिंक कोड फीचर्स</string>
-    <string name="debug_sync_code_subtitle">अकाउंट सेटिंग्स में Generate/Enter Sync Code बटन दिखाएँ</string>
     <string name="debug_section_account">अकाउंट</string>
-    <string name="debug_manual_signin_title">मैन्युअल साइन इन</string>
-    <string name="debug_manual_signin_subtitle">ईमेल और पासवर्ड से साइन इन करें (Supabase auth)</string>
-    <string name="debug_email_placeholder">ईमेल</string>
-    <string name="debug_password_placeholder">पासवर्ड</string>
-    <string name="debug_signing_in">साइन इन हो रहा है\u2026</string>
-    <string name="debug_sign_in">साइन इन</string>
     <string name="debug_error_dialog_title">प्लेबैक एरर</string>
     <string name="debug_error_dialog_subtitle">प्लेबैक के दौरान एक त्रुटि हुई.\n\nError: टेस्ट सिम्युलेटेड एरर - यह वास्तविक विफलता नहीं है. सोर्स ने HTTP 503 (Service Unavailable) लौटाया.</string>
     <string name="debug_dismiss">बंद करें</string>
@@ -823,15 +803,6 @@
     <string name="library_empty_trakt_subtitle">वॉचलिस्ट या लिस्ट में आइटम जोड़ने के लिए डिटेल्स में + उपयोग करें</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">लोड हो रहा है\u2026</string>
-    <string name="account_sync_description">अपनी लाइब्रेरी, वॉच प्रोग्रेस, ऐडऑन और प्लगइन को डिवाइसों के बीच सिंक करें।</string>
-    <string name="account_sync_restart_note">सिंक सक्रिय डिवाइसों के बीच रियल-टाइम नहीं है। साइन इन करने के बाद या अन्य जगह किए बदलाव लाने के लिए इस डिवाइस को रीस्टार्ट करें।</string>
-    <string name="account_signin_qr_title">QR से साइन इन</string>
-    <string name="account_signin_qr_subtitle">QR कोड स्कैन करें और अपने फोन पर ईमेल लॉगिन पूरा करें</string>
-    <string name="account_signed_in_label">साइन इन</string>
-    <string name="account_total_label">कुल</string>
-    <string name="account_loading_sync">सिंक डेटा लोड हो रहा है\u2026</string>
-    <string name="account_sign_out">साइन आउट</string>
 
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">साइन इन</string>
@@ -856,23 +827,8 @@
     <string name="auth_qr_back">वापस</string>
 
     <!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">सिंक कोड बनाएँ</string>
-    <string name="sync_generate_subtitle">अपने सिंक कोड की सुरक्षा के लिए एक PIN बनाएँ। यह कोड अपने अन्य डिवाइसों के साथ साझा करें।</string>
-    <string name="sync_generate_code_label">आपका सिंक कोड</string>
-    <string name="sync_generate_instruction">डिवाइस लिंक करने के लिए अपने दूसरे डिवाइस पर यह कोड और PIN दर्ज करें।</string>
-    <string name="sync_generate_done">पूरा</string>
-    <string name="sync_generate_pin_label">PIN चुनें (4-8 अक्षर)</string>
-    <string name="sync_generate_pin_placeholder">PIN दर्ज करें</string>
 
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">डिवाइस लिंक करें</string>
-    <string name="sync_claim_subtitle">इस डिवाइस को लिंक करने के लिए दूसरे डिवाइस का सिंक कोड और PIN दर्ज करें।</string>
-    <string name="sync_claim_success">डिवाइस सफलतापूर्वक लिंक हो गया! आपके ऐडऑन और प्लगइन अब सिंक होंगे।</string>
-    <string name="sync_claim_done">पूरा</string>
-    <string name="sync_claim_code_label">सिंक कोड</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">PIN दर्ज करें</string>
 
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">प्राइमरी प्रोफाइल के प्लगइन उपयोग हो रहे हैं और इन्हें बदला नहीं जा सकता</string>
@@ -932,13 +888,6 @@
     <string name="update_downloading_ellipsis">डाउनलोड हो रहा है…</string>
     <string name="update_unknown_sources">जारी रखने के लिए अज्ञात स्रोत से इंस्टॉल की अनुमति दें।</string>
     <!-- AccountScreen -->
-    <string name="account_title">अकाउंट</string>
-    <string name="account_sign_in_description">डिवाइसों के बीच अपनी लाइब्रेरी, वॉच प्रोग्रेस, ऐडऑन और प्लगइन सिंक करने के लिए साइन इन करें। लाइब्रेरी और वॉच प्रोग्रेस केवल तब सिंक होते हैं जब Trakt कनेक्ट नहीं होता।</string>
-    <string name="account_sync_code_title">सिंक कोड</string>
-    <string name="account_sync_code_description">अकाउंट बनाए बिना डिवाइसों के बीच सिंक करें।</string>
-    <string name="account_linked_devices">लिंक किए गए डिवाइस (%1$d)</string>
-    <string name="account_no_linked_devices">कोई लिंक्ड डिवाइस नहीं</string>
-    <string name="account_unlink">अनलिंक</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">एपिसोड रेटिंग लोड हो रही हैं...</string>

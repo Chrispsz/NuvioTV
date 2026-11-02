@@ -2,7 +2,7 @@
 """TV Minimal — teste simulado de saúde dos addons de fábrica.
 
 Testa exatamente o pack pré-configurado do flavor minimal (AddonPreferences.kt):
-Cinemeta, OpenSubtitles v3, FrostStream, Tvvio e Torrentio BR.
+Cinemeta, OpenSubtitles v3, MediaFusion | Midnight, Tvvio, Torrentio BR e Anime Kitsu.
 
 Para cada addon: manifest → catálogo (quando exposto) → streams de um título
 de referência (tt0111161, Um Sonho de Liberdade — sempre disponível). Mede
@@ -10,6 +10,11 @@ latência e valida a forma da resposta JSON do protocolo Stremio.
 
 Saída: tabela + exit code. CRÍTICOS falhos (Cinemeta/Tvvio/Torrentio) => exit 1
 para o CI sinalizar; não críticos => aviso (exit 0).
+
+Histórico: FrostStream saiu na 1.4.0 — domínio froststream.cloutteam.com morreu
+(manifest e streams 404). MediaFusion | Midnight entrou como 2ª fonte de
+streams (scrapers independentes, zero-config; cobertura 20/20 no teste da
+cadeia catálogo→meta→streams).
 
 Uso: python3 ci/addon_health.py [--timeout 10]
 """
@@ -29,13 +34,13 @@ REF_IMDB = "tt0111161"  # Um Sonho de Liberdade — alvo estável de referência
 ADDONS = [
     ("Tvvio (ao vivo)", "https://tvvio.megaembed-frost.workers.dev", True),
     ("Cinemeta (catálogo)", "https://v3-cinemeta.strem.io", True),
-    ("FrostStream", "https://froststream.cloutteam.com", False),
     (
         "Torrentio BR (torrent)",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,"
         "torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
         True,
     ),
+    ("MediaFusion Midnight", "https://mediafusionfortheweebs.midnightignite.me", False),
     ("Anime Kitsu (catálogo)", "https://anime-kitsu.strem.fun", False),
     ("OpenSubtitles v3", "https://opensubtitles-v3.strem.io", False),
 ]

@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.nuvio.tv.BuildConfig
 import com.nuvio.tv.core.profile.ProfileManager
 import com.nuvio.tv.core.sync.LocalHomeCatalogSettingsState
 import com.nuvio.tv.core.sync.SyncHomeCatalogPayload
@@ -230,11 +231,14 @@ class LayoutPreferenceDataStore @Inject constructor(
     }
 
     val modernSidebarEnabled: Flow<Boolean> = profileFlow { prefs ->
-        prefs[modernSidebarEnabledKey] ?: prefs[legacyModernSidebarEnabledKey] ?: false
+        prefs[modernSidebarEnabledKey]
+            ?: prefs[legacyModernSidebarEnabledKey]
+            // TV Minimal Edition: barra lateral moderna ligada de fábrica.
+            ?: (BuildConfig.FLAVOR == "minimal")
     }
 
     val modernSidebarBlurEnabled: Flow<Boolean> = profileFlow { prefs ->
-        prefs[modernSidebarBlurEnabledKey] ?: false
+        prefs[modernSidebarBlurEnabledKey] ?: (BuildConfig.FLAVOR == "minimal")
     }
 
     val modernLandscapePostersEnabled: Flow<Boolean> = profileFlow { prefs ->

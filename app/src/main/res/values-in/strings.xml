@@ -383,7 +383,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">Pengalaman</string>
-    <string name="settings_account">Akun</string>
     <string name="settings_profiles">Profil</string>
     <string name="settings_layout">Tata Letak</string>
     <string name="settings_plugins">Plugin</string>
@@ -422,34 +421,6 @@
     <string name="essential_subtitle_language_subtitle">Bahasa subtitle yang diutamakan.</string>
     <string name="essential_audio_language_subtitle">Bahasa audio yang diutamakan.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">PIN salah.</string>
-    <string name="account_error_sync_code_expired">Kode sinkronisasi telah kedaluwarsa.</string>
-    <string name="account_error_invalid_sync_code">Kode sinkronisasi tidak valid.</string>
-    <string name="account_error_sync_code_not_found">Kode sinkronisasi tidak ditemukan.</string>
-    <string name="account_error_device_already_linked">Perangkat sudah tertaut.</string>
-    <string name="account_error_generic_retry">Terjadi kesalahan. Silakan coba lagi.</string>
-    <string name="account_error_invalid_credentials">Email atau kata sandi salah.</string>
-    <string name="account_error_email_not_confirmed">Konfirmasi email Anda terlebih dahulu.</string>
-    <string name="account_error_email_already_registered">Akun dengan email ini sudah ada.</string>
-    <string name="account_error_invalid_email">Masukkan alamat email yang valid.</string>
-    <string name="account_error_password_too_short">Kata sandi terlalu pendek.</string>
-    <string name="account_error_password_too_weak">Kata sandi terlalu lemah.</string>
-    <string name="account_error_signup_disabled">Pendaftaran saat ini dinonaktifkan.</string>
-    <string name="account_error_rate_limited">Terlalu banyak percobaan. Coba lagi nanti.</string>
-    <string name="account_error_qr_login_expired">Login QR kedaluwarsa. Coba lagi.</string>
-    <string name="account_error_invalid_qr_login">Kode login QR tidak valid.</string>
-    <string name="account_error_qr_login_other_device">Login QR ini diminta dari perangkat lain.</string>
-    <string name="account_error_qr_login_outdated">Layanan login QR sudah usang. Terapkan ulang pengaturan SQL login TV.</string>
-    <string name="account_error_qr_login_missing_setup">Backend login QR tidak memiliki pengaturan. Perbarui pengaturan SQL login TV.</string>
-    <string name="account_error_qr_login_misconfigured">URL login QR salah konfigurasi.</string>
-    <string name="account_error_qr_login_invalid_request">Permintaan login QR tidak valid. Coba lagi.</string>
-    <string name="account_error_no_internet">Tidak ada koneksi internet.</string>
-    <string name="account_error_connection_timeout">Koneksi habis waktu. Coba lagi.</string>
-    <string name="account_error_connection_refused">Tidak dapat terhubung ke server.</string>
-    <string name="account_error_not_authenticated">Masuk terlebih dahulu.</string>
-    <string name="account_error_service_unavailable">Layanan tidak tersedia. Coba lagi nanti.</string>
-    <string name="account_error_invalid_request">Permintaan tidak valid. Periksa masukan Anda.</string>
-    <string name="account_error_unexpected">Terjadi kesalahan tak terduga.</string>
     <string name="experience_mode_switch_to_essential">Beralih ke Esensial</string>
     <string name="experience_mode_switch_to_essential_subtitle">Sembunyikan tampilan pengaturan lanjutan tanpa mengubah nilai yang disimpan.</string>
     <string name="experience_mode_switch_to_advanced">Beralih ke Lanjutan</string>
@@ -490,12 +461,6 @@
     <string name="advanced_remember_last_profile_subtitle">Ingat profil terakhir yang dipilih saat startup</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_plugins_section_subtitle">Kelola repositori, penyedia, dan status plugin</string>
-    <string name="settings_account_section_subtitle">Status akun dan sinkronisasi</string>
-    <string name="account_stat_addons">addon</string>
-    <string name="account_stat_plugins">plugin</string>
-    <string name="account_stat_library">pustaka</string>
-    <string name="account_stat_progress">progres</string>
-    <string name="account_stat_watched">ditonton</string>
     <string name="settings_integrations_section">Integrasi</string>
     <string name="settings_integrations_section_subtitle">Kelola integrasi yang tersedia</string>
     <string name="settings_tmdb_subtitle">Kontrol pengayaan metadata</string>
@@ -1044,16 +1009,6 @@
     <string name="trakt_account_login">Login Akun</string>
     <string name="trakt_awaiting_instruction">Buka trakt.tv/activate dan masukkan kode ini:</string>
     <string name="trakt_waiting_approval">Menunggu persetujuan…</string>
-    <string name="qr_login_approved">Login disetujui. Menyelesaikan masuk…</string>
-    <string name="qr_login_pending">Menunggu persetujuan di ponsel Anda…</string>
-    <string name="qr_login_expired">Login QR kedaluwarsa. Buat kode baru.</string>
-    <string name="qr_login_preparing">Mempersiapkan login QR...</string>
-    <string name="qr_login_device_auth_failed">Gagal mengautentikasi perangkat</string>
-    <string name="qr_login_scan_prompt">Pindai QR dan masuk di ponsel Anda</string>
-    <string name="qr_login_start_failed">Gagal memulai login QR</string>
-    <string name="qr_login_signing_in">Sedang masuk…</string>
-    <string name="qr_login_success">Berhasil masuk</string>
-    <string name="qr_login_exchange_failed">Tidak dapat menyelesaikan masuk QR</string>
     <string name="trakt_code_expires">Kode kedaluwarsa dalam %1$s</string>
     <string name="trakt_token_refreshes">Token akses Trakt diperbarui dalam %1$s</string>
     <string name="trakt_login_instruction">Tekan Login untuk memulai autentikasi perangkat Trakt. Kode QR akan muncul di sini.</string>
@@ -1123,17 +1078,7 @@
     <string name="debug_playback_error_title">Layar Error Pemutaran</string>
     <string name="debug_playback_error_subtitle">Tampilkan popup error pemutaran yang disimulasikan</string>
     <string name="debug_section_features">Sakelar Fitur</string>
-    <string name="debug_account_tab_title">Tab Akun</string>
-    <string name="debug_account_tab_subtitle">Tampilkan tab Akun di navigasi Pengaturan</string>
-    <string name="debug_sync_code_title">Fitur Kode Sinkronisasi</string>
-    <string name="debug_sync_code_subtitle">Tampilkan tombol Buat/Masukkan Kode Sinkronisasi di pengaturan Akun</string>
     <string name="debug_section_account">Akun</string>
-    <string name="debug_manual_signin_title">Masuk Manual</string>
-    <string name="debug_manual_signin_subtitle">Masuk dengan email dan kata sandi (autentikasi Supabase)</string>
-    <string name="debug_email_placeholder">Email</string>
-    <string name="debug_password_placeholder">Kata Sandi</string>
-    <string name="debug_signing_in">Sedang masuk\u2026</string>
-    <string name="debug_sign_in">Masuk</string>
     <string name="debug_error_dialog_title">Error Pemutaran</string>
     <string name="debug_error_dialog_subtitle">Terjadi error saat pemutaran.\n\nError: Error simulasi pengujian - ini bukan kegagalan nyata. Sumber menghasilkan HTTP 503 (Service Unavailable).</string>
     <string name="debug_dismiss">Tutup</string>
@@ -1609,15 +1554,6 @@
     <string name="cloud_library_type_files">Files</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Memuat\u2026</string>
-    <string name="account_sync_description">Sinkronkan pustaka, progres tonton, addon, dan plugin di semua perangkat.</string>
-    <string name="account_sync_restart_note">Sinkronisasi tidak real-time di semua perangkat aktif. Restart perangkat ini setelah masuk atau untuk mengambil perubahan yang dibuat di tempat lain.</string>
-    <string name="account_signin_qr_title">Masuk dengan QR</string>
-    <string name="account_signin_qr_subtitle">Pindai kode QR dan selesaikan login email di ponsel Anda</string>
-    <string name="account_signed_in_label">Sudah masuk</string>
-    <string name="account_total_label">Total</string>
-    <string name="account_loading_sync">Memuat data sinkronisasi\u2026</string>
-    <string name="account_sign_out">Keluar</string>
 
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">Masuk</string>
@@ -1642,23 +1578,8 @@
     <string name="auth_qr_back">Kembali</string>
 
     <!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">Buat Kode Sinkronisasi</string>
-    <string name="sync_generate_subtitle">Buat PIN untuk melindungi kode sinkronisasi Anda. Bagikan kode tersebut ke perangkat lain Anda.</string>
-    <string name="sync_generate_code_label">Kode Sinkronisasi Anda</string>
-    <string name="sync_generate_instruction">Masukkan kode ini dan PIN Anda di perangkat lain untuk menautkannya.</string>
-    <string name="sync_generate_done">Selesai</string>
-    <string name="sync_generate_pin_label">Pilih PIN (4-8 karakter)</string>
-    <string name="sync_generate_pin_placeholder">Masukkan PIN</string>
 
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">Tautkan Perangkat</string>
-    <string name="sync_claim_subtitle">Masukkan kode sinkronisasi dan PIN dari perangkat lain Anda untuk menautkan perangkat ini.</string>
-    <string name="sync_claim_success">Perangkat berhasil ditautkan! Addon dan plugin Anda akan disinkronkan sekarang.</string>
-    <string name="sync_claim_done">Selesai</string>
-    <string name="sync_claim_code_label">Kode Sinkronisasi</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">Masukkan PIN</string>
 
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">Menggunakan plugin profil utama dan tidak dapat diubah</string>
@@ -1732,13 +1653,6 @@
     <string name="update_downloading_ellipsis">Mengunduh…</string>
     <string name="update_unknown_sources">Izinkan pemasangan dari sumber tidak dikenal untuk melanjutkan.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Akun</string>
-    <string name="account_sign_in_description">Masuk untuk menyinkronkan pustaka, progres tonton, addon, dan plugin di semua perangkat. Sinkronisasi pustaka menggunakan Nuvio Sync saat Trakt tidak terhubung, dan progres tonton dapat menggunakan Trakt atau Nuvio Sync.</string>
-    <string name="account_sync_code_title">Kode Sinkronisasi</string>
-    <string name="account_sync_code_description">Sinkronkan di semua perangkat tanpa membuat akun.</string>
-    <string name="account_linked_devices">Perangkat Tertaut (%1$d)</string>
-    <string name="account_no_linked_devices">Tidak ada perangkat tertaut</string>
-    <string name="account_unlink">Putuskan Tautan</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Memuat rating episode...</string>
@@ -1811,18 +1725,8 @@
     <string name="profile_pin_current_required">Profil ini sudah memiliki PIN. Masukkan PIN saat ini untuk mengubahnya.</string>
 
     <!-- Account Screen -->
-    <string name="account_signin_create_title">Masuk / Buat Akun</string>
-    <string name="account_signin_create_desc">Gunakan email dan kata sandi untuk membuat atau masuk ke akun Anda.</string>
-    <string name="account_generate_sync_desc">Buat kode di perangkat ini agar perangkat lain dapat ditautkan.</string>
-    <string name="account_enter_sync_desc">Tautkan perangkat ini ke perangkat lain menggunakan kode sinkronisasi.</string>
-    <string name="account_signed_in_as">Masuk sebagai</string>
-    <string name="account_generate_sync_signed_in_desc">Buat kode agar perangkat lain dapat disinkronkan dengan akun ini.</string>
-    <string name="account_unknown_device">Perangkat Tidak Dikenal</string>
 
     <!-- Sync screens -->
-    <string name="sync_claim_linking">Menautkan\u2026</string>
-    <string name="sync_generate_generating">Membuat\u2026</string>
-    <string name="sync_generate_code_btn">Buat Kode</string>
 
     <!-- Search -->
     <string name="search_no_results_title">Tidak Ada Hasil</string>
@@ -1880,7 +1784,6 @@
     <string name="addon_error_not_found">Addon tidak ditemukan</string>
 
     <!-- Account errors -->
-    <string name="account_error_signin_required">Masuk dengan akun terlebih dahulu.</string>
 
     <!-- Search errors -->
     <string name="search_error_no_catalogs">Tidak ada katalog yang bisa dicari ditemukan di addon terpasang</string>
@@ -1950,7 +1853,6 @@
     <string name="cd_nuvio">Nuvio</string>
 
     <!-- Debug -->
-    <string name="debug_signin_success">Berhasil masuk</string>
     <string name="debug_generate_description">Item debug yang dibuat %1$s #%2$d</string>
     <string name="debug_generate_result_failed">Gagal: %1$s</string>
     <string name="debug_generate_library_result_added">Menambahkan %1$d item ke pustaka</string>
@@ -2443,4 +2345,5 @@
     <string name="trakt_comments_error_request_failed">Permintaan komentar Trakt gagal</string>
     <string name="trakt_library_error_fetch_list_items">Gagal mengambil item daftar</string>
 
+    <string name="account_error_generic_retry">Terjadi kesalahan. Silakan coba lagi.</string>
 </resources>

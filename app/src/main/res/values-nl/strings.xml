@@ -436,7 +436,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">Ervaring</string>
-    <string name="settings_account">Account</string>
     <string name="settings_profiles">Profielen</string>
     <string name="settings_layout">Indeling</string>
     <string name="settings_content_discovery">Inhoud &amp; ontdekken</string>
@@ -506,34 +505,6 @@
     <string name="essential_subtitle_language_subtitle">Voorkeurstaal voor ondertiteling.</string>
     <string name="essential_audio_language_subtitle">Voorkeurstaal voor audio.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">Onjuiste pincode.</string>
-    <string name="account_error_sync_code_expired">De synchronisatiecode is verlopen.</string>
-    <string name="account_error_invalid_sync_code">Ongeldige synchronisatiecode.</string>
-    <string name="account_error_sync_code_not_found">Synchronisatiecode niet gevonden.</string>
-    <string name="account_error_device_already_linked">Apparaat is al gekoppeld.</string>
-    <string name="account_error_generic_retry">Er is iets misgegaan. Probeer het opnieuw.</string>
-    <string name="account_error_invalid_credentials">Onjuist e-mailadres of wachtwoord.</string>
-    <string name="account_error_email_not_confirmed">Bevestig eerst je e-mailadres.</string>
-    <string name="account_error_email_already_registered">Er bestaat al een account met dit e-mailadres.</string>
-    <string name="account_error_invalid_email">Voer een geldig e-mailadres in.</string>
-    <string name="account_error_password_too_short">Het wachtwoord is te kort.</string>
-    <string name="account_error_password_too_weak">Het wachtwoord is te zwak.</string>
-    <string name="account_error_signup_disabled">Registreren is momenteel uitgeschakeld.</string>
-    <string name="account_error_rate_limited">Te veel pogingen. Probeer het later opnieuw.</string>
-    <string name="account_error_qr_login_expired">QR-aanmelding is verlopen. Probeer het opnieuw.</string>
-    <string name="account_error_invalid_qr_login">Ongeldige QR-aanmeldcode.</string>
-    <string name="account_error_qr_login_other_device">Deze QR-aanmelding is vanaf een ander apparaat aangevraagd.</string>
-    <string name="account_error_qr_login_outdated">De QR-aanmeldservice is verouderd. Pas de SQL-installatie voor tv-aanmelding opnieuw toe.</string>
-    <string name="account_error_qr_login_missing_setup">De QR-aanmeldbackend is niet ingesteld. Werk de SQL-installatie voor tv-aanmelding bij.</string>
-    <string name="account_error_qr_login_misconfigured">De QR-aanmeld-URL is verkeerd geconfigureerd.</string>
-    <string name="account_error_qr_login_invalid_request">Het QR-aanmeldverzoek was ongeldig. Probeer het opnieuw.</string>
-    <string name="account_error_no_internet">Geen internetverbinding.</string>
-    <string name="account_error_connection_timeout">Time-out bij de verbinding. Probeer het opnieuw.</string>
-    <string name="account_error_connection_refused">Kon geen verbinding maken met de server.</string>
-    <string name="account_error_not_authenticated">Meld je eerst aan.</string>
-    <string name="account_error_service_unavailable">Service niet beschikbaar. Probeer het later opnieuw.</string>
-    <string name="account_error_invalid_request">Ongeldig verzoek. Controleer je invoer.</string>
-    <string name="account_error_unexpected">Er is een onverwachte fout opgetreden.</string>
     <string name="experience_mode_switch_to_essential">Overschakelen naar Essentieel</string>
     <string name="experience_mode_switch_to_essential_subtitle">Verberg geavanceerde instelschermen zonder je opgeslagen waarden te wijzigen.</string>
     <string name="experience_mode_switch_to_advanced">Overschakelen naar Geavanceerd</string>
@@ -605,12 +576,6 @@
     <string name="confirm_exit_toast">Druk nogmaals op terug om af te sluiten</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_plugins_section_subtitle">Beheer repositories, providers en pluginstatussen</string>
-    <string name="settings_account_section_subtitle">Account- en synchronisatiestatus</string>
-    <string name="account_stat_addons">add-ons</string>
-    <string name="account_stat_plugins">plug-ins</string>
-    <string name="account_stat_library">bibliotheek</string>
-    <string name="account_stat_progress">voortgang</string>
-    <string name="account_stat_watched">bekeken</string>
     <string name="settings_integrations_section">Integraties</string>
     <string name="settings_integrations_section_subtitle">Beheer beschikbare integraties</string>
     <string name="settings_tmdb_subtitle">Instellingen voor metadata-verrijking</string>
@@ -1311,16 +1276,6 @@
     <string name="trakt_account_login">Aanmelden bij account</string>
     <string name="trakt_awaiting_instruction">Ga naar trakt.tv/activate en voer deze code in:</string>
     <string name="trakt_waiting_approval">Wachten op goedkeuring…</string>
-    <string name="qr_login_approved">Aanmelding goedgekeurd. Aanmelden wordt voltooid…</string>
-    <string name="qr_login_pending">Wachten op goedkeuring op je telefoon…</string>
-    <string name="qr_login_expired">QR-login verlopen. Genereer een nieuwe code.</string>
-    <string name="qr_login_preparing">QR-aanmelding voorbereiden...</string>
-    <string name="qr_login_device_auth_failed">Verificatie van het apparaat is mislukt</string>
-    <string name="qr_login_scan_prompt">Scan de QR-code en meld je aan op je telefoon</string>
-    <string name="qr_login_start_failed">Kon de QR-aanmelding niet starten</string>
-    <string name="qr_login_signing_in">Je wordt aangemeld…</string>
-    <string name="qr_login_success">Aanmelden gelukt</string>
-    <string name="qr_login_exchange_failed">Kon de QR-aanmelding niet voltooien</string>
     <string name="trakt_code_expires">Code verloopt over %1$s</string>
     <string name="trakt_token_refreshes">Trakt-toegangstoken wordt vernieuwd over %1$s</string>
     <string name="trakt_login_instruction">Druk op Aanmelden bij account om de apparaatverificatie van Trakt te starten. Hier verschijnt een QR-code.</string>
@@ -1395,10 +1350,6 @@
     <string name="debug_progress_indicator_default">Standaard</string>
     <string name="debug_progress_indicator_large">Groot</string>
     <string name="debug_section_features">Feature-toggles</string>
-    <string name="debug_account_tab_title">Tabblad Account</string>
-    <string name="debug_account_tab_subtitle">Toon het tabblad Account in de instellingennavigatie</string>
-    <string name="debug_sync_code_title">Functies voor synchronisatiecode</string>
-    <string name="debug_sync_code_subtitle">Toon de knoppen Synchronisatiecode genereren en invoeren in de accountinstellingen</string>
     <string name="debug_member_tier_title">Ondersteunersniveau simuleren</string>
     <string name="debug_member_tier_subtitle">Kies het geverifieerde ondersteunersniveau dat in deze debugbuild wordt geretourneerd</string>
     <string name="debug_member_tier_none">Geen</string>
@@ -1407,12 +1358,6 @@
     <string name="debug_buffer_logs_title">BUFFER-logs inschakelen</string>
     <string name="debug_buffer_logs_subtitle">Stuur periodiek bufferdiagnostiek van de speler naar logcat (standaard uitgeschakeld)</string>
     <string name="debug_section_account">Account</string>
-    <string name="debug_manual_signin_title">Handmatig aanmelden</string>
-    <string name="debug_manual_signin_subtitle">Aanmelden met e-mailadres en wachtwoord (Supabase-auth)</string>
-    <string name="debug_email_placeholder">E-mailadres</string>
-    <string name="debug_password_placeholder">Wachtwoord</string>
-    <string name="debug_signing_in">Aanmelden\u2026</string>
-    <string name="debug_sign_in">Aanmelden</string>
     <string name="debug_error_dialog_title">Afspeelfout</string>
     <string name="debug_error_dialog_subtitle">Er is een fout opgetreden tijdens het afspelen.\n\nFout: Gesimuleerde testfout - dit is geen echte storing. Bron gaf HTTP 503 (Service Unavailable) terug.</string>
     <string name="debug_dismiss">Sluiten</string>
@@ -1982,27 +1927,6 @@
     <string name="cloud_library_error_disabled">De cloudbibliotheek is uitgeschakeld.</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Laden\u2026</string>
-    <string name="account_sync_description">Synchroniseer je bibliotheek, kijkvoortgang, add-ons en plug-ins op al je apparaten.</string>
-    <string name="account_sync_restart_note">Synchronisatie verloopt niet in realtime tussen actieve apparaten. Start dit apparaat opnieuw op na het aanmelden of om wijzigingen van elders over te nemen.</string>
-    <string name="account_signin_qr_title">Aanmelden met QR</string>
-    <string name="account_signin_qr_subtitle">Scan een QR-code en voltooi het aanmelden met je e-mailadres op je telefoon</string>
-    <string name="account_signin_email_title">Aanmelden</string>
-    <string name="account_signin_email_subtitle">Voer het e-mailadres en wachtwoord van je zelfgehoste account in</string>
-    <string name="account_signed_in_label">Aangemeld</string>
-    <string name="account_total_label">Totaal</string>
-    <string name="account_loading_sync">Synchronisatiegegevens laden\u2026</string>
-    <string name="account_sign_out">Afmelden</string>
-    <string name="account_sign_out_confirm_title">Afmelden?</string>
-    <string name="account_sign_out_confirm_subtitle">Je moet je opnieuw aanmelden om je bibliotheek, kijkvoortgang, add-ons en plug-ins op dit apparaat te synchroniseren.</string>
-    <string name="account_error_signin_required">Meld je eerst aan met een account.</string>
-    <string name="account_signin_create_title">Aanmelden / account maken</string>
-    <string name="account_signin_create_desc">Gebruik e-mailadres en wachtwoord om een account te maken of je aan te melden.</string>
-    <string name="account_generate_sync_desc">Maak een code op dit apparaat zodat andere apparaten eraan kunnen worden gekoppeld.</string>
-    <string name="account_enter_sync_desc">Koppel dit apparaat aan een ander apparaat met een synchronisatiecode.</string>
-    <string name="account_signed_in_as">Aangemeld als</string>
-    <string name="account_generate_sync_signed_in_desc">Maak een code zodat andere apparaten met dit account kunnen synchroniseren.</string>
-    <string name="account_unknown_device">Onbekend apparaat</string>
 
     <string name="auth_signin_title">Aanmelden</string>
     <string name="auth_signin_tv_disabled">Invoer van e-mailadres en wachtwoord op tv is uitgeschakeld. Ga door met QR-aanmelding.</string>
@@ -2017,42 +1941,9 @@
     <string name="server_options_connect_custom">Verbinden met eigen server</string>
     <string name="server_options_change_custom">Verbinden met een andere server</string>
     <string name="server_options_use_official">Officiële server gebruiken</string>
-    <string name="custom_server_title">Verbinden met eigen server</string>
-    <string name="custom_server_description">Voer de backend-URL in die je serverbeheerder heeft opgegeven.</string>
-    <string name="custom_server_url_placeholder">https://backend.voorbeeld.com</string>
-    <string name="custom_server_check">Server controleren</string>
-    <string name="custom_server_checking">Controleren\u2026</string>
-    <string name="custom_server_review_title">Eigen server controleren</string>
-    <string name="custom_server_review_description">Het discovery-document is geldig. Door verbinding te maken word je afgemeld bij de huidige server en start de app opnieuw op. Bevestig dat dit een server is die je zelf bezit of vertrouwt.</string>
-    <string name="custom_server_verified_label">Gevonden backend</string>
-    <string name="custom_server_key_label">Clientconfiguratie</string>
-    <string name="custom_server_key_discovered">Publiceerbare sleutel automatisch gevonden</string>
-    <string name="custom_server_warning_title">Maak alleen verbinding met een server die je vertrouwt</string>
-    <string name="custom_server_warning_public">Deze server gebruikt een openbare hostnaam. De app kan niet controleren wie de eigenaar of beheerder is.</string>
-    <string name="custom_server_warning_http">Deze server staat in een privénetwerk, maar HTTP-verkeer is niet versleuteld. Andere apparaten in het netwerk kunnen het mogelijk meelezen.</string>
-    <string name="custom_server_warning_public_http">Deze server gebruikt een openbare hostnaam en onversleutelde HTTP. Aanmeldgegevens en gesynchroniseerde gegevens kunnen onderweg zichtbaar zijn.</string>
-    <string name="custom_server_warning_private">Dit lijkt een server in een privénetwerk te zijn, maar de app kan nog steeds niet controleren wie er de controle over heeft.</string>
-    <string name="custom_server_warning_credentials">De serverbeheerder kan je accountgegevens ontvangen en toegang krijgen tot gegevens die je via deze server synchroniseert.</string>
-    <string name="custom_server_trust_action">Ik vertrouw deze server</string>
-    <string name="custom_server_switching">Overschakelen\u2026</string>
     <string name="official_server_title">Officiële server gebruiken?</string>
     <string name="official_server_description">Je wordt afgemeld bij de eigen server en de app start opnieuw op met de officiële service.</string>
     <string name="official_server_action">Officiële server gebruiken</string>
-    <string name="custom_server_error_invalid_url">Voer een geldige HTTP- of HTTPS-backend-URL in.</string>
-    <string name="custom_server_error_official_active">api.nuvio.tv is de officiële server en is al geselecteerd.</string>
-    <string name="custom_server_error_official_available">api.nuvio.tv is de officiële server. Sluit dit venster en kies Officiële server gebruiken om terug te schakelen.</string>
-    <string name="custom_server_error_connection">Kon het discovery-eindpunt niet bereiken. Controleer de URL en of de server beschikbaar is.</string>
-    <string name="custom_server_error_http">Het discovery-eindpunt gaf HTTP %1$d terug.</string>
-    <string name="custom_server_error_response_too_large">Het discovery-document is groter dan toegestaan.</string>
-    <string name="custom_server_error_invalid_document">De server gaf een ongeldig discovery-document terug.</string>
-    <string name="custom_server_error_version">Deze versie van het discovery-document wordt niet ondersteund.</string>
-    <string name="custom_server_error_service">Het discovery-document is niet voor deze app bedoeld.</string>
-    <string name="custom_server_error_not_self_hosted">Het discovery-document duidt geen zelfgehoste server aan.</string>
-    <string name="custom_server_error_missing_configuration">In het discovery-document ontbreekt een geldige backend-URL of publiceerbare sleutel.</string>
-    <string name="custom_server_error_no_auth">De server biedt geen ondersteunde aanmeldmethode aan.</string>
-    <string name="custom_server_save_failed">Kon de serverconfiguratie niet opslaan.</string>
-    <string name="custom_server_session_clear_failed">Kon de huidige sessie niet veilig wissen. De server is niet gewijzigd.</string>
-    <string name="custom_server_restart_failed">De server is opgeslagen, maar de app kon niet automatisch opnieuw opstarten. Start de app handmatig opnieuw op.</string>
 
     <string name="auth_qr_title">Aanmelden met QR</string>
     <string name="auth_qr_tagline">Bekijk je bibliotheek, waar je ook bent</string>
@@ -2074,25 +1965,7 @@
     <string name="auth_qr_terms_prefix">Door me te registreren / aan te melden ga ik akkoord met de</string>
     <string name="auth_qr_terms_link">Voorwaarden</string>
 
-    <string name="sync_generate_title">Synchronisatiecode genereren</string>
-    <string name="sync_generate_subtitle">Maak een pincode om je synchronisatiecode te beschermen. Deel de code met je andere apparaten.</string>
-    <string name="sync_generate_code_label">Je synchronisatiecode</string>
-    <string name="sync_generate_instruction">Voer deze code en je pincode in op je andere apparaat om ze te koppelen.</string>
-    <string name="sync_generate_done">Klaar</string>
-    <string name="sync_generate_pin_label">Kies een pincode (4-8 tekens)</string>
-    <string name="sync_generate_pin_placeholder">Voer pincode in</string>
-    <string name="sync_generate_generating">Genereren\u2026</string>
-    <string name="sync_generate_code_btn">Code genereren</string>
 
-    <string name="sync_claim_title">Apparaat koppelen</string>
-    <string name="sync_claim_subtitle">Voer de synchronisatiecode en pincode van je andere apparaat in om dit apparaat te koppelen.</string>
-    <string name="sync_claim_success">Apparaat succesvol gekoppeld! Je add-ons en plug-ins worden nu gesynchroniseerd.</string>
-    <string name="sync_claim_done">Klaar</string>
-    <string name="sync_claim_code_label">Synchronisatiecode</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">Pincode</string>
-    <string name="sync_claim_pin_placeholder">Voer pincode in</string>
-    <string name="sync_claim_linking">Koppelen\u2026</string>
 
     <string name="plugin_readonly_notice">Gebruikt plug-ins van het primaire profiel en kan niet worden gewijzigd</string>
     <string name="plugin_repositories_section">Repositories (%1$d)</string>
@@ -2178,13 +2051,6 @@
     <string name="update_latest_version">Je gebruikt de nieuwste versie.</string>
     <string name="update_unknown_sources">Sta installaties van onbekende bronnen toe om door te gaan.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Account</string>
-    <string name="account_sign_in_description">Meld je aan om je bibliotheek, kijkvoortgang, add-ons en plug-ins op al je apparaten te synchroniseren. Bibliotheeksynchronisatie gebruikt Nuvio Sync wanneer Trakt niet is verbonden. Voor kijkvoortgang kan Trakt of Nuvio Sync worden gebruikt.</string>
-    <string name="account_sync_code_title">Synchronisatiecode</string>
-    <string name="account_sync_code_description">Synchroniseer apparaten zonder account aan te maken.</string>
-    <string name="account_linked_devices">Verbonden apparaten (%1$d)</string>
-    <string name="account_no_linked_devices">Geen verbonden apparaten</string>
-    <string name="account_unlink">Koppeling verwijderen</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Afleveringsbeoordelingen laden\u2026</string>
@@ -2360,7 +2226,6 @@
     <string name="cd_qr_login">QR-aanmeldcode</string>
     <string name="cd_nuvio">Nuvio</string>
 
-    <string name="debug_signin_success">Aanmelden gelukt</string>
     <string name="debug_generate_description">Door debug gegenereerd %1$s-item #%2$d</string>
     <string name="debug_generate_result_failed">Mislukt: %1$s</string>
     <string name="debug_generate_library_result_added">%1$d items toegevoegd aan de bibliotheek</string>
@@ -3138,4 +3003,5 @@
     <string name="stream_test_video_bitrate">Gemiddelde videobitrate: %1$s</string>
     <string name="stream_test_error_connection">Verbinding mislukt. De link van de laatst afgespeelde stream is mogelijk verlopen of onbereikbaar. Speel de video opnieuw af en probeer het nogmaals.</string>
 
+    <string name="account_error_generic_retry">Er is iets misgegaan. Probeer het opnieuw.</string>
 </resources>

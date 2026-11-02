@@ -49,7 +49,7 @@ import androidx.tv.material3.SwitchDefaults
 import androidx.tv.material3.Text
 import com.nuvio.tv.ui.components.LoadingIndicator
 import com.nuvio.tv.ui.components.NuvioDialog
-import com.nuvio.tv.ui.screens.account.InputField
+import com.nuvio.tv.ui.screens.settings.InputField
 
 @Composable
 fun DebugSettingsContent(
@@ -126,24 +126,6 @@ fun DebugSettingsContent(
                 )
             }
 
-            item(key = "debug_toggle_account_tab") {
-                DebugToggleCard(
-                    title = stringResource(R.string.debug_account_tab_title),
-                    subtitle = stringResource(R.string.debug_account_tab_subtitle),
-                    checked = uiState.accountTabEnabled,
-                    onToggle = { viewModel.onEvent(DebugSettingsEvent.ToggleAccountTab(it)) }
-                )
-            }
-
-            item(key = "debug_toggle_sync_code") {
-                DebugToggleCard(
-                    title = stringResource(R.string.debug_sync_code_title),
-                    subtitle = stringResource(R.string.debug_sync_code_subtitle),
-                    checked = uiState.syncCodeFeaturesEnabled,
-                    onToggle = { viewModel.onEvent(DebugSettingsEvent.ToggleSyncCodeFeatures(it)) }
-                )
-            }
-
             item(key = "debug_member_tier") {
                 DebugMemberTierCard(
                     selectedTier = uiState.memberTier,
@@ -186,27 +168,6 @@ fun DebugSettingsContent(
                     result = uiState.generateLibraryResult,
                     onGenerate = { count ->
                         viewModel.onEvent(DebugSettingsEvent.GenerateLibraryItems(count))
-                    }
-                )
-            }
-
-            // ── Manual Sign In ──
-            item(key = "debug_account_header") {
-                Spacer(modifier = Modifier.height(NuvioTheme.spacing.sm))
-                Text(
-                    text = stringResource(R.string.debug_section_account),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = NuvioTheme.colors.TextTertiary,
-                    modifier = Modifier.padding(bottom = NuvioTheme.spacing.xs)
-                )
-            }
-
-            item(key = "debug_sign_in_card") {
-                DebugSignInCard(
-                    isLoading = uiState.signInLoading,
-                    result = uiState.signInResult,
-                    onSignIn = { email, password ->
-                        viewModel.onEvent(DebugSettingsEvent.SignIn(email, password))
                     }
                 )
             }
@@ -482,65 +443,6 @@ private fun DebugGenerateLibraryCard(
                 val count = countText.replace(Regex("[^0-9]"), "").toIntOrNull()
                 if (!isLoading && count != null && count > 0) {
                     onGenerate(count)
-                }
-            }
-        )
-    }
-}
-
-@Composable
-private fun DebugSignInCard(
-    isLoading: Boolean,
-    result: String?,
-    onSignIn: (email: String, password: String) -> Unit
-) {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(NuvioTheme.spacing.xs),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
-    ) {
-        Text(
-            text = stringResource(R.string.debug_manual_signin_title),
-            style = MaterialTheme.typography.titleMedium,
-            color = NuvioTheme.colors.TextPrimary
-        )
-        Text(
-            text = stringResource(R.string.debug_manual_signin_subtitle),
-            style = MaterialTheme.typography.bodySmall,
-            color = NuvioTheme.colors.TextSecondary
-        )
-
-        InputField(
-            value = email,
-            onValueChange = { email = it },
-            placeholder = stringResource(R.string.debug_email_placeholder),
-            keyboardType = KeyboardType.Email
-        )
-
-        InputField(
-            value = password,
-            onValueChange = { password = it },
-            placeholder = stringResource(R.string.debug_password_placeholder),
-            isPassword = true
-        )
-
-        if (result != null) {
-            Text(
-                text = result,
-                style = MaterialTheme.typography.bodySmall,
-                color = if (result.startsWith("Failed")) NuvioTheme.colors.Error else NuvioTheme.colors.Secondary
-            )
-        }
-
-        DebugDialogButton(
-            text = if (isLoading) stringResource(R.string.debug_signing_in) else stringResource(R.string.debug_sign_in),
-            onClick = {
-                if (!isLoading && email.isNotBlank() && password.isNotBlank()) {
-                    onSignIn(email.trim(), password)
                 }
             }
         )

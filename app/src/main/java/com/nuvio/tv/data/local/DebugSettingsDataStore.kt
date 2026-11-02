@@ -25,33 +25,11 @@ class DebugSettingsDataStore @Inject constructor(
 ) {
     private val dataStore = context.debugDataStore
 
-    private val accountTabEnabledKey = booleanPreferencesKey("account_tab_enabled")
-    private val syncCodeFeaturesEnabledKey = booleanPreferencesKey("sync_code_features_enabled")
     private val memberTierKey = stringPreferencesKey("member_tier")
-
-    val accountTabEnabled: Flow<Boolean> = dataStore.data.map { prefs ->
-        prefs[accountTabEnabledKey] ?: false
-    }
-
-    val syncCodeFeaturesEnabled: Flow<Boolean> = dataStore.data.map { prefs ->
-        prefs[syncCodeFeaturesEnabledKey] ?: false
-    }
 
     val memberTier: Flow<MemberTier?> = dataStore.data.map { prefs ->
         prefs[memberTierKey]?.let { storedTier ->
             runCatching { MemberTier.valueOf(storedTier) }.getOrNull()
-        }
-    }
-
-    suspend fun setAccountTabEnabled(enabled: Boolean) {
-        dataStore.edit { prefs ->
-            prefs[accountTabEnabledKey] = enabled
-        }
-    }
-
-    suspend fun setSyncCodeFeaturesEnabled(enabled: Boolean) {
-        dataStore.edit { prefs ->
-            prefs[syncCodeFeaturesEnabledKey] = enabled
         }
     }
 

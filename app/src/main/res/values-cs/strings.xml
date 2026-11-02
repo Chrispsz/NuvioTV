@@ -388,7 +388,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">Zkušenost</string>
-    <string name="settings_account">Účet</string>
     <string name="settings_profiles">Profily</string>
     <string name="settings_layout">Rozvržení</string>
     <string name="settings_content_discovery">Obsah a objevování</string>
@@ -432,34 +431,6 @@
     <string name="essential_subtitle_language_subtitle">Preferovaný jazyk titulků.</string>
     <string name="essential_audio_language_subtitle">Preferovaný jazyk zvuku.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">Nesprávný PIN.</string>
-    <string name="account_error_sync_code_expired">Platnost synchronizačního kódu vypršela.</string>
-    <string name="account_error_invalid_sync_code">Neplatný synchronizační kód.</string>
-    <string name="account_error_sync_code_not_found">Synchronizační kód nebyl nalezen.</string>
-    <string name="account_error_device_already_linked">Zařízení je již propojeno.</string>
-    <string name="account_error_generic_retry">Něco se pokazilo. Zkuste to prosím znovu.</string>
-    <string name="account_error_invalid_credentials">Nesprávný e-mail nebo heslo.</string>
-    <string name="account_error_email_not_confirmed">Nejprve prosím potvrďte svůj e-mail.</string>
-    <string name="account_error_email_already_registered">Účet s tímto e-mailem již existuje.</string>
-    <string name="account_error_invalid_email">Zadejte prosím platnou e-mailovou adresu.</string>
-    <string name="account_error_password_too_short">Heslo je příliš krátké.</string>
-    <string name="account_error_password_too_weak">Heslo je příliš slabé.</string>
-    <string name="account_error_signup_disabled">Registrace je momentálně zakázána.</string>
-    <string name="account_error_rate_limited">Příliš mnoho pokusů. Zkuste to prosím později.</string>
-    <string name="account_error_qr_login_expired">Platnost QR přihlášení vypršela. Zkuste to prosím znovu.</string>
-    <string name="account_error_invalid_qr_login">Neplatný kód QR přihlášení.</string>
-    <string name="account_error_qr_login_other_device">Toto QR přihlášení bylo vyžádáno z jiného zařízení.</string>
-    <string name="account_error_qr_login_outdated">Služba QR přihlášení je zastaralá. Znovu použijte SQL nastavení pro přihlášení na TV.</string>
-    <string name="account_error_qr_login_missing_setup">Backendu QR přihlášení chybí nastavení. Aktualizujte SQL nastavení pro přihlášení na TV.</string>
-    <string name="account_error_qr_login_misconfigured">URL QR přihlášení je nesprávně nastavena.</string>
-    <string name="account_error_qr_login_invalid_request">Požadavek na QR přihlášení byl neplatný. Zkuste to prosím znovu.</string>
-    <string name="account_error_no_internet">Žádné internetové připojení.</string>
-    <string name="account_error_connection_timeout">Časový limit připojení vypršel. Zkuste to prosím znovu.</string>
-    <string name="account_error_connection_refused">Nepodařilo se připojit k serveru.</string>
-    <string name="account_error_not_authenticated">Nejprve se prosím přihlaste.</string>
-    <string name="account_error_service_unavailable">Služba není dostupná. Zkuste to prosím později.</string>
-    <string name="account_error_invalid_request">Neplatný požadavek. Zkontrolujte prosím zadané údaje.</string>
-    <string name="account_error_unexpected">Došlo k neočekávané chybě.</string>
     <string name="experience_mode_switch_to_essential">Přepnout na Základní</string>
     <string name="experience_mode_switch_to_essential_subtitle">Skrýt pokročilé plochy nastavení bez změny uložených hodnot.</string>
     <string name="experience_mode_switch_to_advanced">Přepnout na Pokročilé</string>
@@ -525,12 +496,6 @@
     <string name="advanced_remember_last_profile_subtitle">Pamatovat si poslední vybraný profil při spuštění</string>
     <string name="settings_debug">Ladění</string>
     <string name="settings_plugins_section_subtitle">Spravovat repozitáře, poskytovatele a stavy pluginů</string>
-    <string name="settings_account_section_subtitle">Stav účtu a synchronizace</string>
-    <string name="account_stat_addons">doplňky</string>
-    <string name="account_stat_plugins">pluginy</string>
-    <string name="account_stat_library">knihovna</string>
-    <string name="account_stat_progress">postup</string>
-    <string name="account_stat_watched">zhlédnuto</string>
     <string name="settings_integrations_section">Integrace</string>
     <string name="settings_integrations_section_subtitle">Spravovat dostupné integrace</string>
     <string name="settings_tmdb_subtitle">Ovládací prvky obohacení metadat</string>
@@ -1181,16 +1146,6 @@
     <string name="trakt_account_login">Přihlášení k účtu</string>
     <string name="trakt_awaiting_instruction">Přejděte na trakt.tv/activate a zadejte tento kód:</string>
     <string name="trakt_waiting_approval">Čekání na schválení…</string>
-    <string name="qr_login_approved">Přihlášení schváleno. Dokončování přihlášení…</string>
-    <string name="qr_login_pending">Čekání na schválení na vašem telefonu…</string>
-    <string name="qr_login_expired">Platnost QR přihlášení vypršela. Vygenerujte nový kód.</string>
-    <string name="qr_login_preparing">Příprava QR přihlášení...</string>
-    <string name="qr_login_device_auth_failed">Ověření zařízení selhalo</string>
-    <string name="qr_login_scan_prompt">Naskenujte QR a přihlaste se na telefonu</string>
-    <string name="qr_login_start_failed">Nepodařilo se spustit QR přihlášení</string>
-    <string name="qr_login_signing_in">Přihlašování…</string>
-    <string name="qr_login_success">Úspěšně přihlášeno</string>
-    <string name="qr_login_exchange_failed">Nepodařilo se dokončit QR přihlášení</string>
     <string name="trakt_code_expires">Kód vyprší za %1$s</string>
     <string name="trakt_token_refreshes">Přístupový token Trakt se obnoví za %1$s</string>
     <string name="trakt_login_instruction">Stiskněte Přihlásit pro zahájení autentizace zařízení Trakt. Zde se objeví QR kód.</string>
@@ -1265,19 +1220,9 @@
     <string name="debug_progress_indicator_default">Výchozí</string>
     <string name="debug_progress_indicator_large">Velká</string>
     <string name="debug_section_features">Přepínače funkcí</string>
-    <string name="debug_account_tab_title">Karta Účet</string>
-    <string name="debug_account_tab_subtitle">Zobrazit kartu Účet v navigaci Nastavení</string>
-    <string name="debug_sync_code_title">Funkce synchronizačního kódu</string>
-    <string name="debug_sync_code_subtitle">Zobrazit tlačítka Generovat/Zadat synchronizační kód v nastavení Účtu</string>
     <string name="debug_buffer_logs_title">Zapnout BUFFER logy</string>
     <string name="debug_buffer_logs_subtitle">Odesílat pravidelnou diagnostiku bufferu přehrávače do logcatu (ve výchozím stavu vypnuto)</string>
     <string name="debug_section_account">Účet</string>
-    <string name="debug_manual_signin_title">Ruční přihlášení</string>
-    <string name="debug_manual_signin_subtitle">Přihlásit se e-mailem a heslem (Supabase auth)</string>
-    <string name="debug_email_placeholder">E-mail</string>
-    <string name="debug_password_placeholder">Heslo</string>
-    <string name="debug_signing_in">Přihlašování…</string>
-    <string name="debug_sign_in">Přihlásit se</string>
     <string name="debug_error_dialog_title">Chyba přehrávání</string>
     <string name="debug_error_dialog_subtitle">Během přehrávání došlo k chybě.\n\nChyba: Test simulované chyby - toto není skutečné selhání. Zdroj vrátil HTTP 503 (Služba nedostupná).</string>
     <string name="debug_dismiss">Zavřít</string>
@@ -1771,27 +1716,6 @@
     <string name="cloud_library_error_disabled">Cloudová knihovna je vypnutá.</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Načítání…</string>
-    <string name="account_sync_description">Synchronizujte svou knihovnu, postup sledování, doplňky a pluginy napříč zařízeními.</string>
-    <string name="account_sync_restart_note">Synchronizace není v reálném čase napříč aktivními zařízeními. Po přihlášení restartujte toto zařízení nebo pro načtení změn provedených jinde.</string>
-    <string name="account_signin_qr_title">Přihlásit se pomocí QR</string>
-    <string name="account_signin_qr_subtitle">Naskenujte QR kód a dokončete přihlášení e-mailem na telefonu</string>
-    <string name="account_signin_email_title">Přihlásit se</string>
-    <string name="account_signin_email_subtitle">Zadejte e-mail a heslo svého self-hosted účtu</string>
-    <string name="account_signed_in_label">Přihlášeno</string>
-    <string name="account_total_label">Celkem</string>
-    <string name="account_loading_sync">Načítání synchronizačních dat…</string>
-    <string name="account_sign_out">Odhlásit se</string>
-    <string name="account_sign_out_confirm_title">Odhlásit se?</string>
-    <string name="account_sign_out_confirm_subtitle">Pro synchronizaci knihovny, průběhu sledování, doplňků a pluginů na tomto zařízení se budete muset znovu přihlásit.</string>
-    <string name="account_error_signin_required">Nejprve se přihlaste pomocí účtu.</string>
-    <string name="account_signin_create_title">Přihlásit se / Vytvořit účet</string>
-    <string name="account_signin_create_desc">Použijte e-mail a heslo k vytvoření nebo přihlášení k účtu.</string>
-    <string name="account_generate_sync_desc">Vytvořte kód na tomto zařízení, aby se k němu mohla připojit další zařízení.</string>
-    <string name="account_enter_sync_desc">Propojte toto zařízení s jiným zařízením pomocí synchronizačního kódu.</string>
-    <string name="account_signed_in_as">Přihlášen jako</string>
-    <string name="account_generate_sync_signed_in_desc">Vytvořte kód, aby se další zařízení mohla synchronizovat s tímto účtem.</string>
-    <string name="account_unknown_device">Neznámé zařízení</string>
 
     <string name="auth_signin_title">Přihlásit se</string>
     <string name="auth_signin_tv_disabled">Zadávání e-mailu/hesla na TV je zakázáno. Pokračujte přihlášením pomocí QR.</string>
@@ -1822,25 +1746,7 @@
     <string name="auth_qr_terms_prefix">Registrací / přihlášením souhlasím s</string>
     <string name="auth_qr_terms_link">Podmínkami</string>
 
-    <string name="sync_generate_title">Generovat synchronizační kód</string>
-    <string name="sync_generate_subtitle">Vytvořte PIN pro ochranu vašeho synchronizačního kódu. Sdílejte kód se svými dalšími zařízeními.</string>
-    <string name="sync_generate_code_label">Váš synchronizační kód</string>
-    <string name="sync_generate_instruction">Zadejte tento kód a váš PIN na vašem dalším zařízení pro jejich propojení.</string>
-    <string name="sync_generate_done">Hotovo</string>
-    <string name="sync_generate_pin_label">Vyberte PIN (4-8 znaků)</string>
-    <string name="sync_generate_pin_placeholder">Zadejte PIN</string>
-    <string name="sync_generate_generating">Generování…</string>
-    <string name="sync_generate_code_btn">Generovat kód</string>
 
-    <string name="sync_claim_title">Propojit zařízení</string>
-    <string name="sync_claim_subtitle">Zadejte synchronizační kód a PIN z vašeho druhého zařízení pro propojení tohoto zařízení.</string>
-    <string name="sync_claim_success">Zařízení úspěšně propojeno! Vaše doplňky a pluginy se nyní budou synchronizovat.</string>
-    <string name="sync_claim_done">Hotovo</string>
-    <string name="sync_claim_code_label">Synchronizační kód</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">Zadejte PIN</string>
-    <string name="sync_claim_linking">Propojování…</string>
 
     <string name="plugin_readonly_notice">Používá pluginy primárního profilu a nelze je změnit</string>
     <string name="plugin_repositories_section">Repozitáře (%1$d)</string>
@@ -1920,13 +1826,6 @@
     <string name="update_downloading_ellipsis">Stahování…</string>
     <string name="update_unknown_sources">Pro pokračování povolte instalace z neznámých zdrojů.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Účet</string>
-    <string name="account_sign_in_description">Přihlaste se k synchronizaci knihovny, postupu sledování, doplňků a pluginů napříč zařízeními. Synchronizace knihovny používá Nuvio Sync, když Trakt není připojen, a postup sledování může používat buď Trakt, nebo Nuvio Sync.</string>
-    <string name="account_sync_code_title">Synchronizační kód</string>
-    <string name="account_sync_code_description">Synchronizovat napříč zařízeními bez vytvoření účtu.</string>
-    <string name="account_linked_devices">Propojená zařízení (%1$d)</string>
-    <string name="account_no_linked_devices">Žádná propojená zařízení</string>
-    <string name="account_unlink">Odpojit</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Načítání hodnocení epizod...</string>
@@ -2100,7 +1999,6 @@
     <string name="cd_qr_login">QR přihlašovací kód</string>
     <string name="cd_nuvio">Nuvio</string>
 
-    <string name="debug_signin_success">Úspěšně přihlášeno</string>
     <string name="debug_generate_description">Laděním generovaná %1$s položka #%2$d</string>
     <string name="debug_generate_result_failed">Selhalo: %1$s</string>
     <string name="debug_generate_library_result_added">Přidáno %1$d položek do knihovny</string>
@@ -2831,4 +2729,5 @@
     <string name="stream_test_video_bitrate">Průměrný datový tok videa: %1$s</string>
     <string name="stream_test_error_connection">Připojení selhalo. Platnost posledního přehraného odkazu na stream mohla vypršet, nebo je nedostupný. Přehrajte prosím video znovu a zkuste to opět.</string>
 
+    <string name="account_error_generic_retry">Něco se pokazilo. Zkuste to prosím znovu.</string>
 </resources>

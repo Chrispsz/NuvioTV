@@ -447,7 +447,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">使用体验</string>
-    <string name="settings_account">账户</string>
     <string name="settings_profiles">个人资料</string>
     <string name="settings_layout">布局</string>
     <string name="settings_content_discovery">内容与发现</string>
@@ -518,34 +517,6 @@
     <string name="essential_subtitle_language_subtitle">偏好的字幕语言。</string>
     <string name="essential_audio_language_subtitle">偏好的音频语言。</string>
     <!-- 账户/登录错误信息 -->
-    <string name="account_error_incorrect_pin">PIN 码不正确。</string>
-    <string name="account_error_sync_code_expired">同步码已过期。</string>
-    <string name="account_error_invalid_sync_code">无效的同步码。</string>
-    <string name="account_error_sync_code_not_found">找不到同步码。</string>
-    <string name="account_error_device_already_linked">设备已连接。</string>
-    <string name="account_error_generic_retry">出错了。请重试。</string>
-    <string name="account_error_invalid_credentials">电子邮件或密码不正确。</string>
-    <string name="account_error_email_not_confirmed">请先确认您的电子邮件。</string>
-    <string name="account_error_email_already_registered">此电子邮件已注册账户。</string>
-    <string name="account_error_invalid_email">请输入有效的电子邮件地址。</string>
-    <string name="account_error_password_too_short">密码太短。</string>
-    <string name="account_error_password_too_weak">密码强度太弱。</string>
-    <string name="account_error_signup_disabled">注册功能目前已禁用。</string>
-    <string name="account_error_rate_limited">尝试次数过多。请稍后再试。</string>
-    <string name="account_error_qr_login_expired">QR 码登录已过期。请重试。</string>
-    <string name="account_error_invalid_qr_login">无效的 QR 码登录。</string>
-    <string name="account_error_qr_login_other_device">此 QR 码登录是从其他设备请求的。</string>
-    <string name="account_error_qr_login_outdated">QR 码登录服务已过时。请重新应用电视登录 SQL 设置。</string>
-    <string name="account_error_qr_login_missing_setup">QR 码登录后端缺少设置。请更新电视登录 SQL 设置。</string>
-    <string name="account_error_qr_login_misconfigured">QR 码登录网址配置错误。</string>
-    <string name="account_error_qr_login_invalid_request">QR 码登录请求无效。请重试。</string>
-    <string name="account_error_no_internet">无网络连接。</string>
-    <string name="account_error_connection_timeout">连接超时。请重试。</string>
-    <string name="account_error_connection_refused">无法连接至服务器。</string>
-    <string name="account_error_not_authenticated">请先登录。</string>
-    <string name="account_error_service_unavailable">服务不可用。请稍后再试。</string>
-    <string name="account_error_invalid_request">无效的请求。请检查您的输入。</string>
-    <string name="account_error_unexpected">发生意外错误。</string>
     <string name="experience_mode_switch_to_essential">切换到基础模式</string>
     <string name="experience_mode_switch_to_essential_subtitle">隐藏高级设置界面，但不会更改已保存的数值。</string>
     <string name="experience_mode_switch_to_advanced">切换到高级模式</string>
@@ -618,12 +589,6 @@
     <string name="confirm_exit_toast">再按一次返回键退出</string>
     <string name="settings_debug">调试</string>
     <string name="settings_plugins_section_subtitle">管理仓库、提供者和插件状态</string>
-    <string name="settings_account_section_subtitle">账户与同步状态</string>
-    <string name="account_stat_addons">扩展</string>
-    <string name="account_stat_plugins">插件</string>
-    <string name="account_stat_library">媒体库</string>
-    <string name="account_stat_progress">进度</string>
-    <string name="account_stat_watched">已观看</string>
     <string name="settings_integrations_section">集成</string>
     <string name="settings_integrations_section_subtitle">管理可用的集成服务</string>
     <string name="settings_tmdb_subtitle">元数据增强控制</string>
@@ -1391,16 +1356,6 @@
     <string name="trakt_account_login">账户登录</string>
     <string name="trakt_awaiting_instruction">前往 trakt.tv/activate 并输入此代码：</string>
     <string name="trakt_waiting_approval">正在等待批准…</string>
-    <string name="qr_login_approved">登录已批准。正在完成登录…</string>
-    <string name="qr_login_pending">正在等待手机上的批准…</string>
-    <string name="qr_login_expired">QR 码登录已过期。请生成新代码。</string>
-    <string name="qr_login_preparing">正在准备 QR 码登录…</string>
-    <string name="qr_login_device_auth_failed">设备验证失败</string>
-    <string name="qr_login_scan_prompt">扫描 QR 码并在手机上登录</string>
-    <string name="qr_login_start_failed">启动 QR 码登录失败</string>
-    <string name="qr_login_signing_in">正在为您登录…</string>
-    <string name="qr_login_success">登录成功</string>
-    <string name="qr_login_exchange_failed">无法完成 QR 码登录</string>
     <string name="trakt_code_expires">代码将在 %1$s 后过期</string>
     <string name="trakt_token_refreshes">Trakt 访问令牌将在 %1$s 后刷新</string>
     <string name="trakt_login_instruction">按下「登录」以启动 Trakt 设备验证。QR 码将在此显示。</string>
@@ -1475,10 +1430,6 @@
     <string name="debug_progress_indicator_default">默认</string>
     <string name="debug_progress_indicator_large">大</string>
     <string name="debug_section_features">功能开关</string>
-    <string name="debug_account_tab_title">账户标签</string>
-    <string name="debug_account_tab_subtitle">在设置导航中显示账户标签</string>
-    <string name="debug_sync_code_title">同步码功能</string>
-    <string name="debug_sync_code_subtitle">在账户设置中显示「生成/输入同步码」按钮</string>
     <string name="debug_member_tier_title">模拟支持者等级</string>
     <string name="debug_member_tier_subtitle">选择此调试版本中返回的已验证支持者等级</string>
     <string name="debug_member_tier_none">无</string>
@@ -1487,12 +1438,6 @@
     <string name="debug_buffer_logs_title">启用 BUFFER 日志</string>
     <string name="debug_buffer_logs_subtitle">将周期性播放器缓冲诊断输出到 logcat (默认禁用)</string>
     <string name="debug_section_account">账户</string>
-    <string name="debug_manual_signin_title">手动登录</string>
-    <string name="debug_manual_signin_subtitle">使用电子邮件和密码登录 (Supabase 验证)</string>
-    <string name="debug_email_placeholder">电子邮件</string>
-    <string name="debug_password_placeholder">密码</string>
-    <string name="debug_signing_in">登录中…</string>
-    <string name="debug_sign_in">登录</string>
     <string name="debug_error_dialog_title">播放错误</string>
     <string name="debug_error_dialog_subtitle">播放期间发生错误。\n\n错误：测试模拟错误 - 这不是真正的失败。来源返回 HTTP 503 (服务不可用)。</string>
     <string name="debug_dismiss">关闭</string>
@@ -2063,27 +2008,6 @@
     <string name="cloud_library_error_disabled">云媒体库已禁用。</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">加载中…</string>
-    <string name="account_sync_description">在设备间同步您的媒体库、观看进度、扩展和插件。</string>
-    <string name="account_sync_restart_note">同步并非跨活动设备实时进行。登录后或要应用在其他位置进行的更改时，请重新启动此设备。</string>
-    <string name="account_signin_qr_title">使用 QR 码登录</string>
-    <string name="account_signin_qr_subtitle">扫描 QR 码并在手机上完成电子邮件登录</string>
-    <string name="account_signin_email_title">登录</string>
-    <string name="account_signin_email_subtitle">输入您自托管账户的电子邮件和密码</string>
-    <string name="account_signed_in_label">已登录</string>
-    <string name="account_total_label">总计</string>
-    <string name="account_loading_sync">正在加载同步数据…</string>
-    <string name="account_sign_out">登出</string>
-    <string name="account_sign_out_confirm_title">登出？</string>
-    <string name="account_sign_out_confirm_subtitle">您需要重新登录才能在此设备上同步媒体库、观看进度、扩展和插件。</string>
-    <string name="account_error_signin_required">请先登录账户。</string>
-    <string name="account_signin_create_title">登录／创建账户</string>
-    <string name="account_signin_create_desc">使用电子邮件和密码创建或登录您的账户。</string>
-    <string name="account_generate_sync_desc">在此设备上创建代码，让其他设备可以链接到此设备。</string>
-    <string name="account_enter_sync_desc">使用同步码将此设备链接至其他设备。</string>
-    <string name="account_signed_in_as">已登录为</string>
-    <string name="account_generate_sync_signed_in_desc">创建代码，让其他设备可以与此账户同步。</string>
-    <string name="account_unknown_device">未知设备</string>
 
     <string name="auth_signin_title">登录</string>
     <string name="auth_signin_tv_disabled">电视上的电子邮件/密码输入已禁用。请继续使用 QR 码登录。</string>
@@ -2098,42 +2022,9 @@
     <string name="server_options_connect_custom">连接到自定义服务器</string>
     <string name="server_options_change_custom">连接到另一个服务器</string>
     <string name="server_options_use_official">使用官方服务器</string>
-    <string name="custom_server_title">连接到自定义服务器</string>
-    <string name="custom_server_description">输入您的服务器管理员提供的后端网址。</string>
-    <string name="custom_server_url_placeholder">https://backend.example.com</string>
-    <string name="custom_server_check">检查服务器</string>
-    <string name="custom_server_checking">检查中…</string>
-    <string name="custom_server_review_title">审查自定义服务器</string>
-    <string name="custom_server_review_description">发现文档有效。连接后您将登出当前服务器并重启应用。请确认这是您拥有或信任的服务器。</string>
-    <string name="custom_server_verified_label">已发现的后端</string>
-    <string name="custom_server_key_label">客户端配置</string>
-    <string name="custom_server_key_discovered">已自动发现可发布密钥</string>
-    <string name="custom_server_warning_title">只连接到您信任的服务器</string>
-    <string name="custom_server_warning_public">此服务器使用公共主机名。应用无法验证谁拥有或运营它。</string>
-    <string name="custom_server_warning_http">此服务器位于专用网络，但 HTTP 流量未加密。网络中的其他设备可能能够读取它。</string>
-    <string name="custom_server_warning_public_http">此服务器使用公共主机名和未加密的 HTTP。凭据和同步数据可能在传输中暴露。</string>
-    <string name="custom_server_warning_private">这似乎是专用网络服务器，但应用仍无法验证谁控制它。</string>
-    <string name="custom_server_warning_credentials">服务器运营者可以接收您的账户凭据并访问您通过此服务器同步的数据。</string>
-    <string name="custom_server_trust_action">我信任此服务器</string>
-    <string name="custom_server_switching">切换中…</string>
     <string name="official_server_title">使用官方服务器？</string>
     <string name="official_server_description">您将登出自定义服务器，应用将重启并连接到官方服务。</string>
     <string name="official_server_action">使用官方服务器</string>
-    <string name="custom_server_error_invalid_url">请输入有效的 HTTP 或 HTTPS 后端网址。</string>
-    <string name="custom_server_error_official_active">api.nuvio.tv 是官方服务器，且已被选中。</string>
-    <string name="custom_server_error_official_available">api.nuvio.tv 是官方服务器。关闭此对话框并选择「使用官方服务器」以切换回去。</string>
-    <string name="custom_server_error_connection">无法访问发现端点。请检查网址和服务器可用性。</string>
-    <string name="custom_server_error_http">发现端点返回 HTTP %1$d。</string>
-    <string name="custom_server_error_response_too_large">发现文档超出允许的大小。</string>
-    <string name="custom_server_error_invalid_document">服务器返回了无效的发现文档。</string>
-    <string name="custom_server_error_version">不支持此发现文档版本。</string>
-    <string name="custom_server_error_service">该发现文档不属于此应用。</string>
-    <string name="custom_server_error_not_self_hosted">发现文档未标识自托管服务器。</string>
-    <string name="custom_server_error_missing_configuration">发现文档缺少有效的后端网址或可发布密钥。</string>
-    <string name="custom_server_error_no_auth">服务器未声明支持的登录方式。</string>
-    <string name="custom_server_save_failed">无法保存服务器配置。</string>
-    <string name="custom_server_session_clear_failed">无法安全清除当前会话。服务器未被更改。</string>
-    <string name="custom_server_restart_failed">服务器已保存，但应用无法自动重启。请手动重启。</string>
 
     <string name="auth_qr_title">使用 QR 码登录</string>
     <string name="auth_qr_tagline">随时随地观看您的媒体库</string>
@@ -2155,25 +2046,7 @@
     <string name="auth_qr_terms_prefix">注册/登录即表示我同意</string>
     <string name="auth_qr_terms_link">服务条款</string>
 
-    <string name="sync_generate_title">生成同步码</string>
-    <string name="sync_generate_subtitle">创建 PIN 以保护您的同步码。与其他设备分享此代码。</string>
-    <string name="sync_generate_code_label">您的同步码</string>
-    <string name="sync_generate_instruction">在其他设备上输入此代码和您的 PIN 以链接它们。</string>
-    <string name="sync_generate_done">完成</string>
-    <string name="sync_generate_pin_label">选择 PIN (4-8 个字符)</string>
-    <string name="sync_generate_pin_placeholder">输入 PIN</string>
-    <string name="sync_generate_generating">生成中…</string>
-    <string name="sync_generate_code_btn">生成代码</string>
 
-    <string name="sync_claim_title">链接设备</string>
-    <string name="sync_claim_subtitle">输入其他设备的同步码和 PIN 以链接此设备。</string>
-    <string name="sync_claim_success">设备链接成功！您的扩展和插件现在将同步。</string>
-    <string name="sync_claim_done">完成</string>
-    <string name="sync_claim_code_label">同步码</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">输入 PIN</string>
-    <string name="sync_claim_linking">链接中…</string>
 
     <string name="plugin_readonly_notice">使用主要用户的插件，无法更改</string>
     <string name="plugin_repositories_section">仓库 (%1$d)</string>
@@ -2259,13 +2132,6 @@
     <string name="update_latest_version">您正在使用最新版本。</string>
     <string name="update_unknown_sources">允许从未知来源安装以继续。</string>
     <!-- AccountScreen -->
-    <string name="account_title">账户</string>
-    <string name="account_sign_in_description">登录以在设备间同步您的媒体库、观看进度、扩展和插件。当 Trakt 未连接时，媒体库同步使用 Nuvio Sync，观看进度可使用 Trakt 或 Nuvio Sync。</string>
-    <string name="account_sync_code_title">同步码</string>
-    <string name="account_sync_code_description">无需创建账户即可跨设备同步。</string>
-    <string name="account_linked_devices">已链接的设备 (%1$d)</string>
-    <string name="account_no_linked_devices">没有已链接的设备</string>
-    <string name="account_unlink">取消链接</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">正在加载剧集评分…</string>
@@ -2441,7 +2307,6 @@
     <string name="cd_qr_login">QR 码登录</string>
     <string name="cd_nuvio">Nuvio</string>
 
-    <string name="debug_signin_success">登录成功</string>
     <string name="debug_generate_description">调试生成的 %1$s 项目 #%2$d</string>
     <string name="debug_generate_result_failed">失败：%1$s</string>
     <string name="debug_generate_library_result_added">已将 %1$d 个项目添加至媒体库</string>
@@ -3227,4 +3092,5 @@
     <string name="stream_test_video_bitrate">平均视频比特率：%1$s</string>
     <string name="stream_test_error_connection">连接失败。上次播放的流链接可能已过期或无法访问。请重新播放视频并重试。</string>
 
+    <string name="account_error_generic_retry">出错了。请重试。</string>
 </resources>

@@ -28,7 +28,7 @@ import com.nuvio.tv.data.mediaserver.ServerConnection
 import com.nuvio.tv.data.mediaserver.ServerFailure
 import com.nuvio.tv.data.mediaserver.ServerProvider
 import com.nuvio.tv.ui.components.NuvioDialog
-import com.nuvio.tv.ui.screens.account.InputField
+import com.nuvio.tv.ui.screens.settings.InputField
 import com.nuvio.tv.ui.theme.NuvioTheme
 
 internal data class ServerSignInRequest(

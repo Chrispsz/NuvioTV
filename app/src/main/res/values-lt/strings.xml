@@ -180,7 +180,6 @@
     <string name="about_supporters_contributors_subtitle">Viešas pripažinimas ir projekto nuopelnai</string>
 
     <!-- SettingsScreen categories -->
-    <string name="settings_account">Paskyra</string>
     <string name="settings_profiles">Profiliai</string>
     <string name="settings_layout">Išdėstymas</string>
     <string name="settings_plugins">Įskiepiai</string>
@@ -190,12 +189,6 @@
     <string name="settings_trakt_subtitle">Atidaryti „Trakt“ ryšio ekraną</string>
     <string name="settings_debug">Derinimas (Debug)</string>
     <string name="settings_plugins_section_subtitle">Valdyti repozitorijas, teikėjus ir įskiepių būsenas</string>
-    <string name="settings_account_section_subtitle">Paskyros ir sinchronizavimo būsena</string>
-    <string name="account_stat_addons">priedai</string>
-    <string name="account_stat_plugins">įskiepiai</string>
-    <string name="account_stat_library">biblioteka</string>
-    <string name="account_stat_progress">pažanga</string>
-    <string name="account_stat_watched">žiūrėta</string>
     <string name="settings_integrations_section">Integracijos</string>
     <string name="settings_integrations_section_subtitle">Tvarkykite galimas integracijas</string>
     <string name="settings_tmdb_subtitle">Metaduomenų praturtinimo valdikliai</string>
@@ -521,9 +514,6 @@
     <string name="trakt_account_login">Paskyros prisijungimas</string>
     <string name="trakt_awaiting_instruction">Eikite į trakt.tv/activate ir įveskite šį kodą:</string>
     <string name="trakt_waiting_approval">Laukiama patvirtinimo…</string>
-    <string name="qr_login_approved">Prisijungimas patvirtintas. Užbaigiama…</string>
-    <string name="qr_login_pending">Laukiama patvirtinimo jūsų telefone…</string>
-    <string name="qr_login_expired">QR prisijungimo galiojimas pasibaigė. Sugeneruokite naują kodą.</string>
     <string name="trakt_code_expires">Kodas galioja dar %1$s</string>
     <string name="trakt_token_refreshes">„Trakt“ prieigos raktas atnaujinamas po %1$s</string>
     <string name="trakt_login_instruction">Paspauskite „Prisijungti“, kad pradėtumėte „Trakt“ įrenginio autentifikavimą. Čia pasirodys QR kodas.</string>
@@ -571,17 +561,7 @@
     <string name="debug_playback_error_title">Atkūrimo klaidos ekranas</string>
     <string name="debug_playback_error_subtitle">Rodyti simuliuojamą atkūrimo klaidos langą</string>
     <string name="debug_section_features">Funkcijų perjungikliai</string>
-    <string name="debug_account_tab_title">Paskyros skirtukas</string>
-    <string name="debug_account_tab_subtitle">Rodyti „Paskyros“ (Account) skirtuką nustatymų navigacijoje</string>
-    <string name="debug_sync_code_title">Sinchronizavimo kodo funkcijos</string>
-    <string name="debug_sync_code_subtitle">Rodyti „Generuoti/Įvesti sinchronizavimo kodą“ mygtukus paskyros nustatymuose</string>
     <string name="debug_section_account">Paskyra</string>
-    <string name="debug_manual_signin_title">Rankinis prisijungimas</string>
-    <string name="debug_manual_signin_subtitle">Prisijungti su el. paštu ir slaptažodžiu („Supabase auth“)</string>
-    <string name="debug_email_placeholder">El. paštas</string>
-    <string name="debug_password_placeholder">Slaptažodis</string>
-    <string name="debug_signing_in">Prisijungiama…</string>
-    <string name="debug_sign_in">Prisijungti</string>
     <string name="debug_error_dialog_title">Atkūrimo klaida</string>
     <string name="debug_error_dialog_subtitle">Atkūrimo metu įvyko klaida.
 
@@ -825,15 +805,6 @@ Klaida: Bandomoji simuliuojama klaida — tai nėra tikras gedimas. Šaltinis gr
     <string name="library_empty_trakt_subtitle">Naudokite „+“ informacijos lange turiniui pridėti į žiūrėjimo ar kitus sąrašus</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Įkeliama…</string>
-    <string name="account_sync_description">Jūsų paskyra sinchronizuojama per „Nuvio Sync“.</string>
-    <string name="account_sync_restart_note">Pakeitimų įsigaliojimui gali reikėti paleisti programą iš naujo.</string>
-    <string name="account_signin_qr_title">Prisijungti</string>
-    <string name="account_signin_qr_subtitle">„Nuvio“ naudoja „Supabase“ sinchronizavimui</string>
-    <string name="account_signed_in_label">Prisijungta kaip</string>
-    <string name="account_total_label">Iš viso</string>
-    <string name="account_loading_sync">Sinchronizuojama…</string>
-    <string name="account_sign_out">Atsijungti</string>
 
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">Prisijungti</string>
@@ -858,23 +829,8 @@ Klaida: Bandomoji simuliuojama klaida — tai nėra tikras gedimas. Šaltinis gr
     <string name="auth_qr_back">Atgal</string>
 
     <!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">Generuoti kodą</string>
-    <string name="sync_generate_subtitle">Naudokite šį kodą kitame įrenginyje</string>
-    <string name="sync_generate_code_label">Sinchronizavimo kodas</string>
-    <string name="sync_generate_instruction">Įveskite šį kodą kitame įrenginyje</string>
-    <string name="sync_generate_done">Atlikta</string>
-    <string name="sync_generate_pin_label">PIN kodas</string>
-    <string name="sync_generate_pin_placeholder">Įveskite PIN</string>
 
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">Prijungti įrenginį</string>
-    <string name="sync_claim_subtitle">Įveskite kodą iš kito įrenginio</string>
-    <string name="sync_claim_success">Sėkmingai prijungta</string>
-    <string name="sync_claim_done">Atlikta</string>
-    <string name="sync_claim_code_label">Įvesti kodą</string>
-    <string name="sync_claim_code_placeholder">Kodas</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">PIN</string>
 
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">Naudojami pagrindinio profilio įskiepiai</string>
@@ -934,13 +890,6 @@ Klaida: Bandomoji simuliuojama klaida — tai nėra tikras gedimas. Šaltinis gr
     <string name="update_downloading_ellipsis">Atsiunčiama…</string>
     <string name="update_unknown_sources">Leisti diegti iš nežinomų šaltinių</string>
     <!-- AccountScreen -->
-    <string name="account_title">Paskyra</string>
-    <string name="account_sign_in_description">Prisijunkite, kad sinchronizuotumėte biblioteką, pažangą ir priedus tarp įrenginių. Biblioteka sinchronizuojama per „Nuvio Sync“, kai „Trakt“ neprijungta.</string>
-    <string name="account_sync_code_title">Sinchronizavimo kodas</string>
-    <string name="account_sync_code_description">Susiekite savo įrenginius naudodami kodą</string>
-    <string name="account_linked_devices">Susieti įrenginiai (%1$d)</string>
-    <string name="account_no_linked_devices">Susietų įrenginių nėra</string>
-    <string name="account_unlink">Atsieti</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Įkeliami įvertinimai…</string>

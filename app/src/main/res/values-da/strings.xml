@@ -374,7 +374,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">Oplevelse</string>
-    <string name="settings_account">Konto</string>
     <string name="settings_profiles">Profiler</string>
     <string name="settings_layout">Layout</string>
     <string name="settings_content_discovery">Indhold &amp; Opdagelse</string>
@@ -418,34 +417,6 @@
     <string name="essential_subtitle_language_subtitle">Foretrukket undertekstsprog.</string>
     <string name="essential_audio_language_subtitle">Foretrukket lydsprog.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">Forkert PIN.</string>
-    <string name="account_error_sync_code_expired">Synkroniseringskoden er udløbet.</string>
-    <string name="account_error_invalid_sync_code">Ugyldig synkroniseringskode.</string>
-    <string name="account_error_sync_code_not_found">Synkroniseringskode ikke fundet.</string>
-    <string name="account_error_device_already_linked">Enheden er allerede tilknyttet.</string>
-    <string name="account_error_generic_retry">Noget gik galt. Prøv igen.</string>
-    <string name="account_error_invalid_credentials">Forkert e-mail eller adgangskode.</string>
-    <string name="account_error_email_not_confirmed">Bekræft venligst din e-mail først.</string>
-    <string name="account_error_email_already_registered">En konto med denne e-mail findes allerede.</string>
-    <string name="account_error_invalid_email">Indtast venligst en gyldig e-mailadresse.</string>
-    <string name="account_error_password_too_short">Adgangskoden er for kort.</string>
-    <string name="account_error_password_too_weak">Adgangskoden er for svag.</string>
-    <string name="account_error_signup_disabled">Registrering er i øjeblikket deaktiveret.</string>
-    <string name="account_error_rate_limited">For mange forsøg. Prøv igen senere.</string>
-    <string name="account_error_qr_login_expired">QR-login er udløbet. Prøv igen.</string>
-    <string name="account_error_invalid_qr_login">Ugyldig QR-loginkode.</string>
-    <string name="account_error_qr_login_other_device">Dette QR-login blev anmodet fra en anden enhed.</string>
-    <string name="account_error_qr_login_outdated">QR-logintjenesten er forældet. Genanvend TV-login SQL-opsætning.</string>
-    <string name="account_error_qr_login_missing_setup">QR-login-backend mangler opsætning. Opdater TV-login SQL-opsætning.</string>
-    <string name="account_error_qr_login_misconfigured">QR-login-URL er forkert konfigureret.</string>
-    <string name="account_error_qr_login_invalid_request">QR-loginanmodning var ugyldig. Prøv igen.</string>
-    <string name="account_error_no_internet">Ingen internetforbindelse.</string>
-    <string name="account_error_connection_timeout">Forbindelsen udløb. Prøv igen.</string>
-    <string name="account_error_connection_refused">Kunne ikke oprette forbindelse til serveren.</string>
-    <string name="account_error_not_authenticated">Log venligst ind først.</string>
-    <string name="account_error_service_unavailable">Tjenesten er utilgængelig. Prøv igen senere.</string>
-    <string name="account_error_invalid_request">Ugyldig anmodning. Tjek venligst dine oplysninger.</string>
-    <string name="account_error_unexpected">Der opstod en uventet fejl.</string>
     <string name="experience_mode_switch_to_essential">Skift til grundlæggende</string>
     <string name="experience_mode_switch_to_essential_subtitle">Skjul avancerede opsætningsflader uden at ændre dine gemte værdier.</string>
     <string name="experience_mode_switch_to_advanced">Skift til avanceret</string>
@@ -487,12 +458,6 @@
     <string name="advanced_remember_last_profile_subtitle">Husk senest valgte profil ved opstart</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_plugins_section_subtitle">Administrer repositories, udbydere og plugintilstande</string>
-    <string name="settings_account_section_subtitle">Konto- og synkroniseringsstatus</string>
-    <string name="account_stat_addons">addons</string>
-    <string name="account_stat_plugins">plugins</string>
-    <string name="account_stat_library">bibliotek</string>
-    <string name="account_stat_progress">fremskridt</string>
-    <string name="account_stat_watched">set</string>
     <string name="settings_integrations_section">Integrationer</string>
     <string name="settings_integrations_section_subtitle">Administrer tilgængelige integrationer</string>
     <string name="settings_tmdb_subtitle">Kontrol af metadataberigelse</string>
@@ -1109,16 +1074,6 @@
     <string name="trakt_account_login">Kontologin</string>
     <string name="trakt_awaiting_instruction">Gå til trakt.tv/activate og indtast denne kode:</string>
     <string name="trakt_waiting_approval">Venter på godkendelse…</string>
-    <string name="qr_login_approved">Login godkendt. Afslutter login…</string>
-    <string name="qr_login_pending">Venter på godkendelse på din telefon…</string>
-    <string name="qr_login_expired">QR-login udløbet. Generér en ny kode.</string>
-    <string name="qr_login_preparing">Forbereder QR-login...</string>
-    <string name="qr_login_device_auth_failed">Kunne ikke godkende enheden</string>
-    <string name="qr_login_scan_prompt">Scan QR-kode og log ind på din telefon</string>
-    <string name="qr_login_start_failed">Kunne ikke starte QR-login</string>
-    <string name="qr_login_signing_in">Logger dig ind…</string>
-    <string name="qr_login_success">Logget ind</string>
-    <string name="qr_login_exchange_failed">Kunne ikke fuldføre QR-login</string>
     <string name="trakt_code_expires">Koden udløber om %1$s</string>
     <string name="trakt_token_refreshes">Trakt-adgangstoken opdateres om %1$s</string>
     <string name="trakt_login_instruction">Tryk på Login for at starte Trakt-enhedsgodkendelse. En QR-kode vises her.</string>
@@ -1187,19 +1142,9 @@
     <string name="debug_playback_error_title">Afspilningsfejl-skærm</string>
     <string name="debug_playback_error_subtitle">Vis en simuleret afspilningsfejl-popup</string>
     <string name="debug_section_features">Feature-skift</string>
-    <string name="debug_account_tab_title">Konto-fane</string>
-    <string name="debug_account_tab_subtitle">Vis konto-fanen i indstillingsnavigationen</string>
-    <string name="debug_sync_code_title">Sync-kode-funktioner</string>
-    <string name="debug_sync_code_subtitle">Vis knapper til at generere/indtaste sync-kode i kontoindstillinger</string>
     <string name="debug_buffer_logs_title">Aktivér BUFFER-logs</string>
     <string name="debug_buffer_logs_subtitle">Udsend periodiske buffer-diagnostik til logcat (deaktiveret som standard)</string>
     <string name="debug_section_account">Konto</string>
-    <string name="debug_manual_signin_title">Manuel log ind</string>
-    <string name="debug_manual_signin_subtitle">Log ind med e-mail og adgangskode (Supabase-godkendelse)</string>
-    <string name="debug_email_placeholder">E-mail</string>
-    <string name="debug_password_placeholder">Adgangskode</string>
-    <string name="debug_signing_in">Logger ind\u2026</string>
-    <string name="debug_sign_in">Log ind</string>
     <string name="debug_error_dialog_title">Afspilningsfejl</string>
     <string name="debug_error_dialog_subtitle">Der opstod en fejl under afspilning.\n\nFejl: Test-simuleret fejl – dette er ikke en reel fejl. Kilden returnerede HTTP 503 (Service Unavailable).</string>
     <string name="debug_dismiss">Luk</string>
@@ -1679,23 +1624,6 @@
     <string name="cloud_library_error_disabled">Cloud-bibliotek er deaktiveret.</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Indlæser\u2026</string>
-    <string name="account_sync_description">Synkroniser dit bibliotek, seerfremskridt, addons og plugins på tværs af enheder.</string>
-    <string name="account_sync_restart_note">Synkronisering sker ikke i realtid på tværs af aktive enheder. Genstart denne enhed efter login, eller for at hente ændringer foretaget andetsteds.</string>
-    <string name="account_signin_qr_title">Log ind med QR</string>
-    <string name="account_signin_qr_subtitle">Scan en QR-kode og gennemfør e-mail-login på din telefon</string>
-    <string name="account_signed_in_label">Logget ind</string>
-    <string name="account_total_label">I alt</string>
-    <string name="account_loading_sync">Indlæser synkroniseringsdata\u2026</string>
-    <string name="account_sign_out">Log ud</string>
-    <string name="account_error_signin_required">Log ind med en konto først.</string>
-    <string name="account_signin_create_title">Log ind / Opret konto</string>
-    <string name="account_signin_create_desc">Brug e-mail og adgangskode til at oprette eller logge ind på din konto.</string>
-    <string name="account_generate_sync_desc">Opret en kode på denne enhed, så andre enheder kan tilknytte sig.</string>
-    <string name="account_enter_sync_desc">Tilknyt denne enhed til en anden enhed ved hjælp af en synkroniseringskode.</string>
-    <string name="account_signed_in_as">Logget ind som</string>
-    <string name="account_generate_sync_signed_in_desc">Opret en kode, så andre enheder kan synkronisere med denne konto.</string>
-    <string name="account_unknown_device">Ukendt enhed</string>
 
     <string name="auth_signin_title">Log ind</string>
     <string name="auth_signin_tv_disabled">Indtastning af e-mail/adgangskode på TV er deaktiveret. Fortsæt med QR-login.</string>
@@ -1717,25 +1645,7 @@
     <string name="auth_qr_continue">Fortsæt</string>
     <string name="auth_qr_back">Tilbage</string>
 
-    <string name="sync_generate_title">Generer synkroniseringskode</string>
-    <string name="sync_generate_subtitle">Opret en PIN-kode for at beskytte din synkroniseringskode. Del koden med dine andre enheder.</string>
-    <string name="sync_generate_code_label">Din synkroniseringskode</string>
-    <string name="sync_generate_instruction">Indtast denne kode og din PIN-kode på din anden enhed for at tilknytte dem.</string>
-    <string name="sync_generate_done">Udført</string>
-    <string name="sync_generate_pin_label">Vælg en PIN-kode (4-8 tegn)</string>
-    <string name="sync_generate_pin_placeholder">Indtast PIN-kode</string>
-    <string name="sync_generate_generating">Genererer\u2026</string>
-    <string name="sync_generate_code_btn">Generer kode</string>
 
-    <string name="sync_claim_title">Tilknyt enhed</string>
-    <string name="sync_claim_subtitle">Indtast synkroniseringskoden og PIN-koden fra din anden enhed for at tilknytte denne enhed.</string>
-    <string name="sync_claim_success">Enhed tilknyttet! Dine addons og plugins synkroniseres nu.</string>
-    <string name="sync_claim_done">Udført</string>
-    <string name="sync_claim_code_label">Synkroniseringskode</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN-kode</string>
-    <string name="sync_claim_pin_placeholder">Indtast PIN-kode</string>
-    <string name="sync_claim_linking">Tilknytter\u2026</string>
 
     <string name="plugin_readonly_notice">Bruger primær profils plugins og kan ikke ændres</string>
     <string name="plugin_repositories_section">Repositories (%1$d)</string>
@@ -1815,13 +1725,6 @@
     <string name="update_downloading_ellipsis">Downloader…</string>
     <string name="update_unknown_sources">Tillad installationer fra ukendte kilder for at fortsætte.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Konto</string>
-    <string name="account_sign_in_description">Log ind for at synkronisere dit bibliotek, se-fremskridt, addons og plugins på tværs af enheder. Bibliotekssynkronisering bruger Nuvio Sync, når Trakt ikke er tilsluttet, og se-fremskridt kan bruge enten Trakt eller Nuvio Sync.</string>
-    <string name="account_sync_code_title">Synkroniseringskode</string>
-    <string name="account_sync_code_description">Synkroniser på tværs af enheder uden at oprette en konto.</string>
-    <string name="account_linked_devices">Tilknyttede enheder (%1$d)</string>
-    <string name="account_no_linked_devices">Ingen tilknyttede enheder</string>
-    <string name="account_unlink">Fjern tilknytning</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Indlæser episodebedømmelser...</string>
@@ -1995,7 +1898,6 @@
     <string name="cd_qr_login">QR-loginkode</string>
     <string name="cd_nuvio">Nuvio</string>
 
-    <string name="debug_signin_success">Logget ind</string>
     <string name="debug_generate_description">Debug-genereret %1$s element nr. %2$d</string>
     <string name="debug_generate_result_failed">Mislykkedes: %1$s</string>
     <string name="debug_generate_library_result_added">Tilføjede %1$d elementer til bibliotek</string>
@@ -2696,4 +2598,5 @@
     <string name="profile_default_name">Profil %1$d</string>
     <string name="detail_tmdb_fallback_title">TMDB %1$d</string>
     <string name="collections_editor_tmdb_collection_fallback">TMDB Collection %1$d</string>
+    <string name="account_error_generic_retry">Noget gik galt. Prøv igen.</string>
 </resources>

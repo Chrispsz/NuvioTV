@@ -419,7 +419,6 @@
 
     <!-- SettingsScreen categories -->
 <string name="settings_experience">Esperienza</string>
-<string name="settings_account">Account</string>
 <string name="settings_profiles">Profili</string>
 <string name="settings_layout">Aspetto</string>
 <string name="settings_content_discovery">Contenuti e scoperta</string>
@@ -489,34 +488,6 @@
 <string name="essential_subtitle_language_subtitle">Lingua preferita per i sottotitoli.</string>
 <string name="essential_audio_language_subtitle">Lingua preferita per l\'audio.</string>
     <!-- Account / sign-in error messages -->
-<string name="account_error_incorrect_pin">PIN errato.</string>
-<string name="account_error_sync_code_expired">Il codice di sincronizzazione è scaduto.</string>
-<string name="account_error_invalid_sync_code">Codice di sincronizzazione non valido.</string>
-<string name="account_error_sync_code_not_found">Codice di sincronizzazione non trovato.</string>
-<string name="account_error_device_already_linked">Il dispositivo è già collegato.</string>
-<string name="account_error_generic_retry">Qualcosa è andato storto. Riprova.</string>
-<string name="account_error_invalid_credentials">E-mail o password errate.</string>
-<string name="account_error_email_not_confirmed">Conferma prima la tua e-mail.</string>
-<string name="account_error_email_already_registered">Esiste già un account con questa e-mail.</string>
-<string name="account_error_invalid_email">Inserisci un indirizzo e-mail valido.</string>
-<string name="account_error_password_too_short">La password è troppo corta.</string>
-<string name="account_error_password_too_weak">La password è troppo debole.</string>
-<string name="account_error_signup_disabled">Le registrazioni sono attualmente disabilitate.</string>
-<string name="account_error_rate_limited">Troppi tentativi. Riprova più tardi.</string>
-<string name="account_error_qr_login_expired">Login tramite QR scaduto. Riprova.</string>
-<string name="account_error_invalid_qr_login">Codice login QR non valido.</string>
-<string name="account_error_qr_login_other_device">Questo login tramite QR è stato richiesto da un altro dispositivo.</string>
-<string name="account_error_qr_login_outdated">Il servizio di login QR è obsoleto. Riapplica il setup SQL del login TV.</string>
-<string name="account_error_qr_login_missing_setup">Setup backend per login QR mancante. Aggiorna il setup SQL del login TV.</string>
-<string name="account_error_qr_login_misconfigured">L\'URL del login QR non è configurato correttamente.</string>
-<string name="account_error_qr_login_invalid_request">La richiesta di login QR non è valida. Riprova.</string>
-<string name="account_error_no_internet">Nessuna connessione internet.</string>
-<string name="account_error_connection_timeout">Connessione scaduta. Riprova.</string>
-<string name="account_error_connection_refused">Impossibile connettersi al server.</string>
-<string name="account_error_not_authenticated">Effettua prima l\'accesso.</string>
-<string name="account_error_service_unavailable">Servizio non disponibile. Riprova più tardi.</string>
-<string name="account_error_invalid_request">Richiesta non valida. Controlla i dati inseriti.</string>
-<string name="account_error_unexpected">Si è verificato un errore imprevisto.</string>
 <string name="experience_mode_switch_to_essential">Passa a Essenziale</string>
 <string name="experience_mode_switch_to_essential_subtitle">Nasconde le opzioni di configurazione avanzata senza modificare i valori salvati.</string>
 <string name="experience_mode_switch_to_advanced">Passa ad Avanzata</string>
@@ -589,12 +560,6 @@
 <string name="confirm_exit_toast">Premi di nuovo indietro per uscire</string>
 <string name="settings_debug">Debug</string>
 <string name="settings_plugins_section_subtitle">Gestisci repository, provider e stato dei plugin</string>
-<string name="settings_account_section_subtitle">Stato dell\'account e della sincronizzazione</string>
-<string name="account_stat_addons">addon</string>
-<string name="account_stat_plugins">plugin</string>
-<string name="account_stat_library">libreria</string>
-<string name="account_stat_progress">progresso</string>
-<string name="account_stat_watched">guardato</string>
 <string name="settings_integrations_section">Integrazioni</string>
 <string name="settings_integrations_section_subtitle">Gestisci le integrazioni disponibili</string>
 <string name="settings_tmdb_subtitle">Controlli per l\'arricchimento dei metadati</string>
@@ -1305,16 +1270,6 @@
 <string name="trakt_account_login">Accesso Account</string>
 <string name="trakt_awaiting_instruction">Vai su trakt.tv/activate e inserisci questo codice:</string>
 <string name="trakt_waiting_approval">In attesa di approvazione\u2026</string>
-<string name="qr_login_approved">Login Eseguito. Completamento accesso…</string>
-<string name="qr_login_pending">In attesa di approvazione dal tuo telefono…</string>
-<string name="qr_login_expired">Login Scaduto. Genera un nuovo QR Code.</string>
-<string name="qr_login_preparing">Preparazione login tramite QR...</string>
-<string name="qr_login_device_auth_failed">Autenticazione dispositivo fallita</string>
-<string name="qr_login_scan_prompt">Scansiona il QR ed effettua l\'accesso sul tuo telefono</string>
-<string name="qr_login_start_failed">Avvio del login tramite QR fallito</string>
-<string name="qr_login_signing_in">Accesso in corso…</string>
-<string name="qr_login_success">Accesso effettuato con successo</string>
-<string name="qr_login_exchange_failed">Impossibile completare l\'accesso tramite QR</string>
 <string name="trakt_code_expires">Il codice scade in %1$s</string>
 <string name="trakt_token_refreshes">Il token di accesso Trakt si rinnoverà tra %1$s</string>
 <string name="trakt_login_instruction">Premi Accedi per avviare l\'autenticazione del dispositivo Trakt. Un codice QR apparirà qui.</string>
@@ -1389,10 +1344,6 @@
 <string name="debug_progress_indicator_default">Predefinito</string>
 <string name="debug_progress_indicator_large">Grande</string>
 <string name="debug_section_features">Interruttori funzionalità</string>
-<string name="debug_account_tab_title">Scheda Account</string>
-<string name="debug_account_tab_subtitle">Mostra la scheda Account nella navigazione Impostazioni</string>
-<string name="debug_sync_code_title">Funzionalità Codice di Sincronizzazione</string>
-<string name="debug_sync_code_subtitle">Mostra i pulsanti Genera/Inserisci Codice Sincronizzazione nelle impostazioni Account</string>
 <string name="debug_member_tier_title">Simula livello Supporter</string>
 <string name="debug_member_tier_subtitle">Scegli il livello supporter verificato restituito in questa build di debug</string>
 <string name="debug_member_tier_none">Nessuno</string>
@@ -1401,12 +1352,6 @@
 <string name="debug_buffer_logs_title">Attiva log BUFFER</string>
 <string name="debug_buffer_logs_subtitle">Emetti diagnostica periodica del buffer del player su logcat (disattivato per impostazione predefinita)</string>
 <string name="debug_section_account">Account</string>
-<string name="debug_manual_signin_title">Accesso manuale</string>
-<string name="debug_manual_signin_subtitle">Accedi con email e password (autenticazione Supabase)</string>
-<string name="debug_email_placeholder">Indirizzo email</string>
-<string name="debug_password_placeholder">Password</string>
-<string name="debug_signing_in">Accesso in corso\u2026</string>
-<string name="debug_sign_in">Accedi</string>
 <string name="debug_error_dialog_title">Errore di riproduzione</string>
 <string name="debug_error_dialog_subtitle">Si è verificato un errore durante la riproduzione.\n\nErrore: Errore simulato di test - questo non è un vero guasto. La sorgente ha restituito HTTP 503 (Servizio non disponibile).</string>
 <string name="debug_dismiss">Chiudi</string>
@@ -1975,27 +1920,6 @@
 <string name="cloud_library_error_disabled">La libreria cloud è disattivata.</string>
 
     <!-- AccountSettingsContent -->
-<string name="account_loading">Caricamento\u2026</string>
-<string name="account_sync_description">Sincronizza la tua libreria, l\'avanzamento della visione, gli addon e i plugin su tutti i tuoi dispositivi.</string>
-<string name="account_sync_restart_note">La sincronizzazione non è in tempo reale tra dispositivi attivi. Riavvia questo dispositivo dopo l\'accesso o per ricevere modifiche fatte altrove.</string>
-<string name="account_signin_qr_title">Accedi con QR</string>
-<string name="account_signin_qr_subtitle">Scansiona un codice QR e completa l\'accesso via email sul tuo telefono</string>
-<string name="account_signin_email_title">Accedi</string>
-<string name="account_signin_email_subtitle">Inserisci email e password del tuo account self-hosted</string>
-<string name="account_signed_in_label">Accesso effettuato</string>
-<string name="account_total_label">Totale</string>
-<string name="account_loading_sync">Caricamento dati di sincronizzazione\u2026</string>
-<string name="account_sign_out">Esci</string>
-<string name="account_sign_out_confirm_title">Disconnettersi?</string>
-<string name="account_sign_out_confirm_subtitle">Dovrai accedere di nuovo per sincronizzare libreria, progressi di visione, addon e plugin su questo dispositivo.</string>
-<string name="account_error_signin_required">Accedi prima con un account.</string>
-<string name="account_signin_create_title">Accedi / Crea account</string>
-<string name="account_signin_create_desc">Usa email e password per creare o accedere al tuo account.</string>
-<string name="account_generate_sync_desc">Crea un codice su questo dispositivo così altri dispositivi potranno collegarsi.</string>
-<string name="account_enter_sync_desc">Collega questo dispositivo a un altro usando un codice di sincronizzazione.</string>
-<string name="account_signed_in_as">Accesso eseguito come</string>
-<string name="account_generate_sync_signed_in_desc">Crea un codice così altri dispositivi potranno sincronizzarsi con questo account.</string>
-<string name="account_unknown_device">Dispositivo sconosciuto</string>
 
 <string name="auth_signin_title">Accedi</string>
 <string name="auth_signin_tv_disabled">L\'inserimento di email/password su TV è disabilitato. Continua con l\'accesso tramite QR Code.</string>
@@ -2010,42 +1934,9 @@
 <string name="server_options_connect_custom">Connetti a un server personalizzato</string>
 <string name="server_options_change_custom">Connetti a un altro server</string>
 <string name="server_options_use_official">Usa il server ufficiale</string>
-<string name="custom_server_title">Connetti a un server personalizzato</string>
-<string name="custom_server_description">Inserisci l\'URL del backend fornito dall\'amministratore del tuo server.</string>
-<string name="custom_server_url_placeholder">https://backend.example.com</string>
-<string name="custom_server_check">Controlla server</string>
-<string name="custom_server_checking">Controllo in corso\u2026</string>
-<string name="custom_server_review_title">Verifica server personalizzato</string>
-<string name="custom_server_review_description">Il documento di discovery è valido. Connettendoti verrai disconnesso dal server attuale e l\'app si riavvierà. Conferma che questo è un server di tua proprietà o di cui ti fidi.</string>
-<string name="custom_server_verified_label">Backend rilevato</string>
-<string name="custom_server_key_label">Configurazione client</string>
-<string name="custom_server_key_discovered">Chiave pubblicabile rilevata automaticamente</string>
-<string name="custom_server_warning_title">Connettiti solo a un server di cui ti fidi</string>
-<string name="custom_server_warning_public">Questo server usa un hostname pubblico. L\'app non può verificare chi lo possiede o lo gestisce.</string>
-<string name="custom_server_warning_http">Questo server è su una rete privata, ma il traffico HTTP non è criptato. Altri dispositivi sulla rete potrebbero riuscire a leggerlo.</string>
-<string name="custom_server_warning_public_http">Questo server usa un hostname pubblico e HTTP non criptato. Le credenziali e i dati sincronizzati potrebbero essere esposti durante il trasferimento.</string>
-<string name="custom_server_warning_private">Questo sembra essere un server su rete privata, ma l\'app non può comunque verificare chi lo controlla.</string>
-<string name="custom_server_warning_credentials">L\'operatore del server può ricevere le credenziali del tuo account e accedere ai dati che sincronizzi tramite questo server.</string>
-<string name="custom_server_trust_action">Mi fido di questo server</string>
-<string name="custom_server_switching">Cambio in corso\u2026</string>
 <string name="official_server_title">Usare il server ufficiale?</string>
 <string name="official_server_description">Verrai disconnesso dal server personalizzato e l\'app si riavvierà con il servizio ufficiale.</string>
 <string name="official_server_action">Usa il server ufficiale</string>
-<string name="custom_server_error_invalid_url">Inserisci un URL Backend HTTP o HTTPS valido.</string>
-<string name="custom_server_error_official_active">api.nuvio.tv è il server ufficiale ed è già selezionato.</string>
-<string name="custom_server_error_official_available">api.nuvio.tv è il server ufficiale. Chiudi questa finestra e scegli Usa il server ufficiale per tornare indietro.</string>
-<string name="custom_server_error_connection">Impossibile raggiungere l\'endpoint di discovery. Controlla l\'URL e la disponibilità del server.</string>
-<string name="custom_server_error_http">L\'endpoint di discovery ha restituito HTTP %1$d.</string>
-<string name="custom_server_error_response_too_large">Il documento di discovery è più grande del consentito.</string>
-<string name="custom_server_error_invalid_document">Il server ha restituito un documento di discovery non valido.</string>
-<string name="custom_server_error_version">Questa versione del documento di discovery non è supportata.</string>
-<string name="custom_server_error_service">Il documento di discovery non è per questa app.</string>
-<string name="custom_server_error_not_self_hosted">Il documento di discovery non identifica un server self-hosted.</string>
-<string name="custom_server_error_missing_configuration">Nel documento di discovery manca un URL Backend o una chiave pubblicabile validi.</string>
-<string name="custom_server_error_no_auth">Il server non dichiara alcun metodo di accesso supportato.</string>
-<string name="custom_server_save_failed">Impossibile salvare la configurazione del server.</string>
-<string name="custom_server_session_clear_failed">Impossibile cancellare in sicurezza la sessione attuale. Il server non è stato modificato.</string>
-<string name="custom_server_restart_failed">Il server è stato salvato, ma non è stato possibile riavviare automaticamente l\'app. Riavviala manualmente.</string>
 
 <string name="auth_qr_title">Accedi con QR Code</string>
 <string name="auth_qr_tagline">Guarda la tua libreria, ovunque</string>
@@ -2067,25 +1958,7 @@
 <string name="auth_qr_terms_prefix">Registrandomi / accedendo, accetto i</string>
 <string name="auth_qr_terms_link">Termini</string>
 
-<string name="sync_generate_title">Genera codice di sincronizzazione</string>
-<string name="sync_generate_subtitle">Crea un PIN per proteggere il tuo codice di sincronizzazione. Condividi il codice con gli altri tuoi dispositivi.</string>
-<string name="sync_generate_code_label">Il tuo codice di sincronizzazione</string>
-<string name="sync_generate_instruction">Inserisci questo codice e il tuo PIN sull\'altro dispositivo per collegarli.</string>
-<string name="sync_generate_done">Fatto</string>
-<string name="sync_generate_pin_label">Scegli un PIN (4-8 caratteri)</string>
-<string name="sync_generate_pin_placeholder">Inserisci PIN</string>
-<string name="sync_generate_generating">Generazione in corso\u2026</string>
-<string name="sync_generate_code_btn">Genera codice</string>
 
-<string name="sync_claim_title">Collega dispositivo</string>
-<string name="sync_claim_subtitle">Inserisci il codice di sincronizzazione e il PIN dell\'altro dispositivo per collegare questo dispositivo.</string>
-<string name="sync_claim_success">Dispositivo collegato con successo! I tuoi addon e plugin verranno ora sincronizzati.</string>
-<string name="sync_claim_done">Fatto</string>
-<string name="sync_claim_code_label">Codice di sincronizzazione</string>
-<string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-<string name="sync_claim_pin_label">PIN</string>
-<string name="sync_claim_pin_placeholder">Inserisci PIN</string>
-<string name="sync_claim_linking">Collegamento in corso\u2026</string>
 
 <string name="plugin_readonly_notice">Stai usando i plugin del profilo principale, non possono essere modificati</string>
 <string name="plugin_repositories_section">Repository (%1$d)</string>
@@ -2171,13 +2044,6 @@
 <string name="update_latest_version">Stai usando l\'ultima versione.</string>
 <string name="update_unknown_sources">Consenti l\'installazione da sorgenti sconosciute per continuare.</string>
     <!-- AccountScreen -->
-<string name="account_title">Account</string>
-<string name="account_sign_in_description">Accedi per sincronizzare libreria, avanzamento visione, addon e plugin tra i dispositivi. La libreria usa Nuvio Sync quando Trakt non è collegato; l\'avanzamento visione può usare Trakt o Nuvio Sync.</string>
-<string name="account_sync_code_title">Codice di sincronizzazione</string>
-<string name="account_sync_code_description">Sincronizza su tutti i dispositivi senza creare un account.</string>
-<string name="account_linked_devices">Dispositivi collegati (%1$d)</string>
-<string name="account_no_linked_devices">Nessun dispositivo collegato</string>
-<string name="account_unlink">Scollega</string>
 
     <!-- EpisodeRatingsSection -->
 <string name="ratings_loading">Caricamento valutazioni episodi\u2026</string>
@@ -2353,7 +2219,6 @@
 <string name="cd_qr_login">Codice QR login</string>
 <string name="cd_nuvio">Nuvio</string>
 
-<string name="debug_signin_success">Accesso eseguito correttamente</string>
 <string name="debug_generate_description">Debug-generato %1$s elemento #%2$d</string>
 <string name="debug_generate_result_failed">Fallito: %1$s</string>
 <string name="debug_generate_library_result_added">Aggiunti %1$d elementi alla libreria</string>
@@ -3365,4 +3230,5 @@
     <string name="autosync_label_synced">Sincronizzato automaticamente</string>
     <string name="stream_resume_from_time">Riprendi da %1$s</string>
     <string name="stream_resume_from_percent">Riprendi dal %1$d%%</string>
+<string name="account_error_generic_retry">Qualcosa è andato storto. Riprova.</string>
 </resources>

@@ -466,7 +466,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">Trải nghiệm</string>
-    <string name="settings_account">Tài khoản</string>
     <string name="settings_profiles">Hồ sơ</string>
     <string name="settings_layout">Bố cục</string>
     <string name="settings_content_discovery">Nội dung &amp; Khám phá</string>
@@ -537,34 +536,6 @@
     <string name="essential_subtitle_language_subtitle">Ngôn ngữ phụ đề ưu tiên.</string>
     <string name="essential_audio_language_subtitle">Ngôn ngữ âm thanh ưu tiên.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">Mã PIN không đúng.</string>
-    <string name="account_error_sync_code_expired">Mã đồng bộ hóa đã hết hạn.</string>
-    <string name="account_error_invalid_sync_code">Mã đồng bộ hóa không hợp lệ.</string>
-    <string name="account_error_sync_code_not_found">Không tìm thấy mã đồng bộ hóa.</string>
-    <string name="account_error_device_already_linked">Thiết bị đã được liên kết.</string>
-    <string name="account_error_generic_retry">Đã xảy ra lỗi. Vui lòng thử lại.</string>
-    <string name="account_error_invalid_credentials">Email hoặc mật khẩu không đúng.</string>
-    <string name="account_error_email_not_confirmed">Vui lòng xác nhận email trước.</string>
-    <string name="account_error_email_already_registered">Tài khoản với email này đã tồn tại.</string>
-    <string name="account_error_invalid_email">Vui lòng nhập email hợp lệ.</string>
-    <string name="account_error_password_too_short">Mật khẩu quá ngắn.</string>
-    <string name="account_error_password_too_weak">Mật khẩu quá yếu.</string>
-    <string name="account_error_signup_disabled">Đăng ký hiện đang bị tắt.</string>
-    <string name="account_error_rate_limited">Quá nhiều lần thử. Vui lòng thử lại sau.</string>
-    <string name="account_error_qr_login_expired">Mã QR đăng nhập đã hết hạn. Vui lòng thử lại.</string>
-    <string name="account_error_invalid_qr_login">Mã QR đăng nhập không hợp lệ.</string>
-    <string name="account_error_qr_login_other_device">Mã QR đăng nhập này được yêu cầu từ thiết bị khác.</string>
-    <string name="account_error_qr_login_outdated">Dịch vụ đăng nhập bằng mã QR không còn được hỗ trợ. Vui lòng thiết lập lại đăng nhập TV bằng SQL.</string>
-    <string name="account_error_qr_login_missing_setup">Hệ thống hậu kỳ đăng nhập bằng mã QR chưa được thiết lập. Vui lòng cập nhật thiết lập đăng nhập TV bằng SQL.</string>
-    <string name="account_error_qr_login_misconfigured">URL đăng nhập bằng mã QR được cấu hình sai.</string>
-    <string name="account_error_qr_login_invalid_request">Yêu cầu đăng nhập bằng mã QR không hợp lệ. Vui lòng thử lại.</string>
-    <string name="account_error_no_internet">Không có kết nối internet..</string>
-    <string name="account_error_connection_timeout">Kết nối đã hết thời gian chờ. Vui lòng thử lại.</string>
-    <string name="account_error_connection_refused">Không thể kết nối đến máy chủ.</string>
-    <string name="account_error_not_authenticated">Vui lòng đăng nhập trước.</string>
-    <string name="account_error_service_unavailable">Dịch vụ hiện không có sẵn. Vui lòng thử lại sau.</string>
-    <string name="account_error_invalid_request">Yêu cầu không hợp lệ. Vui lòng kiểm tra dữ liệu đầu vào.</string>
-    <string name="account_error_unexpected">Đã xảy ra lỗi không mong muốn..</string>
     <string name="experience_mode_switch_to_essential">Chuyển sang Cơ bản</string>
     <string name="experience_mode_switch_to_essential_subtitle">Ẩn các giao diện thiết lập nâng cao mà không thay đổi các giá trị đã lưu.</string>
     <string name="experience_mode_switch_to_advanced">Chuyển sang Nâng cao</string>
@@ -639,12 +610,6 @@
     <string name="confirm_exit_toast">Nhấn quay lại lần nữa để thoát</string>
     <string name="settings_debug">Gỡ lỗi</string>
     <string name="settings_plugins_section_subtitle">Quản lý kho lưu trữ, nhà cung cấp và trạng thái trình mở rộng</string>
-    <string name="settings_account_section_subtitle">Tài khoản và trạng thái đồng bộ</string>
-    <string name="account_stat_addons">tiện ích</string>
-    <string name="account_stat_plugins">trình mở rộng</string>
-    <string name="account_stat_library">thư viện</string>
-    <string name="account_stat_progress">tiến độ</string>
-    <string name="account_stat_watched">đã xem</string>
     <string name="settings_integrations_section">Tích hợp</string>
     <string name="settings_integrations_section_subtitle">Quản lý tích hợp có sẵn</string>
     <string name="settings_tmdb_subtitle">Kiểm soát việc bổ sung siêu dữ liệu</string>
@@ -1506,16 +1471,6 @@
     <string name="trakt_account_login">Đăng nhập tài khoản</string>
     <string name="trakt_awaiting_instruction">Vào trakt.tv/activate và nhập mã này:</string>
     <string name="trakt_waiting_approval">Đang chờ phê duyệt…</string>
-    <string name="qr_login_approved">Đã phê duyệt đăng nhập. Đang hoàn tất đăng nhập...</string>
-    <string name="qr_login_pending">Đang chờ phê duyệt trên điện thoại của bạn…</string>
-    <string name="qr_login_expired">Mã QR đã hết hạn. Tạo mã mới.</string>
-    <string name="qr_login_preparing">Đang chuẩn bị đăng nhập bằng mã QR...</string>
-    <string name="qr_login_device_auth_failed">Không thể xác thực thiết bị</string>
-    <string name="qr_login_scan_prompt">Quét mã QR và đăng nhập trên điện thoại của bạn</string>
-    <string name="qr_login_start_failed">Không thể bắt đầu đăng nhập bằng mã QR</string>
-    <string name="qr_login_signing_in">Đang đăng nhập…</string>
-    <string name="qr_login_success">Đăng nhập thành công</string>
-    <string name="qr_login_exchange_failed">Không thể hoàn tất đăng nhập bằng mã QR</string>
     <string name="trakt_code_expires">Mã hết hạn sau %1$s</string>
     <string name="trakt_token_refreshes">Token truy cập Trakt làm mới sau %1$s</string>
     <string name="trakt_login_instruction">Nhấn Đăng nhập để bắt đầu xác thực thiết bị Trakt. Mã QR sẽ xuất hiện ở đây.</string>
@@ -1591,10 +1546,6 @@
     <string name="debug_progress_indicator_default">Mặc định</string>
     <string name="debug_progress_indicator_large">Lớn</string>
     <string name="debug_section_features">Bật/tắt tính năng</string>
-    <string name="debug_account_tab_title">Thẻ Tài khoản</string>
-    <string name="debug_account_tab_subtitle">Hiển thị thẻ Tài khoản trong Cài đặt điều hướng</string>
-    <string name="debug_sync_code_title">Tính năng mã đồng bộ</string>
-    <string name="debug_sync_code_subtitle">Hiển thị nút Tạo/Nhập mã đồng bộ trong cài đặt Tài khoản</string>
     <string name="debug_member_tier_title">Mô phỏng cấp người tài trợ</string>
     <string name="debug_member_tier_subtitle">Chọn cấp người tài trợ đã xác thực được trả về trong bản dựng gỡ lỗi này</string>
     <string name="debug_member_tier_none">Không có</string>
@@ -1603,12 +1554,6 @@
     <string name="debug_buffer_logs_title">Bật nhật ký BỘ ĐỆM</string>
     <string name="debug_buffer_logs_subtitle">Ghi định kỳ thông tin chẩn đoán bộ đệm của trình phát vào logcat (đã tắt theo mặc định)</string>
     <string name="debug_section_account">Tài khoản</string>
-    <string name="debug_manual_signin_title">Đăng nhập thủ công</string>
-    <string name="debug_manual_signin_subtitle">Đăng nhập bằng email và mật khẩu (Xác thực Supabase)</string>
-    <string name="debug_email_placeholder">Email</string>
-    <string name="debug_password_placeholder">Mật khẩu</string>
-    <string name="debug_signing_in">Đang đăng nhập\u2026</string>
-    <string name="debug_sign_in">Đăng nhập</string>
     <string name="debug_error_dialog_title">Lỗi phát lại</string>
     <string name="debug_error_dialog_subtitle">Đã xảy ra lỗi trong quá trình phát lại.\n\nLỗi: Lỗi mô phỏng để kiểm tra - đây không phải lỗi thực. Nguồn trả về HTTP 503 (Dịch vụ không khả dụng).</string>
     <string name="debug_dismiss">Bỏ qua</string>
@@ -2215,27 +2160,6 @@
     <string name="cloud_library_error_disabled">Thư viện đám mây đang tắt</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Đang tải\u2026</string>
-    <string name="account_sync_description">Đồng bộ thư viện, tiến độ xem, tiện ích và trình mở rộng trên nhiều thiết bị.</string>
-    <string name="account_sync_restart_note">Đồng bộ không diễn ra theo thời gian thực trên các thiết bị đang hoạt động. Vui lòng khởi động lại thiết bị này sau khi đăng nhập hoặc để nhận các thay đổi được thực hiện trên thiết bị khác.</string>
-    <string name="account_signin_qr_title">Đăng nhập bằng mã QR</string>
-    <string name="account_signin_qr_subtitle">Quét mã QR và hoàn tất đăng nhập email trên điện thoại</string>
-    <string name="account_signin_email_title">Đăng nhập</string>
-    <string name="account_signin_email_subtitle">Nhập email và mật khẩu tài khoản tự lưu trữ của bạn</string>
-    <string name="account_signed_in_label">Đã đăng nhập</string>
-    <string name="account_total_label">Tổng cộng</string>
-    <string name="account_loading_sync">Đang tải dữ liệu đồng bộ\u2026</string>
-    <string name="account_sign_out">Đăng xuất</string>
-    <string name="account_sign_out_confirm_title">Đăng xuất?</string>
-    <string name="account_sign_out_confirm_subtitle">Bạn sẽ cần đăng nhập lại để đồng bộ thư viện, tiến trình xem, tiện ích và trình mở rộng trên thiết bị này.</string>
-    <string name="account_error_signin_required">Đăng nhập bằng tài khoản trước.</string>
-    <string name="account_signin_create_title">Đăng nhập / Tạo tài khoản</string>
-    <string name="account_signin_create_desc">Sử dụng email và mật khẩu để tạo hoặc đăng nhập vào tài khoản.</string>
-    <string name="account_generate_sync_desc">Tạo một mã trên thiết bị này để các thiết bị khác bằng nó.</string>
-    <string name="account_enter_sync_desc">Liên kết thiết bị này với một thiết bị khác bằng mã đồng bộ.</string>
-    <string name="account_signed_in_as">Đã đăng nhập bằng</string>
-    <string name="account_generate_sync_signed_in_desc">Tạo một mã để các thiết bị khác có thể đồng bộ với tài khoản này.</string>
-    <string name="account_unknown_device">Thiết bị không rõ</string>
 
     <string name="auth_signin_title">Đăng nhập</string>
     <string name="auth_signin_tv_disabled">Tính năng nhập email/mật khẩu trên TV đã bị tắt. Tiếp tục bằng cách đăng nhập qua mã QR.</string>
@@ -2250,42 +2174,9 @@
     <string name="server_options_connect_custom">Kết nối với máy chủ tùy chỉnh</string>
     <string name="server_options_change_custom">Kết nối với máy chủ khác</string>
     <string name="server_options_use_official">Sử dụng máy chủ chính thức</string>
-    <string name="custom_server_title">Kết nối với máy chủ tùy chỉnh</string>
-    <string name="custom_server_description">Nhập URL Backend do quản trị viên máy chủ cung cấp.</string>
-    <string name="custom_server_url_placeholder">https://backend.example.com</string>
-    <string name="custom_server_check">Kiểm tra máy chủ</string>
-    <string name="custom_server_checking">Đang kiểm tra\u2026</string>
-    <string name="custom_server_review_title">Đánh giá máy chủ tùy chỉnh</string>
-    <string name="custom_server_review_description">Tài liệu khám phá hợp lệ. Việc kết nối sẽ đăng xuất bạn khỏi máy chủ hiện tại và khởi động lại ứng dụng. Vui lòng xác nhận đây là máy chủ do bạn sở hữu hoặc tin cậy.</string>
-    <string name="custom_server_verified_label">Đã phát hiện Backend</string>
-    <string name="custom_server_key_label">Cấu hình máy khách</string>
-    <string name="custom_server_key_discovered">Đã tự động phát hiện khóa có thể công khai</string>
-    <string name="custom_server_warning_title">Chỉ kết nối với máy chủ bạn tin cậy</string>
-    <string name="custom_server_warning_public">Máy chủ này sử dụng tên miền công cộng. Ứng dụng không thể xác thực ai sở hữu hoặc vận hành máy chủ này.</string>
-    <string name="custom_server_warning_http">Máy chủ này thuộc mạng nội bộ, nhưng lưu lượng HTTP không được mã hóa. Các thiết bị khác trong mạng có thể đọc được dữ liệu.</string>
-    <string name="custom_server_warning_public_http">Máy chủ này sử dụng tên miền công cộng và HTTP không được mã hóa. Thông tin đăng nhập và dữ liệu đồng bộ có thể bị lộ trong quá trình truyền.</string>
-    <string name="custom_server_warning_private">Đây có vẻ là máy chủ mạng nội bộ, nhưng ứng dụng vẫn không thể xác thực ai đang kiểm soát máy chủ này.</string>
-    <string name="custom_server_warning_credentials">Nhà vận hành máy chủ có thể nhận thông tin đăng nhập tài khoản của bạn và truy cập dữ liệu bạn đồng bộ qua máy chủ này.</string>
-    <string name="custom_server_trust_action">Tôi tin cậy máy chủ này</string>
-    <string name="custom_server_switching">Đang chuyển sang\u2026</string>
     <string name="official_server_title">Sử dụng máy chủ chính thức?</string>
     <string name="official_server_description">Bạn sẽ bị đăng xuất khỏi máy chủ tùy chỉnh và ứng dụng sẽ khởi động lại với dịch vụ chính thức.</string>
     <string name="official_server_action">Sử dụng máy chủ chính thức</string>
-    <string name="custom_server_error_invalid_url">Nhập URL Backend HTTP hoặc HTTPS hợp lệ.</string>
-    <string name="custom_server_error_official_active">api.nuvio.tv là máy chủ chính thức và đã được chọn.</string>
-    <string name="custom_server_error_official_available">api.nuvio.tv là máy chủ chính thức. Vui lòng đóng hộp thoại này và chọn “Sử dụng máy chủ chính thức” để chuyển trở lại.</string>
-    <string name="custom_server_error_connection">Không thể tiếp cận điểm cuối phát hiện. Vui lòng kiểm tra lại URL và trạng thái hoạt động của máy chủ.</string>
-    <string name="custom_server_error_http">Điểm cuối phát hiện đã trả về HTTP %1$d.</string>
-    <string name="custom_server_error_response_too_large">Tài liệu khám phá có kích thước vượt quá giới hạn cho phép.</string>
-    <string name="custom_server_error_invalid_document">Máy chủ trả về tài liệu khám phá không hợp lệ.</string>
-    <string name="custom_server_error_version">Phiên bản tài liệu khám phá này không được hỗ trợ.</string>
-    <string name="custom_server_error_service">Tài liệu khám phá không dành cho ứng dụng này.</string>
-    <string name="custom_server_error_not_self_hosted">Tài liệu khám phá không xác định đây là máy chủ tự lưu trữ.</string>
-    <string name="custom_server_error_missing_configuration">Tài liệu khám phá thiếu URL Backend hoặc khóa công khai hợp lệ.</string>
-    <string name="custom_server_error_no_auth">Máy chủ không cung cấp phương thức đăng nhập được hỗ trợ.</string>
-    <string name="custom_server_save_failed">Không thể lưu cấu hình máy chủ.</string>
-    <string name="custom_server_session_clear_failed">Không thể xóa an toàn phiên hiện tại. Máy chủ chưa được thay đổi.</string>
-    <string name="custom_server_restart_failed">Đã lưu máy chủ nhưng ứng dụng không thể tự động khởi động lại. Vui lòng khởi động lại ứng dụng thủ công.</string>
 
     <string name="auth_qr_title">Đăng nhập bằng QR</string>
     <string name="auth_qr_tagline">Mang thư viện phim theo bạn mọi nơi</string>
@@ -2307,25 +2198,7 @@
     <string name="auth_qr_terms_prefix">Bằng việc đăng ký / đăng nhập, tôi đồng ý với</string>
     <string name="auth_qr_terms_link">Điều khoản sử dụng</string>
 
-    <string name="sync_generate_title">Tạo mã đồng bộ</string>
-    <string name="sync_generate_subtitle">Tạo mã PIN để bảo vệ mã đồng bộ. Chia sẻ mã với các thiết bị khác.</string>
-    <string name="sync_generate_code_label">Mã đồng bộ của bạn</string>
-    <string name="sync_generate_instruction">Nhập mã này và PIN trên thiết bị khác để liên kết chúng.</string>
-    <string name="sync_generate_done">Xong</string>
-    <string name="sync_generate_pin_label">Chọn mã PIN (4-8 ký tự)</string>
-    <string name="sync_generate_pin_placeholder">Nhập mã PIN</string>
-    <string name="sync_generate_generating">Đang tạo\u2026</string>
-    <string name="sync_generate_code_btn">Tạo mã</string>
 
-    <string name="sync_claim_title">Liên kết thiết bị</string>
-    <string name="sync_claim_subtitle">Nhập mã đồng bộ và mã PIN từ thiết bị khác của bạn để liên kết thiết bị này.</string>
-    <string name="sync_claim_success">Liên kết thiết bị thành công! Tiện ích và trình mở rộng của bạn sẽ đồng bộ ngay bây giờ.</string>
-    <string name="sync_claim_done">Xong</string>
-    <string name="sync_claim_code_label">Mã đồng bộ</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">Mã PIN</string>
-    <string name="sync_claim_pin_placeholder">Nhập mã PIN</string>
-    <string name="sync_claim_linking">Đang liên kết\u2026</string>
 
     <string name="plugin_readonly_notice">Đang dùng trình mở rộng của hồ sơ chính và không thể thay đổi</string>
     <string name="plugin_repositories_section">Kho lưu trữ (%1$d)</string>
@@ -2411,13 +2284,6 @@
     <string name="update_latest_version">Bạn đang sử dụng phiên bản mới nhất.</string>
     <string name="update_unknown_sources">Cho phép cài đặt từ nguồn không xác định để tiếp tục.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Tài khoản</string>
-    <string name="account_sign_in_description">Đăng nhập để đồng bộ thư viện, tiến trình xem, tiện ích và trình mở rộng trên các thiết bị. Tính năng đồng bộ thư viện sử dụng Đồng bộ Nuvio khi chưa kết nối Trakt, còn tiến trình xem có thể sử dụng Trakt hoặc Đồng bộ Nuvio.</string>
-    <string name="account_sync_code_title">Mã đồng bộ</string>
-    <string name="account_sync_code_description">Đồng bộ giữa các thiết bị mà không cần tạo tài khoản.</string>
-    <string name="account_linked_devices">Thiết bị đã liên kết (%1$d)</string>
-    <string name="account_no_linked_devices">Không có thiết bị đã liên kết</string>
-    <string name="account_unlink">Huỷ liên kết</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Đang tải điểm đánh giá các tập phim...</string>
@@ -2604,7 +2470,6 @@
     <string name="cd_qr_login">Mã QR đăng nhập</string>
     <string name="cd_nuvio">Nuvio</string>
 
-    <string name="debug_signin_success">Đăng nhập thành công</string>
     <string name="debug_generate_description">Mục %1$s được tạo để gỡ lỗi #%2$d</string>
     <string name="debug_generate_result_failed">Thất bại: %1$s</string>
     <string name="debug_generate_library_result_added">Đã thêm %1$d mục vào thư viện</string>
@@ -3433,4 +3298,5 @@
     <string name="autosync_label_synced">Đã tự động đồng bộ</string>
     <string name="stream_resume_from_time">Xem tiếp từ %1$s</string>
     <string name="stream_resume_from_percent">Xem tiếp từ %1$d%%</string>
+    <string name="account_error_generic_retry">Đã xảy ra lỗi. Vui lòng thử lại.</string>
 </resources>

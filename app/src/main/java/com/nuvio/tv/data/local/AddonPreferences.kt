@@ -70,6 +70,7 @@ class AddonPreferences @Inject constructor(
                 val parsed = parseUrlList(json)
                 when {
                     isUnmodifiedFactoryPack(parsed) -> getDefaultAddons().toList()
+                    isFactoryPackV13(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV12(parsed) -> getDefaultAddons().toList()
                     else -> parsed
                 }
@@ -248,22 +249,37 @@ class AddonPreferences @Inject constructor(
     // (HomeViewModelCatalogUtils.rebuildCatalogOrder) — por isso CANAIS AO VIVO
     // (Tvvio, 100+ canais de esportes/gerais + eventos, ativamente mantido) vem
     // PRIMEIRO: abrir o app já mostra canais, como TV de verdade.
-    // Depois: Cinemeta (catálogo/metadata global de filmes e séries), FrostStream
-    // (VOD BR rápido via HTTP), Torrentio BR (fallback torrent: providers
-    // comando/bludv/micoleaodublado, ordenação qualidade+seeders), Anime Kitsu
-    // (catálogos de animes: trending/airing/popular/rating) e OpenSubtitles.
-    // Só conteúdo HTTP nos live: Torrentio é o único torrent do pack.
-    // Testado em 02-03/11/2026: Tvvio 200 OK v2.1.0 (100 canais + eventos);
-    // anime-kitsu.strem.fun 200 OK em 40ms (community.anime.kitsu v0.0.10);
+    // Depois: Cinemeta (catálogo/metadata global de filmes e séries), Torrentio BR
+    // (fonte primária de streams torrent: providers comando/bludv/micoleaodublado,
+    // ordenação qualidade+seeders), MediaFusion | Midnight (2ª fonte torrent com
+    // scrapers independentes — redundância contra rate-limit do Torrentio),
+    // Anime Kitsu (catálogos de animes: trending/airing/popular/rating) e OpenSubtitles.
+    // Testado em 03/11/2026 (cadeia completa catálogo→meta→streams):
+    // Tvvio 200 OK v2.1.0 (100 canais + eventos); anime-kitsu.strem.fun 200 OK
+    // em 40ms (community.anime.kitsu v0.0.10, 50/50 metas com imdb_id);
     // Bludv VIVO — para tt0317248 devolve REMUX em PORTUGUÊS exclusivo dos
     // providers BR (torrentio testado: +1 stream só-no-BR vs padrão).
     // Torrentio cobre anime com IDs kitsu (100 streams p/ kitsu:7442, providers
-    // gerais + 1337x/TPB). FrostStream pode 403 para datacenter (Cloudflare),
-    // mas responde na rede residencial; Torrentio cobre o VOD se falhar.
+    // gerais + 1337x/TPB). Cobertura da cadeia: Torrentio 19/20, MF Midnight
+    // 20/20 dos itens do top do Cinemeta com ao menos 1 stream.
+    // FrostStream REMOVIDO na 1.4.0: domínio froststream.cloutteam.com morreu
+    // (manifest e streams 404 para todo mundo — causava "não encontra nada").
     // Meu Futebol REMOVIDO (manifest inacessível, timeout 12s no teste).
     // BestCine permanece FORA do pack: passou a exigir login (deixou de ser
     // zero-config); segue disponível por instalação manual de 1 clique no site.
+    // Ordem = ordem das fileiras da Home: canais ao vivo primeiro.
     private fun getDefaultAddons(): Set<String> = setOf(
+        "https://tvvio.megaembed-frost.workers.dev",
+        "https://v3-cinemeta.strem.io",
+        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
+        "https://mediafusionfortheweebs.midnightignite.me",
+        "https://anime-kitsu.strem.fun",
+        "https://opensubtitles-v3.strem.io"
+    )
+
+    // Pack da 1.3.0 (antes da saída do FrostStream) — migra automaticamente quem
+    // atualizou da 1.3.x sem personalizar a lista.
+    private val factoryPackV13: Set<String> = setOf(
         "https://tvvio.megaembed-frost.workers.dev",
         "https://v3-cinemeta.strem.io",
         "https://froststream.cloutteam.com",
@@ -271,6 +287,12 @@ class AddonPreferences @Inject constructor(
         "https://anime-kitsu.strem.fun",
         "https://opensubtitles-v3.strem.io"
     )
+
+    private fun isFactoryPackV13(urls: List<String>): Boolean {
+        if (urls.size != factoryPackV13.size) return false
+        return urls.map { it.trim().lowercase() }.toSet() ==
+            factoryPackV13.map { it.lowercase() }.toSet()
+    }
 
     // Pack da 1.2.0 (antes dos animes) — usado para migrar automaticamente quem
     // atualizou da 1.2.x sem personalizar a lista.

@@ -215,7 +215,6 @@
     <string name="about_supporters_contributors_subtitle">Åpen anerkjennelse og prosjektkreditter</string>
 
     <!-- SettingsScreen categories -->
-    <string name="settings_account">Konto</string>
     <string name="settings_profiles">Profiler</string>
     <string name="settings_layout">Oppsett</string>
     <string name="settings_plugins">Programtillegg</string>
@@ -242,12 +241,6 @@
     <string name="network_connection_offline">Frakoblet</string>
     <string name="settings_debug">Feilsøking</string>
     <string name="settings_plugins_section_subtitle">Administrer lagrer, leverandører og programtilleggstilstander</string>
-    <string name="settings_account_section_subtitle">Kontostatus og synkroniseringsstatus</string>
-    <string name="account_stat_addons">tillegg</string>
-    <string name="account_stat_plugins">programtillegg</string>
-    <string name="account_stat_library">bibliotek</string>
-    <string name="account_stat_progress">progresjon</string>
-    <string name="account_stat_watched">sett</string>
     <string name="settings_integrations_section">Integrasjoner</string>
     <string name="settings_integrations_section_subtitle">Administrer tilgjengelige integrasjoner</string>
     <string name="settings_tmdb_subtitle">Kontroller for metadataberikelse</string>
@@ -581,9 +574,6 @@
     <string name="trakt_account_login">Kontologging</string>
     <string name="trakt_awaiting_instruction">Gå til trakt.tv/activate og skriv inn denne koden:</string>
     <string name="trakt_waiting_approval">Venter på godkjenning…</string>
-    <string name="qr_login_approved">Login godkjent. Avslutter pålogging…</string>
-    <string name="qr_login_pending">Venter på godkjenning på telefonen din…</string>
-    <string name="qr_login_expired">QR-login utløpt. Generer en ny kode.</string>
     <string name="trakt_code_expires">Kode utløper om %1$s</string>
     <string name="trakt_token_refreshes">Trakt-tilgangstoken oppfriskes om %1$s</string>
     <string name="trakt_login_instruction">Trykk Login for å starte Trakt-enhetsautentisering. En QR-kode vises her.</string>
@@ -639,17 +629,7 @@
     <string name="debug_playback_error_title">Avspillingsfeilskjerm</string>
     <string name="debug_playback_error_subtitle">Vis et simulert avspillingsfeils-popup</string>
     <string name="debug_section_features">Funksjonstoggler</string>
-    <string name="debug_account_tab_title">Kontofane</string>
-    <string name="debug_account_tab_subtitle">Vis kontofanen i innstillingsnavigasjonen</string>
-    <string name="debug_sync_code_title">Synkroniser kodefunksjoner</string>
-    <string name="debug_sync_code_subtitle">Vis generer/skriv inn synkkodeknapper i kontoinnstillinger</string>
     <string name="debug_section_account">Konto</string>
-    <string name="debug_manual_signin_title">Manuell pålogging</string>
-    <string name="debug_manual_signin_subtitle">Logg inn med e-post og passord (Supabase-godkjenning)</string>
-    <string name="debug_email_placeholder">E-post</string>
-    <string name="debug_password_placeholder">Passord</string>
-    <string name="debug_signing_in">Logger inn\u2026</string>
-    <string name="debug_sign_in">Logg inn</string>
     <string name="debug_error_dialog_title">Avspillingsfeil</string>
     <string name="debug_error_dialog_subtitle">En feil oppstod under avspilling.\n\nFeil: Testsimulert feil - dette er ikke en virkelig feil. Kildereturnert HTTP 503 (Service Unavailable).</string>
     <string name="debug_dismiss">Avvis</string>
@@ -940,15 +920,6 @@
     <string name="library_empty_trakt_subtitle">Bruk + i detaljer for å legge til elementer i ønskelisten eller lister</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Laster\u2026</string>
-    <string name="account_sync_description">Synkroniser biblioteket, seeframgang, tillegg og programtillegg på tvers av enheter.</string>
-    <string name="account_sync_restart_note">Sync er ikke sanntid på tvers av aktive enheter. Start denne enheten på nytt etter pålogging eller for å hente endringer gjort andre steder.</string>
-    <string name="account_signin_qr_title">Logg inn med QR</string>
-    <string name="account_signin_qr_subtitle">Skann en QR-kode og fullfør e-postlogging på telefonen din</string>
-    <string name="account_signed_in_label">Logget inn</string>
-    <string name="account_total_label">Totalt</string>
-    <string name="account_loading_sync">Laster synkdata\u2026</string>
-    <string name="account_sign_out">Logg ut</string>
 
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">Logg inn</string>
@@ -973,23 +944,8 @@
     <string name="auth_qr_back">Tilbake</string>
 
     <!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">Generer synkkode</string>
-    <string name="sync_generate_subtitle">Opprett en PIN for å beskytte synkkoden. Del koden med de andre enhetene dine.</string>
-    <string name="sync_generate_code_label">Din synkkode</string>
-    <string name="sync_generate_instruction">Skriv inn denne koden og PIN-en din på den andre enheten for å koble dem.</string>
-    <string name="sync_generate_done">Ferdig</string>
-    <string name="sync_generate_pin_label">Velg en PIN (4-8 tegn)</string>
-    <string name="sync_generate_pin_placeholder">Skriv inn PIN</string>
 
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">Kobling av enhet</string>
-    <string name="sync_claim_subtitle">Skriv inn synkkoden og PIN-en fra den andre enheten din for å koble denne enheten.</string>
-    <string name="sync_claim_success">Enhet koblet sammen! Tillegg og programtillegg vil nå synkroniseres.</string>
-    <string name="sync_claim_done">Ferdig</string>
-    <string name="sync_claim_code_label">Synkkode</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">Skriv inn PIN</string>
 
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">Bruker primær profilens programtillegg og kan ikke endres</string>
@@ -1052,13 +1008,6 @@
     <string name="update_downloading_ellipsis">Laster ned…</string>
     <string name="update_unknown_sources">Tillat installasjon fra ukjente kilder for å fortsette.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Konto</string>
-    <string name="account_sign_in_description">Logg inn for å synkronisere biblioteket, seeframgang, tillegg og programtillegg på tvers av enheter. Biblioteksynk bruker Nuvio Sync når Trakt ikke er tilkoblet, og seeframgang kan bruke enten Trakt eller Nuvio Sync.</string>
-    <string name="account_sync_code_title">Synkkode</string>
-    <string name="account_sync_code_description">Synkroniser på tvers av enheter uten å opprette en konto.</string>
-    <string name="account_linked_devices">Koblede enheter (%1$d)</string>
-    <string name="account_no_linked_devices">Ingen koblede enheter</string>
-    <string name="account_unlink">Koble fra</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Laster episodevurderinger...</string>

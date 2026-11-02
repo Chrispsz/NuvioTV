@@ -466,7 +466,6 @@
 
     <!-- SettingsScreen categories -->
     <string name="settings_experience">Experience</string>
-    <string name="settings_account">Account</string>
     <string name="settings_profiles">Profiles</string>
     <string name="settings_layout">Layout</string>
     <string name="settings_content_discovery">Content &amp; Discovery</string>
@@ -537,34 +536,6 @@
     <string name="essential_subtitle_language_subtitle">Preferred subtitle language.</string>
     <string name="essential_audio_language_subtitle">Preferred audio language.</string>
     <!-- Account / sign-in error messages -->
-    <string name="account_error_incorrect_pin">Incorrect PIN.</string>
-    <string name="account_error_sync_code_expired">Sync code has expired.</string>
-    <string name="account_error_invalid_sync_code">Invalid sync code.</string>
-    <string name="account_error_sync_code_not_found">Sync code not found.</string>
-    <string name="account_error_device_already_linked">Device is already linked.</string>
-    <string name="account_error_generic_retry">Something went wrong. Please try again.</string>
-    <string name="account_error_invalid_credentials">Incorrect email or password.</string>
-    <string name="account_error_email_not_confirmed">Please confirm your email first.</string>
-    <string name="account_error_email_already_registered">An account with this email already exists.</string>
-    <string name="account_error_invalid_email">Please enter a valid email address.</string>
-    <string name="account_error_password_too_short">Password is too short.</string>
-    <string name="account_error_password_too_weak">Password is too weak.</string>
-    <string name="account_error_signup_disabled">Sign up is currently disabled.</string>
-    <string name="account_error_rate_limited">Too many attempts. Please try again later.</string>
-    <string name="account_error_qr_login_expired">QR login expired. Please try again.</string>
-    <string name="account_error_invalid_qr_login">Invalid QR login code.</string>
-    <string name="account_error_qr_login_other_device">This QR login was requested from another device.</string>
-    <string name="account_error_qr_login_outdated">QR login service is outdated. Reapply TV login SQL setup.</string>
-    <string name="account_error_qr_login_missing_setup">QR login backend is missing setup. Update TV login SQL setup.</string>
-    <string name="account_error_qr_login_misconfigured">QR login URL is misconfigured.</string>
-    <string name="account_error_qr_login_invalid_request">QR login request was invalid. Please retry.</string>
-    <string name="account_error_no_internet">No internet connection.</string>
-    <string name="account_error_connection_timeout">Connection timed out. Please try again.</string>
-    <string name="account_error_connection_refused">Could not connect to server.</string>
-    <string name="account_error_not_authenticated">Please sign in first.</string>
-    <string name="account_error_service_unavailable">Service unavailable. Please try again later.</string>
-    <string name="account_error_invalid_request">Invalid request. Please check your input.</string>
-    <string name="account_error_unexpected">An unexpected error occurred.</string>
     <string name="experience_mode_switch_to_essential">Switch to Essential</string>
     <string name="experience_mode_switch_to_essential_subtitle">Hide advanced setup surfaces without changing your saved values.</string>
     <string name="experience_mode_switch_to_advanced">Switch to Advanced</string>
@@ -639,12 +610,6 @@
     <string name="confirm_exit_toast">Press back again to exit</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_plugins_section_subtitle">Manage repositories, providers, and plugin states</string>
-    <string name="settings_account_section_subtitle">Account and sync status</string>
-    <string name="account_stat_addons">addons</string>
-    <string name="account_stat_plugins">plugins</string>
-    <string name="account_stat_library">library</string>
-    <string name="account_stat_progress">progress</string>
-    <string name="account_stat_watched">watched</string>
     <string name="settings_integrations_section">Integrations</string>
     <string name="settings_integrations_section_subtitle">Manage available integrations</string>
     <string name="settings_tmdb_subtitle">Metadata enrichment controls</string>
@@ -1506,16 +1471,6 @@
     <string name="trakt_account_login">Account Login</string>
     <string name="trakt_awaiting_instruction">Go to trakt.tv/activate and enter this code:</string>
     <string name="trakt_waiting_approval">Waiting for approval…</string>
-    <string name="qr_login_approved">Login approved. Finishing sign in…</string>
-    <string name="qr_login_pending">Waiting for approval on your phone…</string>
-    <string name="qr_login_expired">QR login expired. Generate a new code.</string>
-    <string name="qr_login_preparing">Preparing QR login...</string>
-    <string name="qr_login_device_auth_failed">Failed to authenticate device</string>
-    <string name="qr_login_scan_prompt">Scan QR and sign in on your phone</string>
-    <string name="qr_login_start_failed">Failed to start QR login</string>
-    <string name="qr_login_signing_in">Signing you in…</string>
-    <string name="qr_login_success">Signed in successfully</string>
-    <string name="qr_login_exchange_failed">Could not complete QR sign in</string>
     <string name="trakt_code_expires">Code expires in %1$s</string>
     <string name="trakt_token_refreshes">Trakt access token refreshes in %1$s</string>
     <string name="trakt_login_instruction">Press Login to start Trakt device authentication. A QR code will appear here.</string>
@@ -1591,10 +1546,6 @@
     <string name="debug_progress_indicator_default">Default</string>
     <string name="debug_progress_indicator_large">Large</string>
     <string name="debug_section_features">Feature Toggles</string>
-    <string name="debug_account_tab_title">Account Tab</string>
-    <string name="debug_account_tab_subtitle">Show the Account tab in Settings navigation</string>
-    <string name="debug_sync_code_title">Sync Code Features</string>
-    <string name="debug_sync_code_subtitle">Show Generate/Enter Sync Code buttons in Account settings</string>
     <string name="debug_member_tier_title">Simulate Supporter Tier</string>
     <string name="debug_member_tier_subtitle">Choose the verified supporter tier returned in this debug build</string>
     <string name="debug_member_tier_none">None</string>
@@ -1603,12 +1554,6 @@
     <string name="debug_buffer_logs_title">Enable BUFFER Logs</string>
     <string name="debug_buffer_logs_subtitle">Emit periodic player buffer diagnostics to logcat (disabled by default)</string>
     <string name="debug_section_account">Account</string>
-    <string name="debug_manual_signin_title">Manual Sign In</string>
-    <string name="debug_manual_signin_subtitle">Sign in with email and password (Supabase auth)</string>
-    <string name="debug_email_placeholder">Email</string>
-    <string name="debug_password_placeholder">Password</string>
-    <string name="debug_signing_in">Signing in\u2026</string>
-    <string name="debug_sign_in">Sign In</string>
     <string name="debug_error_dialog_title">Playback Error</string>
     <string name="debug_error_dialog_subtitle">An error occurred during playback.\n\nError: Test simulated error - this is not a real failure. Source returned HTTP 503 (Service Unavailable).</string>
     <string name="debug_dismiss">Dismiss</string>
@@ -2215,27 +2160,6 @@
     <string name="cloud_library_error_disabled">Cloud library is disabled.</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Loading\u2026</string>
-    <string name="account_sync_description">Sync your library, watch progress, addons, and plugins across devices.</string>
-    <string name="account_sync_restart_note">Sync is not real-time across active devices. Restart this device after signing in or to pick up changes made elsewhere.</string>
-    <string name="account_signin_qr_title">Sign In with QR</string>
-    <string name="account_signin_qr_subtitle">Scan a QR code and complete email login on your phone</string>
-    <string name="account_signin_email_title">Sign In</string>
-    <string name="account_signin_email_subtitle">Enter your self-hosted account email and password</string>
-    <string name="account_signed_in_label">Signed in</string>
-    <string name="account_total_label">Total</string>
-    <string name="account_loading_sync">Loading sync data\u2026</string>
-    <string name="account_sign_out">Sign Out</string>
-    <string name="account_sign_out_confirm_title">Sign out?</string>
-    <string name="account_sign_out_confirm_subtitle">You will need to sign in again to sync library, watch progress, addons, and plugins on this device.</string>
-    <string name="account_error_signin_required">Sign in with an account first.</string>
-    <string name="account_signin_create_title">Sign In / Create Account</string>
-    <string name="account_signin_create_desc">Use email and password to create or sign into your account.</string>
-    <string name="account_generate_sync_desc">Create a code on this device so other devices can link to it.</string>
-    <string name="account_enter_sync_desc">Link this device to another device using a sync code.</string>
-    <string name="account_signed_in_as">Signed in as</string>
-    <string name="account_generate_sync_signed_in_desc">Create a code so other devices can sync with this account.</string>
-    <string name="account_unknown_device">Unknown Device</string>
 
     <string name="auth_signin_title">Sign In</string>
     <string name="auth_signin_tv_disabled">Email/password entry on TV is disabled. Continue with QR sign in.</string>
@@ -2250,42 +2174,9 @@
     <string name="server_options_connect_custom">Connect to custom server</string>
     <string name="server_options_change_custom">Connect to another server</string>
     <string name="server_options_use_official">Use official server</string>
-    <string name="custom_server_title">Connect to custom server</string>
-    <string name="custom_server_description">Enter the Backend URL provided by your server administrator.</string>
-    <string name="custom_server_url_placeholder">https://backend.example.com</string>
-    <string name="custom_server_check">Check server</string>
-    <string name="custom_server_checking">Checking\u2026</string>
-    <string name="custom_server_review_title">Review custom server</string>
-    <string name="custom_server_review_description">The discovery document is valid. Connecting will sign you out of the current server and restart the app. Confirm that this is a server you own or trust.</string>
-    <string name="custom_server_verified_label">Discovered backend</string>
-    <string name="custom_server_key_label">Client configuration</string>
-    <string name="custom_server_key_discovered">Publishable key discovered automatically</string>
-    <string name="custom_server_warning_title">Only connect to a server you trust</string>
-    <string name="custom_server_warning_public">This server uses a public hostname. The app cannot verify who owns or operates it.</string>
-    <string name="custom_server_warning_http">This server is on a private network, but HTTP traffic is not encrypted. Other devices on the network may be able to read it.</string>
-    <string name="custom_server_warning_public_http">This server uses a public hostname and unencrypted HTTP. Credentials and synced data may be exposed in transit.</string>
-    <string name="custom_server_warning_private">This appears to be a private-network server, but the app still cannot verify who controls it.</string>
-    <string name="custom_server_warning_credentials">The server operator can receive your account credentials and access data you sync through this server.</string>
-    <string name="custom_server_trust_action">I trust this server</string>
-    <string name="custom_server_switching">Switching\u2026</string>
     <string name="official_server_title">Use official server?</string>
     <string name="official_server_description">You will be signed out of the custom server and the app will restart with the official service.</string>
     <string name="official_server_action">Use official server</string>
-    <string name="custom_server_error_invalid_url">Enter a valid HTTP or HTTPS Backend URL.</string>
-    <string name="custom_server_error_official_active">api.nuvio.tv is the official server and is already selected.</string>
-    <string name="custom_server_error_official_available">api.nuvio.tv is the official server. Close this dialog and choose Use official server to switch back.</string>
-    <string name="custom_server_error_connection">Could not reach the discovery endpoint. Check the URL and server availability.</string>
-    <string name="custom_server_error_http">The discovery endpoint returned HTTP %1$d.</string>
-    <string name="custom_server_error_response_too_large">The discovery document is larger than allowed.</string>
-    <string name="custom_server_error_invalid_document">The server returned an invalid discovery document.</string>
-    <string name="custom_server_error_version">This discovery document version is not supported.</string>
-    <string name="custom_server_error_service">The discovery document is not for this app.</string>
-    <string name="custom_server_error_not_self_hosted">The discovery document does not identify a self-hosted server.</string>
-    <string name="custom_server_error_missing_configuration">The discovery document is missing a valid Backend URL or publishable key.</string>
-    <string name="custom_server_error_no_auth">The server does not advertise a supported sign-in method.</string>
-    <string name="custom_server_save_failed">Could not save the server configuration.</string>
-    <string name="custom_server_session_clear_failed">Could not safely clear the current session. The server was not changed.</string>
-    <string name="custom_server_restart_failed">The server was saved, but the app could not restart automatically. Restart it manually.</string>
 
     <string name="auth_qr_title">Sign In With QR</string>
     <string name="auth_qr_tagline">Watch your library, anywhere</string>
@@ -2307,25 +2198,7 @@
     <string name="auth_qr_terms_prefix">By signing up / logging in, I agree to the</string>
     <string name="auth_qr_terms_link">Terms</string>
 
-    <string name="sync_generate_title">Generate Sync Code</string>
-    <string name="sync_generate_subtitle">Create a PIN to protect your sync code. Share the code with your other devices.</string>
-    <string name="sync_generate_code_label">Your Sync Code</string>
-    <string name="sync_generate_instruction">Enter this code and your PIN on your other device to link them.</string>
-    <string name="sync_generate_done">Done</string>
-    <string name="sync_generate_pin_label">Choose a PIN (4-8 characters)</string>
-    <string name="sync_generate_pin_placeholder">Enter PIN</string>
-    <string name="sync_generate_generating">Generating\u2026</string>
-    <string name="sync_generate_code_btn">Generate Code</string>
 
-    <string name="sync_claim_title">Link Device</string>
-    <string name="sync_claim_subtitle">Enter the sync code and PIN from your other device to link this device.</string>
-    <string name="sync_claim_success">Device linked successfully! Your addons and plugins will now sync.</string>
-    <string name="sync_claim_done">Done</string>
-    <string name="sync_claim_code_label">Sync Code</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">Enter PIN</string>
-    <string name="sync_claim_linking">Linking\u2026</string>
 
     <string name="plugin_readonly_notice">Using primary profile\'s plugins and can\'t be changed</string>
     <string name="plugin_repositories_section">Repositories (%1$d)</string>
@@ -2411,13 +2284,6 @@
     <string name="update_latest_version">You’re using the latest version.</string>
     <string name="update_unknown_sources">Allow installs from unknown sources to continue.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Account</string>
-    <string name="account_sign_in_description">Sign in to sync your library, watch progress, addons, and plugins across devices. Library sync uses Nuvio Sync when Trakt is not connected, and watch progress can use either Trakt or Nuvio Sync.</string>
-    <string name="account_sync_code_title">Sync Code</string>
-    <string name="account_sync_code_description">Sync across devices without creating an account.</string>
-    <string name="account_linked_devices">Linked Devices (%1$d)</string>
-    <string name="account_no_linked_devices">No linked devices</string>
-    <string name="account_unlink">Unlink</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Loading episode ratings...</string>
@@ -2609,7 +2475,6 @@
     <string name="cd_qr_login">QR login code</string>
     <string name="cd_nuvio">Nuvio</string>
 
-    <string name="debug_signin_success">Signed in successfully</string>
     <string name="debug_generate_description">Debug-generated %1$s item #%2$d</string>
     <string name="debug_generate_result_failed">Failed: %1$s</string>
     <string name="debug_generate_library_result_added">Added %1$d items to library</string>
@@ -3438,4 +3303,5 @@
     <string name="autosync_label_synced">Auto synced</string>
     <string name="stream_resume_from_time">Resume from %1$s</string>
     <string name="stream_resume_from_percent">Resume from %1$d%%</string>
+    <string name="account_error_generic_retry">Something went wrong. Please try again.</string>
 </resources>

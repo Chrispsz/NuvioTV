@@ -266,7 +266,6 @@
     <string name="about_supporters_contributors_subtitle">Priznanja i zasluge za projekt</string>
 
     <!-- SettingsScreen categories -->
-    <string name="settings_account">Račun</string>
     <string name="settings_profiles">Profili</string>
     <string name="settings_layout">Raspored</string>
     <string name="settings_plugins">Plugini</string>
@@ -293,12 +292,6 @@
     <string name="network_connection_offline">Van mreže</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_plugins_section_subtitle">Upravljanje repozitorijima, provajderima i statusom plugina</string>
-    <string name="settings_account_section_subtitle">Račun i status sinhronizacije</string>
-    <string name="account_stat_addons">addoni</string>
-    <string name="account_stat_plugins">plugini</string>
-    <string name="account_stat_library">biblioteka</string>
-    <string name="account_stat_progress">napredak</string>
-    <string name="account_stat_watched">odgledano</string>
     <string name="settings_integrations_section">Integracije</string>
     <string name="settings_integrations_section_subtitle">Upravljajte dostupnim integracijama</string>
     <string name="settings_tmdb_subtitle">Kontrole za obogaćivanje metapodataka</string>
@@ -654,14 +647,6 @@
     <string name="trakt_account_login">Prijava na Račun</string>
     <string name="trakt_awaiting_instruction">Idi na trakt.tv/activate i unesi ovaj kod:</string>
     <string name="trakt_waiting_approval">Čekanje na odobrenje…</string>
-    <string name="qr_login_approved">Prijava odobrena. Završavanje prijave…</string>
-    <string name="qr_login_pending">Čekanje na odobrenje na tvom telefonu…</string>
-    <string name="qr_login_expired">QR prijava je istekla. Generiši novi kod.</string>
-    <string name="qr_login_scan_prompt">Skeniraj QR i prijavi se na svom telefonu</string>
-    <string name="qr_login_start_failed">Pokretanje QR prijave nije uspjelo</string>
-    <string name="qr_login_signing_in">Prijavljivanje…</string>
-    <string name="qr_login_success">Uspješno prijavljeno</string>
-    <string name="qr_login_exchange_failed">Nije bilo moguće završiti QR prijavu</string>
     <string name="trakt_code_expires">Kod ističe za %1$s</string>
     <string name="trakt_token_refreshes">Trakt access token se osvježava za %1$s</string>
     <string name="trakt_login_instruction">Pritisni Prijava da započneš Trakt autentifikaciju uređaja. Ovdje će se pojaviti QR kod.</string>
@@ -717,17 +702,7 @@
     <string name="debug_playback_error_title">Ekran za Grešku Reprodukcije</string>
     <string name="debug_playback_error_subtitle">Prikaži simulirani popup greške tokom reprodukcije</string>
     <string name="debug_section_features">Feature Toggles</string>
-    <string name="debug_account_tab_title">Račun Tab</string>
-    <string name="debug_account_tab_subtitle">Prikaži Račun tab u navigaciji postavki</string>
-    <string name="debug_sync_code_title">Sync Code Opcije</string>
-    <string name="debug_sync_code_subtitle">Prikaži dugmad za Generiši/Unesi Sync Code u postavkama Računa</string>
     <string name="debug_section_account">Račun</string>
-    <string name="debug_manual_signin_title">Ručna Prijava</string>
-    <string name="debug_manual_signin_subtitle">Prijavi se sa emailom i lozinkom (Supabase auth)</string>
-    <string name="debug_email_placeholder">Email</string>
-    <string name="debug_password_placeholder">Lozinka</string>
-    <string name="debug_signing_in">Prijavljivanje…</string>
-    <string name="debug_sign_in">Prijavi se</string>
     <string name="debug_error_dialog_title">Greška Reprodukcije</string>
     <string name="debug_error_dialog_subtitle">Došlo je do greške tokom reprodukcije.\n\nGreška: Simulirana test greška - ovo nije stvarni kvar. Izvor je vratio HTTP 503 (Servis Nedostupan).</string>
     <string name="debug_dismiss">Zatvori</string>
@@ -1104,15 +1079,6 @@
     <string name="library_empty_trakt_subtitle">Koristi + u detaljima da dodaš stavke na watchlistu ili liste</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Učitavanje…</string>
-    <string name="account_sync_description">Sinhronizuj svoju biblioteku, napredak gledanja, addone i plugine na svim uređajima.</string>
-    <string name="account_sync_restart_note">Sinhronizacija nije u stvarnom vremenu između aktivnih uređaja. Ponovo pokreni ovaj uređaj nakon prijave ili da preuzmeš promjene napravljene negdje drugo.</string>
-    <string name="account_signin_qr_title">Prijava sa QR</string>
-    <string name="account_signin_qr_subtitle">Skeniraj QR kod i završi prijavu emailom na telefonu</string>
-    <string name="account_signed_in_label">Prijavljeno</string>
-    <string name="account_total_label">Ukupno</string>
-    <string name="account_loading_sync">Učitavanje podataka za sinhronizaciju…</string>
-    <string name="account_sign_out">Odjavi se</string>
 
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">Prijava</string>
@@ -1137,23 +1103,8 @@
     <string name="auth_qr_back">Nazad</string>
 
     <!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">Generiši Sync Kod</string>
-    <string name="sync_generate_subtitle">Kreiraj PIN da zaštitiš svoj sync kod. Podijeli kod sa ostalim svojim uređajima.</string>
-    <string name="sync_generate_code_label">Tvoj Sync Kod</string>
-    <string name="sync_generate_instruction">Unesi ovaj kod i svoj PIN na drugom uređaju da ih povežeš.</string>
-    <string name="sync_generate_done">Gotovo</string>
-    <string name="sync_generate_pin_label">Odaberi PIN (4-8 karaktera)</string>
-    <string name="sync_generate_pin_placeholder">Unesi PIN</string>
 
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">Poveži Uređaj</string>
-    <string name="sync_claim_subtitle">Unesi sync kod i PIN sa svog drugog uređaja da povežeš ovaj uređaj.</string>
-    <string name="sync_claim_success">Uređaj uspješno povezan! Tvoji addoni i plugini će se sada sinhronizovati.</string>
-    <string name="sync_claim_done">Gotovo</string>
-    <string name="sync_claim_code_label">Sync Kod</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">Unesi PIN</string>
 
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">Koriste se plugini primarnog profila i ne mogu se mijenjati</string>
@@ -1221,13 +1172,6 @@
     <string name="update_unknown_sources">Dozvoli instalacije iz nepoznatih izvora da bi nastavio/la.</string>
 
     <!-- AccountScreen -->
-    <string name="account_title">Račun</string>
-    <string name="account_sign_in_description">Prijavi se za sinhronizaciju biblioteke, napretka gledanja, addona i plugina na svim uređajima. Sinhronizacija biblioteke koristi Nuvio Sync kada Trakt nije povezan, a napredak gledanja može koristiti i Trakt i Nuvio Sync.</string>
-    <string name="account_sync_code_title">Sync Kod</string>
-    <string name="account_sync_code_description">Sinhronizuj uređaje bez kreiranja računa.</string>
-    <string name="account_linked_devices">Povezani Uređaji (%1$d)</string>
-    <string name="account_no_linked_devices">Nema povezanih uređaja</string>
-    <string name="account_unlink">Odspoji</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Učitavanje ocjena epizoda...</string>
@@ -1296,18 +1240,8 @@
     <string name="profile_pin_incorrect">Trenutni PIN je netačan.</string>
 
     <!-- Account Screen -->
-    <string name="account_signin_create_title">Prijavi se / Kreiraj Račun</string>
-    <string name="account_signin_create_desc">Koristi email i lozinku da kreiraš ili se prijaviš na svoj račun.</string>
-    <string name="account_generate_sync_desc">Kreiraj kod na ovom uređaju kako bi se drugi uređaji mogli povezati na njega.</string>
-    <string name="account_enter_sync_desc">Poveži ovaj uređaj sa drugim koristeći sync kod.</string>
-    <string name="account_signed_in_as">Prijavljen/a kao</string>
-    <string name="account_generate_sync_signed_in_desc">Kreiraj kod da bi se drugi uređaji mogli sinhronizovati sa ovim računom.</string>
-    <string name="account_unknown_device">Nepoznat Uređaj</string>
 
     <!-- Sync screens -->
-    <string name="sync_claim_linking">Povezivanje…</string>
-    <string name="sync_generate_generating">Generisanje…</string>
-    <string name="sync_generate_code_btn">Generiši Kod</string>
 
     <!-- Search -->
     <string name="search_no_results_title">Nema Rezultata</string>
@@ -1339,7 +1273,6 @@
     <string name="trakt_error_denied">Autorizacija odbijena na Traktu.</string>
 
     <!-- Account errors -->
-    <string name="account_error_signin_required">Prvo se prijavi sa svojim računom.</string>
 
     <!-- Search errors -->
     <string name="search_error_no_catalogs">Nisu pronađeni pretraživi katalozi u instaliranim addonima</string>
@@ -1408,7 +1341,6 @@
     <string name="cd_nuvio">Nuvio</string>
 
     <!-- Debug -->
-    <string name="debug_signin_success">Uspješno prijavljeno</string>
     <string name="debug_generate_description">Debug generisana stavka %1$s broj %2$d</string>
     <string name="debug_generate_result_failed">Nije uspjelo: %1$s</string>
 

@@ -146,7 +146,6 @@
     <string name="about_supporters_contributors_subtitle">Podziękowania i autorzy projektu</string>
 
     <!-- SettingsScreen categories -->
-    <string name="settings_account">Konto</string>
     <string name="settings_profiles">Profile</string>
     <string name="settings_layout">Układ</string>
     <string name="settings_plugins">Wtyczki</string>
@@ -156,12 +155,6 @@
     <string name="settings_trakt_subtitle">Otwórz ekran połączenia z Trakt</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_plugins_section_subtitle">Zarządzaj repozytoriami, dostawcami i stanami wtyczek</string>
-    <string name="settings_account_section_subtitle">Status konta i synchronizacji</string>
-    <string name="account_stat_addons">dodatki</string>
-    <string name="account_stat_plugins">wtyczki</string>
-    <string name="account_stat_library">biblioteka</string>
-    <string name="account_stat_progress">postęp</string>
-    <string name="account_stat_watched">obejrzane</string>
     <string name="settings_integrations_section">Integracje</string>
     <string name="settings_integrations_section_subtitle">Zarządzaj dostępnymi integracjami</string>
     <string name="settings_tmdb_subtitle">Kontrolki wzbogacania metadanych</string>
@@ -636,9 +629,6 @@
     <string name="trakt_account_login">Logowanie do konta</string>
     <string name="trakt_awaiting_instruction">Przejdź na trakt.tv/activate i wprowadź ten kod:</string>
     <string name="trakt_waiting_approval">Oczekiwanie na zatwierdzenie…</string>
-    <string name="qr_login_approved">Logowanie zatwierdzone. Trwa kończenie…</string>
-    <string name="qr_login_pending">Oczekiwanie na zatwierdzenie na telefonie…</string>
-    <string name="qr_login_expired">Kod QR wygasł. Wygeneruj nowy.</string>
     <string name="trakt_code_expires">Kod wygasa za %1$s</string>
     <string name="trakt_token_refreshes">Token dostępu Trakt odświeży się za %1$s</string>
     <string name="trakt_login_instruction">Naciśnij Zaloguj, aby rozpocząć uwierzytelnianie urządzenia Trakt. Tutaj pojawi się kod QR.</string>
@@ -678,17 +668,7 @@
     <string name="debug_playback_error_title">Ekran błędu odtwarzania</string>
     <string name="debug_playback_error_subtitle">Pokaż symulowany popup błędu odtwarzania</string>
     <string name="debug_section_features">Przełączniki funkcji</string>
-    <string name="debug_account_tab_title">Zakładka konta</string>
-    <string name="debug_account_tab_subtitle">Pokaż zakładkę Konto w nawigacji ustawień</string>
-    <string name="debug_sync_code_title">Funkcje kodu synchronizacji</string>
-    <string name="debug_sync_code_subtitle">Pokaż przyciski Generuj/Wprowadź kod synchronizacji w ustawieniach konta</string>
     <string name="debug_section_account">Konto</string>
-    <string name="debug_manual_signin_title">Ręczne logowanie</string>
-    <string name="debug_manual_signin_subtitle">Zaloguj się e-mailem i hasłem (uwierzytelnianie Supabase)</string>
-    <string name="debug_email_placeholder">E-mail</string>
-    <string name="debug_password_placeholder">Hasło</string>
-    <string name="debug_signing_in">Logowanie\u2026</string>
-    <string name="debug_sign_in">Zaloguj się</string>
     <string name="debug_error_dialog_title">Błąd odtwarzania</string>
     <string name="debug_error_dialog_subtitle">Wystąpił błąd podczas odtwarzania.\n\nBłąd: Symulowany błąd testowy - to nie jest prawdziwa awaria. Źródło zwróciło HTTP 503 (Service Unavailable).</string>
     <string name="debug_dismiss">Zamknij</string>
@@ -979,14 +959,6 @@
     <string name="library_empty_trakt_subtitle">Użyj + w szczegółach, aby dodać elementy do listy obserwowanych lub list</string>
 
     <!-- AccountSettingsContent -->
-    <string name="account_loading">Ładowanie\u2026</string>
-    <string name="account_sync_description">Synchronizuj bibliotekę, postęp oglądania, dodatki i wtyczki między urządzeniami.</string>
-    <string name="account_signin_qr_title">Zaloguj przez QR</string>
-    <string name="account_signin_qr_subtitle">Zeskanuj kod QR i dokończ logowanie e-mailem na telefonie</string>
-    <string name="account_signed_in_label">Zalogowano</string>
-    <string name="account_total_label">Łącznie</string>
-    <string name="account_loading_sync">Ładowanie danych synchronizacji\u2026</string>
-    <string name="account_sign_out">Wyloguj się</string>
 
     <!-- AuthSignInScreen -->
     <string name="auth_signin_title">Zaloguj się</string>
@@ -1012,23 +984,8 @@
     <string name="auth_qr_back">Wstecz</string>
 
     <!-- SyncCodeGenerateScreen -->
-    <string name="sync_generate_title">Generuj kod synchronizacji</string>
-    <string name="sync_generate_subtitle">Utwórz PIN, aby zabezpieczyć kod synchronizacji. Udostępnij kod innym urządzeniom.</string>
-    <string name="sync_generate_code_label">Twój kod synchronizacji</string>
-    <string name="sync_generate_instruction">Wprowadź ten kod i PIN na innym urządzeniu, aby je połączyć.</string>
-    <string name="sync_generate_done">Gotowe</string>
-    <string name="sync_generate_pin_label">Wybierz PIN (4-8 znaków)</string>
-    <string name="sync_generate_pin_placeholder">Wprowadź PIN</string>
 
     <!-- SyncCodeClaimScreen -->
-    <string name="sync_claim_title">Połącz urządzenie</string>
-    <string name="sync_claim_subtitle">Wprowadź kod synchronizacji i PIN z innego urządzenia, aby je połączyć.</string>
-    <string name="sync_claim_success">Urządzenie połączone! Twoje dodatki i wtyczki będą teraz synchronizowane.</string>
-    <string name="sync_claim_done">Gotowe</string>
-    <string name="sync_claim_code_label">Kod synchronizacji</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">Wprowadź PIN</string>
 
     <!-- PluginScreen -->
     <string name="plugin_readonly_notice">Używasz wtyczek profilu głównego - nie można ich zmienić</string>
@@ -1094,13 +1051,6 @@
     <string name="update_downloading_ellipsis">Pobieranie…</string>
     <string name="update_unknown_sources">Zezwól na instalację z nieznanych źródeł, aby kontynuować.</string>
     <!-- AccountScreen -->
-    <string name="account_title">Konto</string>
-    <string name="account_sign_in_description">Zaloguj sie, aby synchronizowac biblioteke, postep ogladania, dodatki i wtyczki miedzy urzadzeniami. Synchronizacja biblioteki i postepu dziala tylko gdy Trakt nie jest podlaczony.</string>
-    <string name="account_sync_code_title">Kod synchronizacji</string>
-    <string name="account_sync_code_description">Synchronizuj miedzy urzadzeniami bez tworzenia konta.</string>
-    <string name="account_linked_devices">Polaczone urzadzenia (%1$d)</string>
-    <string name="account_no_linked_devices">Brak polaczonych urzadzen</string>
-    <string name="account_unlink">Odlacz</string>
 
     <!-- EpisodeRatingsSection -->
     <string name="ratings_loading">Ladowanie ocen odcinkow...</string>
@@ -1200,7 +1150,6 @@
     <string name="movie_status_post_production">Postprodukcja</string>
     <string name="watchlist_added">Dodano do listy</string>
     <string name="watchlist_removed">Usunięto z listy</string>
-    <string name="account_sync_restart_note">Synchronizacja nie jest natychmiastowa na aktywnych urządzeniach. Uruchom ponownie to urządzenie po zalogowaniu lub aby pobrać zmiany wprowadzone gdzie indziej.</string>
     <string name="audio_mix_label">Wzmocnienie (PCM)</string>
     <string name="audio_mix_persist_on">Zachowaj między sesjami: WŁ</string>
     <string name="audio_mix_persist_off">Zachowaj między sesjami: WYŁ</string>
@@ -1456,16 +1405,7 @@
     <string name="cd_qr_login">Kod QR logowania</string>
     <string name="cd_nuvio">Nuvio</string>
 
-    <string name="account_signin_create_title">Zaloguj się / Utwórz konto</string>
-    <string name="account_signin_create_desc">Użyj adresu e-mail i hasła, aby utworzyć lub zalogować się na konto.</string>
-    <string name="account_generate_sync_desc">Utwórz kod na tym urządzeniu, aby inne urządzenia mogły się z nim połączyć.</string>
-    <string name="account_enter_sync_desc">Połącz to urządzenie z innym urządzeniem za pomocą kodu synchronizacji.</string>
-    <string name="account_signed_in_as">Zalogowano jako</string>
-    <string name="account_generate_sync_signed_in_desc">Utwórz kod, aby inne urządzenia mogły synchronizować się z tym kontem.</string>
-    <string name="account_unknown_device">Nieznane urządzenie</string>
-    <string name="account_error_signin_required">Najpierw zaloguj się na konto.</string>
 
-    <string name="debug_signin_success">Zalogowano pomyślnie</string>
     <string name="debug_generate_description">Element wygenerowany przez debug %1$s nr %2$d</string>
     <string name="debug_generate_result_failed">Błąd: %1$s</string>
 
@@ -1514,9 +1454,6 @@
 
     <string name="subtitle_style_weight">Grubość</string>
 
-    <string name="sync_claim_linking">Łączenie\u2026</string>
-    <string name="sync_generate_generating">Generowanie\u2026</string>
-    <string name="sync_generate_code_btn">Generuj kod</string>
 
     <string name="trakt_error_code_expired">Kod urządzenia wygasł. Zacznij od nowa.</string>
     <string name="trakt_error_code_used">Kod urządzenia już użyty. Zacznij od nowa.</string>
@@ -1723,11 +1660,6 @@
     <string name="player_loading_fallback_pcm_audio">Inicjalizacja ścieżki audio nie powiodła się — przełączanie na audio PCM…</string>
 
     <!-- QR login -->
-    <string name="qr_login_scan_prompt">Zeskanuj QR i zaloguj się na telefonie</string>
-    <string name="qr_login_start_failed">Nie udało się rozpocząć logowania QR</string>
-    <string name="qr_login_signing_in">Logowanie…</string>
-    <string name="qr_login_success">Zalogowano pomyślnie</string>
-    <string name="qr_login_exchange_failed">Nie udało się dokończyć logowania QR</string>
     <string name="playback_player_auto">Zalecane (Najlepsze dla treści)</string>
     <string name="playback_player_auto_desc">ExoPlayer dla filmów i seriali · MPV dla anime</string>
 
@@ -2066,8 +1998,6 @@
     <string name="plugin_repo_refreshed">Repozytorium odświeżone</string>
     <string name="plugin_repo_removed">Repozytorium usunięte</string>
     <string name="plugin_url_or_short_code_placeholder">URL lub krótki kod</string>
-    <string name="qr_login_device_auth_failed">Nie udało się uwierzytelnić urządzenia</string>
-    <string name="qr_login_preparing">Przygotowywanie logowania QR...</string>
     <string name="settings_experience">Doświadczenie</string>
     <string name="sponsors_channel_unavailable">Kanał sponsora niedostępny.</string>
     <string name="sponsors_detail_copy">Sponsorzy pomagają rozwijać Nuvio wspierając różne obszary rozwoju.</string>
@@ -2169,34 +2099,6 @@
 
     <string name="about_licenses_attributions">Licencje i atrybucje</string>
     <string name="about_licenses_attributions_subtitle">Źródła danych, podziękowania i licencje Android</string>
-    <string name="account_error_connection_refused">Nie można połączyć się z serwerem.</string>
-    <string name="account_error_connection_timeout">Przekroczono limit czasu połączenia. Spróbuj ponownie.</string>
-    <string name="account_error_device_already_linked">Urządzenie jest już połączone.</string>
-    <string name="account_error_email_already_registered">Konto z tym adresem e-mail już istnieje.</string>
-    <string name="account_error_email_not_confirmed">Najpierw potwierdź swój adres e-mail.</string>
-    <string name="account_error_generic_retry">Coś poszło nie tak. Spróbuj ponownie.</string>
-    <string name="account_error_incorrect_pin">Nieprawidłowy PIN.</string>
-    <string name="account_error_invalid_credentials">Nieprawidłowy e-mail lub hasło.</string>
-    <string name="account_error_invalid_email">Podaj prawidłowy adres e-mail.</string>
-    <string name="account_error_invalid_qr_login">Nieprawidłowy kod logowania QR.</string>
-    <string name="account_error_invalid_request">Nieprawidłowe żądanie. Sprawdź dane wejściowe.</string>
-    <string name="account_error_invalid_sync_code">Nieprawidłowy kod synchronizacji.</string>
-    <string name="account_error_no_internet">Brak połączenia z internetem.</string>
-    <string name="account_error_not_authenticated">Najpierw się zaloguj.</string>
-    <string name="account_error_password_too_short">Hasło jest za krótkie.</string>
-    <string name="account_error_password_too_weak">Hasło jest za słabe.</string>
-    <string name="account_error_qr_login_expired">Logowanie QR wygasło. Spróbuj ponownie.</string>
-    <string name="account_error_qr_login_invalid_request">Żądanie logowania QR było nieprawidłowe. Spróbuj ponownie.</string>
-    <string name="account_error_qr_login_misconfigured">URL logowania QR jest źle skonfigurowany.</string>
-    <string name="account_error_qr_login_missing_setup">Backend logowania QR nie jest skonfigurowany.</string>
-    <string name="account_error_qr_login_other_device">To logowanie QR zostało zainicjowane z innego urządzenia.</string>
-    <string name="account_error_qr_login_outdated">Usługa logowania QR jest nieaktualna.</string>
-    <string name="account_error_rate_limited">Zbyt wiele prób. Spróbuj ponownie później.</string>
-    <string name="account_error_service_unavailable">Usługa niedostępna. Spróbuj ponownie później.</string>
-    <string name="account_error_signup_disabled">Rejestracja jest obecnie wyłączona.</string>
-    <string name="account_error_sync_code_expired">Kod synchronizacji wygasł.</string>
-    <string name="account_error_sync_code_not_found">Nie znaleziono kodu synchronizacji.</string>
-    <string name="account_error_unexpected">Wystąpił nieoczekiwany błąd.</string>
     <string name="audio_lang_media_default">Domyślny z mediów</string>
     <string name="autoplay_regex_preset_1080p_standard">1080p Standard</string>
     <string name="autoplay_regex_preset_4k_remux">4K / Remux</string>
@@ -2939,10 +2841,6 @@
     <string name="web_stream_badge_error_import_limit">Możesz zaimportować maksymalnie %1$d adresów URL odznak.</string>
 
     <!-- Account sign out -->
-    <string name="account_sign_out_confirm_title">Wylogować się?</string>
-    <string name="account_sign_out_confirm_subtitle">Aby synchronizować bibliotekę, postęp oglądania, dodatki i wtyczki na tym urządzeniu, konieczne będzie ponowne zalogowanie.</string>
-    <string name="account_signin_email_title">Zaloguj się</string>
-    <string name="account_signin_email_subtitle">Wprowadź e-mail i hasło konta na serwerze własnym</string>
 
     <!-- Auth -->
     <string name="auth_email_hint">Zaloguj się bezpośrednio na konto na własnym serwerze.</string>
@@ -2954,42 +2852,9 @@
     <string name="server_options_connect_custom">Połącz z własnym serwerem</string>
     <string name="server_options_change_custom">Połącz z innym serwerem</string>
     <string name="server_options_use_official">Użyj oficjalnego serwera</string>
-    <string name="custom_server_title">Połącz z własnym serwerem</string>
-    <string name="custom_server_description">Wprowadź URL Backendu podany przez administratora serwera.</string>
-    <string name="custom_server_url_placeholder">https://backend.example.com</string>
-    <string name="custom_server_check">Sprawdź serwer</string>
-    <string name="custom_server_checking">Sprawdzanie\u2026</string>
-    <string name="custom_server_review_title">Przegląd własnego serwera</string>
-    <string name="custom_server_review_description">Dokument wykrywania jest prawidłowy. Połączenie spowoduje wylogowanie z bieżącego serwera i restart aplikacji. Upewnij się, że jest to serwer, który posiadasz lub któremu ufasz.</string>
-    <string name="custom_server_verified_label">Wykryty backend</string>
-    <string name="custom_server_key_label">Konfiguracja klienta</string>
-    <string name="custom_server_key_discovered">Klucz publiczny wykryty automatycznie</string>
-    <string name="custom_server_warning_title">Łącz się tylko z serwerem, któremu ufasz</string>
-    <string name="custom_server_warning_public">Ten serwer używa publicznej nazwy hosta. Aplikacja nie może zweryfikować, kto go posiada lub obsługuje.</string>
-    <string name="custom_server_warning_http">Ten serwer jest w sieci prywatnej, ale ruch HTTP nie jest szyfrowany. Inne urządzenia w sieci mogą go odczytać.</string>
-    <string name="custom_server_warning_public_http">Ten serwer używa publicznej nazwy hosta i nieszyfrowanego HTTP. Dane logowania i synchronizowane dane mogą być widoczne w transmisji.</string>
-    <string name="custom_server_warning_private">Wygląda na serwer w sieci prywatnej, ale aplikacja nadal nie może zweryfikować, kto go kontroluje.</string>
-    <string name="custom_server_warning_credentials">Operator serwera może otrzymać dane logowania i mieć dostęp do danych synchronizowanych przez ten serwer.</string>
-    <string name="custom_server_trust_action">Ufam temu serwerowi</string>
-    <string name="custom_server_switching">Przełączanie\u2026</string>
     <string name="official_server_title">Użyć oficjalnego serwera?</string>
     <string name="official_server_description">Zostaniesz wylogowany z własnego serwera, a aplikacja uruchomi się ponownie z oficjalną usługą.</string>
     <string name="official_server_action">Użyj oficjalnego serwera</string>
-    <string name="custom_server_error_invalid_url">Wprowadź prawidłowy adres URL HTTP lub HTTPS Backendu.</string>
-    <string name="custom_server_error_official_active">api.nuvio.tv to oficjalny serwer i jest już wybrany.</string>
-    <string name="custom_server_error_official_available">api.nuvio.tv to oficjalny serwer. Zamknij to okno i wybierz Użyj oficjalnego serwera, aby przełączyć z powrotem.</string>
-    <string name="custom_server_error_connection">Nie można połączyć się z punktem wykrywania. Sprawdź URL i dostępność serwera.</string>
-    <string name="custom_server_error_http">Punkt wykrywania zwrócił HTTP %1$d.</string>
-    <string name="custom_server_error_response_too_large">Dokument wykrywania jest większy niż dozwolone.</string>
-    <string name="custom_server_error_invalid_document">Serwer zwrócił nieprawidłowy dokument wykrywania.</string>
-    <string name="custom_server_error_version">Ta wersja dokumentu wykrywania nie jest obsługiwana.</string>
-    <string name="custom_server_error_service">Dokument wykrywania nie dotyczy tej aplikacji.</string>
-    <string name="custom_server_error_not_self_hosted">Dokument wykrywania nie identyfikuje serwera self-hosted.</string>
-    <string name="custom_server_error_missing_configuration">W dokumencie wykrywania brakuje prawidłowego URL Backendu lub klucza publicznego.</string>
-    <string name="custom_server_error_no_auth">Serwer nie oferuje obsługiwanej metody logowania.</string>
-    <string name="custom_server_save_failed">Nie można zapisać konfiguracji serwera.</string>
-    <string name="custom_server_session_clear_failed">Nie można bezpiecznie wyczyścić bieżącej sesji. Serwer nie został zmieniony.</string>
-    <string name="custom_server_restart_failed">Serwer został zapisany, ale aplikacja nie mogła się automatycznie uruchomić ponownie. Uruchom ją ręcznie.</string>
     <string name="auth_password_placeholder">Hasło</string>
     <string name="auth_qr_tagline">Oglądaj swoją bibliotekę, gdziekolwiek jesteś</string>
     <string name="auth_qr_terms_link">Regulamin</string>
@@ -3489,4 +3354,5 @@
     <string name="subtitle_style_brightness_hdr">Jasność (HDR)</string>
     <string name="subtitle_style_text_color_hdr">Kolor tekstu (HDR)</string>
     <string name="subtitle_style_text_opacity_hdr">Przezroczystość tekstu (HDR)</string>
+    <string name="account_error_generic_retry">Coś poszło nie tak. Spróbuj ponownie.</string>
 </resources>

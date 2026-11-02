@@ -388,7 +388,6 @@
 
     
     <string name="settings_experience">Skúsenosť</string>
-    <string name="settings_account">Účet</string>
     <string name="settings_profiles">Profily</string>
     <string name="settings_layout">Rozloženie</string>
     <string name="settings_plugins">Pluginy</string>
@@ -427,34 +426,6 @@
     <string name="essential_subtitle_language_subtitle">Preferovaný jazyk titulkov.</string>
     <string name="essential_audio_language_subtitle">Preferovaný jazyk audia.</string>
     
-    <string name="account_error_incorrect_pin">Nesprávny PIN.</string>
-    <string name="account_error_sync_code_expired">Synchronizačný kód vypršal.</string>
-    <string name="account_error_invalid_sync_code">Neplatný synchronizačný kód.</string>
-    <string name="account_error_sync_code_not_found">Synchronizačný kód sa nenašiel.</string>
-    <string name="account_error_device_already_linked">Zariadenie je už prepojené.</string>
-    <string name="account_error_generic_retry">Niečo sa pokazilo. Skúste to znova.</string>
-    <string name="account_error_invalid_credentials">Nesprávny e-mail alebo heslo.</string>
-    <string name="account_error_email_not_confirmed">Najprv potvrďte svoj e-mail.</string>
-    <string name="account_error_email_already_registered">Účet s týmto e-mailom už existuje.</string>
-    <string name="account_error_invalid_email">Zadajte platnú e-mailovú adresu.</string>
-    <string name="account_error_password_too_short">Heslo je príliš krátke.</string>
-    <string name="account_error_password_too_weak">Heslo je príliš slabé.</string>
-    <string name="account_error_signup_disabled">Registrácia je momentálne zakázaná.</string>
-    <string name="account_error_rate_limited">Príliš veľa pokusov. Skúste to znova neskôr.</string>
-    <string name="account_error_qr_login_expired">QR prihlásenie vypršalo. Skúste to znova.</string>
-    <string name="account_error_invalid_qr_login">Neplatný kód QR prihlásenia.</string>
-    <string name="account_error_qr_login_other_device">Toto QR prihlásenie bolo vyžiadané z iného zariadenia.</string>
-    <string name="account_error_qr_login_outdated">Služba QR prihlásenia je zastaraná. Znova použite nastavenie TV login SQL.</string>
-    <string name="account_error_qr_login_missing_setup">Chýba nastavenie backendu QR prihlásenia. Aktualizujte nastavenie TV login SQL.</string>
-    <string name="account_error_qr_login_misconfigured">URL QR prihlásenia je nesprávne nakonfigurovaná.</string>
-    <string name="account_error_qr_login_invalid_request">Požiadavka QR prihlásenia bola neplatná. Skúste to znova.</string>
-    <string name="account_error_no_internet">Žiadne internetové pripojenie.</string>
-    <string name="account_error_connection_timeout">Časový limit pripojenia vypršal. Skúste to znova.</string>
-    <string name="account_error_connection_refused">Nepodarilo sa pripojiť k serveru.</string>
-    <string name="account_error_not_authenticated">Najprv sa prihláste.</string>
-    <string name="account_error_service_unavailable">Služba nie je dostupná. Skúste to znova neskôr.</string>
-    <string name="account_error_invalid_request">Neplatná požiadavka. Skontrolujte svoj vstup.</string>
-    <string name="account_error_unexpected">Vyskytla sa neočakávaná chyba.</string>
     <string name="experience_mode_switch_to_essential">Prepnúť na Základnú</string>
     <string name="experience_mode_switch_to_essential_subtitle">Skryť pokročilé nastavenia bez zmeny uložených hodnôt.</string>
     <string name="experience_mode_switch_to_advanced">Prepnúť na Pokročilú</string>
@@ -495,12 +466,6 @@
     <string name="advanced_remember_last_profile_subtitle">Zapamätať posledný vybraný profil pri spustení</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_plugins_section_subtitle">Spravovať repozitáre, poskytovateľov a stavy pluginov</string>
-    <string name="settings_account_section_subtitle">Účet a stav synchronizácie</string>
-    <string name="account_stat_addons">doplnky</string>
-    <string name="account_stat_plugins">pluginy</string>
-    <string name="account_stat_library">knižnica</string>
-    <string name="account_stat_progress">postup</string>
-    <string name="account_stat_watched">videné</string>
     <string name="settings_integrations_section">Integrácie</string>
     <string name="settings_integrations_section_subtitle">Spravujte dostupné integrácie</string>
     <string name="settings_tmdb_subtitle">Ovládanie obohatenia metadát</string>
@@ -1050,16 +1015,6 @@
     <string name="trakt_account_login">Prihlásenie do účtu</string>
     <string name="trakt_awaiting_instruction">Prejdite na trakt.tv/activate a zadajte tento kód:</string>
     <string name="trakt_waiting_approval">Čaká sa na schválenie…</string>
-    <string name="qr_login_approved">Prihlásenie schválené. Dokončuje sa prihlásenie…</string>
-    <string name="qr_login_pending">Čaká sa na schválenie na vašom telefóne…</string>
-    <string name="qr_login_expired">QR prihlásenie vypršalo. Vygenerujte nový kód.</string>
-    <string name="qr_login_preparing">Pripravuje sa QR prihlásenie...</string>
-    <string name="qr_login_device_auth_failed">Nepodarilo sa autentifikovať zariadenie</string>
-    <string name="qr_login_scan_prompt">Naskenujte QR a prihláste sa na telefóne</string>
-    <string name="qr_login_start_failed">Nepodarilo sa spustiť QR prihlásenie</string>
-    <string name="qr_login_signing_in">Prihlasovanie…</string>
-    <string name="qr_login_success">Úspešne prihlásený</string>
-    <string name="qr_login_exchange_failed">Nepodarilo sa dokončiť QR prihlásenie</string>
     <string name="trakt_code_expires">Kód vyprší o %1$s</string>
     <string name="trakt_token_refreshes">Prístupový token Trakt sa obnoví o %1$s</string>
     <string name="trakt_login_instruction">Stlačte Prihlásiť sa pre spustenie autentifikácie Trakt. Tu sa zobrazí QR kód.</string>
@@ -1129,17 +1084,7 @@
     <string name="debug_playback_error_title">Obrazovka chyby prehrávania</string>
     <string name="debug_playback_error_subtitle">Zobraziť simulovaný popup chyby prehrávania</string>
     <string name="debug_section_features">Funkčné prepínače</string>
-    <string name="debug_account_tab_title">Karta Účet</string>
-    <string name="debug_account_tab_subtitle">Zobraziť kartu Účet v navigácii Nastavenia</string>
-    <string name="debug_sync_code_title">Funkcie Sync kódu</string>
-    <string name="debug_sync_code_subtitle">Zobraziť tlačidlá Generovať/Zadať Sync kód v nastaveniach účtu</string>
     <string name="debug_section_account">Účet</string>
-    <string name="debug_manual_signin_title">Manuálne prihlásenie</string>
-    <string name="debug_manual_signin_subtitle">Prihlásiť sa e-mailom a heslom (Supabase auth)</string>
-    <string name="debug_email_placeholder">E-mail</string>
-    <string name="debug_password_placeholder">Heslo</string>
-    <string name="debug_signing_in">Prihlasovanie…</string>
-    <string name="debug_sign_in">Prihlásiť sa</string>
     <string name="debug_error_dialog_title">Chyba prehrávania</string>
     <string name="debug_error_dialog_subtitle">Počas prehrávania sa vyskytla chyba.\n\nChyba: Testovaná simulovaná chyba – nejde o reálne zlyhanie. Zdroj vrátil HTTP 503 (Service Unavailable).</string>
     <string name="debug_dismiss">Zavrieť</string>
@@ -1615,15 +1560,6 @@
     <string name="cloud_library_type_files">Súbory</string>
 
     
-    <string name="account_loading">Načítava sa…</string>
-    <string name="account_sync_description">Synchronizujte knižnicu, postup sledovania, doplnky a pluginy medzi zariadeniami.</string>
-    <string name="account_sync_restart_note">Synchronizácia nie je v reálnom čase medzi aktívnymi zariadeniami. Reštartujte toto zariadenie po prihlásení alebo pre načítanie zmien vykonaných inde.</string>
-    <string name="account_signin_qr_title">Prihlásiť sa pomocou QR</string>
-    <string name="account_signin_qr_subtitle">Naskenujte QR kód a dokončite prihlásenie cez telefón</string>
-    <string name="account_signed_in_label">Prihlásený</string>
-    <string name="account_total_label">Celkom</string>
-    <string name="account_loading_sync">Načítavajú sa synchronizačné údaje…</string>
-    <string name="account_sign_out">Odhlásiť sa</string>
 
     
     <string name="auth_signin_title">Prihlásiť sa</string>
@@ -1648,23 +1584,8 @@
     <string name="auth_qr_back">Späť</string>
 
     
-    <string name="sync_generate_title">Vygenerovať synchronizačný kód</string>
-    <string name="sync_generate_subtitle">Vytvorte PIN na ochranu synchronizačného kódu. Zdieľajte kód s ostatnými zariadeniami.</string>
-    <string name="sync_generate_code_label">Váš synchronizačný kód</string>
-    <string name="sync_generate_instruction">Zadajte tento kód a svoj PIN na druhom zariadení, aby ste ich prepojili.</string>
-    <string name="sync_generate_done">Hotovo</string>
-    <string name="sync_generate_pin_label">Vyberte PIN (4–8 znakov)</string>
-    <string name="sync_generate_pin_placeholder">Zadajte PIN</string>
 
     
-    <string name="sync_claim_title">Prepojiť zariadenie</string>
-    <string name="sync_claim_subtitle">Zadajte synchronizačný kód a PIN z druhého zariadenia, aby ste prepojili toto zariadenie.</string>
-    <string name="sync_claim_success">Zariadenie bolo úspešne prepojené! Vaše doplnky a pluginy sa teraz budú synchronizovať.</string>
-    <string name="sync_claim_done">Hotovo</string>
-    <string name="sync_claim_code_label">Synchronizačný kód</string>
-    <string name="sync_claim_code_placeholder">XXXX-XXXX-XXXX-XXXX-XXXX</string>
-    <string name="sync_claim_pin_label">PIN</string>
-    <string name="sync_claim_pin_placeholder">Zadajte PIN</string>
 
     
     <string name="plugin_readonly_notice">Používajú sa pluginy primárneho profilu a nemožno ich meniť</string>
@@ -1738,13 +1659,6 @@
     <string name="update_downloading_ellipsis">Sťahuje sa…</string>
     <string name="update_unknown_sources">Povoľte inštalácie z neznámych zdrojov, aby ste mohli pokračovať.</string>
     
-    <string name="account_title">Účet</string>
-    <string name="account_sign_in_description">Prihláste sa, aby sa synchronizovala vaša knižnica, postup sledovania, doplnky a pluginy medzi zariadeniami. Synchronizácia knižnice používa Nuvio Sync, keď Trakt nie je pripojený, a postup sledovania môže používať Trakt alebo Nuvio Sync.</string>
-    <string name="account_sync_code_title">Synchronizačný kód</string>
-    <string name="account_sync_code_description">Synchronizujte medzi zariadeniami bez vytvorenia účtu.</string>
-    <string name="account_linked_devices">Prepojené zariadenia (%1$d)</string>
-    <string name="account_no_linked_devices">Žiadne prepojené zariadenia</string>
-    <string name="account_unlink">Odpojiť</string>
 
     
     <string name="ratings_loading">Načítavajú sa hodnotenia epizód...</string>
@@ -1817,18 +1731,8 @@
     <string name="profile_pin_current_required">Tento profil už má PIN. Zadajte aktuálny PIN pre jeho zmenu.</string>
 
     
-    <string name="account_signin_create_title">Prihlásiť sa / Vytvoriť účet</string>
-    <string name="account_signin_create_desc">Použite e-mail a heslo na vytvorenie alebo prihlásenie do účtu.</string>
-    <string name="account_generate_sync_desc">Vytvorte kód na tomto zariadení, aby sa k nemu mohli pripojiť ďalšie zariadenia.</string>
-    <string name="account_enter_sync_desc">Prepojte toto zariadenie s iným zariadením pomocou synchronizačného kódu.</string>
-    <string name="account_signed_in_as">Prihlásený ako</string>
-    <string name="account_generate_sync_signed_in_desc">Vytvorte kód, aby sa ďalšie zariadenia mohli synchronizovať s týmto účtom.</string>
-    <string name="account_unknown_device">Neznáme zariadenie</string>
 
     
-    <string name="sync_claim_linking">Prepája sa…</string>
-    <string name="sync_generate_generating">Generuje sa…</string>
-    <string name="sync_generate_code_btn">Generovať kód</string>
 
     
     <string name="search_no_results_title">Žiadne výsledky</string>
@@ -1886,7 +1790,6 @@
     <string name="addon_error_not_found">Doplnok sa nenašiel</string>
 
     
-    <string name="account_error_signin_required">Najprv sa prihláste pomocou účtu.</string>
 
     
     <string name="search_error_no_catalogs">V nainštalovaných doplnkoch sa nenašli žiadne prehľadávateľné katalógy</string>
@@ -1956,7 +1859,6 @@
     <string name="cd_nuvio">Nuvio</string>
 
     
-    <string name="debug_signin_success">Úspešne prihlásený</string>
     <string name="debug_generate_description">Debugom vygenerovaná položka %1$s #%2$d</string>
     <string name="debug_generate_result_failed">Zlyhalo: %1$s</string>
     <string name="debug_generate_library_result_added">Do knižnice bolo pridaných %1$d položiek</string>
@@ -2629,10 +2531,6 @@
 <string name="cloud_library_search_label">Hľadať v cloudovej knižnici</string>
 <string name="cloud_library_error_provider_unavailable">Cloudová knižnica nie je dostupná pre %1$s.</string>
 <string name="cloud_library_error_disabled">Cloudová knižnica je vypnutá.</string>
-<string name="account_signin_email_title">Prihlásiť sa</string>
-<string name="account_signin_email_subtitle">Zadajte e-mail a heslo k účtu na vlastnom serveri</string>
-<string name="account_sign_out_confirm_title">Odhlásiť sa?</string>
-<string name="account_sign_out_confirm_subtitle">Na synchronizáciu knižnice, priebehu sledovania, doplnkov a pluginov na tomto zariadení sa budete musieť znova prihlásiť.</string>
 <string name="auth_email_hint">Prihláste sa priamo pomocou účtu na vlastnom serveri.</string>
 <string name="auth_email_instruction">Zadajte e-mail a heslo pre pokračovanie.</string>
 <string name="auth_email_placeholder">E-mailová adresa</string>
@@ -3031,42 +2929,9 @@
     <string name="server_options_connect_custom">Pripojiť k vlastnému serveru</string>
     <string name="server_options_change_custom">Pripojiť k inému serveru</string>
     <string name="server_options_use_official">Použiť oficiálny server</string>
-    <string name="custom_server_title">Pripojiť k vlastnému serveru</string>
-    <string name="custom_server_description">Zadajte URL adresu backendu poskytnutú správcom vášho servera.</string>
-    <string name="custom_server_url_placeholder">https://backend.example.com</string>
-    <string name="custom_server_check">Skontrolovať server</string>
-    <string name="custom_server_checking">Kontroluje sa\u2026</string>
-    <string name="custom_server_review_title">Skontrolovať vlastný server</string>
-    <string name="custom_server_review_description">Riešiteľský dokument je platný. Pripojenie vás odhlási od aktuálneho servera a reštartuje aplikáciu. Potvrďte, že ide o server, ktorý vlastníte alebo mu dôverujete.</string>
-    <string name="custom_server_verified_label">Zistený backend</string>
-    <string name="custom_server_key_label">Konfigurácia klienta</string>
-    <string name="custom_server_key_discovered">Verejný kľúč bol zistený automaticky</string>
-    <string name="custom_server_warning_title">Pripájajte sa iba k serveru, ktorému dôverujete</string>
-    <string name="custom_server_warning_public">Tento server používa verejný názov hostiteľa. Aplikácia nemôže overiť, kto ho vlastní alebo prevádzkuje.</string>
-    <string name="custom_server_warning_http">Tento server je v súkromnej sieti, ale prevádzka HTTP nie je šifrovaná. Iné zariadenia v sieti ju môžu prečítať.</string>
-    <string name="custom_server_warning_public_http">Tento server používa verejný názov hostiteľa a nešifrované HTTP. Prihlasovacie údaje a synchronizované dáta môžu byť počas prenosu odhalené.</string>
-    <string name="custom_server_warning_private">Zdá sa, že ide o server v súkromnej sieti, ale aplikácia stále nemôže overiť, kto ho spravuje.</string>
-    <string name="custom_server_warning_credentials">Prevádzkovateľ servera môže získať vaše prihlasovacie údaje k účtu a pristupovať k dátam, ktoré cez tento server synchronizujete.</string>
-    <string name="custom_server_trust_action">Dôverujem tomuto serveru</string>
-    <string name="custom_server_switching">Prepína sa\u2026</string>
     <string name="official_server_title">Použiť oficiálny server?</string>
     <string name="official_server_description">Budete odhlásení z vlastného servera a aplikácia sa reštartuje s oficiálnou službou.</string>
     <string name="official_server_action">Použiť oficiálny server</string>
-    <string name="custom_server_error_invalid_url">Zadajte platnú URL adresu backendu začínajúcu na HTTP alebo HTTPS.</string>
-    <string name="custom_server_error_official_active">api.nuvio.tv je oficiálny server a už je vybraný.</string>
-    <string name="custom_server_error_official_available">api.nuvio.tv je oficiálny server. Zatvorte toto okno a vyberte možnosť Použiť oficiálny server pre návrat.</string>
-    <string name="custom_server_error_connection">Nepodarilo sa dosiahnuť koncový bod pre zistenie servera. Skontrolujte URL adresu a dostupnosť servera.</string>
-    <string name="custom_server_error_http">Koncový bod pre zistenie servera vrátil chybový kód HTTP %1$d.</string>
-    <string name="custom_server_error_response_too_large">Dokument pre zistenie servera je väčší, než je povolené.</string>
-    <string name="custom_server_error_invalid_document">Server vrátil neplatný dokument pre zistenie servera.</string>
-    <string name="custom_server_error_version">Tento typ/verzia dokumentu pre zistenie servera nie je podporovaná.</string>
-    <string name="custom_server_error_service">Dokument pre zistenie servera nie je určený pre túto aplikáciu.</string>
-    <string name="custom_server_error_not_self_hosted">Dokument pre zistenie servera neoznačuje vlastný (self-hosted) server.</string>
-    <string name="custom_server_error_missing_configuration">V dokumente pre zistenie servera chýba platná URL adresa backendu alebo verejný kľúč.</string>
-    <string name="custom_server_error_no_auth">Server neponúka žiadnu podporovanú metódu prihlásenia.</string>
-    <string name="custom_server_save_failed">Nepodarilo sa uložiť konfiguráciu servera.</string>
-    <string name="custom_server_session_clear_failed">Nepodarilo sa bezpečne vymazať aktuálnu reláciu. Server nebol zmenený.</string>
-    <string name="custom_server_restart_failed">Server bol uložený, ale aplikáciu sa nepodarilo automaticky reštartovať. Reštartujte ju manuálne.</string>
     <string name="update_available">K dispozícii je aktualizácia</string>
     <string name="update_downloading_progress">Sťahuje sa %1$d%%</string>
     <string name="update_preparing_download">Pripravuje sa sťahovanie</string>
@@ -3434,4 +3299,5 @@
     <string name="cd_emoji_option">Emodži %1$s</string>
     <string name="cd_trailer_controls">Ovládacie prvky Traileru</string>
     <string name="cd_seek_bar">Časová os</string>
+    <string name="account_error_generic_retry">Niečo sa pokazilo. Skúste to znova.</string>
 </resources>
