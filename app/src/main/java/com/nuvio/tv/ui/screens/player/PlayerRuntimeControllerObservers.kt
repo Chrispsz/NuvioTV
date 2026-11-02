@@ -851,6 +851,9 @@ internal fun PlayerRuntimeController.maybeScheduleStallWatchdog() {
                             "during STATE_BUFFERING (playhead=${livePlayer.currentPosition.coerceAtLeast(0L)}); " +
                             "skipping self-seek because duration is unknown"
                     )
+                    // TV Minimal: em live, “duração desconhecida” é o caso normal —
+                    // não desiste: roda a escada de recuperação do tv-minimal.
+                    recoverLiveStall(livePlayer, stalledForMs, "duration-unknown")
                     return@launch
                 }
                 PlayerStallWatchdogPolicy.Decision.SkipBufferedNotAhead -> {
@@ -860,6 +863,7 @@ internal fun PlayerRuntimeController.maybeScheduleStallWatchdog() {
                             "during STATE_BUFFERING (playhead=${livePlayer.currentPosition.coerceAtLeast(0L)}); " +
                             "skipping self-seek because buffered position is not ahead"
                     )
+                    recoverLiveStall(livePlayer, stalledForMs, "buffered-not-ahead")
                     return@launch
                 }
                 PlayerStallWatchdogPolicy.Decision.SkipTargetNotForward -> {
@@ -869,6 +873,7 @@ internal fun PlayerRuntimeController.maybeScheduleStallWatchdog() {
                             "during STATE_BUFFERING (playhead=${livePlayer.currentPosition.coerceAtLeast(0L)}); " +
                             "skipping self-seek because target is not forward"
                     )
+                    recoverLiveStall(livePlayer, stalledForMs, "target-not-forward")
                     return@launch
                 }
                 is PlayerStallWatchdogPolicy.Decision.SeekPastBufferedEdge -> {
@@ -882,6 +887,86 @@ internal fun PlayerRuntimeController.maybeScheduleStallWatchdog() {
                     return@launch
                 }
             }
+        }
+    }
+}
+
+/**
+ * TV Minimal Edition — recuperação de stall AO VIVO (portado do watchdog do
+ * tv-minimal). As decisões Skip* do [PlayerStallWatchdogPolicy] assumem VOD;
+ * em live não desistem: passam por aqui. VOD segue o comportamento upstream.
+ */
+internal fun PlayerRuntimeController.recoverLiveStall(player: Player, stalledForMs: Long, reason: String) {
+    if (!isLivePlaybackNow()) return
+    if (takeLiveRecoveryStep(stalledForMs = stalledForMs, reason = reason)) {
+        // Rejoin via seek pode não bastar se o player caiu em estado ruim —
+        // a própria escada escala para RECONNECT na próxima violação.
+    }
+}
+
+/** Live de verdade: janela do player, tipo `channel` ou latch — não VOD com cara de live. */
+internal fun PlayerRuntimeController.isLivePlaybackNow(): Boolean {
+    val player = _exoPlayer
+    val playerReportsLive = player != null &&
+        runCatching { player.isCurrentMediaItemLive }.getOrDefault(false)
+    return LivePlaybackUiPolicy.isLivePlayback(
+        playerReportsLive = playerReportsLive,
+        contentType = contentType,
+        latchedLive = livePlaybackLatched
+    )
+}
+
+/**
+ * Executa UM passo da escada de recuperação live ([LiveStallRecoveryPolicy]).
+ * true = agiu (rejoin ou reconexão); false = teto da janela atingido —
+ * parqueia como no tv-minimal, sem martelar o servidor.
+ */
+internal fun PlayerRuntimeController.takeLiveRecoveryStep(stalledForMs: Long, reason: String): Boolean {
+    val nowMs = System.currentTimeMillis()
+    if (LiveStallRecoveryPolicy.resetNeeded(liveRecoveryAttempts, nowMs)) {
+        liveRecoveryAttempts = emptyList()
+    }
+    val action = LiveStallRecoveryPolicy.evaluate(
+        LiveStallRecoveryPolicy.Input(
+            stalledForMs = stalledForMs,
+            attempts = liveRecoveryAttempts,
+            nowMs = nowMs
+        )
+    )
+    return when (action) {
+        LiveStallRecoveryPolicy.Action.NONE -> {
+            Log.w(
+                PlayerRuntimeController.TAG,
+                "LIVE_RECOVERY: teto de ${LiveStallRecoveryPolicy.MAX_ATTEMPTS_PER_WINDOW} tentativas " +
+                    "na janela atingido ($reason) — aguardando ação do usuário"
+            )
+            false
+        }
+        LiveStallRecoveryPolicy.Action.REJOIN_LIVE_EDGE -> {
+            val livePlayer = _exoPlayer ?: return false
+            liveRecoveryAttempts = LiveStallRecoveryPolicy.nextAttempts(liveRecoveryAttempts, nowMs)
+            Log.w(
+                PlayerRuntimeController.TAG,
+                "LIVE_RECOVERY: stall ($reason) há ${stalledForMs}ms — rejoin do edge ao vivo " +
+                    "(tentativa ${liveRecoveryAttempts.size}/${LiveStallRecoveryPolicy.MAX_ATTEMPTS_PER_WINDOW})"
+            )
+            runCatching {
+                livePlayer.seekToDefaultPosition()
+                livePlayer.play()
+            }.onFailure { e ->
+                Log.w(PlayerRuntimeController.TAG, "LIVE_RECOVERY: rejoin falhou (${e.message}) — escada escala na próxima violação")
+            }
+            true
+        }
+        LiveStallRecoveryPolicy.Action.RECONNECT_SOURCE -> {
+            liveRecoveryAttempts = LiveStallRecoveryPolicy.nextAttempts(liveRecoveryAttempts, nowMs)
+            Log.w(
+                PlayerRuntimeController.TAG,
+                "LIVE_RECOVERY: stall ($reason) há ${stalledForMs}ms — reconectando a fonte " +
+                    "(tentativa ${liveRecoveryAttempts.size}/${LiveStallRecoveryPolicy.MAX_ATTEMPTS_PER_WINDOW})"
+            )
+            scheduleDeferredPlayerReinitialize(fromPositionMs = 0L)
+            true
         }
     }
 }

@@ -1,0 +1,24 @@
+name: Addon Health (pack de fábrica)
+
+# TV Minimal — teste simulado dos addons de fábrica no CI (filosofia do fork:
+# tudo testado antes de chegar ao usuário). Roda o pack pré-configurado do
+# flavor minimal: Cinemeta, OpenSubtitles v3, FrostStream, Tvvio, Torrentio BR.
+# Críticos falhos (Cinemeta/Tvvio/Torrentio) => job vermelho.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Segundas-feiras, 09:00 UTC (06:00 Brasília).
+    - cron: "0 9 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  addon-health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Testar addons de fábrica
+        run: python3 ci/addon_health.py --timeout 10

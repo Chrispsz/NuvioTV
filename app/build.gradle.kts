@@ -221,6 +221,10 @@ android {
             buildConfigField("boolean", "FEATURE_CUSTOM_SERVER_CONNECTIONS_ENABLED", "false")
             buildConfigField("String", "GITHUB_OWNER", "\"Chrispsz\"")
             buildConfigField("String", "GITHUB_REPO", "\"NuvioTV\"")
+            // Debloat TV Minimal: o resources.arsc do upstream carrega ~150 locales
+            // (7,4 MB comprimido no APK v1.0.0 — 2º maior item depois dos nativos).
+            // O público do fork é BR; fica só pt-rBR + en (fallback do Android).
+            resourceConfigurations.addAll(listOf("en", "pt-rBR"))
         }
     }
 

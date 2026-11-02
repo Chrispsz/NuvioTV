@@ -402,6 +402,8 @@ class PlayerRuntimeController(
         livePlaybackLatched = false
         mpvDurationGrowth = LivePlaybackUiPolicy.DurationGrowth()
         liveWatchClock.reset()
+        // TV Minimal: nova stream = escada de recuperação live do zero.
+        liveRecoveryAttempts = emptyList()
         pendingPreviewSeekPosition = null
         if (_uiState.value.isLive) {
             _uiState.update { it.copy(isLive = false) }
@@ -421,6 +423,9 @@ class PlayerRuntimeController(
     internal var vodTelemetryJob: Job? = null
     internal var firstFrameWatchdogJob: Job? = null
     internal var stallWatchdogJob: Job? = null
+
+    /** TV Minimal: timestamps das tentativas de recuperação live (janela deslizante). */
+    internal var liveRecoveryAttempts: List<Long> = emptyList()
     internal var seekSourceLogJob: Job? = null
     internal var hideControlsJob: Job? = null
     internal var hideSeekOverlayJob: Job? = null

@@ -837,6 +837,27 @@ private fun PlayerRuntimeController.isShortPlaceholderStream(): Boolean {
  * watched or trigger auto-play next.
  */
 internal fun PlayerRuntimeController.handleNaturalPlaybackEnded() {
+    // TV Minimal: em live, STATE_ENDED é queda de stream (evento encerrado ou
+    // servidor derrubou a playlist) — lição do tv-minimal (v14): reconectar em
+    // vez de rodar o pós-play de VOD, que scrobblaria 99,5% e marcaria o canal
+    // como "assistido". Limitado pela mesma janela do watchdog de stall.
+    if (isLivePlaybackNow()) {
+        if (takeLiveRecoveryStep(
+                stalledForMs = LiveStallRecoveryPolicy.LIVE_STALL_THRESHOLD_MS,
+                reason = "state-ended"
+            )
+        ) {
+            nextEpisodeAutoPlayJob?.cancel()
+            nextEpisodeAutoPlayJob = null
+            _uiState.update { it.copy(playbackEnded = false, postPlayMode = null) }
+            return
+        }
+        Log.w(
+            PlayerRuntimeController.TAG,
+            "LIVE_RECOVERY: teto de reconexões em live atingido — seguindo fluxo de fim upstream"
+        )
+    }
+
     val position = currentPlaybackPositionMs() ?: 0L
     val duration = getEffectiveDuration(position)
     val hasFatalError = !_uiState.value.error.isNullOrBlank()
