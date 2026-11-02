@@ -202,6 +202,21 @@ android {
             buildConfigField("boolean", "FEATURE_EXTERNAL_PLAYBACK_KEEP_ALIVE_ENABLED", "false")
             buildConfigField("boolean", "FEATURE_CUSTOM_SERVER_CONNECTIONS_ENABLED", "false")
         }
+        // TV Minimal Edition — build do fork para leigos em hardware fraco:
+        // plugins CloudStream LIGADOS (fonte HTTP sem debrid), updater in-app LIGADO
+        // apontando para o NOSSO GitHub, trailers só externos, sem suporte/promo.
+        create("minimal") {
+            dimension = "distribution"
+            applicationId = "tv.minimal.nuvio"
+            buildConfigField("boolean", "FEATURE_PLUGINS_ENABLED", "true")
+            buildConfigField("boolean", "FEATURE_IN_APP_UPDATES_ENABLED", "true")
+            buildConfigField("boolean", "FEATURE_IN_APP_TRAILERS_ENABLED", "false")
+            buildConfigField("boolean", "FEATURE_EXTERNAL_TRAILERS_ENABLED", "true")
+            buildConfigField("boolean", "FEATURE_EXTERNAL_PLAYBACK_KEEP_ALIVE_ENABLED", "false")
+            buildConfigField("boolean", "FEATURE_CUSTOM_SERVER_CONNECTIONS_ENABLED", "false")
+            buildConfigField("String", "GITHUB_OWNER", "\"Chrispsz\"")
+            buildConfigField("String", "GITHUB_REPO", "\"NuvioTV\"")
+        }
     }
 
     if (enableDoviNative) {
@@ -595,6 +610,25 @@ dependencies {
     debugImplementation("androidx.compose.runtime:runtime-tracing")
 
     add("fullImplementation", "org.webjars.npm:crypto-js:4.2.0")
+
+    // TV Minimal Edition: mesma pilha de plugins/decoders do flavor full
+    // (fontes HTTP sem debrid — rede de segurança do pack BR).
+    add("minimalImplementation", files("libs/lib-decoder-iamf-release.aar"))
+    add("minimalImplementation", files("libs/quickjs-kt-android-1.0.5-nuvio.aar"))
+    add("minimalImplementation", libs.jsoup)
+    add("minimalImplementation", "com.fasterxml.jackson.core:jackson-databind:2.17.0")
+    add("minimalImplementation", "com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
+    add("minimalImplementation", libs.nicehttp)
+    add("minimalImplementation", libs.conscrypt.android)
+    add("minimalImplementation", "com.github.recloudstream.cloudstream:library:${libs.versions.cloudstream.get()}") {
+        exclude(group = "org.mozilla", module = "rhino")
+        exclude(group = "com.github.AmarullisVFX", module = "newpipeextractor")
+        exclude(group = "com.github.AmaryllisVFX", module = "newpipeextractor")
+        exclude(group = "com.github.AmaryllisVFX.newpipeextractor")
+        exclude(group = "info.debatty", module = "java-string-similarity")
+    }
+    add("minimalImplementation", libs.crypto.js)
+    add("minimalImplementation", "org.webjars.npm:crypto-js:4.2.0")
 
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

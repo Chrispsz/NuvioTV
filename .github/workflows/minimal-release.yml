@@ -1,0 +1,77 @@
+name: Minimal Edition APK
+
+# TV Minimal Edition — build do fork para leigos em hardware fraco.
+# - Push na branch `minimal` → build automático (artefato baixável na aba Actions).
+# - Tag `minimal-v*` → publica GitHub Release (o updater in-app do app aponta
+#   para as releases deste repo: GITHUB_OWNER=Chrispsz, GITHUB_REPO=NuvioTV).
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["minimal"]
+    tags: ["minimal-v*"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: minimal-edition-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # Build do fork: sem telemetria (SENTRY_DSN vazio = Sentry inerte),
+      # sem DV nativo (P7K não decodifica DV P7), sem build local de ffmpeg.
+      - name: local.properties mínimo
+        run: |
+          {
+            echo "USE_LOCAL_FFMPEG_DECODER=false"
+            echo "DOVI_NATIVE_ENABLED=false"
+            echo "DOVI_EXTRACTOR_HOOK_READY=false"
+            echo "DOVI_ENABLE_REAL_LINK=false"
+            echo "SENTRY_DSN="
+            echo "PLAYBACK_REPORTS_BASE_URL="
+            echo "UNIQUE_CONTRIBUTIONS_BASE_URL="
+            echo "AVATAR_PUBLIC_BASE_URL="
+          } > local.properties
+          touch local.dev.properties
+
+      # Sem keystore de release por enquanto: assina com a chave debug
+      # (instalável; trocar por keystore próprio quando definido).
+      - name: Build MinimalRelease (assinado com chave debug)
+        env:
+          CI_USE_DEBUG_SIGNING: "true"
+        run: ./gradlew :app:assembleMinimalRelease --stacktrace
+
+      - name: Upload APKs (artefato)
+        uses: actions/upload-artifact@v4
+        with:
+          name: minimal-apks-${{ github.sha }}
+          path: app/build/outputs/apk/minimal/**/*.apk
+          if-no-files-found: error
+
+      - name: GitHub Release (somente em tag)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: app/build/outputs/apk/minimal/**/*.apk
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

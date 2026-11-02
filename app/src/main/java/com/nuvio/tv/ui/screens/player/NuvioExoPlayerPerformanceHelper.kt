@@ -53,14 +53,15 @@ object NuvioExoPlayerPerformanceHelper {
     // Mirrors ARENA_CHUNK_SIZE in the forked DefaultAllocatorNative, whose pool covers 512 of them.
     const val NATIVE_ARENA_CHUNK_SIZE = 64 * 1024
     const val NATIVE_ARENA_POOL_BYTES = 512 * NATIVE_ARENA_CHUNK_SIZE
-    const val DEFAULT_NUVIO_TARGET_BUFFER_MB = 175
+    // TV Minimal Edition: defaults para hardware fraco / TCL P7K (eram 175/15s/45s/15s/50Mbps)
+    const val DEFAULT_NUVIO_TARGET_BUFFER_MB = 96
     const val DEFAULT_NUVIO_TARGET_BUFFER_BYTES = DEFAULT_NUVIO_TARGET_BUFFER_MB * 1024 * 1024
-    const val DEFAULT_NUVIO_MIN_BUFFER_MS = 15_000
-    const val DEFAULT_NUVIO_MAX_BUFFER_MS = 45_000
+    const val DEFAULT_NUVIO_MIN_BUFFER_MS = 12_000
+    const val DEFAULT_NUVIO_MAX_BUFFER_MS = 30_000
     // Native holds its buffers in the arena rather than the java heap, so it can afford a back
     // buffer that keeps a short seek back off the network.
-    const val DEFAULT_NUVIO_BACK_BUFFER_MS = 15_000
-    const val DEFAULT_NUVIO_INITIAL_BITRATE_ESTIMATE = 50_000_000L     // 50 Mbps
+    const val DEFAULT_NUVIO_BACK_BUFFER_MS = 10_000
+    const val DEFAULT_NUVIO_INITIAL_BITRATE_ESTIMATE = 25_000_000L     // 25 Mbps — rede BR média
     // Parallel chunk fetching keeps more sockets alive than the old cap of 8, which was evicting
     // live chunk connections mid playback and forcing cold reopens.
     const val NUVIO_SHARED_POOL_MAX_IDLE = 32

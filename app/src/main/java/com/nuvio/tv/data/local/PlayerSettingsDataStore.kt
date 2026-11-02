@@ -296,7 +296,7 @@ enum class NightMode(val settingValue: String) {
 data class PlayerSettings(
     val playerPreference: PlayerPreference = PlayerPreference.INTERNAL,
     val internalPlayerEngine: InternalPlayerEngine = InternalPlayerEngine.EXOPLAYER,
-    val autoSwitchInternalPlayerOnError: Boolean = false,
+    val autoSwitchInternalPlayerOnError: Boolean = true, // TV Minimal: resiliência por padrão
     val useLibass: Boolean = true,
     val libassRenderType: LibassRenderType = LibassRenderType.OVERLAY_OPEN_GL,
     val libassRenderScale: LibassRenderScale = LibassRenderScale.FULL,
@@ -309,7 +309,7 @@ data class PlayerSettings(
     val audioOutputChannels: AudioOutputChannels = AudioOutputChannels.default,
     val maintainOriginalAudioOnDownmix: Boolean = true,
     val downmixLfeLevel: DownmixLfeLevel = DownmixLfeLevel.OFF,
-    val tunnelingEnabled: Boolean = false,
+    val tunnelingEnabled: Boolean = true, // TV Minimal: menos overhead no pipeline AV
     val forceOpticalPassthrough: Boolean = false,
     val skipSilence: Boolean = false,
     val nightMode: NightMode = NightMode.OFF,
@@ -343,7 +343,7 @@ data class PlayerSettings(
     val mpvHi10pGnextSoftwareFallbackEnabled: Boolean = false,
     val mpvHardwareDecodeMode: MpvHardwareDecodeMode = MpvHardwareDecodeMode.AUTO_SAFE,
     // Display settings
-    val frameRateMatchingMode: FrameRateMatchingMode = FrameRateMatchingMode.OFF,
+    val frameRateMatchingMode: FrameRateMatchingMode = FrameRateMatchingMode.START, // TV Minimal: 24fps sem judder
     val resolutionMatchingEnabled: Boolean = false,
     // Stream selection settings
     val streamAutoPlayMode: StreamAutoPlayMode = StreamAutoPlayMode.MANUAL,
@@ -452,7 +452,7 @@ data class PlayerSettings(
         const val MIN_PARALLEL_CHUNK_SIZE_KB = 256
         const val MAX_PARALLEL_CHUNK_SIZE_KB = 128 * 1024
         const val DEFAULT_ENABLE_HTTP2 = false
-        const val DEFAULT_NUVIO_PERFORMANCE_MODE_ENABLED = false
+        const val DEFAULT_NUVIO_PERFORMANCE_MODE_ENABLED = true // TV Minimal: modo perf nativo ligado
     }
 }
 
@@ -997,7 +997,7 @@ class PlayerSettingsDataStore @Inject constructor(
                 internalPlayerEngine = prefs[internalPlayerEngineKey]?.let {
                     runCatching { InternalPlayerEngine.valueOf(it) }.getOrDefault(InternalPlayerEngine.EXOPLAYER)
                 } ?: InternalPlayerEngine.EXOPLAYER,
-                autoSwitchInternalPlayerOnError = prefs[autoSwitchInternalPlayerOnErrorKey] ?: false,
+                autoSwitchInternalPlayerOnError = prefs[autoSwitchInternalPlayerOnErrorKey] ?: true,
                 useLibass = prefs[useLibassKey] ?: true,
                 libassRenderType = prefs[libassRenderTypeKey]?.let {
                     try { LibassRenderType.valueOf(it) } catch (e: Exception) { LibassRenderType.OVERLAY_OPEN_GL }
@@ -1021,7 +1021,7 @@ class PlayerSettingsDataStore @Inject constructor(
                     prefs[maintainOriginalAudioOnDownmixKey]
                         ?: !(prefs[downmixNormalizationEnabledLegacyKey] ?: false),
                 downmixLfeLevel = DownmixLfeLevel.fromSettingValue(prefs[downmixLfeLevelKey]),
-                tunnelingEnabled = prefs[tunnelingEnabledKey] ?: false,
+                tunnelingEnabled = prefs[tunnelingEnabledKey] ?: true,
                 forceOpticalPassthrough = prefs[forceOpticalPassthroughKey] ?: false,
                 skipSilence = prefs[skipSilenceKey] ?: false,
                 nightMode = NightMode.fromSettingValue(prefs[nightModeKey]),
@@ -1067,7 +1067,7 @@ class PlayerSettingsDataStore @Inject constructor(
                 mpvHardwareDecodeMode = parseMpvHardwareDecodeMode(prefs[mpvHardwareDecodeModeKey]),
                 frameRateMatchingMode = prefs[frameRateMatchingModeKey]?.let {
                     runCatching { FrameRateMatchingMode.valueOf(it) }.getOrNull()
-                } ?: if (prefs[frameRateMatchingKey] == true) FrameRateMatchingMode.START_STOP else FrameRateMatchingMode.OFF,
+                } ?: if (prefs[frameRateMatchingKey] == true) FrameRateMatchingMode.START_STOP else FrameRateMatchingMode.START,
                 resolutionMatchingEnabled = prefs[resolutionMatchingEnabledKey] ?: false,
                 streamAutoPlayMode = prefs[streamAutoPlayModeKey]?.let {
                     runCatching { StreamAutoPlayMode.valueOf(it) }.getOrDefault(StreamAutoPlayMode.MANUAL)

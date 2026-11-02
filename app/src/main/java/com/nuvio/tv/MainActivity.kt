@@ -823,7 +823,9 @@ open class MainActivity : ComponentActivity() {
                     val prefsLoading = layoutChosen == null || !mainUiPrefs.experienceModeLoaded || installedAddons == null
                     if (!prefsLoading) {
                     val effectiveExperienceMode = mainUiPrefs.experienceMode
-                        ?: if (layoutChosen) ExperienceMode.ADVANCED else null
+                        // TV Minimal Edition: leigo entra direto no ESSENTIAL (sem tela de escolha);
+                        // quem já escolheu layout continua no que tinha (ADVANCED).
+                        ?: if (layoutChosen) ExperienceMode.ADVANCED else ExperienceMode.ESSENTIAL
                     val needsExperienceSelection = effectiveExperienceMode == null
                     val needsEssentialAddonSetup =
                         effectiveExperienceMode == ExperienceMode.ESSENTIAL &&

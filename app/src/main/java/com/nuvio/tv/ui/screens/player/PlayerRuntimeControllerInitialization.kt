@@ -63,6 +63,7 @@ import com.nuvio.tv.R
 import com.nuvio.tv.core.player.DolbyVisionCodecFallback
 import com.nuvio.tv.core.player.DolbyVisionBaseLayerPolicy
 import com.nuvio.tv.core.player.BitrateAwareLoadControl
+import com.nuvio.tv.core.player.LiveBufferPolicy
 import com.nuvio.tv.core.player.DolbyVisionConversionConfig
 import com.nuvio.tv.core.player.DolbyVisionConversionStats
 import com.nuvio.tv.core.player.DolbyVisionExtractorsFactory
@@ -522,6 +523,17 @@ internal fun PlayerRuntimeController.initializePlayer(
             currentParallelChunkOverheadMb = parallelOverheadMb
 
             val loadControl = if (playerSettings.nuvioPerformanceModeEnabled) {
+                if (LiveBufferPolicy.isLiveUrl(url)) {
+                    // TV Minimal Edition: perfil LIVE portado do tv-minimal — arranque rápido
+                    // e tolerância a underrun para IPTV ao vivo em hardware fraco.
+                    effectiveBackBufferDurationMs = LiveBufferPolicy.LIVE_BACK_BUFFER_MS
+                    currentBitrateAwareLoadControl = null
+                    Log.i(
+                        PlayerRuntimeController.TAG,
+                        "BUFFER_GATE: engine=exo-native-perf LIVE=on master=on; perfil live 30s/60s/1s host=${url.safeHost()}"
+                    )
+                    LiveBufferPolicy.buildLiveLoadControl()
+                } else {
                 effectiveBackBufferDurationMs = NuvioExoPlayerPerformanceHelper.backBufferMs
                 currentBitrateAwareLoadControl = null
                 Log.i(
@@ -529,6 +541,7 @@ internal fun PlayerRuntimeController.initializePlayer(
                     "BUFFER_GATE: engine=exo-native-perf master=on parallelOverheadMb=$parallelOverheadMb; NuvioExoPlayerPerformanceHelper.buildLoadControl host=${url.safeHost()}"
                 )
                 NuvioExoPlayerPerformanceHelper.buildLoadControl(context, parallelOverheadMb)
+                }
             } else if (playerSettings.bufferEngineEnabled) {
                 val bufferSettings = playerSettings.bufferSettings
                 // Managed (default) caps the buffer at the device budget; off uses Target Buffer Size.
