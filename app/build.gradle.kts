@@ -210,9 +210,10 @@ android {
             applicationId = "tv.minimal.nuvio"
             // Versionamento próprio do fork: a release usa tag "minimal-vX.Y.Z" e o
             // updater compara VERSION_NAME local com a tag (VersionUtils normaliza
-            // o prefixo "minimal-"). Começa em 1.0.0 — independente do upstream.
-            versionCode = 100
-            versionName = "1.0.0"
+            // o prefixo "minimal-"). 1.1.0 = watchdog live + health-check de addons
+            // + filtro de locale (onda de 02/11/2026).
+            versionCode = 110
+            versionName = "1.1.0"
             buildConfigField("boolean", "FEATURE_PLUGINS_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_UPDATES_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_TRAILERS_ENABLED", "false")

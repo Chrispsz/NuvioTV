@@ -19,7 +19,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # TV Minimal — teste simulado do pack de fábrica ANTES de gastar 19 min de
+  # build: se um addon crítico (Cinemeta/Tvvio/Torrentio) cair, o job falha
+  # e sinaliza antes de o APK nem existir.
+  addon-health:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Testar addons de fábrica (simulação)
+        run: python3 ci/addon_health.py --timeout 10
+
   build:
+    needs: addon-health
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
