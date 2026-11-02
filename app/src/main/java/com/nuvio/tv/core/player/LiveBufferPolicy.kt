@@ -1,8 +1,8 @@
 package com.nuvio.tv.core.player
 
 import androidx.media3.common.C
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.DefaultLoadControl
-import androidx.media3.exoplayer.LoadControl
 
 /**
  * TV Minimal Edition — perfil de buffer para streams AO VIVO (IPTV), portado do
@@ -38,7 +38,11 @@ object LiveBufferPolicy {
         return LIVE_URL_KEYWORDS.any { lower.contains(it) }
     }
 
-    fun buildLiveLoadControl(): LoadControl = DefaultLoadControl.Builder()
+    // Retorna DefaultLoadControl (não LoadControl) para que a inferência do Kotlin no
+    // PlayerRuntimeControllerInitialization produza o mesmo LUB de antes do perfil LIVE
+    // (todas as branches atribuem a _loadControl: DefaultLoadControl?).
+    @UnstableApi
+    fun buildLiveLoadControl(): DefaultLoadControl = DefaultLoadControl.Builder()
         .setBufferDurationsMs(
             LIVE_MIN_BUFFER_MS,
             LIVE_MAX_BUFFER_MS,
