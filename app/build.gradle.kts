@@ -320,8 +320,19 @@ android {
         abi {
             isEnable = !buildingAppBundle
             reset()
-            include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
-            isUniversalApk = true
+            // Fork TV Minimal: -PnuvioAbi=armeabi-v7a (lista separada por vírgula)
+            // restringe os APKs gerados. Sem a propriedade, mantém o comportamento
+            // upstream (todos os ABIs + universal). O alvo do fork é hardware
+            // 32-bit, então o CI do flavor minimal passa só armeabi-v7a.
+            val abiOverride = (project.findProperty("nuvioAbi") as String?)
+                ?.split(",")?.map { it.trim() }?.filter { it.isNotEmpty() }
+            if (abiOverride.isNullOrEmpty()) {
+                include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+                isUniversalApk = true
+            } else {
+                include(*abiOverride.toTypedArray())
+                isUniversalApk = false
+            }
         }
     }
 

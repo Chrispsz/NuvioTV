@@ -39,6 +39,7 @@ jobs:
 
       # Build do fork: sem telemetria (SENTRY_DSN vazio = Sentry inerte),
       # sem DV nativo (P7K não decodifica DV P7), sem build local de ffmpeg.
+      # -PnuvioAbi=armeabi-v7a: só o APK 32-bit (hardware alvo do fork).
       - name: local.properties mínimo
         run: |
           {
@@ -58,7 +59,7 @@ jobs:
       - name: Build MinimalRelease (assinado com chave debug)
         env:
           CI_USE_DEBUG_SIGNING: "true"
-        run: ./gradlew :app:assembleMinimalRelease --stacktrace
+        run: ./gradlew :app:assembleMinimalRelease -PnuvioAbi=armeabi-v7a --stacktrace
 
       - name: Upload APKs (artefato)
         uses: actions/upload-artifact@v4
