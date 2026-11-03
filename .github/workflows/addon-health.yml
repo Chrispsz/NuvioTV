@@ -2,8 +2,9 @@ name: Addon Health (pack de fábrica)
 
 # TV Minimal — teste simulado dos addons de fábrica no CI (filosofia do fork:
 # tudo testado antes de chegar ao usuário). Roda o pack pré-configurado do
-# flavor minimal: Cinemeta, OpenSubtitles v3, FrostStream, Tvvio, Torrentio BR.
-# Críticos falhos (Cinemeta/Tvvio/Torrentio) => job vermelho.
+# flavor minimal: FayaTV, Cinemeta, OpenSubtitles v3, FrostStream, PlavioHD,
+# Torrentio BR.
+# Críticos falhos (Cinemeta/FayaTV/Torrentio) => job vermelho.
 
 on:
   workflow_dispatch:

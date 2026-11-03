@@ -70,6 +70,7 @@ class AddonPreferences @Inject constructor(
                 val parsed = parseUrlList(json)
                 when {
                     isUnmodifiedFactoryPack(parsed) -> getDefaultAddons().toList()
+                    isFactoryPackV151(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV15(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV14(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV13(parsed) -> getDefaultAddons().toList()
@@ -249,28 +250,32 @@ class AddonPreferences @Inject constructor(
     // TV Minimal Edition: pack BR pré-configurado (zero-config para leigos).
     // A ORDEM IMPORTA: sem ordem salva, as rows da Home seguem a ordem dos addons
     // (HomeViewModelCatalogUtils.rebuildCatalogOrder) — por isso CANAIS AO VIVO
-    // (Tvvio, 100+ canais de esportes/gerais + eventos, ativamente mantido) vem
-    // PRIMEIRO: abrir o app já mostra canais, como TV de verdade.
+    // (FayaTV, instância configurada d:br@cat=) vem PRIMEIRO: abrir o app já
+    // mostra canais, como TV de verdade.
     // Depois: Cinemeta (catálogo/metadata global de filmes e séries), Torrentio BR
     // (fonte primária de streams torrent: providers comando/bludv/micoleaodublado,
-    // ordenação qualidade+seeders), MediaFusion | Midnight (2ª fonte torrent com
-    // scrapers independentes — redundância contra rate-limit do Torrentio),
-    // Anime Kitsu (catálogos de animes: trending/airing/popular/rating) e OpenSubtitles.
-    // Testado em 03/11/2026 (cadeia completa catálogo→meta→streams):
-    // Tvvio 200 OK v2.1.0 (100 canais + eventos); anime-kitsu.strem.fun 200 OK
-    // em 40ms (community.anime.kitsu v0.0.10, 50/50 metas com imdb_id);
+    // ordenação qualidade+seeders), Anime Kitsu (catálogos de animes) e
+    // OpenSubtitles.
+    // Tvvio FORA na 1.5.2: fora do ar para todo mundo desde 27/10/2026 — streams
+    // cdn10embed.xyz respondem 403 Cloudflare e o relay baby-beamup.club 502
+    // (sintoma: lista de canais/EPG aparece, nada reproduz, direto ou replay;
+    // relatos no r/StremioAddons). FayaTV ENTRA no lugar: instância configurada
+    // d:br@cat=Sports:General:News:Kids:Entertainment (filtro BR + esportes gerais
+    // + eventos ao vivo), testada 04/11/2026 — manifest/catálogos/streams 200 OK,
+    // canais brasileiros reais (SBT Interior, Rede TV!, Rede Brasil, TV Paraense)
+    // com streams 200 OK. O catálogo "country_filter" é ocultado no AddonMapper.
+    // anime-kitsu.strem.fun 200 OK em 40ms (community.anime.kitsu v0.0.10).
     // Bludv VIVO — para tt0317248 devolve REMUX em PORTUGUÊS exclusivo dos
     // providers BR (torrentio testado: +1 stream só-no-BR vs padrão).
     // Torrentio cobre anime com IDs kitsu (100 streams p/ kitsu:7442, providers
-    // gerais + 1337x/TPB). MediaFusion Midnight FORA na 1.5.0 (pedido do dono:
-    // "é sem graça porque parece um torrentio") — torrent na nuvem duplica o
-    // Torrentio; fica só o Torrentio, e torrent é o ÚLTIMO tier nas opções
-    // (StreamAutoPlaySelector.tierHttpFirst).
+    // gerais + 1337x/TPB). MediaFusion Midnight FORA desde a 1.5.0 (pedido do
+    // dono: "é sem graça porque parece um torrentio"); torrent é o ÚLTIMO tier
+    // nas opções (StreamAutoPlaySelector.tierHttpFirst).
     // FrostStream DE VOLTA na 1.5.0 (pedido do dono: "o Frost não morreu pois
     // ainda funciona"): o 403/404 visto em testes é bloqueio Cloudflare de IP
     // de datacenter — em rede residencial o addon responde normal. No CI ele é
     // não-crítico exatamente por isso.
-    // PlavioHD ENTRA na 1.5.1: VOD internacional via HTTPS DIRETO (sem torrent,
+    // PlavioHD ENTROU na 1.5.1: VOD internacional via HTTPS DIRETO (sem torrent,
     // sem debrid, sem login) — até 4K + esportes ao vivo; zero-config, verificado
     // 03/11/2026 devolvendo 70 streams HTTPS assinados para tt0111161 sem
     // autenticação (manifest+streams 200 OK, v1.9.151). Reforça o tier HTTP que
@@ -280,6 +285,18 @@ class AddonPreferences @Inject constructor(
     // zero-config); segue disponível por instalação manual de 1 clique no site.
     // Ordem = ordem das fileiras da Home: canais ao vivo primeiro.
     private fun getDefaultAddons(): Set<String> = setOf(
+        "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json",
+        "https://v3-cinemeta.strem.io",
+        "https://anime-kitsu.strem.fun",
+        "https://froststream.cloutteam.com",
+        "https://hd.plavio.site",
+        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
+        "https://opensubtitles-v3.strem.io"
+    )
+
+    // Pack da 1.5.1 (com Tvvio morto) — migra automaticamente quem atualizou
+    // da 1.5.1 sem personalizar a lista.
+    private val factoryPackV151: Set<String> = setOf(
         "https://tvvio.megaembed-frost.workers.dev",
         "https://v3-cinemeta.strem.io",
         "https://anime-kitsu.strem.fun",
@@ -288,6 +305,12 @@ class AddonPreferences @Inject constructor(
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
         "https://opensubtitles-v3.strem.io"
     )
+
+    private fun isFactoryPackV151(urls: List<String>): Boolean {
+        if (urls.size != factoryPackV151.size) return false
+        return urls.map { it.trim().lowercase() }.toSet() ==
+            factoryPackV151.map { it.lowercase() }.toSet()
+    }
 
     // Pack da 1.5.0 (antes do PlavioHD) — migra automaticamente quem atualizou
     // da 1.5.0 sem personalizar a lista.

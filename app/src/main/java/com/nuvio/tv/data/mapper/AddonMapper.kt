@@ -13,14 +13,18 @@ import com.nuvio.tv.domain.model.ContentType
 import com.nuvio.tv.domain.model.StremioAddonsConfig
 
 /**
- * Catálogos que duplicam conteúdo já coberto pelas demais rows da Home
- * ("Last videos" e "Calendar videos" do Cinemeta para séries). Filtrados na
- * conversão de manifesto para que nunca virem rows na Home nem apareçam no
- * gerenciador de addons — evita duplicação inútil na navegação.
+ * Catálogos ocultos na conversão de manifesto para que nunca virem rows na
+ * Home nem apareçam no gerenciador de addons:
+ * - "last-videos"/"calendar-videos" (Cinemeta): duplicam conteúdo já coberto
+ *   pelas demais rows da Home;
+ * - "country_filter" (FayaTV): catálogo de navegação que lista PAÍSES como
+ *   metas — inútil como fileira (a instância de fábrica já vem filtrada por
+ *   d:br@cat=...).
  */
 private val HIDDEN_DUPLICATED_CATALOG_IDS = setOf(
     "last-videos",
-    "calendar-videos"
+    "calendar-videos",
+    "country_filter"
 )
 
 fun AddonManifestDto.toDomain(baseUrl: String): Addon {

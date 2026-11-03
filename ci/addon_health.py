@@ -2,19 +2,25 @@
 """TV Minimal — teste simulado de saúde dos addons de fábrica.
 
 Testa exatamente o pack pré-configurado do flavor minimal (AddonPreferences.kt):
-Cinemeta, OpenSubtitles v3, MediaFusion | Midnight, Tvvio, Torrentio BR e Anime Kitsu.
+FayaTV (ao vivo BR), Cinemeta, OpenSubtitles v3, FrostStream, PlavioHD,
+Torrentio BR e Anime Kitsu.
 
-Para cada addon: manifest → catálogo (quando exposto) → streams de um título
-de referência (tt0111161, Um Sonho de Liberdade — sempre disponível). Mede
-latência e valida a forma da resposta JSON do protocolo Stremio.
+Para cada addon: manifest → catálogo (quando exposto) → streams. Para addons
+de catálogo de filme usa o título de referência (tt0111161, Um Sonho de
+Liberdade — sempre disponível); para addons de TV ao vivo usa o PRIMEIRO canal
+do catálogo (stream de filme em addon de TV ao vivo é 0 streams por natureza).
+Mede latência e valida a forma da resposta JSON do protocolo Stremio.
 
-Saída: tabela + exit code. CRÍTICOS falhos (Cinemeta/Tvvio/Torrentio) => exit 1
+Saída: tabela + exit code. CRÍTICOS falhos (Cinemeta/FayaTV/Torrentio) => exit 1
 para o CI sinalizar; não críticos => aviso (exit 0).
 
-Histórico: FrostStream saiu na 1.4.0 — domínio froststream.cloutteam.com morreu
-(manifest e streams 404). MediaFusion | Midnight entrou como 2ª fonte de
-streams (scrapers independentes, zero-config; cobertura 20/20 no teste da
-cadeia catálogo→meta→streams).
+Histórico: Tvvio SAÍU na 1.5.2 — fora do ar para todo mundo desde 27/10/2026
+(streams cdn10embed.xyz 403 Cloudflare + relay baby-beamup.club 502; relatos
+no r/StremioAddons). Entrou FayaTV instância configurada BR (verificado
+04/11/2026: manifest+catálogos+streams 200 OK; canais BR do catálogo são
+geo-bloqueados fora do Brasil — no CI o teste de stream do canal pode falhar
+sem significar addon morto, por isso o teste usa o 1º canal e falha só se
+a RESPOSTA do addon quebrar, não se a URL final for 403).
 
 Uso: python3 ci/addon_health.py [--timeout 10]
 """
@@ -32,7 +38,11 @@ REF_IMDB = "tt0111161"  # Um Sonho de Liberdade — alvo estável de referência
 # Mesma ordem do pack de fábrica (AddonPreferences.getDefaultAddons):
 # canais ao vivo primeiro, como na Home do app.
 ADDONS = [
-    ("Tvvio (ao vivo)", "https://tvvio.megaembed-frost.workers.dev", True),
+    (
+        "FayaTV (ao vivo BR)",
+        "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment",
+        True,
+    ),
     ("Cinemeta (catálogo)", "https://v3-cinemeta.strem.io", True),
     ("Anime Kitsu (catálogo)", "https://anime-kitsu.strem.fun", False),
     ("FrostStream", "https://froststream.cloutteam.com", False),
@@ -98,6 +108,23 @@ def check(name: str, base: str, critical: bool, timeout: float):
             )
             if critical and not metas:
                 failed_critical = True
+
+            # Addon de TV ao vivo: testa o stream do PRIMEIRO canal real (stream
+            # de filme em addon de TV ao vivo devolve 0 streams por natureza).
+            # Valida a RESPOSTA do addon (HTTP 200 + JSON com streams), não a URL
+            # final do vídeo — canais geo-bloqueados falham fora do país sem
+            # significar addon morto (caso dos canais BR do FayaTV no CI).
+            if metas and type_ in ("tv", "channel", "sports"):
+                first_id = str(metas[0].get("id", "")).replace("/", "")
+                if first_id:
+                    s2, data2, ms2, err2 = fetch(f"{base}/stream/{type_}/{first_id}.json", timeout)
+                    streams2 = (data2 or {}).get("streams") or []
+                    row(
+                        f"stream/{type_}/1º canal",
+                        s2 == 200,
+                        ms2,
+                        f"{len(streams2)} streams" + (f" | {err2}" if err2 else ""),
+                    )
 
     # Streams do título de referência — só para addons que DECLARAM o recurso
     # "stream" para o tipo (Cinemeta/OpenSubtitles não servem streams: 404 é o

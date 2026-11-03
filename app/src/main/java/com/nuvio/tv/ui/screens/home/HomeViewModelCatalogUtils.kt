@@ -227,7 +227,7 @@ internal fun HomeViewModel.rebuildCatalogOrder(addons: List<Addon>) {
     val defaultOrder = buildDefaultCatalogOrder(addons)
     // TV Minimal: enquanto o usuário nunca salvou uma ordem própria, aplica a
     // prioridade de fábrica — Eventos ao vivo no topo, depois Filmes, Animes,
-    // Séries e por último os canais gerais do Tvvio.
+    // Séries e por último os canais do FayaTV.
     val factoryOrder = if (BuildConfig.FLAVOR == "minimal" && homeCatalogOrderKeys.isEmpty()) {
         applyFactoryRowPriority(defaultOrder, addons)
     } else {
@@ -445,20 +445,20 @@ private fun findOwnerAfter(order: List<String>, index: Int, owners: Map<String, 
 }
 
 // TV Minimal — prioridade de fábrica das rows da Home (pedido do dono do fork):
-// 1º Eventos ao vivo (Tvvio), depois Filmes, Animes, Séries e, por último, os
-// canais gerais do Tvvio. Sort estável: dentro de cada bloco vale a ordem dos
-// manifestos dos addons. Só se aplica quando o usuário nunca reordenou.
+// 1º Eventos ao vivo (FayaTV live-and-upcoming), depois Filmes, Animes, Séries
+// e, por último, os canais do FayaTV. Sort estável: dentro de cada bloco vale a
+// ordem dos manifestos dos addons. Só se aplica quando o usuário nunca reordenou.
 private fun applyFactoryRowPriority(order: List<String>, addons: List<Addon>): List<String> {
     val priorityByKey = HashMap<String, Int>(order.size * 2)
     addons.forEach { addon ->
         addon.catalogs.forEach { catalog ->
             val key = catalogRowLegacyKey(addon.id, catalog.apiType, catalog.id)
             priorityByKey[key] = when {
-                addon.id == "org.leandrodev.tvvio" && catalog.id == "eventos" -> 0
+                addon.id == "org.fayallc.fayatv" && catalog.id == "live-and-upcoming" -> 0
                 catalog.apiType.equals("movie", ignoreCase = true) -> 10
                 catalog.apiType.equals("anime", ignoreCase = true) -> 20
                 catalog.apiType.equals("series", ignoreCase = true) -> 30
-                addon.id == "org.leandrodev.tvvio" -> 40
+                addon.id == "org.fayallc.fayatv" -> 40
                 else -> 50
             }
         }

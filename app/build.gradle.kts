@@ -214,8 +214,8 @@ android {
             // (VOD HTTP direto até 4K, reforça o tier HTTP à frente do torrent,
             // com migração automática do pack 1.5.0) — build final da onda
             // de 03/11/2026.
-            versionCode = 151
-            versionName = "1.5.1"
+            versionCode = 152
+            versionName = "1.5.2"
             buildConfigField("boolean", "FEATURE_PLUGINS_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_UPDATES_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_TRAILERS_ENABLED", "false")
