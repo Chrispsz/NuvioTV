@@ -34,14 +34,15 @@ REF_IMDB = "tt0111161"  # Um Sonho de Liberdade — alvo estável de referência
 ADDONS = [
     ("Tvvio (ao vivo)", "https://tvvio.megaembed-frost.workers.dev", True),
     ("Cinemeta (catálogo)", "https://v3-cinemeta.strem.io", True),
+    ("Anime Kitsu (catálogo)", "https://anime-kitsu.strem.fun", False),
+    ("FrostStream", "https://froststream.cloutteam.com", False),
+    ("PlavioHD (HTTP 4K)", "https://hd.plavio.site", True),
     (
         "Torrentio BR (torrent)",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,"
         "torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
         True,
     ),
-    ("FrostStream", "https://froststream.cloutteam.com", False),
-    ("Anime Kitsu (catálogo)", "https://anime-kitsu.strem.fun", False),
     ("OpenSubtitles v3", "https://opensubtitles-v3.strem.io", False),
 ]
 

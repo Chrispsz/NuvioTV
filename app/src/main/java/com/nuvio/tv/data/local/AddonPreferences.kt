@@ -70,6 +70,7 @@ class AddonPreferences @Inject constructor(
                 val parsed = parseUrlList(json)
                 when {
                     isUnmodifiedFactoryPack(parsed) -> getDefaultAddons().toList()
+                    isFactoryPackV15(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV14(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV13(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV12(parsed) -> getDefaultAddons().toList()
@@ -269,6 +270,11 @@ class AddonPreferences @Inject constructor(
     // ainda funciona"): o 403/404 visto em testes é bloqueio Cloudflare de IP
     // de datacenter — em rede residencial o addon responde normal. No CI ele é
     // não-crítico exatamente por isso.
+    // PlavioHD ENTRA na 1.5.1: VOD internacional via HTTPS DIRETO (sem torrent,
+    // sem debrid, sem login) — até 4K + esportes ao vivo; zero-config, verificado
+    // 03/11/2026 devolvendo 70 streams HTTPS assinados para tt0111161 sem
+    // autenticação (manifest+streams 200 OK, v1.9.151). Reforça o tier HTTP que
+    // fica à frente do torrent (tierHttpFirst).
     // Meu Futebol REMOVIDO (manifest inacessível, timeout 12s no teste).
     // BestCine permanece FORA do pack: passou a exigir login (deixou de ser
     // zero-config); segue disponível por instalação manual de 1 clique no site.
@@ -278,9 +284,27 @@ class AddonPreferences @Inject constructor(
         "https://v3-cinemeta.strem.io",
         "https://anime-kitsu.strem.fun",
         "https://froststream.cloutteam.com",
+        "https://hd.plavio.site",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
         "https://opensubtitles-v3.strem.io"
     )
+
+    // Pack da 1.5.0 (antes do PlavioHD) — migra automaticamente quem atualizou
+    // da 1.5.0 sem personalizar a lista.
+    private val factoryPackV15: Set<String> = setOf(
+        "https://tvvio.megaembed-frost.workers.dev",
+        "https://v3-cinemeta.strem.io",
+        "https://anime-kitsu.strem.fun",
+        "https://froststream.cloutteam.com",
+        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
+        "https://opensubtitles-v3.strem.io"
+    )
+
+    private fun isFactoryPackV15(urls: List<String>): Boolean {
+        if (urls.size != factoryPackV15.size) return false
+        return urls.map { it.trim().lowercase() }.toSet() ==
+            factoryPackV15.map { it.lowercase() }.toSet()
+    }
 
     // Pack da 1.4.0 (com MediaFusion Midnight, sem FrostStream) — migra
     // automaticamente quem atualizou para a 1.4.x sem personalizar a lista.
