@@ -214,8 +214,8 @@ android {
             // fábrica), visual moderno por padrão (sidebar de vidro + layout MODERNO
             // sem tela "Welcome"), FrostStream fora (domínio morto, 404) e
             // MediaFusion | Midnight como 2ª fonte de streams — onda de 03/11/2026.
-            versionCode = 140
-            versionName = "1.4.0"
+            versionCode = 150
+            versionName = "1.5.0"
             buildConfigField("boolean", "FEATURE_PLUGINS_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_UPDATES_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_TRAILERS_ENABLED", "false")

@@ -12,6 +12,17 @@ import com.nuvio.tv.domain.model.CatalogDescriptor
 import com.nuvio.tv.domain.model.ContentType
 import com.nuvio.tv.domain.model.StremioAddonsConfig
 
+/**
+ * Catálogos que duplicam conteúdo já coberto pelas demais rows da Home
+ * ("Last videos" e "Calendar videos" do Cinemeta para séries). Filtrados na
+ * conversão de manifesto para que nunca virem rows na Home nem apareçam no
+ * gerenciador de addons — evita duplicação inútil na navegação.
+ */
+private val HIDDEN_DUPLICATED_CATALOG_IDS = setOf(
+    "last-videos",
+    "calendar-videos"
+)
+
 fun AddonManifestDto.toDomain(baseUrl: String): Addon {
     val manifestTypes = types.map { it.trim() }.filter { it.isNotEmpty() }
     return Addon(
@@ -22,7 +33,9 @@ fun AddonManifestDto.toDomain(baseUrl: String): Addon {
         logo = logo,
         background = background,
         baseUrl = baseUrl,
-        catalogs = catalogs.map { it.toDomain() },
+        catalogs = catalogs
+            .filter { descriptor -> descriptor.id.trim().lowercase() !in HIDDEN_DUPLICATED_CATALOG_IDS }
+            .map { it.toDomain() },
         types = manifestTypes.map { ContentType.fromString(it) },
         rawTypes = manifestTypes,
         resources = parseResources(resources, manifestTypes),

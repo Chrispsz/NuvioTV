@@ -29,10 +29,28 @@ object StreamAutoPlaySelector {
         val (directDebridEntries, remainingEntries) = streams.partition {
             it.streams.any { stream -> stream.isDirectDebrid() }
         }
-        if (installedOrder.isEmpty()) return directDebridEntries + remainingEntries
+        if (installedOrder.isEmpty()) {
+            return directDebridEntries + tierHttpFirst(remainingEntries)
+        }
         val (addonEntries, pluginEntries) = remainingEntries.partition { it.addonName in addonRankByName }
         val orderedAddons = addonEntries.sortedBy { addonRankByName.getValue(it.addonName) }
-        return directDebridEntries + orderedAddons + pluginEntries
+        return directDebridEntries +
+            tierHttpFirst(orderedAddons) +
+            tierHttpFirst(pluginEntries)
+    }
+
+    /**
+     * TV Minimal Edition: HTTP/direto primeiro, torrent por último nas opções
+     * de assistir. Grupos com pelo menos um stream não-torrent (URL HTTP direta)
+     * vêm antes dos grupos exclusivamente torrent (magnet/infoHash sem URL).
+     * Streams de debrid já resolvido contam como direto e ficam no topo, antes
+     * desta função.
+     */
+    private fun tierHttpFirst(entries: List<AddonStreams>): List<AddonStreams> {
+        val (httpEntries, torrentOnlyEntries) = entries.partition { group ->
+            group.streams.any { stream -> !stream.isTorrent() }
+        }
+        return httpEntries + torrentOnlyEntries
     }
 
     private fun isPlayable(stream: Stream): Boolean {

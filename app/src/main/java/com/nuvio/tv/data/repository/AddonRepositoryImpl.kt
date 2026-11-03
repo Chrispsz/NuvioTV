@@ -81,7 +81,10 @@ class AddonRepositoryImpl(
     companion object {
         private const val TAG = "AddonRepository"
         private const val MANIFEST_CACHE_PREFS = "addon_manifest_cache"
-        private const val MANIFEST_CACHE_KEY = "manifests_v2"
+        // v3: rows duplicadas (last-videos/calendar-videos) passam a ser filtradas na
+        // conversão do manifesto; bump invalida caches antigos que ainda as contêm.
+        private const val MANIFEST_CACHE_KEY = "manifests_v3"
+        private const val LEGACY_MANIFEST_CACHE_KEY_V2 = "manifests_v2"
         private const val LEGACY_MANIFEST_CACHE_KEY = "manifests"
         private const val MANIFEST_SUFFIX = "/manifest.json"
         private const val MANIFEST_CACHE_TTL_MS = 6 * 60 * 60 * 1000L 
@@ -196,8 +199,11 @@ class AddonRepositoryImpl(
     private suspend fun loadManifestCacheFromDisk() = kotlinx.coroutines.withContext(dispatcher) {
         try {
             val prefs = context.getSharedPreferences(MANIFEST_CACHE_PREFS, Context.MODE_PRIVATE)
-            if (prefs.contains(LEGACY_MANIFEST_CACHE_KEY)) {
-                prefs.edit().remove(LEGACY_MANIFEST_CACHE_KEY).apply()
+            if (prefs.contains(LEGACY_MANIFEST_CACHE_KEY) || prefs.contains(LEGACY_MANIFEST_CACHE_KEY_V2)) {
+                prefs.edit()
+                    .remove(LEGACY_MANIFEST_CACHE_KEY)
+                    .remove(LEGACY_MANIFEST_CACHE_KEY_V2)
+                    .apply()
             }
             val json = prefs.getString(MANIFEST_CACHE_KEY, null) ?: return@withContext
             val type = object : TypeToken<Map<String, Addon>>() {}.type

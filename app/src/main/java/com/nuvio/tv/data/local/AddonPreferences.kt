@@ -70,6 +70,7 @@ class AddonPreferences @Inject constructor(
                 val parsed = parseUrlList(json)
                 when {
                     isUnmodifiedFactoryPack(parsed) -> getDefaultAddons().toList()
+                    isFactoryPackV14(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV13(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV12(parsed) -> getDefaultAddons().toList()
                     else -> parsed
@@ -260,10 +261,14 @@ class AddonPreferences @Inject constructor(
     // Bludv VIVO — para tt0317248 devolve REMUX em PORTUGUÊS exclusivo dos
     // providers BR (torrentio testado: +1 stream só-no-BR vs padrão).
     // Torrentio cobre anime com IDs kitsu (100 streams p/ kitsu:7442, providers
-    // gerais + 1337x/TPB). Cobertura da cadeia: Torrentio 19/20, MF Midnight
-    // 20/20 dos itens do top do Cinemeta com ao menos 1 stream.
-    // FrostStream REMOVIDO na 1.4.0: domínio froststream.cloutteam.com morreu
-    // (manifest e streams 404 para todo mundo — causava "não encontra nada").
+    // gerais + 1337x/TPB). MediaFusion Midnight FORA na 1.5.0 (pedido do dono:
+    // "é sem graça porque parece um torrentio") — torrent na nuvem duplica o
+    // Torrentio; fica só o Torrentio, e torrent é o ÚLTIMO tier nas opções
+    // (StreamAutoPlaySelector.tierHttpFirst).
+    // FrostStream DE VOLTA na 1.5.0 (pedido do dono: "o Frost não morreu pois
+    // ainda funciona"): o 403/404 visto em testes é bloqueio Cloudflare de IP
+    // de datacenter — em rede residencial o addon responde normal. No CI ele é
+    // não-crítico exatamente por isso.
     // Meu Futebol REMOVIDO (manifest inacessível, timeout 12s no teste).
     // BestCine permanece FORA do pack: passou a exigir login (deixou de ser
     // zero-config); segue disponível por instalação manual de 1 clique no site.
@@ -271,11 +276,28 @@ class AddonPreferences @Inject constructor(
     private fun getDefaultAddons(): Set<String> = setOf(
         "https://tvvio.megaembed-frost.workers.dev",
         "https://v3-cinemeta.strem.io",
+        "https://anime-kitsu.strem.fun",
+        "https://froststream.cloutteam.com",
+        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
+        "https://opensubtitles-v3.strem.io"
+    )
+
+    // Pack da 1.4.0 (com MediaFusion Midnight, sem FrostStream) — migra
+    // automaticamente quem atualizou para a 1.4.x sem personalizar a lista.
+    private val factoryPackV14: Set<String> = setOf(
+        "https://tvvio.megaembed-frost.workers.dev",
+        "https://v3-cinemeta.strem.io",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
         "https://mediafusionfortheweebs.midnightignite.me",
         "https://anime-kitsu.strem.fun",
         "https://opensubtitles-v3.strem.io"
     )
+
+    private fun isFactoryPackV14(urls: List<String>): Boolean {
+        if (urls.size != factoryPackV14.size) return false
+        return urls.map { it.trim().lowercase() }.toSet() ==
+            factoryPackV14.map { it.lowercase() }.toSet()
+    }
 
     // Pack da 1.3.0 (antes da saída do FrostStream) — migra automaticamente quem
     // atualizou da 1.3.x sem personalizar a lista.
