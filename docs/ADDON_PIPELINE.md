@@ -96,3 +96,26 @@ passa (o desafio Cloudflare mira IP de datacenter, não o usuário).
    mentem para o IP de datacenter;
 5. atualizar `AddonPreferences.kt` (ordem: canais primeiro) + migração do pack
    de fábrica anterior + este health.
+
+## Validação em duas redes (a partir da 1.6.2)
+
+O CI roda em datacenter: **geo-bloqueio derruba a conexão** (NTC TV, Meu
+Futebol — só ligam no Brasil) e **o Cloudflare desafia o IP** (FrostView,
+Veyra, FenixFlix, FrostStream — 403 instantâneo). Nenhum dos dois é morte:
+a TV do dono está na rede residencial, onde o laboratório provou todos
+SAUDÁVEIS (relatório 04/11/2026 17:22). Por isso:
+
+- no `addon_health.py` esses addons são **não-críticos** — a falha deles no
+  CI é esperada e documentada no próprio script;
+- a **evidência decisiva** para entrar no pack é o relatório do laboratório
+  (rede do dono) + o comportamento no app (UA de navegador da 1.6.1);
+- a redundância do ao vivo agora é por **casas independentes**: FayaTV
+  (stravo), NTC TV (ntcstudios.com.br), Meu Futebol (oneplayhd) e FrostView
+  (cloutteam) — se uma casa cai, as outras três continuam na Home.
+
+Pack 1.6.2 (ordem = fileiras da Home): FayaTV → NTC TV → Meu Futebol →
+FrostView → Cinemeta → Veyra → FenixFlix → Kitsu → FrostStream → Torrentio BR.
+**Brazuca Play saiu na 1.6.2** (pedido do dono: "odiei — não reproduz e suja
+o catálogo"; tecnicamente a origem watchug.watch/box4.sbs está morrendo pra
+todo mundo — não era VIP nem login). O VOD HTTP dublado fica por conta de
+Veyra + FenixFlix + Torrentio BR (providers comando/bludv/micoleaodublado).

@@ -70,6 +70,7 @@ class AddonPreferences @Inject constructor(
                 val parsed = parseUrlList(json)
                 when {
                     isUnmodifiedFactoryPack(parsed) -> getDefaultAddons().toList()
+                    isFactoryPackV161(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV160(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV152(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV151(parsed) -> getDefaultAddons().toList()
@@ -290,8 +291,9 @@ class AddonPreferences @Inject constructor(
     // (Lançamentos/Filmes/Séries/Animes/Doramas/Novelas). O catálogo de TV ao
     // vivo dele é Pluto TV dos EUA (canais geo-bloqueados fora dos EUA) e fica
     // oculto no AddonMapper — canais ao vivo ficam por conta do FayaTV.
-    // Zeus BR e FenixFlix TESTADOS e FORA: manifest 403 (Cloudflare bloqueia IP
-    // de datacenter) — sem como validar do CI; ficam para instalação manual.
+    // Zeus BR e HdHub-antigo FORA na época do datacenter-only: manifest 403
+    // (Cloudflare bloqueia IP de datacenter). A partir da 1.6.2 o relatório do
+    // laboratório na rede do dono é a evidência decisiva — ver bloco 1.6.2.
     // BestCine permanece FORA: passou a exigir login (deixou de ser zero-config).
     // Ordem = ordem das fileiras da Home: canais ao vivo primeiro.
     // 1.6.1 (05/11/2026): OpenSubtitles FORA (pedido do dono — legendas não
@@ -302,7 +304,54 @@ class AddonPreferences @Inject constructor(
     // origem recuperar; no health é não-crítico até lá). O FrostStream passa a
     // ser pedido com UA de NAVEGADOR (Cloudflare desafiava o UA "Nuvio/x" e o
     // addon nem aparecia no app — NetworkModule BROWSER_USER_AGENT).
+    // 1.6.2 (06/11/2026): curadoria fechada com o RELATÓRIO DO LABORATÓRIO na
+    // rede do dono (04/11/2026 17:22 — evidência decisiva, pois Cloudflare e
+    // geo-bloqueio mentem para o IP de datacenter do CI). Entram 5 addons, todos
+    // SAUDÁVEIS na rede residencial do dono e não-críticos no health:
+    //   • NTC TV (ntcstudios.com.br/ntctv) — canais BR, domínio .com.br,
+    //     atualizado 03/11; geo-bloqueia datacenter (timeout) = só liga no BR.
+    //   • Meu Futebol (meufutebol.oneplayhd.com) — esportes ao vivo BR;
+    //     geo-bloqueia datacenter igual ao NTC.
+    //   • FrostView (frostview.cloutteam.com) — mesma casa do FrostStream;
+    //     Globo/SBT/Record/ESPN. CF barra o datacenter; no navegador do dono
+    //     deu CORS (mesma assinatura do FrostStream, que funciona no app) —
+    //     validação final é no app com o UA de navegador da 1.6.1.
+    //   • Veyra (veyra.shardweb.app) — 12 streams HTTP puros PT-BR na rede do
+    //     dono (shardweb, mesma infra do Zeus); reforço de VOD HTTP.
+    //   • FenixFlix (fenixflix.fenixhub.online) — 3/3 streams marcados DUBLADO
+    //     na rede do dono, HD/4K, novelas/séries.
+    // Brazuca Play FORA na 1.6.2 (pedido do dono: "odiei — não reproduz na
+    // 1.6.1 e ainda suja o catálogo"). Diagnóstico técnico: NÃO é VIP/login —
+    // a ORIGEM dos streams (watchug.watch/box4.sbs) está morrendo pra todo
+    // mundo: segmentos 404 em 04/11, piscou 200 e voltou a 502/0-6 em 05/11.
+    // Não re-adicionar sem pedido explícito do dono E origem estável. O VOD
+    // HTTP dublado fica por conta de Veyra + FenixFlix + Torrentio BR
+    // (providers comando/bludv/micoleaodublado). Minha TV/Iracemaflix
+    // FORA (catálogo/stream estouram 12s de timeout até na rede do dono —
+    // ferem a regra "não atrasar"); PlavioLive FORA (origem 403 no datacenter
+    // + mesmo dev do PlavioHD removido); PenguPlay FORA (manifest 6s e
+    // inconsistente + histórico de login); Flix-Streams FORA (0 catálogos sem
+    // config); MediaFusion/Zeus/Watchio/AIOStreams FORA (0 streams sem
+    // debrid/config — regra: só Torrentio de torrent).
     private fun getDefaultAddons(): Set<String> = setOf(
+        // — Canais ao vivo BR (3 casas independentes: se uma cai, as outras seguram) —
+        "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json",
+        "https://ntcstudios.com.br/ntctv/manifest.json",
+        "https://meufutebol.oneplayhd.com/manifest.json",
+        "https://frostview.cloutteam.com/manifest.json",
+        // — VOD —
+        "https://v3-cinemeta.strem.io",
+        "https://veyra.shardweb.app/manifest.json",
+        "https://fenixflix.fenixhub.online/manifest.json",
+        // — Catálogos/fontes finais —
+        "https://anime-kitsu.strem.fun",
+        "https://froststream.cloutteam.com",
+        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100"
+    )
+
+    // Pack da 1.6.1 (sem OpenSubtitles) — migra automaticamente quem atualizou
+    // da 1.6.1 sem personalizar a lista.
+    private val factoryPackV161: Set<String> = setOf(
         "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json",
         "https://v3-cinemeta.strem.io",
         "https://brazuca-play-stremio.vercel.app/manifest.json",
@@ -310,6 +359,12 @@ class AddonPreferences @Inject constructor(
         "https://froststream.cloutteam.com",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100"
     )
+
+    private fun isFactoryPackV161(urls: List<String>): Boolean {
+        if (urls.size != factoryPackV161.size) return false
+        return urls.map { it.trim().lowercase() }.toSet() ==
+            factoryPackV161.map { it.lowercase() }.toSet()
+    }
 
     // Pack da 1.6.0 (com OpenSubtitles) — migra automaticamente quem atualizou
     // da 1.6.0 sem personalizar a lista.

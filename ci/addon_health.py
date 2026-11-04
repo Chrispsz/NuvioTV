@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """TV Minimal — teste simulado de saúde dos addons de fábrica.
 
-Testa exatamente o pack pré-configurado do flavor minimal (AddonPreferences.kt):
-FayaTV (ao vivo BR), Cinemeta, Brazuca Play (VOD dublado PT-BR), FrostStream,
-Torrentio BR e Anime Kitsu.
+Testa exatamente o pack pré-configurado do flavor minimal (AddonPreferences.kt)
+na ordem das fileiras da Home: FayaTV (ao vivo BR), NTC TV, Meu Futebol,
+FrostView, Cinemeta, Veyra, FenixFlix, Anime Kitsu, FrostStream e Torrentio BR
+(pack da 1.6.2 — Brazuca Play saiu, pedido do dono).
 
 Para cada addon: manifest → catálogo (quando exposto) → streams. Para addons
 de catálogo de filme usa o título de referência (tt0111161, Um Sonho de
@@ -36,6 +37,18 @@ datacenter — funciona em rede residencial (confirmado pelo dono); não-crític
 1.6.1: OpenSubtitles SAÍU do pack (pedido do dono). O app passou a pedir
 addons com UA de navegador (Cloudflare desafiava o UA "Nuvio/x" — o Frost nem
 aparecia no app).
+1.6.2: curadoria fechada com o relatório do LABORATÓRIO na rede do dono
+(04/11/2026 17:22 — evidência decisiva; Cloudflare e geo-bloqueio mentem para
+o IP de datacenter). Entram NTC TV, Meu Futebol, FrostView, Veyra e FenixFlix,
+todos SAUDÁVEIS na rede residencial do dono e NÃO-críticos aqui: NTC TV e
+Meu Futebol geo-bloqueiam datacenter (timeout), FrostView/Veyra/FenixFlix
+devolvem 403 do Cloudflare. A falha desses cinco no CI é ESPERADA e não
+bloqueia release — a validação viva deles é o app na TV (rede residencial).
+Brazuca Play SAIU na 1.6.2 (pedido do dono: "odiei — não reproduz e suja o
+catálogo"). Diagnóstico: NÃO é VIP/login — a origem (watchug.watch/box4.sbs)
+está morrendo pra todo mundo (segmentos 404 em 04/11; piscou 200 e voltou a
+502/0-6 em 05/11). Não re-adicionar sem pedido explícito do dono E origem
+estável — se um dia testar de novo, a prova é a ladder de origem abaixo.
 
 Uso: python3 ci/addon_health.py [--timeout 10]
 """
@@ -63,8 +76,20 @@ ADDONS = [
         True,
         None,
     ),
+    # — NTC TV / Meu Futebol: geo-bloqueiam o datacenter do CI (conexão cai);
+    #   SAUDÁVEIS na rede residencial do dono (lab 04/11/2026). Não-críticos.
+    ("NTC TV (ao vivo BR)", "https://ntcstudios.com.br/ntctv", False, None),
+    ("Meu Futebol (esportes BR)", "https://meufutebol.oneplayhd.com", False, None),
+    # — FrostView: mesma casa do FrostStream (cloutteam); Globo/SBT/Record/ESPN.
+    #   403 do Cloudflare no datacenter; a rede residencial passa (como no
+    #   FrostStream). Validação final no app com UA de navegador.
+    ("FrostView (abertas BR)", "https://frostview.cloutteam.com", False, None),
     ("Cinemeta (catálogo)", "https://v3-cinemeta.strem.io", True, None),
-    ("Brazuca Play (dublado BR)", "https://brazuca-play-stremio.vercel.app", False, "tt1630029"),
+    # — Veyra / FenixFlix: Cloudflare 403 no datacenter; SAUDÁVEIS na rede do
+    #   dono (Veyra 12 streams HTTP PT-BR; FenixFlix 3/3 dublado HD/4K). São os
+    #   donos do VOD HTTP desde a saída do Brazuca Play na 1.6.2.
+    ("Veyra (VOD HTTP BR)", "https://veyra.shardweb.app", False, None),
+    ("FenixFlix (dublado BR)", "https://fenixflix.fenixhub.online", False, None),
     ("Anime Kitsu (catálogo)", "https://anime-kitsu.strem.fun", False, None),
     ("FrostStream", "https://froststream.cloutteam.com", False, None),
     (

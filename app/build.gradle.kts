@@ -217,8 +217,8 @@ android {
             // atrás de Cloudflare), áudio português por padrão nas pistas multi-áudio
             // (narração BR ao vivo), OpenSubtitles fora do pack (migração automática
             // 1.6.0 → 1.6.1) e catálogos redundantes do Brazuca ocultos.
-            versionCode = 161
-            versionName = "1.6.1"
+            versionCode = 162
+            versionName = "1.6.2"
             buildConfigField("boolean", "FEATURE_PLUGINS_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_UPDATES_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_TRAILERS_ENABLED", "false")
