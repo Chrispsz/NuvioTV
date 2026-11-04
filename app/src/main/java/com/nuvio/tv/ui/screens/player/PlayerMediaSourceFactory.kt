@@ -20,6 +20,7 @@ import androidx.media3.datasource.cache.LeastRecentlyUsedCacheEvictor
 import androidx.media3.datasource.cache.SimpleCache
 import androidx.media3.datasource.okhttp.OkHttpDataSource
 import androidx.media3.exoplayer.dash.DashMediaSource
+import androidx.media3.exoplayer.drm.DrmSessionManagerProvider
 import androidx.media3.exoplayer.hls.HlsMediaSource
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.exoplayer.source.MediaSource
@@ -30,6 +31,7 @@ import androidx.media3.extractor.ExtractorsFactory
 import androidx.media3.extractor.text.SubtitleParser
 import com.nuvio.tv.NuvioApplication
 import com.nuvio.tv.R
+import com.nuvio.tv.core.player.ClearKeyDrm
 import com.nuvio.tv.core.util.findCause
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -172,7 +174,8 @@ internal class PlayerMediaSourceFactory(private val context: Context) {
         mimeTypeOverride: String? = null,
         audioDelayUsProvider: (() -> Long)? = null,
         mediaMetadata: androidx.media3.common.MediaMetadata? = null,
-        cacheKey: String? = null
+        cacheKey: String? = null,
+        drmClearKey: Pair<String, String>? = null
     ): MediaSource {
         val sanitizedHeaders = sanitizeHeaders(headers)
         val resolvedMimeType = mimeTypeOverride ?: inferMimeType(
@@ -319,15 +322,28 @@ internal class PlayerMediaSourceFactory(private val context: Context) {
             )
         }
 
+        // TV Minimal: ClearKey inline (TV ao vivo do FayaTV) — gerente de sessão
+        // novo por MediaSource; só faz sentido para HLS/DASH (manifesto cifrado).
+        val clearKeyDrmProvider: DrmSessionManagerProvider? = drmClearKey
+            ?.takeIf { isHls || isDash }
+            ?.let { (kid, key) ->
+                val keySetJson = ClearKeyDrm.buildKeySetJson(kid, key)
+                DrmSessionManagerProvider { ClearKeyDrm.createSessionManager(keySetJson, kid) }
+            }
+
         val mediaSource = when {
             isHls && !forceDefaultFactory -> HlsMediaSource.Factory(httpDataSourceFactory)
                 .setAllowChunklessPreparation(true)
                 .setLoadErrorHandlingPolicy(loadErrorHandlingPolicy)
+                .apply { clearKeyDrmProvider?.let { setDrmSessionManagerProvider(it) } }
                 .createMediaSource(mediaItem)
             isDash && !forceDefaultFactory -> DashMediaSource.Factory(httpDataSourceFactory)
                 .setLoadErrorHandlingPolicy(loadErrorHandlingPolicy)
+                .apply { clearKeyDrmProvider?.let { setDrmSessionManagerProvider(it) } }
                 .createMediaSource(mediaItem)
-            else -> defaultFactory.createMediaSource(mediaItem)
+            else -> defaultFactory
+                .apply { clearKeyDrmProvider?.let { setDrmSessionManagerProvider(it) } }
+                .createMediaSource(mediaItem)
         }
         return wrapAudioDelay(mediaSource = mediaSource, audioDelayUsProvider = audioDelayUsProvider)
     }

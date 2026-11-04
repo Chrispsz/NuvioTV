@@ -1150,7 +1150,8 @@ internal fun PlayerRuntimeController.initializePlayer(
                     mimeTypeOverride = currentStreamMimeType,
                     audioDelayUsProvider = audioDelayUs::get,
                     mediaMetadata = buildMediaSessionMetadata(),
-                    cacheKey = currentStreamCacheKey
+                    cacheKey = currentStreamCacheKey,
+                    drmClearKey = currentStreamClearKey
                 )
 
                 if (initialResumePosition > 0L) {

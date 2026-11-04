@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.media3.common.util.UnstableApi
 import com.nuvio.tv.core.debrid.DirectDebridPlayableResult
 import com.nuvio.tv.core.network.NetworkResult
+import com.nuvio.tv.core.player.ExternalStreamResolver
 import com.nuvio.tv.core.player.StreamAutoPlaySelector
 import com.nuvio.tv.data.local.PlayerSettings
 import com.nuvio.tv.data.local.StreamAutoPlayMode
@@ -633,6 +634,8 @@ private fun PlayerRuntimeController.applySelectedStreamState(
     val playbackRequest = PlayerMediaSourceFactory.normalizePlaybackRequest(url, headers)
     currentStreamUrl = playbackRequest.url
     currentHeaders = playbackRequest.headers
+    // ClearKey pendente é por URL — stream novo pode ter chave nova ou nenhuma.
+    currentStreamClearKey = StreamSidecarDrm.clearKeyFor(playbackRequest.url)
     currentFilename = stream.behaviorHints?.filename ?: streamFilenameFromUrl(playbackRequest.url)
     currentStreamResponseHeaders = stream.behaviorHints?.proxyHeaders?.response.orEmpty()
     currentStreamMimeType = PlayerMediaSourceFactory.inferMimeType(
@@ -814,40 +817,75 @@ private fun PlayerRuntimeController.openExternalStreamInBrowser(
         return true
     }
 
+    // TV Minimal: página /watch/ do FayaTV é RESOLVÍVEL — o HTML expõe o
+    // manifesto real + chaves ClearKey. Resolve aqui e reproduz no player
+    // interno; navegador só quando a resolução falha. (URLs de mídia direta
+    // em externalUrl nem chegam aqui: isExternal() já as classifica como
+    // reproduzíveis internamente.)
+    if (ExternalStreamResolver.isWatchPageUrl(externalUrl)) {
+        _uiState.update {
+            if (fromEpisodePanel) {
+                it.copy(isLoadingEpisodeStreams = true, episodeStreamsError = null)
+            } else {
+                it.copy(isLoadingSourceStreams = true, sourceStreamsError = null)
+            }
+        }
+        scope.launch {
+            val resolved = ExternalStreamResolver.resolve(externalUrl)
+            val playableStream = resolved?.let {
+                StreamSidecarDrm.set(it.url, it.clearKeyKid, it.clearKeyKey)
+                stream.copy(url = it.url, externalUrl = null)
+            }
+            if (playableStream != null) {
+                switchToSourceStream(playableStream)
+            } else {
+                _uiState.update {
+                    if (fromEpisodePanel) {
+                        it.copy(isLoadingEpisodeStreams = false)
+                    } else {
+                        it.copy(isLoadingSourceStreams = false)
+                    }
+                }
+                openExternalUrlInBrowser(externalUrl)
+            }
+        }
+        return true
+    }
+
+    openExternalUrlInBrowser(externalUrl)
+
+    _uiState.update {
+        if (fromEpisodePanel) {
+            it.copy(
+                showEpisodesPanel = false,
+                showEpisodeStreams = false,
+                isLoadingEpisodeStreams = false,
+                episodeStreamsError = null
+            )
+        } else {
+            it.copy(
+                showSourcesPanel = false,
+                isLoadingSourceStreams = false,
+                sourceStreamsError = null
+            )
+        }
+    }
+
+    return true
+}
+
+private fun PlayerRuntimeController.openExternalUrlInBrowser(externalUrl: String) {
     val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(externalUrl))
         .addCategory(Intent.CATEGORY_BROWSABLE)
         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
     runCatching {
         context.startActivity(browserIntent)
-    }.onSuccess {
-        _uiState.update {
-            if (fromEpisodePanel) {
-                it.copy(
-                    showEpisodesPanel = false,
-                    showEpisodeStreams = false,
-                    isLoadingEpisodeStreams = false,
-                    episodeStreamsError = null
-                )
-            } else {
-                it.copy(
-                    showSourcesPanel = false,
-                    isLoadingSourceStreams = false,
-                    sourceStreamsError = null
-                )
-            }
-        }
     }.onFailure { error ->
         _uiState.update {
-            if (fromEpisodePanel) {
-                it.copy(episodeStreamsError = error.message ?: context.getString(com.nuvio.tv.R.string.player_stream_error_open_external_link_failed))
-            } else {
-                it.copy(sourceStreamsError = error.message ?: context.getString(com.nuvio.tv.R.string.player_stream_error_open_external_link_failed))
-            }
+            it.copy(sourceStreamsError = error.message ?: context.getString(com.nuvio.tv.R.string.player_stream_error_open_external_link_failed))
         }
     }
-
-    return true
 }
 
 @androidx.annotation.OptIn(UnstableApi::class)
@@ -1027,7 +1065,8 @@ internal fun PlayerRuntimeController.switchToSourceStream(
                         responseHeaders = currentStreamResponseHeaders,
                         mimeTypeOverride = currentStreamMimeType,
                         audioDelayUsProvider = audioDelayUs::get,
-                        cacheKey = currentStreamCacheKey
+                        cacheKey = currentStreamCacheKey,
+                        drmClearKey = currentStreamClearKey
                     )
                 )
                 player.playWhenReady = true
@@ -1121,6 +1160,7 @@ private fun PlayerRuntimeController.switchToTorrentSourceStream(
     clearChapterSkipState()
     recomputeMergedSkipIntervals()
     applyStreamMetadata(stream)
+    currentStreamClearKey = null
     currentFilename = stream.behaviorHints?.filename
     showStreamSourceIndicator(stream)
     resetPostPlayOverlayState(clearEpisode = false)

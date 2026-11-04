@@ -120,9 +120,17 @@ data class Stream(
             ?.takeIf { getStreamUrl() == null && !isTorrent() && !isDirectDebrid() }
 
     /**
-     * Returns true if this is an external URL (opens in browser)
+     * Returns true if this is an external URL (opens in browser).
+     * Exceção TV Minimal: `externalUrl` que aponta para MÍDIA DIRETA (.m3u8,
+     * .mpd, .mp4, .ts) é reproduzível no player interno — alguns addons de TV
+     * ao vivo devolvem o vídeo direto nesse campo; tratá-lo como link de
+     * navegador (abrir o Chrome para ver TV!) é classificação errada.
+     * Páginas /watch/ do FayaTV continuam "externas" até o resolver de
+     * reprodução extrair o manifesto + ClearKey (PlayerRuntimeControllerStreams).
      */
-    fun isExternal(): Boolean = externalUrl != null && url == null && !externalUrl.isMagnetLink()
+    fun isExternal(): Boolean =
+        externalUrl != null && url == null && !externalUrl.isMagnetLink() &&
+            !com.nuvio.tv.core.player.ExternalStreamUrlPolicy.isDirectMediaUrl(externalUrl)
 
     /**
      * Returns a display name for the stream, or null when no field is usable.

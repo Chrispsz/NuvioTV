@@ -236,6 +236,9 @@ class PlayerRuntimeController(
     internal var currentStreamCacheKey: String? = null
     internal var currentStreamMimeType: String?
     internal var currentHeaders: Map<String, String>
+    // ClearKey inline (kid, key) da TV ao vivo resolvida (FayaTV) — lido do
+    // sidecar pela URL do stream; null para streams comuns.
+    internal var currentStreamClearKey: Pair<String, String>? = null
     internal var streamSubtitles: List<Subtitle> = emptyList()
 
     init {
@@ -252,6 +255,8 @@ class PlayerRuntimeController(
         currentHeaders = initialPlaybackRequest.headers
         streamSubtitles = StreamSidecarSubtitles.forUrl(initialStreamUrl)
             .ifEmpty { StreamSidecarSubtitles.forUrl(currentStreamUrl) }
+        currentStreamClearKey = StreamSidecarDrm.clearKeyFor(initialStreamUrl)
+            ?: StreamSidecarDrm.clearKeyFor(currentStreamUrl)
     }
 
     fun getCurrentStreamUrl(): String = currentStreamUrl

@@ -91,6 +91,7 @@ import androidx.tv.material3.MaterialTheme
 import androidx.tv.material3.Text
 import coil3.compose.AsyncImage
 import com.nuvio.tv.core.player.ExternalPlayerLauncher
+import com.nuvio.tv.core.player.ExternalStreamResolver
 import com.nuvio.tv.core.streams.StreamBadgePlacement
 import com.nuvio.tv.core.streams.StreamBadgeSettings
 import com.nuvio.tv.data.local.PlayerPreference
@@ -101,6 +102,7 @@ import com.nuvio.tv.ui.components.P2pConsentDialog
 import com.nuvio.tv.ui.components.StreamBadgeChips
 import com.nuvio.tv.ui.components.StreamsSkeletonList
 import com.nuvio.tv.ui.screens.player.LoadingOverlay
+import com.nuvio.tv.ui.screens.player.StreamSidecarDrm
 import com.nuvio.tv.ui.screens.player.AddonFilterChips
 import com.nuvio.tv.ui.theme.NuvioTheme
 import com.nuvio.tv.ui.navigation.sourceSelectionRestoreTarget
@@ -205,12 +207,39 @@ fun StreamScreen(
         return true
     }
 
+    /**
+     * TV Minimal: stream externo que o app consegue tocar internamente NÃO vai
+     * para o navegador. URLs de mídia direta em externalUrl já chegam aqui com
+     * isExternal=false (classificação do Stream); páginas /watch/ do FayaTV
+     * são resolvidas aqui (manifesto + ClearKey) e reproduzidas no player
+     * interno — navegador só quando a resolução falha. Retorna false quando
+     * o chamador deve seguir o fluxo antigo (navegador).
+     */
+    fun playExternalInternallyWhenPossible(playbackInfo: StreamPlaybackInfo): Boolean {
+        if (!playbackInfo.isExternal) return false
+        val url = playbackInfo.url?.takeIf { it.isNotBlank() } ?: return false
+        if (!ExternalStreamResolver.isWatchPageUrl(url)) return false
+        scope.coroutineLaunch {
+            val resolved = ExternalStreamResolver.resolve(url)
+            if (resolved != null) {
+                StreamSidecarDrm.set(resolved.url, resolved.clearKeyKid, resolved.clearKeyKey)
+                launchInternalPlayer(playbackInfo.copy(url = resolved.url, isExternal = false))
+            } else {
+                openExternalInBrowser(playbackInfo)
+            }
+        }
+        return true
+    }
+
     fun launchInternalPlayer(playbackInfo: StreamPlaybackInfo) {
         viewModel.onInternalPlayerLaunching()
         onStreamSelected(playbackInfo)
     }
 
     fun routePlayback(playbackInfo: StreamPlaybackInfo) {
+        if (playExternalInternallyWhenPossible(playbackInfo)) {
+            return
+        }
         if (openExternalInBrowser(playbackInfo)) {
             return
         }
@@ -237,6 +266,10 @@ fun StreamScreen(
     }
 
     fun routeAutoPlay(playbackInfo: StreamPlaybackInfo) {
+        if (playExternalInternallyWhenPossible(playbackInfo)) {
+            viewModel.onEvent(StreamScreenEvent.OnAutoPlayConsumed)
+            return
+        }
         if (openExternalInBrowser(playbackInfo)) {
             viewModel.onEvent(StreamScreenEvent.OnAutoPlayConsumed)
             return
