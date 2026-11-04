@@ -70,6 +70,7 @@ class AddonPreferences @Inject constructor(
                 val parsed = parseUrlList(json)
                 when {
                     isUnmodifiedFactoryPack(parsed) -> getDefaultAddons().toList()
+                    isFactoryPackV160(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV152(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV151(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV15(parsed) -> getDefaultAddons().toList()
@@ -293,7 +294,26 @@ class AddonPreferences @Inject constructor(
     // de datacenter) — sem como validar do CI; ficam para instalação manual.
     // BestCine permanece FORA: passou a exigir login (deixou de ser zero-config).
     // Ordem = ordem das fileiras da Home: canais ao vivo primeiro.
+    // 1.6.1 (05/11/2026): OpenSubtitles FORA (pedido do dono — legendas não
+    // justificam o peso/requests do addon; o app mantém legendas embutidas e
+    // seleção manual). Brazuca Play permanece no pack apesar de a ORIGEM dos
+    // streams estar com os segmentos 404 no dia (playlists OK, vídeo morto na
+    // fonte watchug.watch/box4.sbs — não é VIP/login; addon volta quando a
+    // origem recuperar; no health é não-crítico até lá). O FrostStream passa a
+    // ser pedido com UA de NAVEGADOR (Cloudflare desafiava o UA "Nuvio/x" e o
+    // addon nem aparecia no app — NetworkModule BROWSER_USER_AGENT).
     private fun getDefaultAddons(): Set<String> = setOf(
+        "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json",
+        "https://v3-cinemeta.strem.io",
+        "https://brazuca-play-stremio.vercel.app/manifest.json",
+        "https://anime-kitsu.strem.fun",
+        "https://froststream.cloutteam.com",
+        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100"
+    )
+
+    // Pack da 1.6.0 (com OpenSubtitles) — migra automaticamente quem atualizou
+    // da 1.6.0 sem personalizar a lista.
+    private val factoryPackV160: Set<String> = setOf(
         "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json",
         "https://v3-cinemeta.strem.io",
         "https://brazuca-play-stremio.vercel.app/manifest.json",
@@ -302,6 +322,12 @@ class AddonPreferences @Inject constructor(
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
         "https://opensubtitles-v3.strem.io"
     )
+
+    private fun isFactoryPackV160(urls: List<String>): Boolean {
+        if (urls.size != factoryPackV160.size) return false
+        return urls.map { it.trim().lowercase() }.toSet() ==
+            factoryPackV160.map { it.lowercase() }.toSet()
+    }
 
     // Pack da 1.5.2 (igual à 1.5.1, com Tvvio morto) — migra automaticamente
     // quem atualizou da 1.5.2 sem personalizar a lista.

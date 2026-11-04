@@ -210,12 +210,15 @@ android {
             applicationId = "tv.minimal.nuvio"
             // Versionamento próprio do fork: a release usa tag "minimal-vX.Y.Z" e o
             // updater compara VERSION_NAME local com a tag (VersionUtils normaliza
-            // o prefixo "minimal-"). 1.6.0 = TV ao vivo reproduz no player interno
-            // (resolver /watch/ + ClearKey) e Brazuca Play dublado PT-BR entra no
-            // pack de fábrica no lugar do PlavioHD (migração automática do pack
-            // 1.5.2) — build final da onda de 05/11/2026.
-            versionCode = 160
-            versionName = "1.6.0"
+            // o prefixo "minimal-"). 1.6.1 = assinatura ESTÁVEL de release volta
+            // (secrets NUVIO_RELEASE_* criados: OTA instala por cima de novo —
+            // quem está na 1.6.0 debug-signed precisa desinstalar UMA última vez),
+            // UA de navegador nos pedidos de addon (FrostStream volta a aparecer
+            // atrás de Cloudflare), áudio português por padrão nas pistas multi-áudio
+            // (narração BR ao vivo), OpenSubtitles fora do pack (migração automática
+            // 1.6.0 → 1.6.1) e catálogos redundantes do Brazuca ocultos.
+            versionCode = 161
+            versionName = "1.6.1"
             buildConfigField("boolean", "FEATURE_PLUGINS_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_UPDATES_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_TRAILERS_ENABLED", "false")

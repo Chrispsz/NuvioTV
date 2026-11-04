@@ -22,13 +22,21 @@ import com.nuvio.tv.domain.model.StremioAddonsConfig
  *   d:br@cat=...);
  * - "bp_pluto_tv" (Brazuca Play): TV ao vivo do Pluto TV dos EUA — canais
  *   geo-bloqueados fora dos EUA (stream responde 400/403 no teste de
- *   05/11/2026); canais ao vivo do pack ficam por conta do FayaTV.
+ *   05/11/2026); canais ao vivo do pack ficam por conta do FayaTV;
+ * - "bp_trilogies"/"bp_desenhos"/"bp_novelas" (Brazuca Play): o addon expõe 9
+ *   catálogos e a Home ficava poluída com fileiras redundantes (pedido do
+ *   dono, 05/11/2026). Trilogias duplica Séries/Filmes; Desenhos é coberto por
+ *   Animes (Brazuca) + Anime Kitsu; Novelas é nicho com pouca rotação.
+ *   Mantidos no Brazuca: Lançamentos, Filmes, Séries, Animes, Doramas.
  */
 private val HIDDEN_DUPLICATED_CATALOG_IDS = setOf(
     "last-videos",
     "calendar-videos",
     "country_filter",
-    "bp_pluto_tv"
+    "bp_pluto_tv",
+    "bp_trilogies",
+    "bp_desenhos",
+    "bp_novelas"
 )
 
 fun AddonManifestDto.toDomain(baseUrl: String): Addon {

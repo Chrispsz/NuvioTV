@@ -60,6 +60,18 @@ private object TraktHttpTrace {
     fun nextRequestId(): Long = requestCounter.incrementAndGet()
 }
 
+/**
+ * User-Agent de navegador para TODO o tráfego de rede do app (addons, catálogos,
+ * streams). Addons da comunidade atrás de Cloudflare (FrostStream, FrostView,
+ * instâncias shardweb...) desafiam UAs desconhecidos tipo "Nuvio/1.6.0" — o
+ * manifest falha e o addon simplesmente não aparece no app. UA de navegador é o
+ * padrão dos clientes Stremio e passa no desafio básico (mesma política do
+ * ci/addon_health.py e do PlayerMediaSourceFactory).
+ */
+private const val BROWSER_USER_AGENT: String =
+    "Mozilla/5.0 (Linux; Android 13; Android TV) AppleWebKit/537.36 " +
+        "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+
 private fun normalizedBaseUrl(rawUrl: String, fallback: String): String {
     val trimmed = rawUrl.trim()
     if (trimmed.isBlank()) return fallback
@@ -110,9 +122,8 @@ object NetworkModule {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .addInterceptor { chain ->
-                val version = BuildConfig.VERSION_NAME.ifBlank { "dev" }
                 val request = chain.request().newBuilder()
-                    .header("User-Agent", "Nuvio/$version")
+                    .header("User-Agent", BROWSER_USER_AGENT)
                     .header("Accept-Language", buildAcceptLanguageHeader())
                     .build()
                 chain.proceed(request)
@@ -173,9 +184,8 @@ object NetworkModule {
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(60, TimeUnit.SECONDS)
         .addInterceptor { chain ->
-            val version = BuildConfig.VERSION_NAME.ifBlank { "dev" }
             val request = chain.request().newBuilder()
-                .header("User-Agent", "Nuvio/$version")
+                .header("User-Agent", BROWSER_USER_AGENT)
                 .header("Accept-Language", buildAcceptLanguageHeader())
                 .build()
             chain.proceed(request)
@@ -196,9 +206,8 @@ object NetworkModule {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .addInterceptor { chain ->
-                val version = BuildConfig.VERSION_NAME.ifBlank { "dev" }
                 val request = chain.request().newBuilder()
-                    .header("User-Agent", "Nuvio/$version")
+                    .header("User-Agent", BROWSER_USER_AGENT)
                     .header("Accept-Language", buildAcceptLanguageHeader())
                     .build()
                 chain.proceed(request)

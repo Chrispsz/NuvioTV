@@ -1113,6 +1113,16 @@ internal fun PlayerRuntimeController.initializePlayer(
                     .setContentType(C.AUDIO_CONTENT_TYPE_MOVIE)
                     .build()
                 setAudioAttributes(audioAttributes, true)
+                // Áudio português por padrão: em streams multi-áudio (ao vivo com
+                // narração BR, dual áudio de filmes) o ExoPlayer escolhia a 1ª pista
+                // — muitas vezes inglesa (ex.: Real Madrid no FayaTV abriu com
+                // narração EN). "por" cobre pt-BR/pt-PT na normalização do Media3;
+                // mantém a pista original como fallback automático quando não há PT.
+                runCatching {
+                    trackSelectionParameters = trackSelectionParameters.buildUpon()
+                        .setPreferredAudioLanguages("por", "pt")
+                        .build()
+                }.onFailure { it.printStackTrace() }
                 setPlaybackSpeed(_uiState.value.playbackSpeed)
                 if (applyPcmFallbackOnStartup) {
                     pendingAudioPcmFallbackRebuild = false
