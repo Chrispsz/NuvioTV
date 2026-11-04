@@ -207,6 +207,11 @@ fun StreamScreen(
         return true
     }
 
+    fun launchInternalPlayer(playbackInfo: StreamPlaybackInfo) {
+        viewModel.onInternalPlayerLaunching()
+        onStreamSelected(playbackInfo)
+    }
+
     /**
      * TV Minimal: stream externo que o app consegue tocar internamente NÃO vai
      * para o navegador. URLs de mídia direta em externalUrl já chegam aqui com
@@ -229,11 +234,6 @@ fun StreamScreen(
             }
         }
         return true
-    }
-
-    fun launchInternalPlayer(playbackInfo: StreamPlaybackInfo) {
-        viewModel.onInternalPlayerLaunching()
-        onStreamSelected(playbackInfo)
     }
 
     fun routePlayback(playbackInfo: StreamPlaybackInfo) {
