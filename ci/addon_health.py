@@ -2,17 +2,19 @@
 """TV Minimal — teste simulado de saúde dos addons de fábrica.
 
 Testa exatamente o pack pré-configurado do flavor minimal (AddonPreferences.kt):
-FayaTV (ao vivo BR), Cinemeta, OpenSubtitles v3, FrostStream, PlavioHD,
-Torrentio BR e Anime Kitsu.
+FayaTV (ao vivo BR), Cinemeta, Brazuca Play (VOD dublado PT-BR), FrostStream,
+Torrentio BR, Anime Kitsu e OpenSubtitles v3.
 
 Para cada addon: manifest → catálogo (quando exposto) → streams. Para addons
 de catálogo de filme usa o título de referência (tt0111161, Um Sonho de
 Liberdade — sempre disponível); para addons de TV ao vivo usa o PRIMEIRO canal
 do catálogo (stream de filme em addon de TV ao vivo é 0 streams por natureza).
+Para o FayaTV valida ainda a PÁGINA /watch/ que o app resolve para reproduzir
+no player interno (manifesto + ClearKey expostos no HTML).
 Mede latência e valida a forma da resposta JSON do protocolo Stremio.
 
-Saída: tabela + exit code. CRÍTICOS falhos (Cinemeta/FayaTV/Torrentio) => exit 1
-para o CI sinalizar; não críticos => aviso (exit 0).
+Saída: tabela + exit code. CRÍTICOS falhos (Cinemeta/FayaTV/Brazuca Play/
+Torrentio) => exit 1 para o CI sinalizar; não críticos => aviso (exit 0).
 
 Histórico: Tvvio SAÍU na 1.5.2 — fora do ar para todo mundo desde 27/10/2026
 (streams cdn10embed.xyz 403 Cloudflare + relay baby-beamup.club 502; relatos
@@ -21,12 +23,18 @@ no r/StremioAddons). Entrou FayaTV instância configurada BR (verificado
 geo-bloqueados fora do Brasil — no CI o teste de stream do canal pode falhar
 sem significar addon morto, por isso o teste usa o 1º canal e falha só se
 a RESPOSTA do addon quebrar, não se a URL final for 403).
+1.6.0: PlavioHD SAIU (fraco pra PT-BR: fontes em áudio original/russo e 0
+streams em títulos populares — pedido do dono). Entrou Brazuca Play (VOD HTTP
+direto DUBLADO PT-BR, sem login; o catálogo de TV ao vivo dele é Pluto TV dos
+EUA e não é testado). FrostStream é 403 do CI por bloqueio Cloudflare de IP de
+datacenter — funciona em rede residencial (confirmado pelo dono); não-crítico.
 
 Uso: python3 ci/addon_health.py [--timeout 10]
 """
 
 import argparse
 import json
+import re
 import sys
 import time
 import urllib.request
@@ -44,9 +52,9 @@ ADDONS = [
         True,
     ),
     ("Cinemeta (catálogo)", "https://v3-cinemeta.strem.io", True),
+    ("Brazuca Play (dublado BR)", "https://brazuca-play-stremio.vercel.app", True),
     ("Anime Kitsu (catálogo)", "https://anime-kitsu.strem.fun", False),
     ("FrostStream", "https://froststream.cloutteam.com", False),
-    ("PlavioHD (HTTP 4K)", "https://hd.plavio.site", True),
     (
         "Torrentio BR (torrent)",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,"
@@ -56,27 +64,39 @@ ADDONS = [
     ("OpenSubtitles v3", "https://opensubtitles-v3.strem.io", False),
 ]
 
-UA = "TV-Minimal-AddonHealth/1.0 (NuvioTV fork CI)"
+# UA de navegador: endpoints atrás de Cloudflare (FayaTV, FrostStream) bloqueiam
+# UAs de bot antes mesmo do rate limit — e o app resolve páginas /watch/ com UA
+# de navegador, então o teste medindo o caminho real do app também deve usar.
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
+
+FILE_URL_RE = re.compile(r'var\s+fileUrl\s*=\s*"([^"]+)"')
 
 
 def fetch(url: str, timeout: float):
     """GET com medição de latência. Retorna (status, json_dict|None, ms, erro)."""
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
+    status, body, ms, err = fetch_raw(url, timeout)
+    if err is not None:
+        return status, None, ms, err
+    try:
+        return status, json.loads(body.decode("utf-8", "replace")), ms, None
+    except json.JSONDecodeError:
+        return status, None, ms, "resposta não-JSON"
+
+
+def fetch_raw(url: str, timeout: float):
+    """GET sem parse. Retorna (status, bytes|None, ms, erro)."""
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
     start = time.monotonic()
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             body = resp.read(4 * 1024 * 1024)
             ms = int((time.monotonic() - start) * 1000)
-            status = resp.status
+            return resp.status, body, ms, None
     except urllib.error.HTTPError as e:
         return e.code, None, int((time.monotonic() - start) * 1000), f"HTTP {e.code}"
     except Exception as e:  # noqa: BLE001 — relatório genérico
         return 0, None, int((time.monotonic() - start) * 1000), type(e).__name__
-
-    try:
-        return status, json.loads(body.decode("utf-8", "replace")), ms, None
-    except json.JSONDecodeError:
-        return status, None, ms, "resposta não-JSON"
 
 
 def check(name: str, base: str, critical: bool, timeout: float):
@@ -125,6 +145,30 @@ def check(name: str, base: str, critical: bool, timeout: float):
                         ms2,
                         f"{len(streams2)} streams" + (f" | {err2}" if err2 else ""),
                     )
+                    # FayaTV devolve páginas /watch/ que o app resolve para
+                    # reproduzir no player interno (manifesto + ClearKey no HTML).
+                    # Prova o caminho interno ponta a ponta: página 200 + fileUrl
+                    # extraível (e kid/key quando o canal é CENC).
+                    for s in streams2:
+                        ext = str(s.get("externalUrl") or "")
+                        if "fayatv.stravo.site/watch/" in ext:
+                            s3, body3, ms3, err3 = fetch_raw(ext, timeout)
+                            if err3 or s3 != 200:
+                                row("página /watch/ → player interno", False, ms3,
+                                    err3 or f"HTTP {s3}")
+                                if critical:
+                                    failed_critical = True
+                            else:
+                                html = body3.decode("utf-8", "replace")
+                                file_url = FILE_URL_RE.search(html)
+                                ok = bool(file_url) and bool(
+                                    re.search(r"\.(m3u8|mpd|mp4|ts)(\?.*)?$", file_url.group(1), re.I)
+                                )
+                                row("página /watch/ → player interno", ok, ms3,
+                                    (file_url.group(1)[-60:] if ok else "sem fileUrl reproduzível"))
+                                if critical and not ok:
+                                    failed_critical = True
+                            break
 
     # Streams do título de referência — só para addons que DECLARAM o recurso
     # "stream" para o tipo (Cinemeta/OpenSubtitles não servem streams: 404 é o

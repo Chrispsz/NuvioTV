@@ -70,6 +70,7 @@ class AddonPreferences @Inject constructor(
                 val parsed = parseUrlList(json)
                 when {
                     isUnmodifiedFactoryPack(parsed) -> getDefaultAddons().toList()
+                    isFactoryPackV152(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV151(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV15(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV14(parsed) -> getDefaultAddons().toList()
@@ -252,9 +253,10 @@ class AddonPreferences @Inject constructor(
     // (HomeViewModelCatalogUtils.rebuildCatalogOrder) — por isso CANAIS AO VIVO
     // (FayaTV, instância configurada d:br@cat=) vem PRIMEIRO: abrir o app já
     // mostra canais, como TV de verdade.
-    // Depois: Cinemeta (catálogo/metadata global de filmes e séries), Torrentio BR
-    // (fonte primária de streams torrent: providers comando/bludv/micoleaodublado,
-    // ordenação qualidade+seeders), Anime Kitsu (catálogos de animes) e
+    // Depois: Cinemeta (catálogo/metadata global), Brazuca Play (VOD HTTP DIRETO
+    // DUBLADO PT-BR: Lançamentos/Filmes/Trilogias/Séries/Animes/Doramas/Desenhos/
+    // Novelas), Anime Kitsu, Torrentio BR (fonte primária de streams torrent:
+    // providers comando/bludv/micoleaodublado, ordenação qualidade+seeders) e
     // OpenSubtitles.
     // Tvvio FORA na 1.5.2: fora do ar para todo mundo desde 27/10/2026 — streams
     // cdn10embed.xyz respondem 403 Cloudflare e o relay baby-beamup.club 502
@@ -264,6 +266,10 @@ class AddonPreferences @Inject constructor(
     // + eventos ao vivo), testada 04/11/2026 — manifest/catálogos/streams 200 OK,
     // canais brasileiros reais (SBT Interior, Rede TV!, Rede Brasil, TV Paraense)
     // com streams 200 OK. O catálogo "country_filter" é ocultado no AddonMapper.
+    // 1.6.0: canais do FayaTV agora reproduzem DENTRO do app — a página /watch/
+    // que o addon devolve expõe o manifesto DASH + chaves ClearKey, e o player
+    // resolve ambos (ClearKeyDrm/ExternalStreamResolver); navegação externa só
+    // se a resolução falhar.
     // anime-kitsu.strem.fun 200 OK em 40ms (community.anime.kitsu v0.0.10).
     // Bludv VIVO — para tt0317248 devolve REMUX em PORTUGUÊS exclusivo dos
     // providers BR (torrentio testado: +1 stream só-no-BR vs padrão).
@@ -271,20 +277,35 @@ class AddonPreferences @Inject constructor(
     // gerais + 1337x/TPB). MediaFusion Midnight FORA desde a 1.5.0 (pedido do
     // dono: "é sem graça porque parece um torrentio"); torrent é o ÚLTIMO tier
     // nas opções (StreamAutoPlaySelector.tierHttpFirst).
-    // FrostStream DE VOLTA na 1.5.0 (pedido do dono: "o Frost não morreu pois
-    // ainda funciona"): o 403/404 visto em testes é bloqueio Cloudflare de IP
-    // de datacenter — em rede residencial o addon responde normal. No CI ele é
-    // não-crítico exatamente por isso.
-    // PlavioHD ENTROU na 1.5.1: VOD internacional via HTTPS DIRETO (sem torrent,
-    // sem debrid, sem login) — até 4K + esportes ao vivo; zero-config, verificado
-    // 03/11/2026 devolvendo 70 streams HTTPS assinados para tt0111161 sem
-    // autenticação (manifest+streams 200 OK, v1.9.151). Reforça o tier HTTP que
-    // fica à frente do torrent (tierHttpFirst).
-    // Meu Futebol REMOVIDO (manifest inacessível, timeout 12s no teste).
-    // BestCine permanece FORA do pack: passou a exigir login (deixou de ser
-    // zero-config); segue disponível por instalação manual de 1 clique no site.
+    // FrostStream CONTINUA (dono confirmou 05/11/2026: "o Frost não morreu"): o
+    // 403/404 visto em testes é bloqueio Cloudflare de IP de datacenter — em rede
+    // residencial o addon responde normal. No CI ele é não-crítico por isso.
+    // PlavioHD FORA na 1.6.0 (pedido do dono: "não é muito bom pra ptbr"): teste
+    // 05/11/2026 — 40 streams para tt1630029 com fontes PixalDrain/MovieBox em
+    // áudio original/russo, 0 streams para tt9363680; dublagem PT-BR praticamente
+    // inexistente. BRAZUCA PLAY ENTRA no lugar (brazuca-play-stremio.vercel.app,
+    // v2.1.5, sem login): VOD HTTP DIRETO dublado PT-BR FHD (testado 05/11/2026:
+    // tt1630029 "Dublado PT-BR - FHD" + Dual/Leg, URLs 200 OK) + catálogos BR
+    // (Lançamentos/Filmes/Séries/Animes/Doramas/Novelas). O catálogo de TV ao
+    // vivo dele é Pluto TV dos EUA (canais geo-bloqueados fora dos EUA) e fica
+    // oculto no AddonMapper — canais ao vivo ficam por conta do FayaTV.
+    // Zeus BR e FenixFlix TESTADOS e FORA: manifest 403 (Cloudflare bloqueia IP
+    // de datacenter) — sem como validar do CI; ficam para instalação manual.
+    // BestCine permanece FORA: passou a exigir login (deixou de ser zero-config).
     // Ordem = ordem das fileiras da Home: canais ao vivo primeiro.
     private fun getDefaultAddons(): Set<String> = setOf(
+        "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json",
+        "https://v3-cinemeta.strem.io",
+        "https://brazuca-play-stremio.vercel.app/manifest.json",
+        "https://anime-kitsu.strem.fun",
+        "https://froststream.cloutteam.com",
+        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
+        "https://opensubtitles-v3.strem.io"
+    )
+
+    // Pack da 1.5.2 (igual à 1.5.1, com Tvvio morto) — migra automaticamente
+    // quem atualizou da 1.5.2 sem personalizar a lista.
+    private val factoryPackV152: Set<String> = setOf(
         "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json",
         "https://v3-cinemeta.strem.io",
         "https://anime-kitsu.strem.fun",
@@ -293,6 +314,12 @@ class AddonPreferences @Inject constructor(
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100",
         "https://opensubtitles-v3.strem.io"
     )
+
+    private fun isFactoryPackV152(urls: List<String>): Boolean {
+        if (urls.size != factoryPackV152.size) return false
+        return urls.map { it.trim().lowercase() }.toSet() ==
+            factoryPackV152.map { it.lowercase() }.toSet()
+    }
 
     // Pack da 1.5.1 (com Tvvio morto) — migra automaticamente quem atualizou
     // da 1.5.1 sem personalizar a lista.

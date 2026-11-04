@@ -210,12 +210,12 @@ android {
             applicationId = "tv.minimal.nuvio"
             // Versionamento próprio do fork: a release usa tag "minimal-vX.Y.Z" e o
             // updater compara VERSION_NAME local com a tag (VersionUtils normaliza
-            // o prefixo "minimal-"). 1.5.1 = PlavioHD entra no pack de fábrica
-            // (VOD HTTP direto até 4K, reforça o tier HTTP à frente do torrent,
-            // com migração automática do pack 1.5.0) — build final da onda
-            // de 03/11/2026.
-            versionCode = 152
-            versionName = "1.5.2"
+            // o prefixo "minimal-"). 1.6.0 = TV ao vivo reproduz no player interno
+            // (resolver /watch/ + ClearKey) e Brazuca Play dublado PT-BR entra no
+            // pack de fábrica no lugar do PlavioHD (migração automática do pack
+            // 1.5.2) — build final da onda de 05/11/2026.
+            versionCode = 160
+            versionName = "1.6.0"
             buildConfigField("boolean", "FEATURE_PLUGINS_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_UPDATES_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_TRAILERS_ENABLED", "false")
