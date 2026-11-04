@@ -440,17 +440,24 @@ function restore(){
   try{const raw=localStorage.getItem("nuvio_lab");if(raw){const o=JSON.parse(raw);for(const k in o)state[k]=o[k];}}catch(e){}
 }
 function reportMd(){
+  function catsOf(s){
+    try{
+      const m=JSON.parse(s.manifest.body);const cs=(m.catalogs||[]).slice(0,8);
+      return cs.map(c=>(c.type||"?")+":"+String(c.id||"?")+(c.name?" ("+c.name+")":"")).join(", ").replace(/\|/g,"/");
+    }catch(e){return "—";}
+  }
   let md="# Relatório NuvioTV — teste de addons na rede do dono\n\nGerado: "+new Date().toLocaleString("pt-BR")+"\n\n";
-  md+="| Addon | Veredito (sua rede) | manifest | streams | torrent/HTTP | dublado | obs |\n|---|---|---|---|---|---|---|\n";
+  md+="| Addon | Veredito (sua rede) | manifest | streams | torrent/HTTP | dublado | catálogos | obs |\n|---|---|---|---|---|---|---|---|\n";
   for(const a of ADDONS){
     const s=state[a.name];const dc=dcOf(a);
-    if(!s){md+="| "+a.name+" | (não testado) | — | — | — | — | datacenter: "+(dc?dc.overall:"—")+" |\n";continue;}
+    if(!s){md+="| "+a.name+" | (não testado) | — | — | — | — | — | datacenter: "+(dc?dc.overall:"—")+" |\n";continue;}
     const v=verdictOf(s.manifest,s.best,a);
     const b=s.best;
     md+="| "+a.name+" | "+v.label+" | "+(s.manifest.status??"—")+" · "+fmtMs(s.manifest.ms)
       +" | "+(b?b.count:"—")
       +" | "+(b?b.torrent+"/"+b.http:"—")
       +" | "+(b?b.dub:"—")
+      +" | "+catsOf(s)
       +" | "+a.note.replace(/\|/g,"/")+" |\n";
   }
   md+="\nVerditos: 403/CF = bloqueio Cloudflare (pode funcionar em rede residencial); inconclusivo = CORS/DNS do navegador (usar curl ou o app).\n";
