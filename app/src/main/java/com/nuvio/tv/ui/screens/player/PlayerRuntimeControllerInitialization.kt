@@ -247,6 +247,11 @@ internal fun PlayerRuntimeController.initializePlayer(
             if (effectiveInternalPlayerEngine == InternalPlayerEngine.AUTO) {
                 effectiveInternalPlayerEngine = resolveAutoInternalPlayerEngine()
             }
+            // ClearKey (TV ao vivo do FayaTV) só é decifrado pelo ExoPlayer — o
+            // mpv não tem plugin ClearKey; força o engine do Media3 nesses streams.
+            if (currentStreamClearKey != null && effectiveInternalPlayerEngine == InternalPlayerEngine.MVP_PLAYER) {
+                effectiveInternalPlayerEngine = InternalPlayerEngine.EXOPLAYER
+            }
             runtimeInternalPlayerEngineOverride = overrideInternalPlayerEngine
             if (overrideInternalPlayerEngine == null && playerSettings.internalPlayerEngine == InternalPlayerEngine.AUTO) {
                 resolvedAutoPlayerEngine = effectiveInternalPlayerEngine

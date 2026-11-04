@@ -305,8 +305,18 @@ internal fun PlayerRuntimeController.observeSubtitleSettings() {
                 currentState.subtitleStyle.showOnlyPreferredLanguages != settings.subtitleStyle.showOnlyPreferredLanguages
             val wasRememberingAudioDelayPerDevice = rememberAudioDelayPerDeviceEnabled
             rememberAudioDelayPerDeviceEnabled = settings.rememberAudioDelayPerDevice
-            val resolvedInternalPlayerEngine =
+            val resolvedInternalPlayerEngineBase =
                 runtimeInternalPlayerEngineOverride ?: resolvedAutoPlayerEngine ?: settings.internalPlayerEngine
+            // ClearKey (TV ao vivo do FayaTV) só é decifrado pelo ExoPlayer — o
+            // mpv não tem plugin ClearKey; engine do Media3 nesses streams.
+            val resolvedInternalPlayerEngine =
+                if (currentStreamClearKey != null &&
+                    resolvedInternalPlayerEngineBase == InternalPlayerEngine.MVP_PLAYER
+                ) {
+                    InternalPlayerEngine.EXOPLAYER
+                } else {
+                    resolvedInternalPlayerEngineBase
+                }
             val resolvedAudioAmplificationDb = when {
                 !hasInitializedAudioAmplificationForSession -> {
                     hasInitializedAudioAmplificationForSession = true
