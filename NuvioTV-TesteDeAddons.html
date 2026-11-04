@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuvio TV Minimal — Laboratório de Addons (teste na SUA rede)</title>
+<style>
+:root{
+  --bg:#0b0e14;--bg2:#11151f;--card:#151a26;--card2:#1a2130;--line:#232b3d;
+  --tx:#e7ecf5;--tx2:#93a0b8;--tx3:#5d6a83;
+  --acc:#7c6cff;--acc2:#38bdf8;
+  --ok:#22c55e;--warn:#eab308;--cf:#f97316;--bad:#ef4444;--unk:#64748b;
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:14px/1.55 -apple-system,"Segoe UI",Roboto,Ubuntu,"Noto Sans",sans-serif;padding-bottom:90px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(900px 420px at 15% -10%,rgba(124,108,255,.13),transparent 60%),
+             radial-gradient(700px 380px at 90% -5%,rgba(56,189,248,.09),transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 18px}
+header.top{position:sticky;top:0;z-index:50;background:rgba(11,14,20,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1240px;margin:0 auto;padding:12px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;letter-spacing:.2px}
+.logo .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;font-size:14px}
+.logo small{color:var(--tx3);font-weight:600;display:block;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase}
+.spacer{flex:1}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--tx);
+  padding:9px 14px;border-radius:10px;font-weight:600;font-size:13px;transition:.15s;display:inline-flex;gap:7px;align-items:center}
+button:hover{border-color:var(--acc);transform:translateY(-1px)}
+button.primary{background:linear-gradient(135deg,var(--acc),#5e8bff);border:none}
+button.ghost{background:transparent}
+button:disabled{opacity:.45;cursor:default;transform:none}
+label.chk{display:flex;gap:6px;align-items:center;color:var(--tx2);font-size:12.5px;font-weight:600;cursor:pointer;user-select:none}
+label.chk input{accent-color:var(--acc)}
+.progress{height:4px;background:var(--card);border-radius:99px;overflow:hidden;position:relative}
+.progress>div{height:100%;width:0%;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .25s}
+.statusbar{padding:8px 0 2px;color:var(--tx2);font-size:12.5px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.statusbar b{color:var(--tx)}
+.pill{padding:2px 9px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.3px}
+.p-ok{background:rgba(34,197,94,.14);color:#4ade80}.p-warn{background:rgba(234,179,8,.14);color:#facc15}
+.p-cf{background:rgba(249,115,22,.14);color:#fb923c}.p-bad{background:rgba(239,68,68,.14);color:#f87171}
+.p-unk{background:rgba(100,116,139,.2);color:#94a3b8}.p-idle{background:var(--card2);color:var(--tx3)}
+.p-run{background:rgba(124,108,255,.16);color:#a5b4fc}
+.p-pack{background:rgba(56,189,248,.14);color:#38bdf8}
+.hero{padding:26px 0 8px}
+.hero h1{font-size:22px;font-weight:800;letter-spacing:-.2px}
+.hero h1 span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--tx2);max-width:900px;margin-top:8px;font-size:13.5px}
+.hero .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:16px}
+.tip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;font-size:12.5px;color:var(--tx2)}
+.tip b{color:var(--tx);display:block;margin-bottom:3px;font-size:13px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 6px;align-items:center}
+.filters select,.filters input{background:var(--card);border:1px solid var(--line);color:var(--tx);border-radius:10px;padding:8px 12px;font-size:13px}
+.filters input{min-width:200px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(355px,1fr));gap:14px;margin-top:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:15px 16px;display:flex;flex-direction:column;gap:9px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--unk)}
+.card.v-ok::before{background:var(--ok)}.card.v-warn::before{background:var(--warn)}
+.card.v-cf::before{background:var(--cf)}.card.v-bad::before{background:var(--bad)}
+.card.v-run::before{background:var(--acc);animation:pulse 1s infinite alternate}
+@keyframes pulse{from{opacity:.4}to{opacity:1}}
+.card h3{font-size:15px;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card .note{color:var(--tx2);font-size:12px}
+.badges{display:flex;gap:5px;flex-wrap:wrap}
+.bdg{font-size:10px;font-weight:800;letter-spacing:.5px;padding:2px 7px;border-radius:6px;text-transform:uppercase}
+.bdg.pack{background:rgba(56,189,248,.15);color:#7dd3fc}
+.bdg.tv{background:rgba(124,108,255,.16);color:#b4a9ff}
+.bdg.vod{background:rgba(34,197,94,.12);color:#6ee7a0}
+.bdg.ref{background:rgba(100,116,139,.18);color:#94a3b8}
+.bdg.flag{background:rgba(239,68,68,.13);color:#f87171}
+.rows{display:flex;flex-direction:column;gap:5px;font-size:12.5px}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.row .k{color:var(--tx3);font-weight:600;white-space:nowrap}
+.row .v{text-align:right;color:var(--tx2);word-break:break-all}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:2px}
+.chip{font-size:11px;font-weight:700;padding:3px 8px;border-radius:7px;background:var(--card2);color:var(--tx2);border:1px solid var(--line)}
+.chip.ok{color:#4ade80;border-color:rgba(34,197,94,.3)}
+.chip.dub{color:#fbbf24;border-color:rgba(234,179,8,.3)}
+.chip.speed{color:#38bdf8;border-color:rgba(56,189,248,.3)}
+.card .actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+.card .actions button{padding:6px 10px;font-size:11.5px;border-radius:8px}
+details{border-top:1px dashed var(--line);padding-top:8px;font-size:12px;color:var(--tx2)}
+details summary{cursor:pointer;font-weight:700;color:var(--tx);font-size:12px;outline:none}
+details pre{white-space:pre-wrap;word-break:break-all;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:8px;margin-top:6px;max-height:180px;overflow:auto;font-size:11px}
+video{width:100%;border-radius:10px;margin-top:8px;background:#000;max-height:220px}
+#toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:var(--card2);border:1px solid var(--acc);
+  color:var(--tx);padding:10px 18px;border-radius:12px;font-weight:600;font-size:13px;z-index:99;opacity:0;transition:.25s;pointer-events:none;max-width:80vw}
+#toast.show{opacity:1}
+.fab{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;gap:8px}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:14px 0 0}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-align:center}
+.sum .n{font-size:20px;font-weight:800}
+.sum .l{font-size:10.5px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+footer{margin-top:26px;color:var(--tx3);font-size:12px;text-align:center}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="logo"><div class="dot">▶</div><div>Nuvio TV Minimal<small>LABORATÓRIO DE ADDONS</small></div></div>
+    <div class="spacer"></div>
+    <div class="controls">
+      <button class="primary" id="btnAll">⚡ Testar TODOS</button>
+      <button id="btnUnk">🎯 Só inconclusivos no datacenter</button>
+      <button class="ghost" id="btnStop">■ Parar</button>
+      <label class="chk"><input type="checkbox" id="chkSpeed"> medir velocidade dos streams</label>
+      <button class="ghost" id="btnClear">🗑 Limpar</button>
+    </div>
+  </div>
+  <div class="progress"><div id="pbar"></div></div>
+</header>
+<div class="wrap">
+  <div class="hero">
+    <h1>Teste os addons na <span>sua rede, com seu IP</span></h1>
+    <p>Este arquivo é 100% offline e autônomo: abra no navegador da sua máquina e teste todos os
+    <b>29 concorrentes</b> (TV ao vivo BR + conteúdo dublado HTTP + infra do pack) direto da sua internet residencial.
+    Alguns addons bloqueiam IP de datacenter (por isso apareceram 403 nos meus testes) mas respondem normal numa rede como a sua —
+    outros podem estar realmente fora do ar. Aqui você descobre qual é qual.</p>
+    <div class="tips">
+      <div class="tip"><b>🟠 403 / Cloudflare</b>Não significa addon morto: é o mesmo bloqueio que me derrubou do datacenter. Se na SUA rede der 403 repetidamente, aí sim o addon está em queda.</div>
+      <div class="tip"><b>⚪ Erro de rede inconclusivo</b>O navegador bloqueia chamadas sem header CORS ou quando o domínio não resolve — isso <u>não</u> é veredito. Use o botão “copiar comando curl” ou teste no app.</div>
+      <div class="tip"><b>📐 O que é medido</b>Latência, status HTTP, nº de canais/metadados, nº de streams, torrent vs HTTP direto, marcadores de DUBLADO PT-BR, resolução máxima e (opcional) velocidade de download real do stream.</div>
+      <div class="tip"><b>📋 Relatório</b>No fim, clique em “copiar relatório” e cole no chat: eu converto os vencedores da sua rede em atualização do pack (só entra quem passar verde na SUA rede).</div>
+    </div>
+    <div class="summary" id="summary"></div>
+  </div>
+  <div class="filters">
+    <select id="fCat">
+      <option value="">Todas as categorias</option>
+      <option value="tv">📺 TV ao vivo BR</option>
+      <option value="vod">🎬 Conteúdo (filmes/séries)</option>
+      <option value="metadata">🗂 Infra do pack (catálogo/legendas)</option>
+    </select>
+    <select id="fVer">
+      <option value="">Todos os vereditos</option>
+      <option value="ok">🟢 Saudável na sua rede</option>
+      <option value="cf">🟠 Bloqueio Cloudflare</option>
+      <option value="warn">🟡 Respondem mas vazio/atenção</option>
+      <option value="bad">🔴 Morto/erro</option>
+      <option value="unk">⚪ Inconclusivo</option>
+    </select>
+    <select id="fSort">
+      <option value="default">Ordem: categorias</option>
+      <option value="lat">Ordem: mais rápido</option>
+      <option value="streams">Ordem: mais streams</option>
+    </select>
+    <input id="fSearch" type="search" placeholder="🔎 buscar addon...">
+    <span id="countLbl" style="color:var(--tx3);font-size:12px"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <footer>Gerado pelo laboratório do Nuvio TV Minimal · linha de base do datacenter medida em <span id="dcWhen"></span> · nenhum dado sai da sua máquina</footer>
+</div>
+<div class="fab">
+  <button class="primary" id="btnReport">📋 Copiar relatório</button>
+</div>
+<div id="toast"></div>
+<script>
+"use strict";
+/* ============ DADOS EMBUTIDOS (linha de base do datacenter) ============ */
+const DC = {"scanned_at": "2026-11-04 19:25 UTC", "addons": {"FayaTV": {"overall": "OK", "manifest_status": 200, "manifest_ms": 229, "cat_metas": 6, "stream_count": 3}, "FrostView": {"overall": "CF-BLOQUEADO", "manifest_status": 403, "manifest_ms": 58, "cat_metas": null, "stream_count": null}, "FenixTV": {"overall": "INACESSIVEL", "manifest_status": null, "manifest_ms": 7, "cat_metas": null, "stream_count": null}, "Minha TV": {"overall": "STREAM-ERRO", "manifest_status": 200, "manifest_ms": 28, "cat_metas": 2212, "stream_count": 0}, "NTC TV": {"overall": "INACESSIVEL", "manifest_status": null, "manifest_ms": 15340, "cat_metas": null, "stream_count": null}, "Meu Futebol": {"overall": "INACESSIVEL", "manifest_status": null, "manifest_ms": 15059, "cat_metas": null, "stream_count": null}, "PlavioLive": {"overall": "OK", "manifest_status": 200, "manifest_ms": 1000, "cat_metas": 16, "stream_count": 2}, "All IPTV": {"overall": "OK", "manifest_status": 200, "manifest_ms": 96, "cat_metas": 100, "stream_count": 1}, "Watchio TV": {"overall": "SEM-STREAMS", "manifest_status": 200, "manifest_ms": 79, "cat_metas": 6904, "stream_count": 0}, "Brazuca Play": {"overall": "OK", "manifest_status": 200, "manifest_ms": 64, "cat_metas": 100, "stream_count": 4}, "Zeus (zeus-br)": {"overall": "CF-BLOQUEADO", "manifest_status": 403, "manifest_ms": 95, "cat_metas": null, "stream_count": null}, "FenixFlix": {"overall": "CF-BLOQUEADO", "manifest_status": 403, "manifest_ms": 62, "cat_metas": null, "stream_count": null}, "Veyra": {"overall": "CF-BLOQUEADO", "manifest_status": 403, "manifest_ms": 41, "cat_metas": null, "stream_count": null}, "Iracemaflix": {"overall": "STREAM-ERRO", "manifest_status": 200, "manifest_ms": 43, "cat_metas": 0, "stream_count": 0}, "Hyper": {"overall": "OK", "manifest_status": 200, "manifest_ms": 172, "cat_metas": null, "stream_count": 7}, "MediaFusion (ElfHosted)": {"overall": "SEM-STREAMS", "manifest_status": 200, "manifest_ms": 239, "cat_metas": null, "stream_count": 0}, "PenguPlay": {"overall": "OK", "manifest_status": 200, "manifest_ms": 385, "cat_metas": null, "stream_count": 1}, "HdHub": {"overall": "OK", "manifest_status": 200, "manifest_ms": 228, "cat_metas": null, "stream_count": 21}, "Flix-Streams": {"overall": "STREAM-ERRO", "manifest_status": 200, "manifest_ms": 630, "cat_metas": null, "stream_count": 0}, "NoTorrent": {"overall": "OK", "manifest_status": 200, "manifest_ms": 67, "cat_metas": null, "stream_count": 43}, "Absolute Cinema": {"overall": "OK", "manifest_status": 200, "manifest_ms": 432, "cat_metas": 42, "stream_count": 201}, "Brazuca Torrents": {"overall": "STREAM-ERRO", "manifest_status": 200, "manifest_ms": 42, "cat_metas": null, "stream_count": 0}, "AIOStreams": {"overall": "OK", "manifest_status": 200, "manifest_ms": 910, "cat_metas": null, "stream_count": 1}, "NexoTV": {"overall": "OK", "manifest_status": 200, "manifest_ms": 1129, "cat_metas": 0, "stream_count": null}, "FrostStream": {"overall": "CF-BLOQUEADO", "manifest_status": 403, "manifest_ms": 53, "cat_metas": null, "stream_count": null}, "Torrentio BR": {"overall": "OK", "manifest_status": 200, "manifest_ms": 34, "cat_metas": null, "stream_count": 84}, "Cinemeta": {"overall": "OK-CATALOGO", "manifest_status": 200, "manifest_ms": 37, "cat_metas": 50, "stream_count": null}, "Anime Kitsu": {"overall": "STREAM-ERRO", "manifest_status": 200, "manifest_ms": 39, "cat_metas": null, "stream_count": 0}, "OpenSubtitles v3": {"overall": "OK", "manifest_status": 200, "manifest_ms": 40, "cat_metas": null, "stream_count": null}}};
+const ADDONS = [{"name": "FayaTV", "url": "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json", "cat": "tv", "catLabel": "TV ao vivo BR", "note": "Pack atual — canais BR + esportes; usuário aprovou", "flags": [], "pack": true, "targets": []}, {"name": "FrostView", "url": "https://frostview.cloutteam.com/manifest.json", "cat": "tv", "catLabel": "TV ao vivo BR", "note": "Mesma equipe do Frost; Globo/SBT/Record/ESPN", "flags": ["CF bloqueia datacenter"], "pack": false, "targets": []}, {"name": "FenixTV", "url": "https://fenixtv.fenixhub.online/manifest.json", "cat": "tv", "catLabel": "TV ao vivo BR", "note": "BR, HD→4K, vários servidores", "flags": ["DNS inacessível p/ datacenter"], "pack": false, "targets": []}, {"name": "Minha TV", "url": "https://da5f663b4690-minhatv.baby-beamup.club/manifest.json", "cat": "tv", "catLabel": "TV ao vivo BR", "note": "IPTV BR: abertos, esportes, desenhos", "flags": ["beamup lento p/ datacenter"], "pack": false, "targets": []}, {"name": "NTC TV", "url": "https://ntcstudios.com.br/ntctv/manifest.json", "cat": "tv", "catLabel": "TV ao vivo BR", "note": "Domínio .com.br, atualizado 03/11", "flags": ["DNS inacessível p/ datacenter"], "pack": false, "targets": []}, {"name": "Meu Futebol", "url": "https://meufutebol.oneplayhd.com/manifest.json", "cat": "tv", "catLabel": "TV ao vivo BR", "note": "Esportes ao vivo BR", "flags": ["DNS inacessível p/ datacenter"], "pack": false, "targets": []}, {"name": "PlavioLive", "url": "https://addon.plavio.site/manifest.json", "cat": "tv", "catLabel": "TV ao vivo BR", "note": "Mesmo dev do PlavioHD (removido) — avaliar", "flags": ["mesmo dev do PlavioHD"], "pack": false, "targets": []}, {"name": "All IPTV", "url": "https://fun.lnpx.workers.dev/manifest.json", "cat": "tv", "catLabel": "TV ao vivo BR", "note": "12k+ canais globais (PT parcial)", "flags": ["PT parcial"], "pack": false, "targets": []}, {"name": "Watchio TV", "url": "https://watchio-addon.pages.dev/manifest.json", "cat": "tv", "catLabel": "TV ao vivo BR", "note": "FAST globais, Cloudflare Pages", "flags": ["canais FAST globais"], "pack": false, "targets": []}, {"name": "Brazuca Play", "url": "https://brazuca-play-stremio.vercel.app/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "Pack atual — VOD HTTP dublado PT-BR", "flags": [], "pack": true, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "Zeus (zeus-br)", "url": "https://zeus-br.shardweb.app/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "Animes/filmes/séries/doramas/novelas PT", "flags": ["CF bloqueia datacenter"], "pack": false, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "FenixFlix", "url": "https://fenixflix.fenixhub.online/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "Filmes/séries/novelas dublados HD/4K", "flags": ["CF bloqueia datacenter"], "pack": false, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "Veyra", "url": "https://veyra.shardweb.app/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "HTTP sem torrent, PT-BR, shardweb", "flags": ["CF bloqueia datacenter"], "pack": false, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "Iracemaflix", "url": "https://6880ee460bc3-iracemaflix.baby-beamup.club/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "Catálogos BR M3U/Xtream/HTTP", "flags": ["beamup lento p/ datacenter"], "pack": false, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "Hyper", "url": "https://hyper.stravo.site/local/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "HTTP p2p:false, casa do FayaTV", "flags": ["streams 🔒 poss. debrid"], "pack": false, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "MediaFusion (ElfHosted)", "url": "https://mediafusion.elfhosted.com/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "Universal; sem debrid vira torrent — regra: só Torrentio", "flags": ["sem debrid: 0 streams", "com debrid: torrent → regra"], "pack": false, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "PenguPlay", "url": "https://pengu.uk/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "Filmes/séries + TV, sem conta", "flags": ["LOGIN (\"You must sign in\") → fora"], "pack": false, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "HdHub", "url": "https://hdhub.thevolecitor.qzz.io/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "HTTP via path config", "flags": ["títulos sem marcador de dublagem"], "pack": false, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "Flix-Streams", "url": "https://flixnest.app/flix-streams/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "VOD + TV ao vivo, legendas embutidas", "flags": ["400 no datacenter"], "pack": false, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "NoTorrent", "url": "https://addon.notorrent2.workers.dev/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "HTTP puro mas só EN/ES — referência", "flags": ["só EN/ES"], "pack": false, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "Absolute Cinema", "url": "https://cinema.debrid.in/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "Provável exigência de debrid — referência", "flags": ["debrid → fora"], "pack": false, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "Brazuca Torrents", "url": "https://94c8cb9f702d-brazuca-torrents.baby-beamup.club/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "Torrent BR dublado — FORA da regra (só Torrentio)", "flags": ["torrent → fora da regra"], "pack": false, "targets": [["movie", "tt1630029"]]}, {"name": "AIOStreams", "url": "https://aiostreams.elfhosted.com/stremio/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "Consolidador; requer configuração", "flags": ["requer configuração"], "pack": false, "targets": [["movie", "tt1630029"]]}, {"name": "NexoTV", "url": "https://263f84288ddb-nexotv.baby-beamup.club/manifest.json", "cat": "tv", "catLabel": "TV ao vivo BR", "note": "IPTV; exige M3U própria do usuário", "flags": ["requer M3U própria"], "pack": false, "targets": []}, {"name": "FrostStream", "url": "https://froststream.cloutteam.com/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "Pack atual — dono confirmou vivo (CF bloqueia datacenter)", "flags": ["CF bloqueia datacenter"], "pack": true, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "Torrentio BR", "url": "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100/manifest.json", "cat": "vod", "catLabel": "conteúdo", "note": "Única fonte torrent permitida", "flags": [], "pack": true, "targets": [["movie", "tt1630029"], ["movie", "tt0111161"]]}, {"name": "Cinemeta", "url": "https://v3-cinemeta.strem.io/manifest.json", "cat": "metadata", "catLabel": "infra pack", "note": "Catálogo/metadata global (sem streams)", "flags": [], "pack": true, "targets": []}, {"name": "Anime Kitsu", "url": "https://anime-kitsu.strem.fun/manifest.json", "cat": "metadata", "catLabel": "infra pack", "note": "Catálogo de animes (IDs kitsu)", "flags": ["streams de anime via Torrentio (IDs kitsu)"], "pack": true, "targets": []}, {"name": "OpenSubtitles v3", "url": "https://opensubtitles-v3.strem.io/manifest.json", "cat": "other", "catLabel": "infra pack", "note": "Legendas (sem stream)", "flags": [], "pack": true, "targets": []}];
+
+
+/* ============ utilidades ============ */
+const $ = s => document.querySelector(s);
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2600);}
+function copyText(txt,msg){
+  const done=()=>toast(msg||"copiado ✔");
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,done));}
+  else fallbackCopy(txt,done);
+}
+function fallbackCopy(txt,done){
+  const ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand("copy");done();}catch(e){toast("não consegui copiar — selecione manualmente");}
+  ta.remove();
+}
+const fmtMs = ms => ms==null?"—":(ms>=1000?(ms/1000).toFixed(1)+"s":ms+"ms");
+const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
+
+/* ============ motor de teste ============ */
+let stopFlag=false, running=false;
+async function fetchT(url,timeoutMs){
+  const t0=performance.now();const ctl=new AbortController();
+  const h=setTimeout(()=>ctl.abort(),timeoutMs);
+  try{
+    const r=await fetch(url,{signal:ctl.signal,headers:{"Accept":"*/*"}});
+    const body=await r.text();
+    return {status:r.status,ms:Math.round(performance.now()-t0),body,headers:r.headers,err:null};
+  }catch(e){
+    clearTimeout(h);
+    const ms=Math.round(performance.now()-t0);
+    const aborted=String(e&&e.name)==="AbortError";
+    return {status:null,ms,body:null,headers:null,err:aborted?"timeout":String(e&&e.message||e)};
+  }finally{clearTimeout(h);}
+}
+function jparse(body){try{return JSON.parse(body);}catch(e){return null;}}
+const LANG_RE=/(dublado|dual\.?\s?audio|legendado|pt[.\- ]?br|português)/i;
+const TOR_RE=/(infoHash|magnet:)/i;
+const RESO_RE=/(2160|4k|1080|720)/i;
+
+function verdictOf(man,stream,catMeta){
+  if(man.status===null){
+    if(/timeout/i.test(man.err||"")) return {k:"unk",label:"INCONCLUSIVO (timeout no navegador)"};
+    return {k:"unk",label:"INCONCLUSIVO (CORS/DNS no navegador — use o curl)"};
+  }
+  if(man.status===403||man.status===503||man.status===521||man.status===522||man.status===520||man.status===525||man.status===526)
+    return {k:"cf",label:"BLOQUEIO CLOUDFLARE ("+man.status+")"};
+  if(man.status===200){
+    const m=jparse(man.body);
+    if(!m) return {k:"bad",label:"JSON INVÁLIDO"};
+    if(stream&&stream.status===200){
+      const n = typeof stream.count==="number" ? stream.count
+        : (function(){const sj=jparse(stream.body);return sj&&Array.isArray(sj.streams)?sj.streams.length:0;})();
+      if(n>0) return {k:"ok",label:"SAUDÁVEL"};
+      return {k:"warn",label:"RESPONDE, MAS 0 STREAMS (pode requerer config/debrid ou o título não estar lá)"};
+    }
+    if(stream&&stream.status===null&&/timeout/i.test(stream.err||"")) return {k:"unk",label:"STREAM timeout no navegador"};
+    if(stream&&stream.status===null) return {k:"unk",label:"STREAM inconclusivo (CORS/DNS)"};
+    if(stream&&stream.status===404&&catMeta&&catMeta.metas>0) return {k:"warn",label:"catálogo OK; stream 404 (alvo sem streams)"};
+    if(stream&&(stream.status===400||stream.status===404)) return {k:"warn",label:"responde "+stream.status+" no stream (provável config de path necessária)"};
+    if(stream&&stream.status===200) return {k:"warn",label:"responde, mas formato de stream vazio"};
+    if(!stream||stream.skipped) return {k:"ok",label:"SAUDÁVEL (infra do pack)"};
+    return {k:"warn",label:"PARTIAL"};
+  }
+  if(man.status===404) return {k:"bad",label:"MANIFEST 404 (rota morta)"};
+  if(man.status===401) return {k:"bad",label:"EXIGE LOGIN (401)"};
+  if(man.status===429) return {k:"cf",label:"RATE LIMIT (429)"};
+  return {k:"bad",label:"HTTP "+man.status};
+}
+
+async function testAddon(a){
+  const r={at:new Date().toLocaleTimeString("pt-BR"),manifest:null,catalog:null,streams:[],best:null,speed:null};
+  // 1) manifest
+  r.manifest=await fetchT(a.url,15000);
+  if(r.manifest.status!==200){r.best=null;return r;}
+  const m=jparse(r.manifest.body);if(!m)return r;
+  r.meta={name:m.name,version:m.version,types:m.types,catalogs:(m.catalogs||[]).length,desc:(m.description||"").slice(0,220)};
+  const base=a.url.replace(/\/manifest\.json.*$/,"");
+  // 2) catálogo (para TV: achar o 1º canal; para VOD: contar metas)
+  const catalogs=m.catalogs||[];
+  const tvCat=catalogs.find(c=>c.type==="tv"||c.type==="channel");
+  const mvCat=catalogs.find(c=>c.type==="movie");
+  const pick=tvCat||mvCat;
+  let firstChannelId=null;
+  if(pick){
+    const cu=base+"/catalog/"+pick.type+"/"+pick.id+".json";
+    const cr=await fetchT(cu,15000);
+    const cj=cr.status===200?jparse(cr.body):null;
+    const metas=(cj&&cj.metas)||[];
+    r.catalog={url:cu,status:cr.status,ms:cr.ms,metas:metas.length,
+      sample:metas.slice(0,4).map(x=>x.name||x.id),err:cr.err};
+    if(metas[0])firstChannelId=String(metas[0].id);
+  }
+  // 3) streams
+  let targets=a.targets||[];
+  if(tvCat&&firstChannelId&&!(m.types||[]).includes("movie"))targets=[["tv",firstChannelId]];
+  for(const[ty,id]of targets){
+    const su=base+"/stream/"+ty+"/"+id+".json";
+    const sr=await fetchT(su,18000);
+    const sj=sr.status===200?jparse(sr.body):null;
+    const st=(sj&&sj.streams)||[];
+    const info={url:su,target:id,status:sr.status,ms:sr.ms,count:st.length,
+      torrent:0,http:0,dub:0,reso:null,firstUrl:null,samples:[],err:sr.err,external:0};
+    for(const s of st){
+      const blob=JSON.stringify(s);
+      const src=s.url||"";
+      if(TOR_RE.test(blob))info.torrent++;
+      else if(src)info.http++;
+      else if(s.externalUrl)info.external++;
+      if(LANG_RE.test(blob))info.dub++;
+      if(src&&!info.firstUrl)info.firstUrl=src;
+      const rm=RESO_RE.exec(blob);if(rm&&!info.reso)info.reso=rm[0];
+      if(info.samples.length<3){const t=(s.title||s.name||"").split("\n")[0];if(t)info.samples.push(t.slice(0,80));}
+    }
+    r.streams.push(info);
+    if(!r.best||info.count>r.best.count)r.best=info;
+  }
+  // 4) velocidade do 1º stream HTTP direto (opcional)
+  if($("#chkSpeed").checked&&r.best&&r.best.firstUrl&&/^https?:/.test(r.best.firstUrl)&&/\.(mp4|m3u8|mkv|ts)/i.test(r.best.firstUrl)){
+    r.speed=await speedTest(r.best.firstUrl);
+  }
+  return r;
+}
+async function speedTest(url){
+  try{
+    const t0=performance.now();const ctl=new AbortController();const h=setTimeout(()=>ctl.abort(),6000);
+    const rr=await fetch(url,{signal:ctl.signal,headers:{Range:"bytes=0-1048575"}});
+    const rd=rr.body&&rr.body.getReader?rr.body.getReader():null;
+    let got=0;
+    if(rd){while(true){const{done,value}=await rd.read();if(done)break;got+=value.length;if(got>=1048576||performance.now()-t0>5000)break;}}
+    else{const b=await rr.arrayBuffer();got=b.byteLength;}
+    clearTimeout(h);
+    const sec=(performance.now()-t0)/1000;
+    if(got<=0)return {kbs:null,err:"sem dados"};
+    return {kbs:Math.round(got/1024/sec),err:null};
+  }catch(e){return {kbs:null,err:/AbortError/i.test(String(e&&e.name))?"lento/CORS":"CORS no navegador"};}
+}
+
+/* ============ UI ============ */
+const state={};  // name -> result
+function dcOf(a){return a?((DC.addons||DC)[a.name]||null):null;}
+function render(){
+  const cat=$("#fCat").value,ver=$("#fVer").value,q=$("#fSearch").value.toLowerCase(),sort=$("#fSort").value;
+  const grid=$("#grid");grid.innerHTML="";
+  let list=ADDONS.filter(a=>{
+    if(cat&&a.cat!==cat)return false;
+    if(q&&!(a.name.toLowerCase().includes(q)||a.note.toLowerCase().includes(q)))return false;
+    if(ver){
+      const s=state[a.name];const dc=dcOf(a);
+      const k=s?verdictKey(verdictOf(s.manifest,s.best,a)):(dc?dcKey(dc.overall):null);
+      if(k!==ver)return false;
+    }
+    return true;
+  });
+  if(sort==="lat"){
+    list=list.slice().sort((x,y)=>{
+      const vx=state[x.name]?state[x.name].manifest.ms:1e9;
+      const vy=state[y.name]?state[y.name].manifest.ms:1e9;
+      return vx-vy;});
+  }else if(sort==="streams"){
+    list=list.slice().sort((x,y)=>{
+      const vx=state[x.name]&&state[x.name].best?state[x.name].best.count:-1;
+      const vy=state[y.name]&&state[y.name].best?state[y.name].best.count:-1;
+      return vy-vx;});
+  }
+  for(const a of list)grid.appendChild(cardEl(a));
+  $("#countLbl").textContent=list.length+" de "+ADDONS.length+" addons";
+  renderSummary();
+}
+function dcKey(o){
+  if(o==="OK"||o==="OK-CATALOGO")return "ok";
+  if(o==="CF-BLOQUEADO")return "cf";
+  if(o==="INACESSIVEL")return "unk";
+  return "warn";
+}
+function verdictKey(v){return v.k;}
+function badges(a){
+  let h='<div class="badges">';
+  if(a.pack)h+='<span class="bdg pack">no pack atual</span>';
+  h+='<span class="bdg '+(a.cat==="tv"?"tv":a.cat==="vod"?"vod":"ref")+'">'+esc(a.catLabel)+'</span>';
+  for(const f of (a.flags||[]))h+='<span class="bdg flag">'+esc(f)+'</span>';
+  return h+"</div>";
+}
+function dcLine(a){
+  const dc=dcOf(a);if(!dc)return '<div class="row"><span class="k">Datacenter (base)</span><span class="v">sem medição</span></div>';
+  const k=dcKey(dc.overall);
+  const cls={ok:"p-ok",cf:"p-cf",unk:"p-unk",warn:"p-warn",bad:"p-bad"}[k];
+  const ms=dc.manifest_ms?fmtMs(dc.manifest_ms):"—";
+  let extra="";
+  if(dc.stream_count!=null)extra=" · "+dc.stream_count+" streams";
+  if(dc.cat_metas!=null)extra=" · "+dc.cat_metas+" metas";
+  return '<div class="row"><span class="k">Datacenter (base)</span><span class="v"><span class="pill '+cls+'">'+esc(dc.overall)+'</span> '+ms+esc(extra)+'</span></div>';
+}
+function cardEl(a){
+  const d=document.createElement("div");
+  const s=state[a.name];
+  let v=s?verdictOf(s.manifest,s.best,a):null;
+  const vk=s?verdictKey(v):null;
+  d.className="card"+(vk?" v-"+(vk==="ok"?"ok":vk==="cf"?"cf":vk==="bad"?"bad":vk==="warn"?"warn":"run"):" v-run");
+  let h='<h3>'+esc(a.name)+(a.pack?' <span class="pill p-pack">pack</span>':'')+'</h3>'+badges(a);
+  h+='<div class="note">'+esc(a.note)+'</div>';
+  h+='<div class="rows">'+dcLine(a);
+  if(s){
+    h+='<div class="row"><span class="k">SUA REDE ('+esc(s.at)+')</span><span class="v"><span class="pill '+(vk==="ok"?"p-ok":vk==="cf"?"p-cf":vk==="bad"?"p-bad":vk==="warn"?"p-warn":"p-unk")+'">'+esc(v.label)+'</span></span></div>';
+    h+='<div class="row"><span class="k">manifest</span><span class="v">'+(s.manifest.status??"sem resposta")+' · '+fmtMs(s.manifest.ms)+'</span></div>';
+    if(s.meta)h+='<div class="row"><span class="k">addon</span><span class="v">'+esc(s.meta.name||"")+" v"+esc(s.meta.version||"?")+' · '+(s.meta.catalogs||0)+' catálogos · tipos: '+esc((s.meta.types||[]).join(", "))+'</span></div>';
+    if(s.catalog)h+='<div class="row"><span class="k">catálogo</span><span class="v">'+s.catalog.status+' · '+fmtMs(s.catalog.ms)+' · '+s.catalog.metas+' metas'+(s.catalog.sample&&s.catalog.sample.length?' — '+esc(s.catalog.sample.slice(0,2).join(", ")):'')+'</span></div>';
+    if(s.best){
+      h+='<div class="row"><span class="k">streams</span><span class="v">melhor alvo: '+esc(s.best.target||"")+' → '+s.best.count+' streams · '+fmtMs(s.best.ms)+'</span></div>';
+      const chips=[];
+      if(s.best.torrent)chips.push('<span class="chip">'+s.best.torrent+' torrent</span>');
+      if(s.best.http)chips.push('<span class="chip ok">'+s.best.http+' HTTP direto</span>');
+      if(s.best.external)chips.push('<span class="chip">'+s.best.external+' externalUrl</span>');
+      if(s.best.dub)chips.push('<span class="chip dub">'+s.best.dub+' marcados DUBLADO/PT</span>');
+      if(s.best.reso)chips.push('<span class="chip">'+esc(s.best.reso)+'</span>');
+      if(s.speed){chips.push(s.speed.kbs?'<span class="chip speed">↓ '+s.speed.kbs+' KB/s</span>':'<span class="chip">'+esc(s.speed.err)+'</span>');}
+      if(chips.length)h+='<div class="chips">'+chips.join("")+'</div>';
+    }
+  }else{
+    h+='<div class="row"><span class="k">SUA REDE</span><span class="v"><span class="pill p-idle">aguardando teste</span></span></div>';
+  }
+  h+='</div>';
+  h+='<div class="actions">'
+    +'<button data-act="test" data-n="'+esc(a.name)+'">▶ Testar</button>'
+    +'<button data-act="curl" data-n="'+esc(a.name)+'">⧉ copiar curl</button>'
+    +'<button data-act="manifest" data-n="'+esc(a.name)+'">ver manifest</button>'
+    +(s&&s.best&&s.best.firstUrl?'<button data-act="play" data-n="'+esc(a.name)+'">▶ testar stream</button><button data-act="cpurl" data-n="'+esc(a.name)+'">⧉ URL do stream</button>':"")
+    +'</div>';
+  if(s){
+    let det="";
+    if(s.streams&&s.streams.length>1)det+="Alvos de stream testados:\n"+s.streams.map(x=>"• "+x.target+": "+x.status+" "+fmtMs(x.ms)+" → "+x.count+" streams").join("\n");
+    if(s.best&&s.best.samples&&s.best.samples.length)det+="\nAmostras de stream:\n"+s.best.samples.map(x=>"• "+x).join("\n");
+    if(s.best&&s.best.firstUrl)det+="\n1ª URL de stream:\n"+s.best.firstUrl;
+    if(s.manifest&&s.manifest.body)det+="\n\nManifest:\n"+s.manifest.body.slice(0,900);
+    if(det)h+='<details><summary>detalhes técnicos</summary><pre>'+esc(det)+'</pre></details>';
+  }
+  d.innerHTML=h;
+  return d;
+}
+function renderSummary(){
+  const tested=Object.keys(state).length;
+  const c={ok:0,cf:0,warn:0,bad:0,unk:0};
+  for(const n in state){c[verdictKey(verdictOf(state[n].manifest,state[n].best,ADDONS.find(a=>a.name===n))||{k:"unk"})]++;}
+  $("#summary").innerHTML=
+    '<div class="sum"><div class="n">'+ADDONS.length+'</div><div class="l">concorrentes</div></div>'
+    +'<div class="sum"><div class="n" style="color:#4ade80">'+c.ok+'</div><div class="l">saudáveis na sua rede</div></div>'
+    +'<div class="sum"><div class="n" style="color:#fb923c">'+c.cf+'</div><div class="l">cloudflare</div></div>'
+    +'<div class="sum"><div class="n" style="color:#facc15">'+c.warn+'</div><div class="l">atenção/vazio</div></div>'
+    +'<div class="sum"><div class="n" style="color:#f87171">'+c.bad+'</div><div class="l">mortos</div></div>'
+    +'<div class="sum"><div class="n" style="color:#94a3b8">'+c.unk+'</div><div class="l">inconclusivos</div></div>';
+}
+
+/* ============ orquestração ============ */
+const UNCONCLUSIVE_DC=ADDONS.filter(a=>{const dc=dcOf(a);return !dc||dcKey(dc.overall)!=="ok";}).map(a=>a.name);
+async function runBatch(names){
+  if(running)return;running=true;stopFlag=false;
+  $("#btnAll").disabled=true;$("#btnUnk").disabled=true;
+  let i=0;
+  for(const n of names){
+    if(stopFlag)break;
+    i++;$("#pbar").style.width=Math.round(i/names.length*100)+"%";
+    toast("testando "+n+" ("+i+"/"+names.length+")…");
+    try{state[n]=await testAddon(ADDONS.find(a=>a.name===n));}
+    catch(e){state[n]={at:new Date().toLocaleTimeString("pt-BR"),manifest:{status:null,ms:0,err:String(e)},best:null};}
+    persist();render();
+  }
+  running=false;$("#btnAll").disabled=false;$("#btnUnk").disabled=false;
+  $("#pbar").style.width="100%";setTimeout(()=>{$("#pbar").style.width="0%";},1200);
+  toast("pronto! "+Object.keys(state).length+" testados");
+}
+function persist(){
+  try{localStorage.setItem("nuvio_lab",JSON.stringify(state));}catch(e){}
+}
+function restore(){
+  try{const raw=localStorage.getItem("nuvio_lab");if(raw){const o=JSON.parse(raw);for(const k in o)state[k]=o[k];}}catch(e){}
+}
+function reportMd(){
+  let md="# Relatório NuvioTV — teste de addons na rede do dono\n\nGerado: "+new Date().toLocaleString("pt-BR")+"\n\n";
+  md+="| Addon | Veredito (sua rede) | manifest | streams | torrent/HTTP | dublado | obs |\n|---|---|---|---|---|---|---|\n";
+  for(const a of ADDONS){
+    const s=state[a.name];const dc=dcOf(a);
+    if(!s){md+="| "+a.name+" | (não testado) | — | — | — | — | datacenter: "+(dc?dc.overall:"—")+" |\n";continue;}
+    const v=verdictOf(s.manifest,s.best,a);
+    const b=s.best;
+    md+="| "+a.name+" | "+v.label+" | "+(s.manifest.status??"—")+" · "+fmtMs(s.manifest.ms)
+      +" | "+(b?b.count:"—")
+      +" | "+(b?b.torrent+"/"+b.http:"—")
+      +" | "+(b?b.dub:"—")
+      +" | "+a.note.replace(/\|/g,"/")+" |\n";
+  }
+  md+="\nVerditos: 403/CF = bloqueio Cloudflare (pode funcionar em rede residencial); inconclusivo = CORS/DNS do navegador (usar curl ou o app).\n";
+  return md;
+}
+/* ============ eventos ============ */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button[data-act]");if(!b)return;
+  const a=ADDONS.find(x=>x.name===b.dataset.n);if(!a)return;
+  const act=b.dataset.act;
+  if(act==="test"){runBatch([a.name]);}
+  else if(act==="curl"){
+    copyText('curl -sS -A "'+UA+'" -w "\\n→ HTTP %{http_code} · %{time_total}s\\n" "'+a.url+'"',"comando curl copiado — cole no terminal (cmd/PowerShell) da sua máquina");
+  }
+  else if(act==="manifest"){const s=state[a.name];copyText(s&&s.manifest&&s.manifest.body?s.manifest.body.slice(0,4000):a.url,"manifest copiado");}
+  else if(act==="cpurl"){const s=state[a.name];if(s&&s.best&&s.best.firstUrl)copyText(s.best.firstUrl,"URL do stream copiada — cole no VLC");}
+  else if(act==="play"){
+    const s=state[a.name];if(!(s&&s.best&&s.best.firstUrl))return;
+    const u=s.best.firstUrl;
+    let holder=b.closest(".card").querySelector(".player");if(!holder){holder=document.createElement("div");holder.className="player";b.closest(".card").appendChild(holder);}
+    if(/\.mp4$/i.test(u)){holder.innerHTML='<video src="'+esc(u)+'" controls autoplay muted playsinline></video>';}
+    else if(/\.m3u8/i.test(u)){
+      if(window.Hls&&Hls.isSupported()){const v=document.createElement("video");v.controls=true;v.autoplay=true;v.muted=true;v.playsInline=true;holder.appendChild(v);
+        const hl=new Hls();hl.loadSource(u);hl.attachMedia(v);hl.on(Hls.Events.ERROR,(ev,d)=>{if(d.fatal){holder.innerHTML='<pre>o navegador bloqueou este HLS (CORS/codec). Copie a URL e teste no VLC.</pre>';}});
+      }else{holder.innerHTML='<video src="'+esc(u)+'" controls autoplay muted playsinline></video><pre>se não tocar: instale o hls.js pela internet (abra o arquivo online) ou use o VLC com a URL copiada.</pre>';}
+    }else{holder.innerHTML='<pre>este stream é DASH/DRM (o app do Nuvio decifra com ClearKey; navegador não). Copie a URL e teste no VLC.</pre>';}
+  }
+});
+$("#btnAll").onclick=()=>runBatch(ADDONS.map(a=>a.name));
+$("#btnUnk").onclick=()=>runBatch(UNCONCLUSIVE_DC);
+$("#btnStop").onclick=()=>{stopFlag=true;toast("parando…");};
+$("#btnClear").onclick=()=>{for(const k in state)delete state[k];persist();render();toast("resultados limpos");};
+$("#btnReport").onclick=()=>copyText(reportMd(),"relatório copiado — cole no chat para eu virar pack");
+$("#fCat").onchange=render;$("#fVer").onchange=render;$("#fSort").onchange=render;$("#fSearch").oninput=render;
+$("#dcWhen").textContent=DC.scanned_at||"—";
+restore();render();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js" onerror="this.remove()"></script>
+</body>
+</html>
