@@ -210,15 +210,17 @@ android {
             applicationId = "tv.minimal.nuvio"
             // Versionamento próprio do fork: a release usa tag "minimal-vX.Y.Z" e o
             // updater compara VERSION_NAME local com a tag (VersionUtils normaliza
-            // o prefixo "minimal-"). 1.6.1 = assinatura ESTÁVEL de release volta
-            // (secrets NUVIO_RELEASE_* criados: OTA instala por cima de novo —
-            // quem está na 1.6.0 debug-signed precisa desinstalar UMA última vez),
-            // UA de navegador nos pedidos de addon (FrostStream volta a aparecer
-            // atrás de Cloudflare), áudio português por padrão nas pistas multi-áudio
-            // (narração BR ao vivo), OpenSubtitles fora do pack (migração automática
-            // 1.6.0 → 1.6.1) e catálogos redundantes do Brazuca ocultos.
-            versionCode = 162
-            versionName = "1.6.2"
+            // o prefixo "minimal-"). 1.6.1 = assinatura ESTÁVEL de release + UA de
+            // navegador nos pedidos de addon + áudio português por padrão. 1.6.2 =
+            // NTC TV/Meu Futebol/FrostView no ao vivo, Veyra/FenixFlix no VOD,
+            // Brazuca fora (pedido do dono). 1.6.3 = FrostView e FrostStream FORA:
+            // os domínios cloutteam morreram na borda do Cloudflare para todo
+            // mundo (erro 1014 "CNAME Cross-User Banned" — origem migrada para a
+            // SquareCloud com o domínio próprio mal apontado; 1014 é de CONTA,
+            // não de rede/UA), o retry 1x com UA desktop em desafio real de CF
+            // fica no app como defesa geral; migração automática 1.6.2 → 1.6.3.
+            versionCode = 163
+            versionName = "1.6.3"
             buildConfigField("boolean", "FEATURE_PLUGINS_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_UPDATES_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_TRAILERS_ENABLED", "false")

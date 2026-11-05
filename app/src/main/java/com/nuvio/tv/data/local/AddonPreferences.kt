@@ -70,6 +70,7 @@ class AddonPreferences @Inject constructor(
                 val parsed = parseUrlList(json)
                 when {
                     isUnmodifiedFactoryPack(parsed) -> getDefaultAddons().toList()
+                    isFactoryPackV162(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV161(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV160(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV152(parsed) -> getDefaultAddons().toList()
@@ -279,9 +280,12 @@ class AddonPreferences @Inject constructor(
     // gerais + 1337x/TPB). MediaFusion Midnight FORA desde a 1.5.0 (pedido do
     // dono: "é sem graça porque parece um torrentio"); torrent é o ÚLTIMO tier
     // nas opções (StreamAutoPlaySelector.tierHttpFirst).
-    // FrostStream CONTINUA (dono confirmou 05/11/2026: "o Frost não morreu"): o
-    // 403/404 visto em testes é bloqueio Cloudflare de IP de datacenter — em rede
-    // residencial o addon responde normal. No CI ele é não-crítico por isso.
+    // FrostStream CONTINUOU na 1.6.2 (dono confirmou 05/11/2026: "o Frost não
+    // morreu"): o 403/404 visto em testes parecia bloqueio Cloudflare de IP de
+    // datacenter — em rede residencial o addon respondia normal; no CI era
+    // não-crítico por isso. ATUALIZAÇÃO 05/11 à noite: MORREU TAMBÉM — a
+    // origem migrou para a SquareCloud e a borda do CF passou a devolver 1014
+    // para todo mundo; saiu do pack na 1.6.3 (bloco abaixo).
     // PlavioHD FORA na 1.6.0 (pedido do dono: "não é muito bom pra ptbr"): teste
     // 05/11/2026 — 40 streams para tt1630029 com fontes PixalDrain/MovieBox em
     // áudio original/russo, 0 streams para tt9363680; dublagem PT-BR praticamente
@@ -316,6 +320,25 @@ class AddonPreferences @Inject constructor(
     //     Globo/SBT/Record/ESPN. CF barra o datacenter; no navegador do dono
     //     deu CORS (mesma assinatura do FrostStream, que funciona no app) —
     //     validação final é no app com o UA de navegador da 1.6.1.
+    //     RELATO 05/11/2026 (dono): no app 1.6.2 o FrostView "não encontra
+    //     nada" enquanto NO STREMIO funciona. Achado técnico: o domínio é
+    //     CNAME para cname.squareweb.app (SquareCloud) — Cloudflare DENTRO de
+    //     Cloudflare, entre contas (o CF chega a devolver 1014 "CNAME Cross-
+    //     User Banned"). O FrostStream é registro direto na zona cloutteam
+    //     (CF única) e por isso o UA navegador resolveu na 1.6.1; o FrostView
+    //     atravessa a zona da SquareCloud, que desafia clientes não-Chromium
+    //     (Stremio desktop = Electron = Chromium real → passa; OkHttp não).
+    //     Mitigação embarcada pós-1.6.2: NetworkModule repete UMA vez com UA
+    //     desktop (Chrome/Windows) quando a resposta é desafio (403/503 +
+    //     text/html). Se o bloqueio for por fingerprint TLS, as saídas são
+    //     pilha Cronet para addons ou troca do addon no pack — decidir com o
+    //     dono após o teste (abrir /manifest.json no navegador da TV: se o
+    //     navegador mostra JSON e o app não acha nada, é bloqueio de cliente).
+    //     DESFECHO (1.6.3): o teste foi feito — o NAVEGADOR também recebeu
+    //     1014 (o dono colou a página de erro; Ray a557d4c84a55a3fc, 05/11
+    //     00:44 UTC). Não era desafio de cliente: é bloqueio de borda entre
+    //     contas Cloudflare, permanente até o dono do ADDON corrigir. Regra
+    //     da casa (precedente Tvvio 1.5.2): morto para todos = fora do pack.
     //   • Veyra (veyra.shardweb.app) — 12 streams HTTP puros PT-BR na rede do
     //     dono (shardweb, mesma infra do Zeus); reforço de VOD HTTP.
     //   • FenixFlix (fenixflix.fenixhub.online) — 3/3 streams marcados DUBLADO
@@ -333,21 +356,71 @@ class AddonPreferences @Inject constructor(
     // inconsistente + histórico de login); Flix-Streams FORA (0 catálogos sem
     // config); MediaFusion/Zeus/Watchio/AIOStreams FORA (0 streams sem
     // debrid/config — regra: só Torrentio de torrent).
+    // 1.6.3 (05/11/2026, noite): FROSTVIEW E FROSTSTREAM SAÍRAM — os dois
+    // domínios cloutteam morreram na BORDA do Cloudflare para TODO MUNDO
+    // (erro 1014 "CNAME Cross-User Banned"), e 1014 não é desafio de UA nem
+    // geo-bloqueio: é proibição de CNAME entre contas Cloudflare. Cadeia do
+    // problema: a origem dos dois addons migrou para a SquareCloud e o
+    // domínio próprio ficou mal apontado — frostview.cloutteam.com virou
+    // CNAME para cname.squareweb.app (zona CF de OUTRA conta; confirmado em
+    // dois resolvedores: Google e Cloudflare DoH) e o froststream,
+    // embora registro direto na zona cloutteam, resolve a ORIGEM para o
+    // mesmo alvo proibido — o CF se recusa a servir origem atrás de outra
+    // conta e devolve 403/1014 ANTES de qualquer desafio de UA/fingerprint.
+    // Provas do dia: curl com UA de navegador (Chrome desktop e Android TV)
+    // recebe "error code: 1014" nos DOIS domínios, no manifest e no /stream;
+    // o dono abriu o /manifest.json no navegador da própria rede residencial
+    // e recebeu a página 1014; sem URL alternativa (subdomínio
+    // *.squareweb.app dá 404 e espelho comunitário está atrás de desafio
+    // próprio). O retry de UA do NetworkModule NÃO resolve 1014 (o erro é na
+    // resolução da origem) — segue no app como defesa genérica de desafios.
+    // "No Stremio funciona" = cache do desktop: catálogo/manifest servidos do
+    // cache e o stream é URL direta de terceiros que não passa pelo domínio
+    // do addon; pedido NOVO ao domínio morre igual lá. Voltam SOMENTE quando:
+    // (a) o dono do ADDON corrigir o domínio na SquareCloud (origem fora da
+    // CF de outra conta ou domínio integrado à zona certa) — prova: manifest
+    // + stream 200 na rede do dono E no health local; ou (b) URL oficial
+    // alternativa saudável. Enquanto isso o ao vivo fica com 3 casas
+    // (FayaTV/NTC TV/Meu Futebol) e o VOD HTTP com 2 (Veyra/FenixFlix)
+    // + Torrentio BR no fim da fila.
     private fun getDefaultAddons(): Set<String> = setOf(
         // — Canais ao vivo BR (3 casas independentes: se uma cai, as outras seguram) —
+        // FrostView saiu na 1.6.3: domínio cloutteam morto na borda CF (1014).
         "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json",
         "https://ntcstudios.com.br/ntctv/manifest.json",
         "https://meufutebol.oneplayhd.com/manifest.json",
-        "https://frostview.cloutteam.com/manifest.json",
         // — VOD —
         "https://v3-cinemeta.strem.io",
         "https://veyra.shardweb.app/manifest.json",
         "https://fenixflix.fenixhub.online/manifest.json",
         // — Catálogos/fontes finais —
+        // FrostStream saiu na 1.6.3: mesma morte do FrostView (1014 na borda).
+        "https://anime-kitsu.strem.fun",
+        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100"
+    )
+
+    // Pack da 1.6.2 (com FrostView e FrostStream) — migra automaticamente quem
+    // atualizou da 1.6.2 sem personalizar a lista. Os dois Frost saíram na
+    // 1.6.3: domínios cloutteam mortos na borda do Cloudflare (1014 "CNAME
+    // Cross-User Banned" entre contas — origem migrada para a SquareCloud).
+    private val factoryPackV162: Set<String> = setOf(
+        "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json",
+        "https://ntcstudios.com.br/ntctv/manifest.json",
+        "https://meufutebol.oneplayhd.com/manifest.json",
+        "https://frostview.cloutteam.com/manifest.json",
+        "https://v3-cinemeta.strem.io",
+        "https://veyra.shardweb.app/manifest.json",
+        "https://fenixflix.fenixhub.online/manifest.json",
         "https://anime-kitsu.strem.fun",
         "https://froststream.cloutteam.com",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100"
     )
+
+    private fun isFactoryPackV162(urls: List<String>): Boolean {
+        if (urls.size != factoryPackV162.size) return false
+        return urls.map { it.trim().lowercase() }.toSet() ==
+            factoryPackV162.map { it.lowercase() }.toSet()
+    }
 
     // Pack da 1.6.1 (sem OpenSubtitles) — migra automaticamente quem atualizou
     // da 1.6.1 sem personalizar a lista.

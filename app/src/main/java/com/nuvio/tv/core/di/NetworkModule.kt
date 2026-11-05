@@ -72,6 +72,25 @@ private const val BROWSER_USER_AGENT: String =
     "Mozilla/5.0 (Linux; Android 13; Android TV) AppleWebKit/537.36 " +
         "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 
+/**
+ * Fallback para zonas Cloudflare que desafiam o UA de Android TV mesmo com IP
+ * residencial. Precedente no próprio app: o FrostStream só passou a aparecer na
+ * 1.6.1 quando o UA saiu de "Nuvio/x" para navegador — CF julga a STRING do
+ * UA. O retry usa o par UA menos exótico para um WAF (Chrome desktop/Windows).
+ * Usado no máximo UMA vez por pedido.
+ *
+ * LIMITE CONHECIDO (1.6.3): NÃO resolve o erro 1014 "CNAME Cross-User Banned"
+ * (403 + HTML) — o 1014 é proibição de CNAME entre contas Cloudflare, decidido
+ * na RESOLUÇÃO DA ORIGEM e devolvido antes de qualquer desafio de cliente;
+ * nenhum UA passa. Foi o caso dos addons FrostView/FrostStream (cloutteam),
+ * cuja origem migrou para a SquareCloud com o domínio próprio mal apontado —
+ * os dois saíram do pack na 1.6.3. O retry segue como defesa genérica contra
+ * desafios de UA reais (403/503 + HTML sem erro de borda).
+ */
+private const val DESKTOP_FALLBACK_USER_AGENT: String =
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 " +
+        "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+
 private fun normalizedBaseUrl(rawUrl: String, fallback: String): String {
     val trimmed = rawUrl.trim()
     if (trimmed.isBlank()) return fallback
@@ -122,11 +141,28 @@ object NetworkModule {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .addInterceptor { chain ->
-                val request = chain.request().newBuilder()
-                    .header("User-Agent", BROWSER_USER_AGENT)
-                    .header("Accept-Language", buildAcceptLanguageHeader())
-                    .build()
-                chain.proceed(request)
+                val request = chain.request()
+                val first = chain.proceed(
+                    request.newBuilder()
+                        .header("User-Agent", BROWSER_USER_AGENT)
+                        .header("Accept-Language", buildAcceptLanguageHeader())
+                        .build()
+                )
+                // Desafio Cloudflare (403/503 + página HTML)? Repete UMA vez
+                // com UA desktop — cobre manifesto/catálogo/streams de addon
+                // (o cliente addonPermissive herda estes interceptors). Sem
+                // loop: no máximo 1 retry por pedido.
+                val isChallenge = (first.code == 403 || first.code == 503) &&
+                    first.header("Content-Type")
+                        ?.contains("text/html", ignoreCase = true) == true
+                if (!isChallenge) return@addInterceptor first
+                first.close()
+                chain.proceed(
+                    request.newBuilder()
+                        .header("User-Agent", DESKTOP_FALLBACK_USER_AGENT)
+                        .header("Accept-Language", buildAcceptLanguageHeader())
+                        .build()
+                )
             }
             .addInterceptor(SentryNetworkBreadcrumbInterceptor())
             // Prevent OkHttp from caching error responses (4xx/5xx).

@@ -69,9 +69,12 @@ Addons da comunidade atrás de Cloudflare (FrostStream/FrostView, instâncias
 shardweb como Zeus/Veyra, FenixFlix) **desafiam UA desconhecido**: o manifest
 falha e o addon simplesmente não aparece. Na 1.6.1 o `NetworkModule` manda UA
 de navegador Android TV em todo o tráfego de addon (mesma política já usada
-pelo `ci/addon_health.py` e pelo `PlayerMediaSourceFactory`). Nota: 403 do
-CI/datacenter para o Frost é esperado e não é morte — a rede residencial
-passa (o desafio Cloudflare mira IP de datacenter, não o usuário).
+pelo `ci/addon_health.py` e pelo `PlayerMediaSourceFactory`) e, desde a 1.6.3,
+repete UMA vez com UA desktop quando a resposta é desafio (403/503 + HTML).
+Nota corrigida em 05/11/2026: "403 no CI/datacenter" só não é morte quando é
+DESAFIO (mira IP/fingerprint). O erro **1014 "CNAME Cross-User Banned"** é
+outro animal — é proibição entre contas Cloudflare na resolução da origem,
+vale para todo mundo (rede/UA não mudam nada); matou os dois Frost (abaixo).
 
 ## Região, latência e qualidade no ao vivo
 
@@ -100,22 +103,58 @@ passa (o desafio Cloudflare mira IP de datacenter, não o usuário).
 ## Validação em duas redes (a partir da 1.6.2)
 
 O CI roda em datacenter: **geo-bloqueio derruba a conexão** (NTC TV, Meu
-Futebol — só ligam no Brasil) e **o Cloudflare desafia o IP** (FrostView,
-Veyra, FenixFlix, FrostStream — 403 instantâneo). Nenhum dos dois é morte:
-a TV do dono está na rede residencial, onde o laboratório provou todos
-SAUDÁVEIS (relatório 04/11/2026 17:22). Por isso:
+Futebol — só ligam no Brasil) e **o Cloudflare desafia o IP** (Veyra,
+FenixFlix — 403 instantâneo). Nenhum dos dois é morte: a TV do dono está na
+rede residencial, onde o laboratório provou todos SAUDÁVEIS (relatório
+04/11/2026 17:22). Por isso:
 
 - no `addon_health.py` esses addons são **não-críticos** — a falha deles no
   CI é esperada e documentada no próprio script;
 - a **evidência decisiva** para entrar no pack é o relatório do laboratório
   (rede do dono) + o comportamento no app (UA de navegador da 1.6.1);
 - a redundância do ao vivo agora é por **casas independentes**: FayaTV
-  (stravo), NTC TV (ntcstudios.com.br), Meu Futebol (oneplayhd) e FrostView
-  (cloutteam) — se uma casa cai, as outras três continuam na Home.
+  (stravo), NTC TV (ntcstudios.com.br) e Meu Futebol (oneplayhd) — se uma
+  casa cai, as outras duas continuam na Home (a 4ª casa, FrostView, caiu
+  com o 1014 e saiu na 1.6.3).
 
-Pack 1.6.2 (ordem = fileiras da Home): FayaTV → NTC TV → Meu Futebol →
-FrostView → Cinemeta → Veyra → FenixFlix → Kitsu → FrostStream → Torrentio BR.
+Pack 1.6.3 (ordem = fileiras da Home): FayaTV → NTC TV → Meu Futebol →
+Cinemeta → Veyra → FenixFlix → Kitsu → Torrentio BR.
+**FrostView e FrostStream SAÍRAM na 1.6.3** (erro 1014 na borda, abaixo).
+Pack 1.6.2 (histórico): FayaTV → NTC TV → Meu Futebol → FrostView → Cinemeta
+→ Veyra → FenixFlix → Kitsu → FrostStream → Torrentio BR.
 **Brazuca Play saiu na 1.6.2** (pedido do dono: "odiei — não reproduz e suja
 o catálogo"; tecnicamente a origem watchug.watch/box4.sbs está morrendo pra
 todo mundo — não era VIP nem login). O VOD HTTP dublado fica por conta de
 Veyra + FenixFlix + Torrentio BR (providers comando/bludv/micoleaodublado).
+
+## FrostView e FrostStream: erro 1014 na borda do Cloudflare (1.6.3)
+
+Relato do dono em 05/11/2026: no app 1.6.2 o FrostView "não encontra nada"
+enquanto "no Stremio funciona". Investigação do dia fechou o caso — e a
+resposta vale para os DOIS addons da casa cloutteam:
+
+1. **O que é**: `frostview.cloutteam.com` virou CNAME para `cname.squareweb.app`
+   (SquareCloud) — zona Cloudflare de OUTRA conta (confirmado nos resolvedores
+   Google e Cloudflare DoH). O `froststream.cloutteam.com` nem CNAME tem
+   (registro direto na zona cloutteam), mas resolve a ORIGEM para o mesmo
+   alvo proibido. O Cloudflare se recusa a servir origem atrás de outra conta
+   e devolve **403 "error code: 1014" (CNAME Cross-User Banned) ANTES de
+   qualquer desafio** — não é UA, não é fingerprint, não é geo-bloqueio.
+2. **A prova decisiva foi do dono**: o próprio teste sugerido aqui (abrir
+   `/manifest.json` no navegador da rede residencial) devolveu a página 1014
+   (Ray a557d4c84a55a3fc, 05/11 00:44 UTC). Navegador = Chromium real — se o
+   navegador não passa, nenhum cliente passa.
+3. **Como os testes da casa enganaram**: o 403 do datacenter parecia desafio
+   de UA (o mesmo padrão que escondeu o FrostStream até a 1.6.1); o retry com
+   UA desktop que ficou no `NetworkModule` não tem como vencer 1014 — o erro
+   é na resolução da origem. E "no Stremio funciona" é cache do desktop:
+   catálogo/manifest servidos do cache e stream é URL direta de terceiros
+   que não passa pelo domínio do addon — pedido NOVO morre igual lá.
+4. **Decisão (regra da casa, precedente Tvvio 1.5.2)**: morto para todo
+   mundo = fora do pack. Os dois saíram na 1.6.3 com migração automática
+   (usuário 1.6.2 sem personalização perde os dois na atualização).
+5. **Quando voltam**: (a) dono do ADDON corrigir o domínio na SquareCloud —
+   prova: manifest + stream 200 na rede do dono E no health local; ou (b)
+   URL oficial alternativa saudável (subdomínio `*.squareweb.app` dá 404 e
+   espelho comunitário está atrás de desafio próprio — nada utilizável em
+   05/11). Ao vivo fica com 3 casas e o VOD HTTP com 2 + Torrentio BR.

@@ -3,8 +3,11 @@
 
 Testa exatamente o pack pré-configurado do flavor minimal (AddonPreferences.kt)
 na ordem das fileiras da Home: FayaTV (ao vivo BR), NTC TV, Meu Futebol,
-FrostView, Cinemeta, Veyra, FenixFlix, Anime Kitsu, FrostStream e Torrentio BR
-(pack da 1.6.2 — Brazuca Play saiu, pedido do dono).
+Cinemeta, Veyra, FenixFlix, Anime Kitsu e Torrentio BR (pack da 1.6.3 —
+Brazuca saiu na 1.6.2 por pedido do dono; FrostView e FrostStream saíram na
+1.6.3: os dois domínios cloutteam morreram na BORDA do Cloudflare com 1014
+"CNAME Cross-User Banned" — origem migrada para a SquareCloud com domínio
+próprio mal apontado; 1014 vale para todo mundo, rede/UA não mudam nada).
 
 Para cada addon: manifest → catálogo (quando exposto) → streams. Para addons
 de catálogo de filme usa o título de referência (tt0111161, Um Sonho de
@@ -49,6 +52,20 @@ catálogo"). Diagnóstico: NÃO é VIP/login — a origem (watchug.watch/box4.sb
 está morrendo pra todo mundo (segmentos 404 em 04/11; piscou 200 e voltou a
 502/0-6 em 05/11). Não re-adicionar sem pedido explícito do dono E origem
 estável — se um dia testar de novo, a prova é a ladder de origem abaixo.
+1.6.3: FROSTVIEW E FROSTSTREAM SAÍRAM — os dois domínios cloutteam morreram
+na borda do Cloudflare para TODO MUNDO (403 "error code: 1014" CNAME Cross-
+User Banned): a origem migrou para a SquareCloud e o frostview virou CNAME
+para cname.squareweb.app (zona CF de outra conta), enquanto o froststream
+(registro direto na zona cloutteam) resolve a ORIGEM para o mesmo alvo
+proibido — o CF recusa servir origem atrás de outra conta ANTES de qualquer
+desafio de UA. Provas 05/11: curl com UA navegador recebe 1014 nos DOIS
+domínios (manifest e /stream), o DONO recebeu a página 1014 no navegador da
+própria rede residencial (Ray a557d4c84a55a3fc) e não existe URL alternativa
+(*.squareweb.app 404; espelho comunitário atrás de desafio próprio).
+"Funciona no Stremio" = cache do desktop. Regra da casa (precedente Tvvio
+1.5.2): morto para todos = fora do pack. Voltam só com domínio corrigido
+pelo dono do ADDON (manifest+stream 200 na rede do dono E aqui) ou URL
+oficial alternativa saudável.
 
 Uso: python3 ci/addon_health.py [--timeout 10]
 """
@@ -80,10 +97,13 @@ ADDONS = [
     #   SAUDÁVEIS na rede residencial do dono (lab 04/11/2026). Não-críticos.
     ("NTC TV (ao vivo BR)", "https://ntcstudios.com.br/ntctv", False, None),
     ("Meu Futebol (esportes BR)", "https://meufutebol.oneplayhd.com", False, None),
-    # — FrostView: mesma casa do FrostStream (cloutteam); Globo/SBT/Record/ESPN.
-    #   403 do Cloudflare no datacenter; a rede residencial passa (como no
-    #   FrostStream). Validação final no app com UA de navegador.
-    ("FrostView (abertas BR)", "https://frostview.cloutteam.com", False, None),
+    # — FrostView/FrostStream (cloutteam) SAÍRAM na 1.6.3: os dois domínios
+    #   morreram na borda do Cloudflare para TODO MUNDO (1014 "CNAME Cross-
+    #   User Banned" — origem migrada para a SquareCloud com domínio próprio
+    #   mal apontado; 1014 é de conta, não de rede/UA; o dono recebeu a
+    #   página 1014 no navegador da própria residência). Não re-adicionar sem
+    #   domínio corrigido (manifest+stream 200 na rede do dono E aqui) ou URL
+    #   oficial alternativa saudável.
     ("Cinemeta (catálogo)", "https://v3-cinemeta.strem.io", True, None),
     # — Veyra / FenixFlix: Cloudflare 403 no datacenter; SAUDÁVEIS na rede do
     #   dono (Veyra 12 streams HTTP PT-BR; FenixFlix 3/3 dublado HD/4K). São os
@@ -91,7 +111,6 @@ ADDONS = [
     ("Veyra (VOD HTTP BR)", "https://veyra.shardweb.app", False, None),
     ("FenixFlix (dublado BR)", "https://fenixflix.fenixhub.online", False, None),
     ("Anime Kitsu (catálogo)", "https://anime-kitsu.strem.fun", False, None),
-    ("FrostStream", "https://froststream.cloutteam.com", False, None),
     (
         "Torrentio BR (torrent)",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,"
@@ -101,8 +120,8 @@ ADDONS = [
     ),
 ]
 
-# UA de navegador: endpoints atrás de Cloudflare (FayaTV, FrostStream) bloqueiam
-# UAs de bot antes mesmo do rate limit — e o app resolve páginas /watch/ com UA
+# UA de navegador: endpoints atrás de Cloudflare (FayaTV) bloqueiam UAs de
+# bot antes mesmo do rate limit — e o app resolve páginas /watch/ com UA
 # de navegador, então o teste medindo o caminho real do app também deve usar.
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
