@@ -2,12 +2,18 @@
 """TV Minimal — teste simulado de saúde dos addons de fábrica.
 
 Testa exatamente o pack pré-configurado do flavor minimal (AddonPreferences.kt)
-na ordem das fileiras da Home: FayaTV (ao vivo BR), NTC TV, Meu Futebol,
-Cinemeta, Veyra, FenixFlix, Anime Kitsu e Torrentio BR (pack da 1.6.3 —
-Brazuca saiu na 1.6.2 por pedido do dono; FrostView e FrostStream saíram na
-1.6.3: os dois domínios cloutteam morreram na BORDA do Cloudflare com 1014
-"CNAME Cross-User Banned" — origem migrada para a SquareCloud com domínio
-próprio mal apontado; 1014 vale para todo mundo, rede/UA não mudam nada).
+na ordem das fileiras da Home: Tvvio, FayaTV (instância COMPLETA /d:br),
+NTC TV, Meu Futebol, Cinemeta, FenixFlix, FrostStream (conta do dono),
+BestCine (conta do dono), Anime Kitsu e Torrentio BR (pack da 1.6.5 —
+Tvvio VOLTOU na 1.6.4 por pedido do dono com a Home enxuta: visíveis só o
+catálogo principal (geral/ao vivo) e Esportes; FayaTV ficou COMPLETA na 1.6.5
+(/d:br — "Todos os Canais (BR)", 238 canais BR paginados). FrostStream e
+BestCine ENTRARAM na 1.6.5 com os manifests PESSOAIS do dono (conta Google
+dele; autorização explícita — só ele usa o app). Veyra saiu na 1.6.4: origem
+morta no Shard Cloud — o /meta
+dinâmico devolve 502 Bad Gateway do próprio proxy do Shard Cloud na rede do
+dono, enquanto manifest/catálogo respondiam só como CACHE de borda; 502 de
+origem vale para todo mundo, navegador incluso).
 
 Para cada addon: manifest → catálogo (quando exposto) → streams. Para addons
 de catálogo de filme usa o título de referência (tt0111161, Um Sonho de
@@ -87,12 +93,20 @@ REF_IMDB = "tt0111161"  # Um Sonho de Liberdade — alvo estável de referência
 # desce até o segmento e espera 200 — é o que reprova origem morta tipo a do
 # Brazuca em 05/11/2026 (playlists 200, segmentos 404).
 ADDONS = [
-    (
-        "FayaTV (ao vivo BR)",
-        "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment",
-        True,
-        None,
-    ),
+    # Críticos (bloqueiam release): FayaTV (âncora do ao vivo BR), Cinemeta e
+    #   Torrentio. Tvvio voltou na 1.6.4 como NÃO-crítico: já morreu uma vez
+    #   (27/10) e a prova final do play é na rede do dono; o health valida
+    #   manifest+catálogo+resposta de stream, nunca a URL final do CDN (que
+    #   403/502 do datacenter — cicatrizes de 27/10, mente para desafio CF).
+    ("Tvvio (ao vivo BR)", "https://tvvio.megaembed-frost.workers.dev", False, None),
+    # — 1.6.5: instância COMPLETA (/d:br) por pedido do dono: além dos
+    #   eventos e dos 7 esportes, o country_filter vira "Todos os Canais (BR)"
+    #   com 238 canais paginados (ESPN, SBT, TV Globo, GloboNews, CazeTV...).
+    #   Freemium medido: parte dos canais é Premium 🔒 ($3/mês,
+    #   payments.stravo.site); Premiere não existe como canal — só nos
+    #   eventos. tv_Undefined/tv_Movies ocultos no AddonMapper; a meta-anúncio
+    #   "Upgrade to Premium" é filtrada no app.
+    ("FayaTV (ao vivo BR)", "https://fayatv.stravo.site/d:br", True, None),
     # — NTC TV / Meu Futebol: geo-bloqueiam o datacenter do CI (conexão cai);
     #   SAUDÁVEIS na rede residencial do dono (lab 04/11/2026). Não-críticos.
     ("NTC TV (ao vivo BR)", "https://ntcstudios.com.br/ntctv", False, None),
@@ -105,11 +119,45 @@ ADDONS = [
     #   domínio corrigido (manifest+stream 200 na rede do dono E aqui) ou URL
     #   oficial alternativa saudável.
     ("Cinemeta (catálogo)", "https://v3-cinemeta.strem.io", True, None),
-    # — Veyra / FenixFlix: Cloudflare 403 no datacenter; SAUDÁVEIS na rede do
-    #   dono (Veyra 12 streams HTTP PT-BR; FenixFlix 3/3 dublado HD/4K). São os
-    #   donos do VOD HTTP desde a saída do Brazuca Play na 1.6.2.
-    ("Veyra (VOD HTTP BR)", "https://veyra.shardweb.app", False, None),
+    # — Veyra SAIU na 1.6.4: origem morta no Shard Cloud para TODO MUNDO. O
+    #   dono testou no navegador da própria residência: /meta dinâmico devolve
+    #   502 Bad Gateway do proxy do Shard Cloud (navegador ✓ → Shard Cloud ✓ →
+    #   origem ✕), enquanto manifest/catálogo só respondiam como CACHE de
+    #   borda (cacheMaxAge 600). Não é desafio de UA nem bloqueio de borda —
+    #   a app por trás do domínio está caída. Mesmo critério da casa
+    #   (Tvvio 1.5.2, Frosts 1.6.3): morto para todos = fora do pack. Não
+    #   re-adicionar sem origem de volta (meta+stream 200 na rede do dono E
+    #   aqui) ou URL oficial alternativa saudável.
+    # — FenixFlix: Cloudflare 403 no datacenter; SAUDÁVEL na rede do dono
+    #   (3/3 streams dublado HD/4K). Dono do VOD HTTP desde a saída do
+    #   Brazuca Play (1.6.2) e agora da Veyra (1.6.4) também.
     ("FenixFlix (dublado BR)", "https://fenixflix.fenixhub.online", False, None),
+    # — FrostStream volta na 1.6.5 com o manifest PESSOAL do dono (conta
+    #   Google dele; o serviço passou a exigir conta e o dono autorizou a
+    #   entrada no pack — só ele usa o app). Evidências 07/11: manifest 200
+    #   (com.froststream v2.3.0), dublagem PT-BR na maioria dos títulos
+    #   sondados (Interestelar 4K HDR dublado), entrega 206 video/mp4 via
+    #   Argon/Prism no datacenter e 4K confirmado pelo dono na rede dele.
+    #   Furos: lançamentos 2024/25 e nacional/anime nichado = 0 fontes (papel
+    #   do Torrentio BR). Não-crítico: se a conta/do domínio cair, o VOD HTTP
+    #   segue com FenixFlix + Torrentio.
+    (
+        "FrostStream (dublado BR, conta do dono)",
+        "https://froststream.cloutteam.com/usr_98146e13add9493c72f1",
+        False,
+        None,
+    ),
+    # — BestCine entra na 1.6.5 com o manifest PESSOAL do dono (conta Google
+    #   dele; autorização explícita). O domínio fica atrás de desafio CF que
+    #   bloqueia o CI (403 no manifest) — auditoria técnica pendente; prova
+    #   atual é o dono na rede dele. Não-crítico; sai sem dó se poluir a
+    #   Home ou não tocar no app.
+    (
+        "BestCine (VOD/TV, conta do dono)",
+        "https://bestcine.dpdns.org/usr_53ecf82b641a6e25cd0d8f78",
+        False,
+        None,
+    ),
     ("Anime Kitsu (catálogo)", "https://anime-kitsu.strem.fun", False, None),
     (
         "Torrentio BR (torrent)",

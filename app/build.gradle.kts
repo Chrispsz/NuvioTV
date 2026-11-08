@@ -214,13 +214,22 @@ android {
             // navegador nos pedidos de addon + áudio português por padrão. 1.6.2 =
             // NTC TV/Meu Futebol/FrostView no ao vivo, Veyra/FenixFlix no VOD,
             // Brazuca fora (pedido do dono). 1.6.3 = FrostView e FrostStream FORA:
-            // os domínios cloutteam morreram na borda do Cloudflare para todo
-            // mundo (erro 1014 "CNAME Cross-User Banned" — origem migrada para a
-            // SquareCloud com o domínio próprio mal apontado; 1014 é de CONTA,
-            // não de rede/UA), o retry 1x com UA desktop em desafio real de CF
-            // fica no app como defesa geral; migração automática 1.6.2 → 1.6.3.
-            versionCode = 163
-            versionName = "1.6.3"
+            // os domínios cloutteam morreram na borda do Cloudflare (erro 1014
+            // "CNAME Cross-User Banned" — origem migrada para a SquareCloud com o
+            // domínio próprio mal apontado; 1014 é de CONTA, não de rede/UA), o
+            // retry 1x com UA desktop em desafio real de CF fica no app como
+            // defesa geral; migração automática 1.6.2 → 1.6.3. 1.6.4 = Veyra
+            // FORA: origem morta no Shard Cloud (502 no /meta dinâmico na rede
+            // do dono; manifest/catálogo eram cache de borda) — VOD HTTP segue
+            // com FenixFlix + Torrentio; migração automática 1.6.3 → 1.6.4.
+            // 1.6.5 = FrostStream VOLTA com o manifest PESSOAL do dono (o
+            // serviço passou a exigir conta Google; o dono autorizou a entrada
+            // no pack — só ele usa o app; HTTP dublado com entrega 206
+            // confirmada e 4K na rede dele); Tvvio ganha paginação de canais
+            // (skip injetado no AddonMapper) e a fileira Esportes sobe para o
+            // topo do addon (foco futebol BR do dono).
+            versionCode = 165
+            versionName = "1.6.5"
             buildConfigField("boolean", "FEATURE_PLUGINS_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_UPDATES_ENABLED", "true")
             buildConfigField("boolean", "FEATURE_IN_APP_TRAILERS_ENABLED", "false")

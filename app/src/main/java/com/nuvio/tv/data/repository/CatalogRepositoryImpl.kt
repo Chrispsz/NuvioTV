@@ -76,6 +76,13 @@ class CatalogRepositoryImpl @Inject constructor(
                 val enabledScreens = layoutPreferenceDataStore.customPosterEnabledScreens.first()
 
                 val items = result.data.metas
+                    // 1.6.5: o FayaTV injeta a meta-anúncio "Upgrade to Premium
+                    // | FayaTV" como 1º item do catálogo de canais — promo não
+                    // é canal, sai antes do mapeamento (regra genérica: qualquer
+                    // meta que comece com "Upgrade to Premium").
+                    .filter { meta ->
+                        meta?.name?.startsWith("Upgrade to Premium", ignoreCase = true) != true
+                    }
                     .mapNotNull { it?.toDomainOrNull(type, addonBaseUrl) }
                     .distinctBy { it.id }
                     .withCustomPosterUrls(

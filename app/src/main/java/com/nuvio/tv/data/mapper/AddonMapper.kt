@@ -11,6 +11,7 @@ import com.nuvio.tv.domain.model.CatalogExtra
 import com.nuvio.tv.domain.model.CatalogDescriptor
 import com.nuvio.tv.domain.model.ContentType
 import com.nuvio.tv.domain.model.StremioAddonsConfig
+import com.nuvio.tv.domain.model.supportsExtra
 
 /**
  * Catálogos ocultos na conversão de manifesto para que nunca virem rows na
@@ -28,19 +29,92 @@ import com.nuvio.tv.domain.model.StremioAddonsConfig
  *   dono, 05/11/2026). Trilogias duplica Séries/Filmes; Desenhos é coberto por
  *   Animes (Brazuca) + Anime Kitsu; Novelas é nicho com pouca rotação.
  *   Mantidos no Brazuca: Lançamentos, Filmes, Séries, Animes, Doramas.
+ * - Catálogos do Tvvio que são SUBCONJUNTOS do catálogo principal "tvvio"
+ *   (geral/ao vivo, 156 canais + eventos): "tvvio.filmes-e-series",
+ *   "tvvio.variedades", "tvvio.noticias", "tvvio.canais-abertos",
+ *   "tvvio.infantil" e "tvvio.religiosos". Pedido do dono (1.6.4, 05/11/2026:
+ *   "tá cheio e poluído a home — deixa só os melhores"): o Tvvio fica com
+ *   canais gerais, esportes e ao vivo — ou seja, SOMENTE "tvvio" +
+ *   "tvvio.esportes" visíveis; o resto é fileira redundante que polui a
+ *   Home. Os ids são namespaced (tvvio.*) — risco zero de colisão.
+ * - 1.6.5 (08/11/2026): FayaTV com a instância completa (/d:br) por pedido
+ *   do dono ("tenho que ter acesso aos canais brasileiros mais fácil"). O
+ *   "country_filter" SAIU da lista oculta: com a instância completa ele é o
+ *   catálogo de TODOS os canais BR (238, paginado) e volta renomeado para
+ *   "Todos os Canais (BR)". Em contrapartida "tv_Undefined" (canais sem
+ *   classificação — os "sem imagem/irrelevantes" do dono) e "tv_Movies"
+ *   (filmes de canal, fora do foco esporte/geral) entram ocultos. Modelo
+ *   freemium do FayaTV medido: parte dos canais é Premium 🔒
+ *   (payments.stravo.site) — mantidos visíveis por decisão do dono; a
+ *   meta-anúncio "Upgrade to Premium" é filtrada no CatalogRepositoryImpl.
  */
 private val HIDDEN_DUPLICATED_CATALOG_IDS = setOf(
     "last-videos",
     "calendar-videos",
-    "country_filter",
+    "tv_Undefined",
+    "tv_Movies",
     "bp_pluto_tv",
     "bp_trilogies",
     "bp_desenhos",
-    "bp_novelas"
+    "bp_novelas",
+    "tvvio.filmes-e-series",
+    "tvvio.variedades",
+    "tvvio.noticias",
+    "tvvio.canais-abertos",
+    "tvvio.infantil",
+    "tvvio.religiosos"
+)
+
+/**
+ * 1.6.5 (07/11/2026): catálogos do Tvvio que RESPONDEM a skip no servidor mas
+ * NÃO o declaram no manifest — medido ao vivo: /catalog/tv/tvvio/skip=100.json
+ * devolve os 55 canais restantes dos 155 e skip=155 devolve 0 (parada limpa);
+ * tvvio.esportes totaliza 70 canais e também aceita skip. Sem a declaração,
+ * o app não pagina (supportsSkip=false → hasMore=false) e o dono "não consegue
+ * passar" pela lista de canais — a reclamação que motivou a 1.6.5. Injetar o
+ * extra "skip" aqui liga a paginação sem depender de correção do addon; se um
+ * dia o servidor parar de aceitar skip, o bloco extra vem vazio e a fileira
+ * para no primeiro carregamento (hasMore=false), sem loop.
+ */
+private val FORCED_SKIP_CATALOG_IDS = setOf(
+    "tvvio",
+    "tvvio.esportes"
 )
 
 fun AddonManifestDto.toDomain(baseUrl: String): Addon {
     val manifestTypes = types.map { it.trim() }.filter { it.isNotEmpty() }
+    val mappedCatalogs = catalogs
+        .filter { descriptor -> descriptor.id.trim().lowercase() !in HIDDEN_DUPLICATED_CATALOG_IDS }
+        .map { it.toDomain() }
+        .map { descriptor ->
+            // 1.6.5: Tvvio responde skip sem declarar — liga a paginação.
+            if (descriptor.id in FORCED_SKIP_CATALOG_IDS && !descriptor.supportsExtra("skip")) {
+                descriptor.copy(extraSupported = descriptor.extraSupported + "skip")
+            } else {
+                descriptor
+            }
+        }
+        .map { descriptor ->
+            // 1.6.5: o country_filter do FayaTV (instância /d:br) é o
+            // catálogo de TODOS os canais BR (238, paginado) — nome honesto
+            // para a Home, no lugar de "Countries Filter".
+            if (descriptor.id.equals("country_filter", ignoreCase = true)) {
+                descriptor.copy(name = "Todos os Canais (BR)")
+            } else {
+                descriptor
+            }
+        }
+        .let { list ->
+            // 1.6.5: foco do dono é esporte/futebol BR ("meu foco são esses
+            // tipos de canais que cobrem todo o futebol brasileiro") — a
+            // fileira Esportes do Tvvio sobe para o topo do addon. sortedBy
+            // é estável: a ordem relativa dos demais catálogos se preserva.
+            if (list.any { it.id == "tvvio.esportes" }) {
+                list.sortedBy { if (it.id == "tvvio.esportes") 0 else 1 }
+            } else {
+                list
+            }
+        }
     return Addon(
         id = id,
         name = name,
@@ -49,9 +123,7 @@ fun AddonManifestDto.toDomain(baseUrl: String): Addon {
         logo = logo,
         background = background,
         baseUrl = baseUrl,
-        catalogs = catalogs
-            .filter { descriptor -> descriptor.id.trim().lowercase() !in HIDDEN_DUPLICATED_CATALOG_IDS }
-            .map { it.toDomain() },
+        catalogs = mappedCatalogs,
         types = manifestTypes.map { ContentType.fromString(it) },
         rawTypes = manifestTypes,
         resources = parseResources(resources, manifestTypes),

@@ -70,6 +70,7 @@ class AddonPreferences @Inject constructor(
                 val parsed = parseUrlList(json)
                 when {
                     isUnmodifiedFactoryPack(parsed) -> getDefaultAddons().toList()
+                    isFactoryPackV163(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV162(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV161(parsed) -> getDefaultAddons().toList()
                     isFactoryPackV160(parsed) -> getDefaultAddons().toList()
@@ -340,7 +341,8 @@ class AddonPreferences @Inject constructor(
     //     contas Cloudflare, permanente até o dono do ADDON corrigir. Regra
     //     da casa (precedente Tvvio 1.5.2): morto para todos = fora do pack.
     //   • Veyra (veyra.shardweb.app) — 12 streams HTTP puros PT-BR na rede do
-    //     dono (shardweb, mesma infra do Zeus); reforço de VOD HTTP.
+    //     dono (shardweb, mesma infra do Zeus); reforço de VOD HTTP. SAIU na
+    //     1.6.4: origem morta no Shard Cloud (bloco 1.6.4 abaixo).
     //   • FenixFlix (fenixflix.fenixhub.online) — 3/3 streams marcados DUBLADO
     //     na rede do dono, HD/4K, novelas/séries.
     // Brazuca Play FORA na 1.6.2 (pedido do dono: "odiei — não reproduz na
@@ -383,21 +385,156 @@ class AddonPreferences @Inject constructor(
     // alternativa saudável. Enquanto isso o ao vivo fica com 3 casas
     // (FayaTV/NTC TV/Meu Futebol) e o VOD HTTP com 2 (Veyra/FenixFlix)
     // + Torrentio BR no fim da fila.
+    // 1.6.5 (08/11/2026, madrugada): CURADORIA DO AO VIVO POR PEDIDO DO DONO
+    // ("tenho que ter acesso aos canais brasileiros mais fácil"):
+    //   • FAYATV COMPLETA (/d:br no lugar de d:br@cat=Sports:General). Medido
+    //     ao vivo: a instância completa expõe o catálogo country_filter com
+    //     238 canais BR navegáveis e PAGINADOS (25/página, aceita skip) —
+    //     ESPN/ESPN 4, SBT Nacional/Interior, TV Globo Brasília, GloboNews,
+    //     CazeTV, Nickelodeon etc. O catálogo fica visível renomeado para
+    //     "Todos os Canais (BR)"; tv_Undefined e tv_Movies ficam ocultos
+    //     (reclamação do dono: canais sem imagem/irrelevantes e filmes de
+    //     canal). Modelo freemium CONFIRMADO: parte dos canais é 🔒 Premium
+    //     ($3/mês, payments.stravo.site) e parte é aberta (CazeTV, SBT) —
+    //     o dono conhece e aceita ("um aberto e outros bloqueados... a
+    //     cobertura geralmente é boa"). PREMIERE não existe como canal no
+    //     FayaTV — só como fonte de eventos (live-and-upcoming); o Premiere
+    //     navegável do pack é o do TVVIO (Premiere 2-7 + Premiere Clubes).
+    //     A meta-anúncio "Upgrade to Premium | FayaTV" (1º item do catálogo)
+    //     é filtrada no CatalogRepositoryImpl (regra: promo-meta não é canal).
+    //   • BESTCINE ENTRA no pack com o manifest PESSOAL do dono
+    //     (usr_53ecf82b641a6e25cd0d8f78 — conta Google dele, autorização
+    //     explícita: "vai te mandar o manifesto e aí você já injeta para o
+    //     padrão no aplicativo e a gente fica utilizando assim"). AVISO: o
+    //     bestcine.dpdns.org fica atrás de desafio CF que bloqueia ATÉ o CI e
+    //     o fetcher do agente — auditoria técnica do manifest pendente (o
+    //     dono confirmou na rede dele que o free trava 4K/coisas específicas,
+    //     mas funciona). Não-crítico no health; sai sem dó se poluir a Home
+    //     ou não tocar na prova do dono no app.
+    //   • FROSTVIEW (o "Frost TV" que o dono lembrava) NÃO VOLTOU: o DNS de
+    //     frostview.cloutteam.com nem resolve mais (removido da zona) — caiu
+    //     ANTES do FrostStream e ficou morto. Volta só com URL nova oficial.
+    // 1.6.5 (07/11/2026, noite): FROSTSTREAM VOLTA — AGORA COM A CONTA PESSOAL
+    // DO DONO. O domínio cloutteam voltou vivo (o 1014 da 1.6.3 acabou — a
+    // origem foi reapontada), mas o serviço passou a EXIGIR CONTA: o manifest
+    // público responde 401 {"error":"Crie uma conta FrostStream para obter seu
+    // manifest pessoal.","login":"/auth/google"}. O dono criou a conta, gerou
+    // o manifest pessoal (usr_98146e13add9493c72f1) e AUTORIZOU a entrada no
+    // pack de fábrica ("entrar na factory pack, vamos utilizar assim pois só
+    // eu utilizo o aplicativo"). Evidências de 07/11: manifest 200
+    // (com.froststream v2.3.0, movie+series, 0 catálogos = não polui a Home);
+    // sondagem de 13 títulos com dublagem PT-BR na maioria (Interestelar 8
+    // fontes incluindo 4K HDR dublado; De Volta para o Futuro 1985, 4 fontes
+    // dubladas; Shrek 4/4; Toy Story 3/3; Breaking Bad, The Last of Us, One
+    // Piece e Attack on Titan com fonte dublada); entrega real confirmada no
+    // datacenter com Range GET (206 video/mp4 via servidores Argon e Prism,
+    // arquivo de 2,7 GB) e o dono confirmou 4K tocando na própria rede (regra
+    // da casa: endpoint dinâmico na rede do dono é a prova final). Furos
+    // conhecidos: lançamentos 2024/25, conteúdo nacional e anime nichado
+    // voltam 0 fontes — papel do Torrentio BR (comando/bludv/micoleaodublado)
+    // e do Kitsu. Ordem respeitada: HTTP (FrostStream/FenixFlix) antes de
+    // torrent (Torrentio). Também na 1.6.5: paginação do Tvvio (o addon
+    // responde skip mas não declara — AddonMapper injeta o suporte e a
+    // fileira de esportes sobe para o topo do Tvvio, foco futebol BR do
+    // dono).
+    // 1.6.4 (05/11/2026, fim de tarde): VEYRA SAIU — origem morta no Shard
+    // Cloud para TODO MUNDO. Cadeia do dia: no app o Veyra "não carrega nada"
+    // e o meta de filme morre com timeout (o app pendura sem resposta).
+    // Testes do dono no navegador da PRÓPRIA rede residencial fecharam o
+    // veredito: o /manifest.json e o /catalog devolvem JSON — mas são CÓPIA
+    // DE CACHE da borda (o catálogo declara cacheMaxAge 600); o endpoint
+    // DINÂMICO /meta/movie/tmdb:1368337.json devolve 502 Bad Gateway do
+    // PRÓPRIO proxy do Shard Cloud ("o servidor proxy não conseguiu
+    // estabelecer conexão com o servidor de destino", cadeia navegador ✓ →
+    // Shard Cloud ✓ → veyra.shardweb.app ✕). Ou seja: a app/origem por trás
+    // do domínio está caída (indisponível/fora da porta/fora do 0.0.0.0),
+    // 502 para todo mundo, navegador incluso — não é desafio de UA nem
+    // bloqueio de borda (diferente dos Frosts/1014: lá a borda barrava; aqui
+    // a borda entregaria se houvesse origem viva). O datacenter nem chega à
+    // origem (desafio CF 403 "Just a moment..." em ~50ms) — por isso a prova
+    // final SEMPRE é a rede do dono. Mesmo critério da casa (precedentes
+    // Tvvio 1.5.2 e Frosts 1.6.3): morto para todos = fora do pack. O VOD
+    // HTTP fica com FenixFlix (dublado) + Torrentio BR (comando/bludv/
+    // micoleaodublado) no fim da fila. Volta SOMENTE com origem de volta no
+    // ar: prova = meta+stream 200 na rede do dono E no health local, ou URL
+    // oficial alternativa saudável.
+    // 1.6.4 (05/11/2026, noite): CURADORIA DA HOME AO VIVO por pedido do dono
+    // ("tá cheio e poluído a home... deixa só os melhores de tv"):
+    //   • TVVIO VOLTA (o dono pediu explicitamente: "um dos melhores — deve
+    //     ter canais gerais, esportes e ao vivo"). Histórico: saiu na 1.5.2
+    //     morto na origem desde 27/10 (streams cdn10embed 403 CF + relay
+    //     baby-beamup 502; relatos no r/StremioAddons). Evidência de volta
+    //     05/11: manifesto (200, v2.1.0) + catálogo principal (156 canais) +
+    //     /stream do 1º canal (200, 4 fontes) TODOS 200 no datacenter. As
+    //     fontes finais ainda mostram as cicatrizes de 27/10 no DATACENTER
+    //     (cdn10embed 403 de desafio, relay 502, livepix 200) — datacenter
+    //     mente para desafio CF, então a PROVA FINAL é o play na rede do
+    //     dono antes do commit da manhã (leição do dia do Veyra: endpoint
+    //     dinâmico, nunca cache). Catálogos visíveis: TVVIO (geral/ao vivo,
+    //     156 canais + eventos) e TVVIO.ESPORTES — os outros 7 (filmes-e-
+    //     series, variedades, noticias, canais-abertos, infantil, religiosos)
+    //     ficam ocultos no AddonMapper (subconjuntos redundantes do principal
+    //     = a poluição que o dono não quer).
+    //   • FAYATV ENXUTA: filtro da instância de
+    //     d:br@cat=Sports:General:News:Kids:Entertainment para
+    //     d:br@cat=Sports:General — News/Kids/Entertainment fora da Home
+    //     ("o resto só precisa ter os de esporte ou geral"). Ficam 3 fileiras:
+    //     live-and-upcoming (ao vivo), Esportes e Geral; country_filter segue
+    //     oculto no AddonMapper. Testado 200 no datacenter com o filtro novo.
+    //   • NTC TV e Meu Futebol seguem (Meu Futebol já é só esporte; NTC fica
+    //     como está até o relatório do laboratório listar os catálogos dela).
+    // Ordem do pack = ordem das fileiras da Home: Tvvio → FayaTV → NTC TV →
+    // Meu Futebol.
     private fun getDefaultAddons(): Set<String> = setOf(
-        // — Canais ao vivo BR (3 casas independentes: se uma cai, as outras seguram) —
+        // — Canais ao vivo BR (Tvvio de volta na 1.6.4 por pedido do dono;
+        // FayaTV âncora crítica; NTC/Meu Futebol seguram o resto. Se uma casa
+        // cai, as outras continuam na Home) —
         // FrostView saiu na 1.6.3: domínio cloutteam morto na borda CF (1014).
-        "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json",
+        "https://tvvio.megaembed-frost.workers.dev",
+        "https://fayatv.stravo.site/d:br/manifest.json",
         "https://ntcstudios.com.br/ntctv/manifest.json",
         "https://meufutebol.oneplayhd.com/manifest.json",
         // — VOD —
         "https://v3-cinemeta.strem.io",
-        "https://veyra.shardweb.app/manifest.json",
+        // Veyra saiu na 1.6.4: origem morta no Shard Cloud (502 no meta,
+        // manifesto/catálogo eram cache de borda) — bloco 1.6.4 acima.
         "https://fenixflix.fenixhub.online/manifest.json",
+        // FrostStream volta na 1.6.5 com o manifest PESSOAL do dono (conta
+        // Google dele; autorizado a entrar no pack — só ele usa o app).
+        // HTTP dublado PT-BR com entrega confirmada; furos (lançamentos
+        // 2024/25, nacional/anime nichado) ficam com o Torrentio BR abaixo.
+        "https://froststream.cloutteam.com/usr_98146e13add9493c72f1/manifest.json",
+        // BestCine entra na 1.6.5 com o manifest PESSOAL do dono (conta
+        // Google dele; autorização explícita). CF do domínio bloqueia o CI —
+        // auditoria técnica pendente; não-crítico no health.
+        "https://bestcine.dpdns.org/usr_53ecf82b641a6e25cd0d8f78/manifest.json",
         // — Catálogos/fontes finais —
-        // FrostStream saiu na 1.6.3: mesma morte do FrostView (1014 na borda).
+        // O FrostStream público (sem conta) segue morto: 401 exigindo conta.
+        // FrostView ("Frost TV") não voltou: DNS removido da zona cloutteam.
         "https://anime-kitsu.strem.fun",
         "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100"
     )
+
+    // Pack da 1.6.3 (com Veyra, sem Frosts) — migra automaticamente quem
+    // atualizou da 1.6.3 sem personalizar a lista. O Veyra saiu na 1.6.4:
+    // origem morta no Shard Cloud (502 no meta dinâmico na rede do dono;
+    // manifest/catálogo eram cache de borda).
+    private val factoryPackV163: Set<String> = setOf(
+        "https://fayatv.stravo.site/d:br@cat=Sports:General:News:Kids:Entertainment/manifest.json",
+        "https://ntcstudios.com.br/ntctv/manifest.json",
+        "https://meufutebol.oneplayhd.com/manifest.json",
+        "https://v3-cinemeta.strem.io",
+        "https://veyra.shardweb.app/manifest.json",
+        "https://fenixflix.fenixhub.online/manifest.json",
+        "https://anime-kitsu.strem.fun",
+        "https://torrentio.strem.fun/providers=yts,eztv,1337x,thepiratebay,torrentgalaxy,magnetdl,comando,bludv,micoleaodublado|sort=qualityseeders|limit=100"
+    )
+
+    private fun isFactoryPackV163(urls: List<String>): Boolean {
+        if (urls.size != factoryPackV163.size) return false
+        return urls.map { it.trim().lowercase() }.toSet() ==
+            factoryPackV163.map { it.lowercase() }.toSet()
+    }
 
     // Pack da 1.6.2 (com FrostView e FrostStream) — migra automaticamente quem
     // atualizou da 1.6.2 sem personalizar a lista. Os dois Frost saíram na
